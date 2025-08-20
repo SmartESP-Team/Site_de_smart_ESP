@@ -249,7 +249,7 @@ function App() {
             <div className="relative">
               <div className="bg-gradient-to-br from-blue-600 to-blue-800 p-4 rounded-2xl shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500">
                 <img 
-                  src="https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg" 
+                  src="https://fayrviwbbspmiqztcyhv.supabase.co/storage/v1/object/public/iotimages/screen%20%20shot/Green%20and%20Yellow%20Playful%20Illustrative%20What%20are%20the%20parts%20of%20a%20Plant%20Presentation%20(2).png" 
                   alt="Capture d'écran de l'application Smart ESP"
                   className="w-full rounded-xl shadow-lg"
                 />
