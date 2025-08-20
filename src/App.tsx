@@ -440,10 +440,11 @@ function App() {
   </h2>
   <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
     {[
-      "https://via.placeholder.com/300x600?text=Screenshot+1",
-      "https://via.placeholder.com/300x600?text=Screenshot+2",
-      "https://via.placeholder.com/300x600?text=Screenshot+3",
-      "https://via.placeholder.com/300x600?text=Screenshot+4"
+      "https://fayrviwbbspmiqztcyhv.supabase.co/storage/v1/object/public/iotimages/screen%20%20shot/1.png",
+      "https://fayrviwbbspmiqztcyhv.supabase.co/storage/v1/object/public/iotimages/screen%20%20shot/2.png",
+      "https://fayrviwbbspmiqztcyhv.supabase.co/storage/v1/object/public/iotimages/screen%20%20shot/3.png",
+      "https://fayrviwbbspmiqztcyhv.supabase.co/storage/v1/object/public/iotimages/screen%20%20shot/4.png",
+     
     ].map((src, i) => (
       <div
         key={i}
@@ -512,7 +513,7 @@ function App() {
             <iframe
               width="100%"
               height="100%"
-              src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+              src="https://youtu.be/9jcOBSLE75o?si=0N8tn40SZiQ2cGVw"
               title="Tutoriel Smart ESP"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
