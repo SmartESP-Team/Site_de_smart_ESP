@@ -186,8 +186,10 @@ function App() {
                   Smart ESP – La plateforme IoT unique, intelligente et simple pour vos  <span className="text-blue-600">Projets ESP</span>
                 </h1>
                 <p className="text-xl text-gray-600 leading-relaxed">
-                  Révolutionnez votre développement IoT avec des suggestions de projets alimentées par l'IA, 
-                  une intégration transparente avec Google Sheets et des outils d'automatisation intelligents.
+                 Smart ESP est une plateforme IoT unique, idéale pour les étudiants et
+                  débutants en IoT, qui simplifie vos projets ESP32 et ESP8266. Collectez, 
+                  commandez, surveillez et partagez vos données en temps réel, avec Google Sheets,
+                  Gmail et assistance IA, le tout sans configuration complexe.
                 </p>
               </div>
               
@@ -218,15 +220,24 @@ function App() {
                   <Settings className="text-purple-600" size={24} />
                   <div>
                     <h3 className="font-semibold text-gray-800">Assistant IA</h3>
-                    <p className="text-sm text-gray-600">Aide personnalisée</p>
+                    <p className="text-sm text-gray-600">Aide personnalisée, générateur de projet</p>
                   </div>
                 </div>
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors transform hover:scale-105">
-                  Commencer Aujourd'hui
-                </button>
+<button
+  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors transform hover:scale-105"
+  onClick={() => {
+    const target = document.getElementById("features");
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+    }
+  }}
+>
+  Démarrez gratuitement
+</button>
+
                 <button className="bg-white hover:bg-gray-50 text-blue-600 border-2 border-blue-600 px-8 py-4 rounded-lg text-lg font-semibold transition-colors transform hover:scale-105 flex items-center space-x-2">
                   <ExternalLink size={20} />
                   <span>Découvrir le Workflow</span>
