@@ -655,10 +655,7 @@ function App() {
                   Smart ESP – La plateforme IoT unique, intelligente et simple pour vos  <span className="text-blue-600">Projets ESP</span>
                 </h1>
                 <p className="text-xl text-gray-600 leading-relaxed">
-                  Smart ESP est une plateforme IoT unique, idéale pour les étudiants et
-                  débutants en IoT, qui simplifie vos projets ESP32 et ESP8266. Collectez,
-                  commandez, surveillez et partagez vos données en temps réel, avec Google Sheets,
-                  Gmail et assistance IA, le tout sans configuration complexe.
+                  Smart ESP : L’application IoT idéale pour étudiants et débutants. Simplifiez vos projets ESP32/ESP8266 avec collecte, surveillance et partage de données en temps réel via Google Sheets, Gmail et assistance IA Gemini. Catalogue de composants, bibliothèques et outils intelligents – sans configuration complexe. Démarrez gratuitement !
                 </p>
               </div>
               <div className="grid grid-cols-2 gap-4">
