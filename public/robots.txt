@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://smartesp.vercel.app/sitemap.xml
