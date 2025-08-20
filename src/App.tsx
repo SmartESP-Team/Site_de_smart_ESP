@@ -462,25 +462,49 @@ function App() {
           </div>
         </div>
 
-        {/* Download Buttons */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          <button className="bg-blue-600 hover:bg-blue-700 text-white p-6 rounded-xl font-semibold text-lg transition-colors flex items-center justify-center space-x-3 transform hover:scale-105">
-            <Download size={24} />
-            <span>Application Smart ESP</span>
-          </button>
-          <button className="bg-green-600 hover:bg-green-700 text-white p-6 rounded-xl font-semibold text-lg transition-colors flex items-center justify-center space-x-3 transform hover:scale-105">
-            <Download size={24} />
-            <span>Bibliothèque ESP32</span>
-          </button>
-          <button className="bg-purple-600 hover:bg-purple-700 text-white p-6 rounded-xl font-semibold text-lg transition-colors flex items-center justify-center space-x-3 transform hover:scale-105">
-            <Download size={24} />
-            <span>Bibliothèque ESP8266</span>
-          </button>
-          <button className="bg-orange-600 hover:bg-orange-700 text-white p-6 rounded-xl font-semibold text-lg transition-colors flex items-center justify-center space-x-3 transform hover:scale-105">
-            <Download size={24} />
-            <span>Fichier Pilote ESP</span>
-          </button>
-        </div>
+      {/* Download Buttons */}
+<div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+  <a
+    href="https://lien-vers-app-smart-esp.com"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="bg-blue-600 hover:bg-blue-700 text-white p-6 rounded-xl font-semibold text-lg transition-colors flex items-center justify-center space-x-3 transform hover:scale-105"
+  >
+    <Download size={24} />
+    <span>Application Smart ESP</span>
+  </a>
+
+  <a
+    href="https://lien-vers-bibliotheque-esp32.com"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="bg-green-600 hover:bg-green-700 text-white p-6 rounded-xl font-semibold text-lg transition-colors flex items-center justify-center space-x-3 transform hover:scale-105"
+  >
+    <Download size={24} />
+    <span>Bibliothèque ESP32</span>
+  </a>
+
+  <a
+    href="https://lien-vers-bibliotheque-esp8266.com"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="bg-purple-600 hover:bg-purple-700 text-white p-6 rounded-xl font-semibold text-lg transition-colors flex items-center justify-center space-x-3 transform hover:scale-105"
+  >
+    <Download size={24} />
+    <span>Bibliothèque ESP8266</span>
+  </a>
+
+  <a
+    href="https://lien-vers-fichier-pilote-esp.com"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="bg-orange-600 hover:bg-orange-700 text-white p-6 rounded-xl font-semibold text-lg transition-colors flex items-center justify-center space-x-3 transform hover:scale-105"
+  >
+    <Download size={24} />
+    <span>Fichier Pilote ESP</span>
+  </a>
+</div>
+
 
         {/* Embedded YouTube Video */}
         <div className="bg-white rounded-2xl p-8 shadow-lg">
