@@ -433,39 +433,38 @@ function App() {
       </nav>
 
       <div className="max-w-7xl mx-auto px-6 py-20">
-        {/* App Screenshots */}
-        <div className="mb-16">
-          <h2 className="text-4xl font-bold text-gray-800 text-center mb-12">Captures d'Écran de l'Application</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-                <div className="aspect-[9/16] bg-gradient-to-br from-blue-600 to-blue-800 p-4">
-                  <div className="bg-white rounded-lg h-full p-4 space-y-3">
-                    <div className="flex space-x-1">
-                      <div className="w-2 h-2 bg-red-400 rounded-full"></div>
-                      <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
-                      <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                    </div>
-                    <div className="space-y-2">
-                      <div className="h-3 bg-gray-200 rounded w-3/4"></div>
-                      <div className="h-3 bg-blue-200 rounded w-1/2"></div>
-                      <div className="h-16 bg-gradient-to-r from-blue-100 to-blue-50 rounded"></div>
-                      <div className="grid grid-cols-2 gap-1">
-                        <div className="h-8 bg-gray-100 rounded"></div>
-                        <div className="h-8 bg-blue-100 rounded"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+      {/* App Screenshots */}
+<div className="mb-16">
+  <h2 className="text-4xl font-bold text-gray-800 text-center mb-12">
+    Captures d'Écran de l'Application
+  </h2>
+  <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+    {[
+      "https://via.placeholder.com/300x600?text=Screenshot+1",
+      "https://via.placeholder.com/300x600?text=Screenshot+2",
+      "https://via.placeholder.com/300x600?text=Screenshot+3",
+      "https://via.placeholder.com/300x600?text=Screenshot+4"
+    ].map((src, i) => (
+      <div
+        key={i}
+        className="bg-gray-100 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
+      >
+        <img
+          src={src}
+          alt={`Capture d'écran ${i + 1}`}
+          className="w-full h-full object-cover"
+        />
+      </div>
+    ))}
+  </div>
+</div>
+
+
 
       {/* Download Buttons */}
 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
   <a
-    href="https://lien-vers-app-smart-esp.com"
+    href="https://github.com/YannErmes/SmartESP_app_update/releases/download/v1.2.0/app-armeabi-v7a-release.apk"
     target="_blank"
     rel="noopener noreferrer"
     className="bg-blue-600 hover:bg-blue-700 text-white p-6 rounded-xl font-semibold text-lg transition-colors flex items-center justify-center space-x-3 transform hover:scale-105"
@@ -475,7 +474,7 @@ function App() {
   </a>
 
   <a
-    href="https://lien-vers-bibliotheque-esp32.com"
+    href="https://github.com/SmartESP-Team/SmartESP32Utils/archive/refs/heads/main.zip"
     target="_blank"
     rel="noopener noreferrer"
     className="bg-green-600 hover:bg-green-700 text-white p-6 rounded-xl font-semibold text-lg transition-colors flex items-center justify-center space-x-3 transform hover:scale-105"
@@ -485,7 +484,7 @@ function App() {
   </a>
 
   <a
-    href="https://lien-vers-bibliotheque-esp8266.com"
+    href="https://github.com/SmartESP-Team/SmartESP8266Utils/archive/refs/heads/main.zip"
     target="_blank"
     rel="noopener noreferrer"
     className="bg-purple-600 hover:bg-purple-700 text-white p-6 rounded-xl font-semibold text-lg transition-colors flex items-center justify-center space-x-3 transform hover:scale-105"
@@ -495,7 +494,7 @@ function App() {
   </a>
 
   <a
-    href="https://lien-vers-fichier-pilote-esp.com"
+    href="https://github.com/user-attachments/files/21894487/CH341SER.zip"
     target="_blank"
     rel="noopener noreferrer"
     className="bg-orange-600 hover:bg-orange-700 text-white p-6 rounded-xl font-semibold text-lg transition-colors flex items-center justify-center space-x-3 transform hover:scale-105"
