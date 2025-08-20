@@ -183,7 +183,7 @@ function App() {
             <div className="space-y-8">
               <div className="space-y-4">
                 <h1 className="text-5xl font-bold text-gray-800 leading-tight">
-                  Bienvenue sur <span className="text-blue-600">Smart ESP</span>
+                  Smart ESP – La plateforme IoT unique, intelligente et simple pour vos  <span className="text-blue-600">Projets ESP</span>
                 </h1>
                 <p className="text-xl text-gray-600 leading-relaxed">
                   Révolutionnez votre développement IoT avec des suggestions de projets alimentées par l'IA, 
