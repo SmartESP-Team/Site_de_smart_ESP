@@ -1196,16 +1196,82 @@ function App() {
     </div>
   );
 
-  switch (currentPage) {
-    case 'download':
-      return <DownloadPage />;
-    case 'components':
-      return <ComponentsPage />;
-    case 'custom':
-      return <CustomAppsPage />;
-    default:
-      return <HomePage />;
-  }
+  const NotFoundPage = () => (
+  <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white flex items-center justify-center px-6">
+    <IconBackground />
+    <div className="max-w-3xl mx-auto text-center">
+      <div className="bg-blue-600 text-white w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+        <span className="text-3xl font-bold">404</span>
+      </div>
+      <h1 className="text-5xl font-bold text-gray-800 mb-4">Page Non Trouvée</h1>
+      <p className="text-xl text-gray-600 mb-8">
+        Oops! La page que vous recherchez n'existe pas. Elle a peut-être été déplacée, supprimée ou saisie incorrectement.
+      </p>
+
+      <div className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-blue-100 mb-8 text-left max-w-2xl mx-auto">
+        <h2 className="text-lg font-semibold text-gray-800 mb-4">Suggestions utiles :</h2>
+        <ul className="space-y-3 text-gray-600">
+          <li className="flex items-start space-x-3">
+            <Play className="text-blue-500 mt-1 flex-shrink-0" size={16} />
+            <span>Vérifiez l'adresse URL et réessayez.</span>
+          </li>
+          <li className="flex items-start space-x-3">
+            <Play className="text-blue-500 mt-1 flex-shrink-0" size={16} />
+            <span>Retournez à l'accueil pour explorer les fonctionnalités.</span>
+          </li>
+          <li className="flex items-start space-x-3">
+            <Play className="text-blue-500 mt-1 flex-shrink-0" size={16} />
+            <span>Parcourez le catalogue de composants IoT pour vos projets.</span>
+          </li>
+          <li className="flex items-start space-x-3">
+            <Play className="text-blue-500 mt-1 flex-shrink-0" size={16} />
+            <span>Téléchargez l'application Smart ESP pour commencer.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <button
+          onClick={() => setCurrentPage('home')}
+          className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors flex items-center justify-center space-x-2 transform hover:scale-105"
+        >
+          <ChevronLeft size={20} />
+          <span>Retour à l'Accueil</span>
+        </button>
+        <button
+          onClick={() => setCurrentPage('components')}
+          className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors flex items-center justify-center space-x-2 transform hover:scale-105"
+        >
+          <Zap size={20} />
+          <span>Catalogue de Composants</span>
+        </button>
+        <button
+          onClick={() => setCurrentPage('download')}
+          className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors flex items-center justify-center space-x-2 transform hover:scale-105"
+        >
+          <Download size={20} />
+          <span>Téléchargements</span>
+        </button>
+      </div>
+
+      <div className="mt-12 text-gray-500">
+        <p>© 2025 Smart ESP. Tous droits réservés.</p>
+      </div>
+    </div>
+  </div>
+);
+
+ switch (currentPage) {
+  case 'download':
+    return <DownloadPage />;
+  case 'components':
+    return <ComponentsPage />;
+  case 'custom':
+    return <CustomAppsPage />;
+  case 'home':
+    return <HomePage />;
+  default:
+    return <NotFoundPage />;
 }
 
 export default App;
