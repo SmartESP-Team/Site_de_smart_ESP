@@ -973,7 +973,7 @@ function App() {
             </button>
             <div className="flex items-center space-x-2">
               <Cpu className="text-blue-600" size={32} />
-              <span className="text-2xl font-bold text-gray-800">Composants IoT</span>
+              <span className="text-2xl font-bold text-gray-800">Smart ESP – Catalogue de composants IoT pour ESP32 et ESP8266</span>
             </div>
           </div>
         </div>
