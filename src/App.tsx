@@ -1595,12 +1595,12 @@ Exigences :
               Du concept au déploiement, nous nous occupons de tout.
             </p>
             <a
-              href="https://wa.me/0710038821"
+              href="https://wa.me/212710038821"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block bg-white text-blue-600 px-12 py-4 rounded-xl text-xl font-bold hover:bg-gray-100 transition-colors transform hover:scale-105"
             >
-              Commander Mon Application Personnalisée
+              Contactez-nous pour concrétiser votre projet ✅
             </a>
           </div>
         </div>
