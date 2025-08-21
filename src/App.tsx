@@ -557,8 +557,287 @@ const iotComponents: Component[] = [
     description: "Écran à cristaux liquides (LCD) capable d'afficher 2 lignes de 16 caractères.",
     voltage: "5V DC",
     specifications: ["Résolution : 16x2", "Couleur : Bleu/Vert", "Interface : Parallèle", "Taille : 80x36mm"]
+  },
+
+  {
+    id: 68,
+    name: "Capteur de Luminosité (LDR)",
+    image: "https://via.placeholder.com/150?text=Component+68",
+    description: "Capteur passif dont la résistance varie en fonction de l'intensité lumineuse ambiante.",
+    voltage: "3.3-5V DC",
+    specifications: ["Type : Analogique", "Plage de détection : 1-1000 lux", "Temps de réponse : 10ms", "Angle : 120°"]
+  },
+  {
+    id: 69,
+    name: "Module Microphone MAX9814",
+    image: "https://via.placeholder.com/150?text=Component+69",
+    description: "Microphone amplifié avec gain ajustable, idéal pour la détection de sons ou la reconnaissance vocale.",
+    voltage: "3.3-5V DC",
+    specifications: ["Gain : 30-60dB", "Sortie : Analogique", "Fréquence : 20Hz-20kHz", "Alimentation : 3.3-5V"]
+  },
+  {
+    id: 70,
+    name: "Capteur de Distance Ultrason HC-SR04",
+    image: "https://via.placeholder.com/150?text=Component+70",
+    description: "Module de mesure de distance par écho ultrasonore, utilisé pour la détection d'obstacles.",
+    voltage: "5V DC",
+    specifications: ["Portée : 2cm-4m", "Précision : ±3mm", "Angle : 15°", "Sortie : Numérique (Trigger/Echo)"]
+  },
+  {
+    id: 71,
+    name: "Moteur DC 6V",
+    image: "https://via.placeholder.com/150?text=Component+71",
+    description: "Moteur à courant continu simple, utilisé pour la propulsion dans les robots ou les véhicules miniatures.",
+    voltage: "6V DC",
+    specifications: ["Vitesse : 200 RPM", "Couple : 0.5kg·cm", "Courant : 200mA", "Taille : 30x20mm"]
+  },
+  {
+    id: 72,
+    name: "Module Amplificateur Audio PAM8403",
+    image: "https://via.placeholder.com/150?text=Component+72",
+    description: "Amplificateur stéréo numérique 2x3W, idéal pour les projets audio avec haut-parleurs.",
+    voltage: "5V DC",
+    specifications: ["Puissance : 2x3W", "THD : <1%", "Entrée : Analogique", "Classe : D"]
+  },
+  {
+    id: 73,
+    name: "Capteur de CO2 MH-Z19B",
+    image: "https://via.placeholder.com/150?text=Component+73",
+    description: "Capteur de dioxyde de carbone (CO2) basé sur la technologie NDIR, utilisé pour la qualité de l'air.",
+    voltage: "5V DC",
+    specifications: ["Plage : 0-5000ppm", "Précision : ±50ppm", "Sortie : UART/PWM", "Temps de préchauffage : 3min"]
+  },
+  {
+    id: 74,
+    name: "Module de Communication NRF24L01",
+    image: "https://via.placeholder.com/150?text=Component+74",
+    description: "Module sans fil 2.4GHz à faible consommation, utilisé pour la communication entre microcontrôleurs.",
+    voltage: "3.3V DC",
+    specifications: ["Portée : 100m (module amplifié)", "Débit : 250kbps-2Mbps", "Interface : SPI", "Consommation : 12mA"]
+  },
+  {
+    id: 75,
+    name: "Capteur de Qualité de l'Air (SGP30)",
+    image: "https://via.placeholder.com/150?text=Component+75",
+    description: "Capteur numérique de qualité de l'air intérieur, mesurant les COV et le CO2 équivalent.",
+    voltage: "3.3V DC",
+    specifications: ["Mesures : COV, eCO2", "Interface : I2C", "Durée de vie : 5 ans", "Précision : ±15%"]
+  },
+  {
+    id: 76,
+    name: "Pompe à Air pour Aquarium",
+    image: "https://via.placeholder.com/150?text=Component+76",
+    description: "Mini pompe à air 12V pour aérer l'eau dans les aquariums ou systèmes hydroponiques.",
+    voltage: "12V DC",
+    specifications: ["Débit : 100L/h", "Pression : 0.02MPa", "Niveau sonore : 40dB", "Connexion : Tuyau 4mm"]
+  },
+  {
+    id: 77,
+    name: "Capteur de Tension (Voltage Sensor)",
+    image: "https://via.placeholder.com/150?text=Component+77",
+    description: "Module diviseur de tension permettant de mesurer des tensions élevées (jusqu'à 25V) avec un microcontrôleur.",
+    voltage: "5V DC",
+    specifications: ["Plage : 0-25V", "Précision : ±0.1V", "Sortie : Analogique", "Ratio : 1:5"]
+  },
+  {
+    id: 78,
+    name: "Module LED RGB WS2812B (Neopixel)",
+    image: "https://via.placeholder.com/150?text=Component+78",
+    description: "LED adressable RGB contrôlable individuellement, utilisée pour des effets lumineux dynamiques.",
+    voltage: "5V DC",
+    specifications: ["Couleur : RVB", "Protocole : One-Wire", "Consommation : 60mA (max)", "Angle : 120°"]
+  },
+  {
+    id: 79,
+    name: "Capteur de Niveau d'Eau",
+    image: "https://via.placeholder.com/150?text=Component+79",
+    description: "Capteur à plaques conductrices pour détecter le niveau d'eau dans un réservoir ou un bac.",
+    voltage: "5V DC",
+    specifications: ["Sortie : Analogique/Numérique", "Plage : Linéaire", "Matériau : Cuivre étamé", "Taille : 40x15mm"]
+  },
+  {
+    id: 80,
+    name: "Module de Chargeur Li-ion TP4056",
+    image: "https://via.placeholder.com/150?text=Component+80",
+    description: "Module de charge de batterie lithium-ion 1S avec protection contre la surcharge et la surintensité.",
+    voltage: "5V DC",
+    specifications: ["Tension : 4.2V", "Courant : 1A max", "Protections : OVP, OCP", "Indicateur : LED rouge/bleue"]
+  },
+  {
+    id: 81,
+    name: "Capteur de Débit d'Eau YF-S201",
+    image: "https://via.placeholder.com/150?text=Component+81",
+    description: "Capteur à turbine pour mesurer le débit d'eau dans un tuyau, souvent utilisé dans les compteurs intelligents.",
+    voltage: "5-24V DC",
+    specifications: ["Plage : 1-30L/min", "Sortie : Impulsions", "Précision : ±10%", "Filetage : 1/2\""]
+  },
+  {
+    id: 82,
+    name: "Module Bluetooth HC-05",
+    image: "https://via.placeholder.com/150?text=Component+82",
+    description: "Module de communication Bluetooth série pour connecter un microcontrôleur à un smartphone ou PC.",
+    voltage: "3.3-6V DC",
+    specifications: ["Version : Bluetooth 2.0", "Portée : 10m", "Interface : UART", "Mode : Maître/Esclave"]
+  },
+  {
+    id: 83,
+    name: "Relais 2 Canaux 5V",
+    image: "https://via.placeholder.com/150?text=Component+83",
+    description: "Module avec deux relais électromécaniques pour commander deux appareils indépendants.",
+    voltage: "5V DC",
+    specifications: ["Courant max : 10A", "Tension : 250V AC / 30V DC", "Interface : Numérique", "Indicateur LED : Oui"]
+  },
+  {
+    id: 84,
+    name: "Capteur de T°/H° AM2302 (DHT22 en module)",
+    image: "https://via.placeholder.com/150?text=Component+84",
+    description: "Version encapsulée du DHT22, plus robuste pour les environnements extérieurs ou humides.",
+    voltage: "3.3-5V DC",
+    specifications: ["Température : -40 à +80°C", "Humidité : 0-100%", "Précision : ±0.5°C", "Sortie : Numérique"]
+  },
+  {
+    id: 85,
+    name: "Module de Batterie 18650",
+    image: "https://via.placeholder.com/150?text=Component+85",
+    description: "Support pour batterie lithium-ion 18650 avec connecteur et protection contre l'inversion.",
+    voltage: "3.7V DC",
+    specifications: ["Type : 18650", "Connecteur : 2 broches", "Matériau : Plastique", "Taille : 70x20mm"]
+  },
+  {
+    id: 86,
+    name: "Capteur de Poids (Load Cell) + HX711",
+    image: "https://via.placeholder.com/150?text=Component+86",
+    description: "Cellule de pesage avec module amplificateur HX711 pour mesurer des poids précisément.",
+    voltage: "3.3-5V DC",
+    specifications: ["Plage : 500g à 5kg", "Précision : ±1g", "Interface : HX711 (Digital)", "Sortie : I2C-like"]
+  },
+  {
+    id: 87,
+    name: "Moteur à Vibration",
+    image: "https://via.placeholder.com/150?text=Component+87",
+    description: "Mini moteur excentré utilisé pour les notifications tactiles ou les alertes silencieuses.",
+    voltage: "3-5V DC",
+    specifications: ["Tension : 3.7V typique", "Courant : 80mA", "Taille : 10mm", "Vitesse : 10000 RPM"]
+  },
+  {
+    id: 88,
+    name: "Module d'Extension GPIO MCP23017",
+    image: "https://via.placeholder.com/150?text=Component+88",
+    description: "Convertisseur I/O permettant d'ajouter 16 broches GPIO supplémentaires via I2C.",
+    voltage: "3.3-5V DC",
+    specifications: ["Broches : 16", "Interface : I2C", "Adresses : 8 configurables", "Taille : 20x15mm"]
+  },
+  {
+    id: 89,
+    name: "Capteur de T° Infrarouge MLX90614",
+    image: "https://via.placeholder.com/150?text=Component+89",
+    description: "Capteur de température sans contact par infrarouge, idéal pour la mesure corporelle ou industrielle.",
+    voltage: "3.3-5V DC",
+    specifications: ["Plage : -70 à +380°C", "Précision : ±0.5°C", "Interface : I2C", "Distance : 5cm"]
+  },
+  {
+    id: 90,
+    name: "Module d'Affichage OLED 1.3\"",
+    image: "https://via.placeholder.com/150?text=Component+90",
+    description: "Grand écran OLED 128x64 avec interface I2C ou SPI, idéal pour afficher des graphiques complexes.",
+    voltage: "3.3-5V DC",
+    specifications: ["Résolution : 128x64", "Interface : I2C/SPI", "Couleur : Monochrome", "Taille : 1.3\""]
+  },
+  {
+    id: 91,
+    name: "Capteur de T° PT100",
+    image: "https://via.placeholder.com/150?text=Component+91",
+    description: "Capteur de température à résistance platine, très précis pour les applications industrielles.",
+    voltage: "3.3-5V DC",
+    specifications: ["Plage : -200 à +600°C", "Précision : ±0.1°C", "Interface : Analogique", "Type : RTD"]
+  },
+  {
+    id: 92,
+    name: "Module de Contrôle de LED DMX512",
+    image: "https://via.placeholder.com/150?text=Component+92",
+    description: "Module pour piloter des bandes LED DMX ou des projecteurs professionnels.",
+    voltage: "5-24V DC",
+    specifications: ["Protocole : DMX512", "Canal : 3-16", "Interface : RS485", "Taille : 50x30mm"]
+  },
+  {
+    id: 93,
+    name: "Capteur de T°/Pression BMP280",
+    image: "https://via.placeholder.com/150?text=Component+93",
+    description: "Capteur barométrique haute précision pour mesurer la pression atmosphérique et la température.",
+    voltage: "3.3V DC",
+    specifications: ["Pression : 300-1100hPa", "Température : 0-65°C", "Interface : I2C/SPI", "Précision : ±1hPa"]
+  },
+  {
+    id: 94,
+    name: "Module de Communication LoRa SX1278",
+    image: "https://via.placeholder.com/150?text=Component+94",
+    description: "Module LoRa à 433MHz pour la communication longue portée et basse consommation.",
+    voltage: "3.3V DC",
+    specifications: ["Portée : 8km (rural)", "Fréquence : 433MHz", "Débit : 300bps-38.4kbps", "Antenne : SMA"]
+  },
+  {
+    id: 95,
+    name: "Capteur de Chute MMA7455",
+    image: "https://via.placeholder.com/150?text=Component+95",
+    description: "Accéléromètre 3 axes avec détection de chute intégrée, utilisé dans les wearables.",
+    voltage: "3.3V DC",
+    specifications: ["Plage : ±2/4/8g", "Sortie : Numérique", "Interface : I2C/SPI", "Alarme chute : Oui"]
+  },
+  {
+    id: 96,
+    name: "Module de Surveillance de Batterie",
+    image: "https://via.placeholder.com/150?text=Component+96",
+    description: "Affiche la tension, le courant et la puissance d'une batterie en temps réel.",
+    voltage: "5V DC",
+    specifications: ["Tension max : 30V", "Courant max : 10A", "Affichage : OLED", "Précision : ±1%"]
+  },
+  {
+    id: 97,
+    name: "Capteur de Radiation UV",
+    image: "https://via.placeholder.com/150?text=Component+97",
+    description: "Capteur mesurant l'intensité des rayons ultraviolets (UV), utile pour la santé ou la météo.",
+    voltage: "3.3-5V DC",
+    specifications: ["Gamme : UV-A/UV-B", "Sortie : Analogique", "Plage : 0-15mW/cm²", "Angle : 60°"]
+  },
+  {
+    id: 98,
+    name: "Module de Pilotage de LED TLC5940",
+    image: "https://via.placeholder.com/150?text=Component+98",
+    description: "Contrôleur PWM 16 canaux pour piloter précisément des LEDs ou des moteurs.",
+    voltage: "5V DC",
+    specifications: ["Canaux : 16", "Résolution : 12 bits", "Interface : SPI", "Courant max : 120mA/canal"]
+  },
+  {
+    id: 99,
+    name: "Capteur de Gaz MQ-135 (Air Quality)",
+    image: "https://via.placeholder.com/150?text=Component+99",
+    description: "Détecte les polluants comme le CO2, NH3, NOx, et la qualité de l'air intérieur.",
+    voltage: "5V DC",
+    specifications: ["Plage : 10-1000ppm", "Temps de préchauffage : 24h", "Sortie : Analogique", "Durée : 10 ans"]
+  },
+  {
+    id: 100,
+    name: "Module de Détection RFID PN532",
+    image: "https://via.placeholder.com/150?text=Component+100",
+    description: "Lecteur RFID/NFC haute sensibilité, compatible avec les cartes MIFARE et les smartphones.",
+    voltage: "3.3-5V DC",
+    specifications: ["Fréquence : 13.56MHz", "Portée : 5-10cm", "Interface : I2C/SPI/UART", "Protocole : NFC"]
   }
 ];
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
 
 const testimonials: Testimonial[] = [
   {
