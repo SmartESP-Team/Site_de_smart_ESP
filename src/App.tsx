@@ -1005,11 +1005,18 @@ Exigences :
             <div className="space-y-8">
               <div className="space-y-4">
                 <h1 className="text-5xl font-bold text-gray-800 leading-tight">
-                  Smart ESP – La plateforme IoT unique, intelligente et simple pour vos{" "}
-                  <span className="text-blue-600">Projets ESP</span>
+                  Smart ESP – Outils IoT mobiles simples pour vos <span className="text-blue-600">projets ESP</span>
+
                 </h1>
                 <p className="text-xl text-gray-600 leading-relaxed">
-                  Smart ESP : L’application IoT idéale pour étudiants et débutants. Simplifiez vos projets ESP32/ESP8266 avec collecte, surveillance et partage de données en temps réel via Google Sheets, Gmail et assistance IA Gemini. Catalogue de composants, bibliothèques et outils intelligents – sans configuration complexe. Démarrez gratuitement !
+<span>
+  <strong className="text-blue-600">Smart ESP</strong> : 
+  L’application <strong className="text-green-600">IoT idéale</strong> pour <strong className="text-purple-600">étudiants</strong> et <strong className="text-purple-600">débutants</strong>. 
+  Simplifiez vos <strong className="text-orange-600">projets ESP32/ESP8266</strong> avec <strong className="text-blue-500">collecte</strong>, <strong className="text-blue-500">surveillance</strong> et <strong className="text-blue-500">partage de données</strong> en temps réel via 
+  <strong className="text-red-500">Google Sheets</strong>, <strong className="text-red-500">Gmail</strong> et <strong className="text-pink-500">assistance IA Gemini</strong>. 
+  <strong className="text-teal-600">Catalogue de composants</strong>, <strong className="text-teal-600">bibliothèques</strong> et <strong className="text-teal-600">outils intelligents</strong> – sans configuration complexe. 
+  <strong className="text-yellow-600">Démarrez gratuitement !</strong>
+</span>
                 </p>
               </div>
               <div className="grid grid-cols-2 gap-4">
