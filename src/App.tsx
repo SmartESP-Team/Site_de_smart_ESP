@@ -1074,21 +1074,12 @@ Exigences :
                 </div>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
-                <button
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors transform hover:scale-105"
-                  onClick={() => {
-                    const target = document.getElementById("features");
-                    if (target) {
-                      target.scrollIntoView({ behavior: "smooth" });
-                    }
-                  }}
-                >
-                  Démarrez gratuitement
-                </button>
-                <button className="bg-white hover:bg-gray-50 text-blue-600 border-2 border-blue-600 px-8 py-4 rounded-lg text-lg font-semibold transition-colors transform hover:scale-105 flex items-center space-x-2">
-                  <ExternalLink size={20} />
-                  <span>Découvrir le Workflow</span>
-                </button>
+
+               <button className="bg-white hover:bg-gray-50 text-blue-600 border-2 border-blue-600 px-8 py-4 rounded-lg text-lg font-semibold transition-colors transform hover:scale-105 flex items-center space-x-2">
+  <ExternalLink size={20} />
+  <span>Téléchargez Smart ESP et recevez gratuitement votre lien Workflow</span>
+</button>
+
               </div>
             </div>
             <div className="relative">
