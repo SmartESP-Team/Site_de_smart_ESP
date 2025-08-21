@@ -990,10 +990,34 @@ Exigences :
               <span className="text-2xl font-bold text-gray-800">Smart ESP</span>
             </div>
             <div className="hidden md:flex space-x-8">
-              <button className="text-gray-600 hover:text-blue-600 transition-colors">Accueil</button>
-              <button className="text-gray-600 hover:text-blue-600 transition-colors">Fonctionnalités</button>
-              <button className="text-gray-600 hover:text-blue-600 transition-colors">Composants</button>
-              <button className="text-gray-600 hover:text-blue-600 transition-colors">Contact</button>
+             <button
+  className="text-gray-600 hover:text-blue-600 transition-colors"
+  onClick={() => setCurrentPage("home")}
+>
+  Accueil
+</button>
+
+<button
+  className="text-gray-600 hover:text-blue-600 transition-colors"
+  onClick={() => setCurrentPage("download")}
+>
+  Fonctionnalités
+</button>
+
+<button
+  className="text-gray-600 hover:text-blue-600 transition-colors"
+  onClick={() => setCurrentPage("components")}
+>
+  Composants
+</button>
+
+<button
+  className="text-gray-600 hover:text-blue-600 transition-colors"
+  onClick={() => setCurrentPage("custom")}
+>
+  Contact
+</button>
+
             </div>
           </div>
         </div>
