@@ -1226,8 +1226,7 @@ function App() {
     </div>
   );
 
- import React, { useState } from "react";
-import { ChevronLeft, Cpu, Search, Filter } from "lucide-react";
+ 
 
 const ComponentsPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
