@@ -1034,12 +1034,12 @@ Exigences :
                 </h1>
                 <p className="text-xl text-gray-600 leading-relaxed">
 <span>
-  <strong className="text-blue-600">Smart ESP</strong> : 
+  Smart ESP: 
   L’application <strong className="text-green-600">IoT idéale</strong> pour <strong className="text-purple-600">étudiants</strong> et <strong className="text-purple-600">débutants</strong>. 
-  Simplifiez vos <strong className="text-orange-600">projets ESP32/ESP8266</strong> avec <strong className="text-blue-500">collecte</strong>, <strong className="text-blue-500">surveillance</strong> et <strong className="text-blue-500">partage de données</strong> en temps réel via 
-  <strong className="text-red-500">Google Sheets</strong>, <strong className="text-red-500">Gmail</strong> et <strong className="text-pink-500">assistance IA Gemini</strong>. 
-  <strong className="text-teal-600">Catalogue de composants</strong>, <strong className="text-teal-600">bibliothèques</strong> et <strong className="text-teal-600">outils intelligents</strong> – sans configuration complexe. 
-  <strong className="text-yellow-600">Démarrez gratuitement !</strong>
+  Simplifiez vos <strong className="text-orange-600">projets ESP32/ESP8266</strong> avec <strong className="text-blue-500">collecte</strong>, surveillance et partage de données en temps réel via 
+  <strong className="text-green-500"> Google Sheets</strong>, <strong className="text-red-500">Gmail</strong> et <strong className="text-pink-500">assistance IA Gemini</strong>. 
+  Catalogue de composants, bibliothèques et <strong className="text-teal-600">outils intelligents</strong> – sans configuration complexe. 
+  
 </span>
                 </p>
               </div>
