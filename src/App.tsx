@@ -1237,7 +1237,106 @@ function App() {
     </div>
   );
 
-  const ComponentsPage = () => (
+const ComponentsPage = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [chatOpen, setChatOpen] = useState(false);
+  const [chatInput, setChatInput] = useState('');
+  const [chatMessages, setChatMessages] = useState<{ role: string; content: string }[]>([
+    {
+      role: 'assistant',
+      content: "Hello! I'm your IoT Assistant. Ask me what components you need for your project (e.g., 'What do I need for a smart garden?').",
+    },
+  ]);
+  const [recommendedComponents, setRecommendedComponents] = useState<Component[]>([]);
+
+  const GEMINI_API_KEY = "AIzaSyCaf0dZY3tmfdR7Um0mUr-jnJCkLg8-XS4";
+  const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${GEMINI_API_KEY}`;
+
+  // Extract component names from AI response
+  const extractComponentNames = (text: string): string[] => {
+    const lines = text.split('\n');
+    const names: string[] = [];
+
+    // Look for bullet points, numbered lists, or simple names
+    lines.forEach(line => {
+      // Remove numbering, bullets, and common prefixes
+      let cleaned = line.trim().replace(/^[\d\-\*\•\s]+/, '').trim();
+      // Remove common prefixes
+      cleaned = cleaned.replace(/^(capteur|module|afficheur|driver|relais|sensor|display|module|driver)\s+/i, '').trim();
+
+      // Match any name that appears in your iotComponents list (case-insensitive)
+      const match = iotComponents.find(comp => 
+        comp.name.toLowerCase().includes(cleaned.toLowerCase()) ||
+        cleaned.toLowerCase().includes(comp.name.toLowerCase())
+      );
+      if (match && !names.includes(match.name)) {
+        names.push(match.name);
+      }
+    });
+
+    return names;
+  };
+
+  // Call Gemini API
+  const handleSendChat = async () => {
+    if (!chatInput.trim()) return;
+
+    const userMessage = chatInput;
+    setChatMessages(prev => [...prev, { role: 'user', content: userMessage }]);
+    setChatInput('');
+    setRecommendedComponents([]);
+
+    try {
+      const response = await fetch(GEMINI_API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          contents: [
+            {
+              role: 'user',
+              parts: [{ text: userMessage }],
+            },
+          ],
+          generationConfig: {
+            temperature: 0.4,
+            topK: 32,
+            topP: 0.9,
+            maxOutputTokens: 200,
+          },
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.error) {
+        throw new Error(data.error.message);
+      }
+
+      const aiReply = data.candidates[0].content.parts[0].text;
+      setChatMessages(prev => [...prev, { role: 'assistant', content: aiReply }]);
+
+      // Extract and match components
+      const componentNames = extractComponentNames(aiReply);
+      const matchedComponents = iotComponents.filter(comp =>
+        componentNames.includes(comp.name)
+      );
+      setRecommendedComponents(matchedComponents);
+    } catch (error) {
+      setChatMessages(prev => [
+        ...prev,
+        { role: 'assistant', content: "Sorry, I couldn't process your request. Please try again." }
+      ]);
+      console.error("Gemini API Error:", error);
+    }
+  };
+
+  const filteredComponents = iotComponents.filter(component =>
+    component.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white">
       <IconBackground />
       <nav className="bg-white/90 backdrop-blur-sm border-b border-blue-100">
@@ -1252,33 +1351,107 @@ function App() {
             </button>
             <div className="flex items-center space-x-2">
               <Cpu className="text-blue-600" size={32} />
-              <span className="text-2xl font-bold text-gray-800">Smart ESP – Catalogue de composants IoT pour ESP32 et ESP8266</span>
+              <span className="text-2xl font-bold text-gray-800">Smart ESP – Catalogue de composants IoT</span>
             </div>
           </div>
         </div>
       </nav>
+
       <div className="max-w-7xl mx-auto px-6 py-12">
-        <div className="mb-8">
-          <div className="flex flex-col md:flex-row gap-4">
-            <div className="flex-1 relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+        {/* Search & Chat Controls */}
+        <div className="mb-8 flex flex-col md:flex-row gap-4 items-center justify-between">
+          <div className="flex-1 relative">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+            <input
+              type="text"
+              placeholder="Rechercher des composants..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+          </div>
+          <button
+            onClick={() => setChatOpen(!chatOpen)}
+            className="flex items-center space-x-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            <Brain size={20} />
+            <span>{chatOpen ? 'Fermer le Chat' : 'Chat IA'}</span>
+          </button>
+        </div>
+
+        {/* AI Chat Panel */}
+        {chatOpen && (
+          <div className="bg-white rounded-2xl shadow-lg border border-blue-200 mb-8 overflow-hidden">
+            <div className="p-4 bg-blue-600 text-white font-semibold">Assistance IA – Recommandations de Composants</div>
+            <div className="h-80 overflow-y-auto p-4 space-y-4">
+              {chatMessages.map((msg, i) => (
+                <div
+                  key={i}
+                  className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                >
+                  <div
+                    className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
+                      msg.role === 'user'
+                        ? 'bg-blue-600 text-white'
+                        : 'bg-gray-200 text-gray-800'
+                    }`}
+                  >
+                    <p className="whitespace-pre-wrap">{msg.content}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="p-4 border-t flex gap-2">
               <input
                 type="text"
-                placeholder="Rechercher des composants..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                value={chatInput}
+                onChange={(e) => setChatInput(e.target.value)}
+                onKeyPress={(e) => e.key === 'Enter' && handleSendChat()}
+                placeholder="Décrivez votre projet..."
+                className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
+              <button
+                onClick={handleSendChat}
+                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+              >
+                Envoyer
+              </button>
             </div>
-            <button
-              onClick={() => setFilterOpen(!filterOpen)}
-              className="flex items-center space-x-2 px-6 py-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
-            >
-              <Filter size={20} />
-              <span>Filtrer</span>
-            </button>
           </div>
-        </div>
+        )}
+
+        {/* Recommended Components */}
+        {recommendedComponents.length > 0 && (
+          <div className="mb-8">
+            <h3 className="text-2xl font-bold text-gray-800 mb-4">🔧 Composants Recommandés par l'IA</h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4">
+              {recommendedComponents.map((component) => (
+                <div
+                  key={component.id}
+                  className="bg-white rounded-lg shadow hover:shadow-lg transition-all cursor-pointer transform hover:scale-105 border-2 border-blue-300"
+                  onClick={() => setSelectedComponent(component)}
+                >
+                  <div className="aspect-square bg-gray-100 overflow-hidden">
+                    <img
+                      src={component.image}
+                      alt={component.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="p-3">
+                    <h3 className="text-sm font-semibold text-gray-800 truncate">{component.name}</h3>
+                    <p className="text-xs text-blue-600 mt-1">{component.voltage}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* All Components Grid */}
+        <h3 className="text-2xl font-bold text-gray-800 mb-6">
+          Tous les Composants ({filteredComponents.length})
+        </h3>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4">
           {filteredComponents.map((component) => (
             <div
@@ -1301,6 +1474,8 @@ function App() {
           ))}
         </div>
       </div>
+
+      {/* Modal for Component Details */}
       {selectedComponent && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
@@ -1350,6 +1525,7 @@ function App() {
       )}
     </div>
   );
+};
 
   const CustomAppsPage = () => (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white">
