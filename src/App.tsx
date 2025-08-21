@@ -57,9 +57,8 @@ const iotComponents: Component[] = [
     voltage: "5V DC",
     specifications: ["Résolution caméra : 2MP", "WiFi : 802.11 b/g/n", "Flash : 4MB", "GPIO : 9 broches"],
   },
-  // ... (all other components remain unchanged)
-  // For brevity, we keep them in the list but assume they are fully copied
-  // Make sure to include all 100 components from your original file
+  // ... (include all 100 components from your original list)
+  // For brevity, we assume they are fully copied as in your file
 ];
 
 const testimonials: Testimonial[] = [
@@ -97,7 +96,7 @@ const testimonials: Testimonial[] = [
   },
 ];
 
-// --- IconBackground Component (moved outside) ---
+// --- IconBackground Component ---
 const IconBackground = () => (
   <div className="absolute inset-0 overflow-hidden pointer-events-none">
     <div className="absolute top-10 left-10 text-blue-200/20 transform rotate-12">
@@ -134,23 +133,52 @@ function App() {
     component.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // Mock code generation (since API is not used in frontend for class project)
+  // 🔥 Gemini API Call to Generate Arduino Code
   const generateCode = async (component: Component) => {
     setLoadingCode(true);
     setGeneratedCode(null);
 
-    // Simulate API delay
-    setTimeout(() => {
-      const mockCode = `// Code généré pour ${component.name}
-void detect() {
-  float value = analogRead(A0);
-  float normalized = value / 1023.0;
-  payload.indicateur1 = normalized;
-  payload.ecran1 = value;
-}`;
-      setGeneratedCode(mockCode);
+    try {
+      const response = await fetch(
+        "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyCaf0dZY3tmfdR7Um0mUr-jnJCkLg8-XSI",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            contents: [
+              {
+                parts: [
+                  {
+                    text: `Generate an Arduino C++ function to use a ${component.name} (${component.description}).
+The function should:
+- Be named detect().
+- Read sensor values using analogRead or digitalRead depending on the component.
+- Convert values into a float between 0 and 1 if possible.
+- Store values in payload.indicateur1 and payload.ecran1.
+Return ONLY the function code, nothing else.`,
+                  },
+                ],
+              },
+            ],
+          }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
+        setGeneratedCode(data.candidates[0].content.parts[0].text.trim());
+      } else {
+        setGeneratedCode("❌ Erreur : Aucun code généré par l'IA.");
+      }
+    } catch (error) {
+      console.error("Erreur API Gemini:", error);
+      setGeneratedCode("❌ Échec de la connexion à l'IA. Vérifiez le réseau ou l'API key.");
+    } finally {
       setLoadingCode(false);
-    }, 1500);
+    }
   };
 
   // --- Page Components ---
