@@ -1217,7 +1217,7 @@ const ComponentsPage = ({ setCurrentPage, selectedComponent, setSelectedComponen
   const [recommendedComponents, setRecommendedComponents] = useState<Component[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const GEMINI_API_KEY = "AIzaSyCaf0dZY3tmfdR7Um0mUr-jnJCkLg8-XS4";
+  const GEMINI_API_KEY = "AIzaSyCaf0dZY3tmfdR7Um0mUr-jnJCkLg8-XSI";
   const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${GEMINI_API_KEY}`;
 
   const extractComponentNames = (text: string): string[] => {
