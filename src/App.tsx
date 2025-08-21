@@ -941,16 +941,18 @@ function App() {
               {
                 parts: [
                   {
-                    text: `Génère un code Arduino C++ basique et directement utilisable pour utiliser ${component.name} (${component.description}).
-Le code doit contenir :
+                    text: `
 
-- Une fonction principale nommée detect().
-- La lecture des valeurs du capteur avec analogRead ou digitalRead selon le type de capteur.
-- La conversion éventuelle des valeurs en float entre 0 et 1.
-- Le stockage des valeurs dans payload.indicateur1 et payload.ecran1.
-- Des commentaires en français pour expliquer chaque étape.
-- Une section de commentaires en haut du code (/** ... */) indiquant clairement quels pins utiliser pour Arduino, ESP32 et ESP8266.
 
+                    Génère trois mini codes Arduino C++ distincts (pour Arduino UNO, ESP32 et ESP8266) permettant d’utiliser le composant suivant : ${component.name} (${component.description}).
+
+Exigences :
+- Chaque code doit être directement exécutable et compilable sans modifications supplémentaires.
+- Ajouter une section de commentaires claire en haut (/** ... */) listant précisément quels pins utiliser pour Arduino, ESP32 et ESP8266.
+- Inclure des commentaires en français expliquant chaque étape importante du code (initialisation, configuration, boucle, etc.).
+- Le code doit rester simple, minimaliste et pédagogique pour faciliter la compréhension.
+
+                    
 `
 ,
                   },
