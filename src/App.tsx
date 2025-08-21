@@ -1075,11 +1075,14 @@ Exigences :
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
 
-              <button
-  className="text-gray-600 hover:text-blue-600 transition-colors"
+             <button
+  className="bg-white hover:bg-gray-50 text-blue-600 border-2 border-blue-600 px-6 py-3 rounded-lg text-base font-semibold transition-colors transform hover:scale-105 flex items-center justify-center space-x-2"
   onClick={() => setCurrentPage("download")}
-><span>Téléchargez Smart ESP et recevez gratuitement votre lien Workflow</span>Fonctionnalités
+>
+  <ExternalLink size={20} />
+  <span>Téléchargez Smart ESP et recevez gratuitement votre lien Workflow</span>
 </button>
+
 
               </div>
             </div>
