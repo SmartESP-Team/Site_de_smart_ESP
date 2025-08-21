@@ -153,66 +153,85 @@ const HomePage = ({ setCurrentPage }: { setCurrentPage: (page: string) => void }
 
 // Components Page
 const ComponentsPage = ({ setCurrentPage }: { setCurrentPage: (page: string) => void }) => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [chatOpen, setChatOpen] = useState(false);
-  const [chatInput, setChatInput] = useState('');
+  const [chatInput, setChatInput] = useState("");
   const [chatMessages, setChatMessages] = useState<{ role: string; content: string }[]>([
-    { role: 'assistant', content: "Bonjour ! Je suis votre assistant IoT. Demandez-moi quels composants vous avez besoin pour votre projet (ex: 'Quels composants pour un jardin intelligent ?')." },
+    {
+      role: "assistant",
+      content: "Bonjour ! Je suis votre assistant IoT. Décrivez votre projet (ex: 'Jardin intelligent'), et je vous recommanderai des composants.",
+    },
   ]);
   const [recommendedComponents, setRecommendedComponents] = useState<Component[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedComponent, setSelectedComponent] = useState<Component | null>(null);
 
-  const GEMINI_API_KEY = "AIzaSyCaf0dZY3tmfdR7Um0mUr-jnJCkLg8-XSI";
-  const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${GEMINI_API_KEY}`;
+  const GEMINI_API_KEY = "AIzaSyCaf0dZY3tmfdR7Um0mUr-jnJCkLg8-XSI"; // Replace with your actual key
+  const GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent";
 
   const extractComponentNames = (text: string): string[] => {
-    const componentNames = iotComponents.map(c => c.name.toLowerCase());
-    const lines = text.toLowerCase().split('\n');
-    const matches = new Set<string>();
-    lines.forEach(line => {
-      componentNames.forEach(name => {
-        if (line.includes(name)) matches.add(name);
-      });
-    });
-    return Array.from(matches);
+    return text
+      .split("\n")
+      .map((line) => line.trim())
+      .filter((line) => line.length > 0);
   };
 
   const handleSendChat = async () => {
     if (!chatInput.trim()) return;
+
     const userMessage = chatInput;
-    setChatMessages(prev => [...prev, { role: 'user', content: userMessage }]);
-    setChatInput('');
+    setChatMessages((prev) => [...prev, { role: "user", content: userMessage }]);
+    setChatInput("");
     setIsLoading(true);
     setRecommendedComponents([]);
+
     try {
       const response = await fetch(GEMINI_API_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-goog-api-key": GEMINI_API_KEY,
+        },
         body: JSON.stringify({
-          contents: [{ role: 'user', parts: [{ text: userMessage }] }],
-          generationConfig: { temperature: 0.4, topK: 32, topP: 0.9, maxOutputTokens: 200 }
-        })
+          contents: [
+            {
+              parts: [
+                {
+                  text: `Recommend IoT components for this project: ${userMessage}. Only list component names, one per line.`,
+                },
+              ],
+            },
+          ],
+        }),
       });
+
       const data = await response.json();
       if (data.error) throw new Error(data.error.message);
+
       const aiReply = data.candidates[0].content.parts[0].text;
-      setChatMessages(prev => [...prev, { role: 'assistant', content: aiReply }]);
+      setChatMessages((prev) => [...prev, { role: "assistant", content: aiReply }]);
+
+      // Extract component names from the AI reply
       const componentNames = extractComponentNames(aiReply);
-      const matchedComponents = iotComponents.filter(comp => componentNames.includes(comp.name.toLowerCase()));
+      const matchedComponents = iotComponents.filter((comp) =>
+        componentNames.some((name) => comp.name.toLowerCase().includes(name.toLowerCase()))
+      );
       setRecommendedComponents(matchedComponents);
     } catch (error) {
-      setChatMessages(prev => [...prev, {
-        role: 'assistant',
-        content: "Désolé, une erreur est survenue. Veuillez réessayer ou vérifier votre connexion."
-      }]);
+      setChatMessages((prev) => [
+        ...prev,
+        {
+          role: "assistant",
+          content: "Désolé, une erreur est survenue. Veuillez réessayer ou vérifier votre connexion.",
+        },
+      ]);
       console.error("Gemini API Error:", error);
     } finally {
       setIsLoading(false);
     }
   };
 
-  const filteredComponents = iotComponents.filter(component =>
+  const filteredComponents = iotComponents.filter((component) =>
     component.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
@@ -223,7 +242,7 @@ const ComponentsPage = ({ setCurrentPage }: { setCurrentPage: (page: string) => 
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <button
-              onClick={() => setCurrentPage('home')}
+              onClick={() => setCurrentPage("home")}
               className="flex items-center space-x-2 text-blue-600 hover:text-blue-700 transition-colors"
             >
               <ChevronLeft size={20} />
@@ -253,7 +272,7 @@ const ComponentsPage = ({ setCurrentPage }: { setCurrentPage: (page: string) => 
             className="flex items-center space-x-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
           >
             <Brain size={20} />
-            <span>{chatOpen ? 'Fermer le Chat' : 'Chat IA'}</span>
+            <span>{chatOpen ? "Fermer le Chat" : "Chat IA"}</span>
           </button>
         </div>
         {chatOpen && (
@@ -261,8 +280,12 @@ const ComponentsPage = ({ setCurrentPage }: { setCurrentPage: (page: string) => 
             <div className="p-4 bg-blue-600 text-white font-semibold">Assistance IA – Recommandations de Composants</div>
             <div className="h-80 overflow-y-auto p-4 space-y-4">
               {chatMessages.map((msg, i) => (
-                <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                  <div className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${msg.role === 'user' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-800'}`}>
+                <div key={i} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
+                  <div
+                    className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
+                      msg.role === "user" ? "bg-blue-600 text-white" : "bg-gray-200 text-gray-800"
+                    }`}
+                  >
                     <p className="whitespace-pre-wrap">{msg.content}</p>
                   </div>
                 </div>
@@ -273,12 +296,17 @@ const ComponentsPage = ({ setCurrentPage }: { setCurrentPage: (page: string) => 
                 type="text"
                 value={chatInput}
                 onChange={(e) => setChatInput(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && handleSendChat()}
+                onKeyPress={(e) => e.key === "Enter" && handleSendChat()}
                 placeholder="Décrivez votre projet..."
                 className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                disabled={isLoading}
               />
-              <button onClick={handleSendChat} className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-                Envoyer
+              <button
+                onClick={handleSendChat}
+                disabled={isLoading || !chatInput.trim()}
+                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
+              >
+                {isLoading ? "Envoi..." : "Envoyer"}
               </button>
             </div>
           </div>
@@ -305,9 +333,7 @@ const ComponentsPage = ({ setCurrentPage }: { setCurrentPage: (page: string) => 
             </div>
           </div>
         )}
-        <h3 className="text-2xl font-bold text-gray-800 mb-6">
-          Tous les Composants ({filteredComponents.length})
-        </h3>
+        <h3 className="text-2xl font-bold text-gray-800 mb-6">Tous les Composants ({filteredComponents.length})</h3>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4">
           {filteredComponents.map((component) => (
             <div
@@ -336,7 +362,9 @@ const ComponentsPage = ({ setCurrentPage }: { setCurrentPage: (page: string) => 
             <div className="p-8">
               <div className="flex justify-between items-start mb-6">
                 <h2 className="text-2xl font-bold text-gray-800">{selectedComponent.name}</h2>
-                <button onClick={() => setSelectedComponent(null)} className="text-gray-400 hover:text-gray-600 text-2xl">×</button>
+                <button onClick={() => setSelectedComponent(null)} className="text-gray-400 hover:text-gray-600 text-2xl">
+                  ×
+                </button>
               </div>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
@@ -371,6 +399,7 @@ const ComponentsPage = ({ setCurrentPage }: { setCurrentPage: (page: string) => 
     </div>
   );
 };
+
 
 // Download Page
 const DownloadPage = ({ setCurrentPage }: { setCurrentPage: (page: string) => void }) => (
