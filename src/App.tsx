@@ -5,6 +5,7 @@ import {
   Search,
   Filter,
   Cpu,
+  Copy,
   Wifi,
   Cloud,
   BarChart3,
@@ -1357,144 +1358,170 @@ Exigences :
     </div>
   );
 
-  const ComponentsPage = () => (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white">
-      <IconBackground />
-      <nav className="bg-white/90 backdrop-blur-sm border-b border-blue-100">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <button
-              onClick={() => setCurrentPage("home")}
-              className="flex items-center space-x-2 text-blue-600 hover:text-blue-700 transition-colors"
-            >
-              <ChevronLeft size={20} />
-              <span>Retour à l'Accueil</span>
-            </button>
-            <div className="flex items-center space-x-2">
-              <Cpu className="text-blue-600" size={32} />
-              <span className="text-2xl font-bold text-gray-800">
-                Smart ESP – Catalogue de composants IoT pour ESP32 et ESP8266
-              </span>
-            </div>
-          </div>
-        </div>
-      </nav>
-
-      {/* Search Bar */}
-      <div className="max-w-7xl mx-auto px-6 py-8">
-        <div className="flex flex-col md:flex-row gap-4 mb-8">
-          <div className="flex-1 relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
-            <input
-              type="text"
-              placeholder="Rechercher un composant..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            />
-          </div>
-          <button
-            onClick={() => setFilterOpen(!filterOpen)}
-            className="flex items-center space-x-2 px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-          >
-            <Filter size={20} />
-            <span>Filtres</span>
-          </button>
-        </div>
-
-        {/* Component Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {filteredComponents.map((component) => (
-            <div
-              key={component.id}
-              onClick={() => setSelectedComponent(component)}
-              className="bg-white rounded-xl shadow-md hover:shadow-xl overflow-hidden cursor-pointer transform hover:scale-105 transition-all"
-            >
-              <img
-                src={component.image}
-                alt={component.name}
-                className="w-full h-32 object-cover"
-              />
-              <div className="p-4">
-                <h3 className="font-bold text-gray-800">{component.name}</h3>
-                <p className="text-sm text-gray-600 mt-1">{component.description.substring(0, 60)}...</p>
-              </div>
-            </div>
-          ))}
+ const ComponentsPage = () => (
+  <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white">
+  <IconBackground />
+  <nav className="bg-white/90 backdrop-blur-sm border-b border-blue-100">
+    <div className="max-w-7xl mx-auto px-6 py-4">
+      <div className="flex items-center justify-between">
+        <button
+          onClick={() => setCurrentPage("home")}
+          className="flex items-center space-x-2 text-blue-600 hover:text-blue-700 transition-colors"
+        >
+          <ChevronLeft size={20} />
+          <span>Retour à l'Accueil</span>
+        </button>
+        <div className="flex items-center space-x-2">
+          <Cpu className="text-blue-600" size={32} />
+          <span className="text-2xl font-bold text-gray-800">
+            Smart ESP – Catalogue de composants IoT
+          </span>
         </div>
       </div>
+    </div>
+  </nav>
 
-      {/* Modal */}
-      {selectedComponent && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="p-8">
-              <div className="flex justify-between items-start mb-6">
-                <h2 className="text-2xl font-bold text-gray-800">{selectedComponent.name}</h2>
-                <button
-                  onClick={() => {
-                    setSelectedComponent(null);
-                    setGeneratedCode(null);
-                  }}
-                  className="text-gray-400 hover:text-gray-600 text-2xl"
-                >
-                  ×
-                </button>
+  {/* Search Bar */}
+  <div className="max-w-7xl mx-auto px-6 py-8">
+    <div className="flex flex-col md:flex-row gap-4 mb-8">
+      <div className="flex-1 relative">
+        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+        <input
+          type="text"
+          placeholder="Rechercher un composant..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        />
+      </div>
+      <button
+        onClick={() => setFilterOpen(!filterOpen)}
+        className="flex items-center space-x-2 px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+      >
+        <Filter size={20} />
+        <span>Filtres</span>
+      </button>
+    </div>
+
+    {/* Component Grid */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      {filteredComponents.map((component) => (
+        <div
+          key={component.id}
+          onClick={() => setSelectedComponent(component)}
+          className="bg-white rounded-xl shadow-md hover:shadow-xl overflow-hidden cursor-pointer transform hover:scale-105 transition-all"
+        >
+          <img
+            src={component.image}
+            alt={component.name}
+            className="w-full h-32 object-cover"
+          />
+          <div className="p-4">
+            <h3 className="font-bold text-gray-800">{component.name}</h3>
+            <p className="text-sm text-gray-600 mt-1">
+              {component.description.substring(0, 60)}...
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  {/* Modal */}
+  {selectedComponent && (
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+      <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="p-8">
+          <div className="flex justify-between items-start mb-6">
+            <h2 className="text-2xl font-bold text-gray-800">{selectedComponent.name}</h2>
+            <button
+              onClick={() => {
+                setSelectedComponent(null);
+                setGeneratedCode(null);
+              }}
+              className="text-gray-400 hover:text-gray-600 text-2xl"
+            >
+              ×
+            </button>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <div>
+              <img
+                src={selectedComponent.image}
+                alt={selectedComponent.name}
+                className="w-full aspect-square object-cover rounded-lg"
+              />
+            </div>
+
+            <div className="space-y-4">
+              <div>
+                <h3 className="font-semibold text-gray-800 mb-2">Description</h3>
+                <p className="text-gray-600">{selectedComponent.description}</p>
               </div>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <img
-                    src={selectedComponent.image}
-                    alt={selectedComponent.name}
-                    className="w-full aspect-square object-cover rounded-lg"
-                  />
-                </div>
-                <div className="space-y-4">
-                  <div>
-                    <h3 className="font-semibold text-gray-800 mb-2">Description</h3>
-                    <p className="text-gray-600">{selectedComponent.description}</p>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-800 mb-2">Alimentation</h3>
-                    <p className="text-blue-600 font-medium">{selectedComponent.voltage}</p>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-800 mb-2">Spécifications Clés</h3>
-                    <ul className="space-y-1">
-                      {selectedComponent.specifications.map((spec, index) => (
-                        <li key={index} className="text-gray-600 flex items-center space-x-2">
-                          <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                          <span>{spec}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <button
-                    onClick={() => generateCode(selectedComponent)}
-                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-                  >
-                    Générer le code
-                  </button>
-                  {loadingCode && (
-                    <p className="text-blue-600 mt-2">⏳ Génération du code...</p>
-                  )}
-                  {generatedCode && (
-                    <div className="mt-4">
-                      <h3 className="font-semibold text-gray-800 mb-2">Code Généré</h3>
-                      <pre className="bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto text-sm">
-                        {generatedCode}
-                      </pre>
-                    </div>
-                  )}
-                </div>
+
+              <div>
+                <h3 className="font-semibold text-gray-800 mb-2">Alimentation</h3>
+                <p className="text-blue-600 font-medium">{selectedComponent.voltage}</p>
               </div>
+
+              <div>
+                <h3 className="font-semibold text-gray-800 mb-2">Spécifications Clés</h3>
+                <ul className="space-y-1">
+                  {selectedComponent.specifications.map((spec, index) => (
+                    <li key={index} className="text-gray-600 flex items-center space-x-2">
+                      <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                      <span>{spec}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <button
+                onClick={() => generateCode(selectedComponent)}
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-2"
+              >
+                <Zap size={16} />
+                <span>Générer le code</span>
+              </button>
+
+              {loadingCode && (
+                <p className="text-blue-600 mt-2 flex items-center space-x-2">
+                  <Zap className="animate-spin" size={16} />
+                  <span>Génération du code...</span>
+                </p>
+              )}
+
+              {generatedCode && (
+                <div className="mt-4">
+                  <div className="flex justify-between items-center mb-2">
+                    <h3 className="font-semibold text-gray-800">Code Généré</h3>
+                    <button
+                      onClick={() => {
+                        navigator.clipboard.writeText(generatedCode).then(
+                          () => alert("✅ Code copié dans le presse-papiers !"),
+                          () => alert("❌ Échec de la copie.")
+                        );
+                      }}
+                      className="flex items-center space-x-1 text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-1 rounded border"
+                    >
+                      <Copy size={14} />
+                      <span>Copier</span>
+                    </button>
+                  </div>
+                  <pre className="bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto text-sm leading-relaxed whitespace-pre-wrap font-mono">
+                    {generatedCode}
+                  </pre>
+                </div>
+              )}
             </div>
           </div>
         </div>
-      )}
+      </div>
     </div>
-  );
-
+  )}
+</div>
+);
   const CustomAppsPage = () => (
   <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white">
   <IconBackground />
