@@ -592,7 +592,7 @@ const iotComponents: Component[] = [
   {
     id: 69,
     name: "Module Microphone MAX9814",
-    image: "https://via.placeholder.com/150?text=Component+69",
+    image: "https://robu.in/wp-content/uploads/2023/11/3-12.jpg",
     description: "Microphone amplifié avec gain ajustable, idéal pour la détection de sons ou la reconnaissance vocale.",
     voltage: "3.3-5V DC",
     specifications: ["Gain : 30-60dB", "Sortie : Analogique", "Fréquence : 20Hz-20kHz", "Alimentation : 3.3-5V"]
@@ -1496,128 +1496,177 @@ Exigences :
   );
 
   const CustomAppsPage = () => (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white">
-      <IconBackground />
-      <nav className="bg-white/90 backdrop-blur-sm border-b border-blue-100">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <button
-              onClick={() => setCurrentPage("home")}
-              className="flex items-center space-x-2 text-blue-600 hover:text-blue-700 transition-colors"
-            >
-              <ChevronLeft size={20} />
-              <span>Retour à l'Accueil</span>
-            </button>
-            <div className="flex items-center space-x-2">
-              <Globe className="text-blue-600" size={32} />
-              <span className="text-2xl font-bold text-gray-800">Applications IoT Personnalisées</span>
-            </div>
-          </div>
-        </div>
-      </nav>
-      <div className="max-w-7xl mx-auto px-6 py-20">
-        <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold text-gray-800 mb-6">Applications IoT Personnalisées</h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-            Découvrez l'avenir du développement IoT avec notre service d'applications personnalisées alimenté par l'IA.
-            Nous créons des solutions sur mesure qui s'intègrent parfaitement à votre infrastructure existante
-            tout en exploitant des technologies de pointe.
-          </p>
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-8 rounded-2xl max-w-4xl mx-auto">
-            <h2 className="text-2xl font-bold mb-4">🚀 Développement IoT Nouvelle Génération</h2>
-            <p className="text-lg">
-              Nos applications IoT personnalisées exploitent la puissance de l'IA Gemini pour l'automatisation intelligente,
-              l'intégration en temps réel avec Google Sheets pour une gestion transparente des données, et une connectivité
-              Gmail avancée pour des notifications et rapports instantanés.
-            </p>
-          </div>
-        </div>
-        <div className="mb-16">
-          <h2 className="text-4xl font-bold text-gray-800 text-center mb-12">Notre Portfolio</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              { title: "Tableau de Bord Maison Intelligente", desc: "Automatisation domestique complète avec insights IA" },
-              { title: "Moniteur IoT Industriel", desc: "Surveillance d'usine en temps réel et analyses" },
-              { title: "Hub de Capteurs Agricoles", desc: "Agriculture de précision avec intégration météo" },
-              { title: "Système de Gestion Énergétique", desc: "Optimisation de la consommation avec prédictions ML" },
-              { title: "Sécurité & Contrôle d'Accès", desc: "Reconnaissance faciale et gestion d'accès intelligente" },
-              { title: "Moniteur Environnemental", desc: "Suivi de la qualité de l'air avec alertes prédictives" },
-            ].map((app, index) => (
-              <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow group">
-                <div className="aspect-video bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 p-6">
-                  <div className="bg-white/95 backdrop-blur-sm rounded-xl h-full p-4 space-y-3">
-                    <div className="flex space-x-2">
-                      <div className="w-3 h-3 bg-red-400 rounded-full"></div>
-                      <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
-                      <div className="w-3 h-3 bg-green-400 rounded-full"></div>
-                    </div>
-                    <div className="space-y-2">
-                      <div className="h-4 bg-gray-200 rounded w-3/4"></div>
-                      <div className="h-4 bg-blue-200 rounded w-1/2"></div>
-                      <div className="h-20 bg-gradient-to-r from-blue-100 to-purple-100 rounded flex items-center justify-center">
-                        <BarChart3 className="text-blue-600" size={32} />
-                      </div>
-                      <div className="grid grid-cols-3 gap-2">
-                        <div className="h-8 bg-gray-100 rounded"></div>
-                        <div className="h-8 bg-blue-100 rounded"></div>
-                        <div className="h-8 bg-purple-100 rounded"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-800 mb-2">{app.title}</h3>
-                  <p className="text-gray-600">{app.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="mb-16">
-          <h2 className="text-4xl font-bold text-gray-800 text-center mb-12">Pourquoi Choisir Nos Applications Personnalisées ?</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-white p-6 rounded-xl shadow-lg text-center">
-              <Brain className="text-blue-600 mx-auto mb-4" size={48} />
-              <h3 className="text-xl font-bold text-gray-800 mb-2">Intelligence Alimentée par l'IA</h3>
-              <p className="text-gray-600">Intégration IA Gemini pour la prise de décision intelligente et l'analyse prédictive</p>
-            </div>
-            <div className="bg-white p-6 rounded-xl shadow-lg text-center">
-              <FileSpreadsheet className="text-green-600 mx-auto mb-4" size={48} />
-              <h3 className="text-xl font-bold text-gray-800 mb-2">Synchronisation de Données en Temps Réel</h3>
-              <p className="text-gray-600">Intégration transparente avec Google Sheets pour le partage de données en direct et la collaboration</p>
-            </div>
-            <div className="bg-white p-6 rounded-xl shadow-lg text-center">
-              <Mail className="text-red-600 mx-auto mb-4" size={48} />
-              <h3 className="text-xl font-bold text-gray-800 mb-2">Notifications Instantanées</h3>
-              <p className="text-gray-600">Intégration Gmail pour des alertes immédiates et des rapports automatisés</p>
-            </div>
-            <div className="bg-white p-6 rounded-xl shadow-lg text-center">
-              <Cloud className="text-purple-600 mx-auto mb-4" size={48} />
-              <h3 className="text-xl font-bold text-gray-800 mb-2">Architecture Évolutive</h3>
-              <p className="text-gray-600">Conception cloud-native qui évolue avec les besoins de votre entreprise</p>
-            </div>
-          </div>
-        </div>
-        <div className="text-center">
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-12 rounded-2xl">
-            <h2 className="text-3xl font-bold mb-4">Prêt à Transformer Votre Vision IoT ?</h2>
-            <p className="text-xl mb-8 opacity-90">
-              Laissez notre équipe d'experts créer une solution IoT personnalisée qui correspond parfaitement à vos exigences.
-              Du concept au déploiement, nous nous occupons de tout.
-            </p>
-            <a
-              href="https://wa.me/212710038821"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block bg-white text-blue-600 px-12 py-4 rounded-xl text-xl font-bold hover:bg-gray-100 transition-colors transform hover:scale-105"
-            >
-              Contactez-nous pour concrétiser votre projet ✅
-            </a>
-          </div>
+  <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white">
+  <IconBackground />
+  <nav className="bg-white/90 backdrop-blur-sm border-b border-blue-100">
+    <div className="max-w-7xl mx-auto px-6 py-4">
+      <div className="flex items-center justify-between">
+        <button
+          onClick={() => setCurrentPage("home")}
+          className="flex items-center space-x-2 text-blue-600 hover:text-blue-700 transition-colors"
+        >
+          <ChevronLeft size={20} />
+          <span>Retour à l'Accueil</span>
+        </button>
+        <div className="flex items-center space-x-2">
+          <Globe className="text-blue-600" size={32} />
+          <span className="text-2xl font-bold text-gray-800">Applications IoT Personnalisées</span>
         </div>
       </div>
     </div>
-  );
+  </nav>
+
+  <div className="max-w-7xl mx-auto px-6 py-20">
+    {/* Hero Section */}
+    <div className="text-center mb-16">
+      <h1 className="text-5xl font-bold text-gray-800 mb-6">Applications IoT Personnalisées</h1>
+      <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+        Découvrez l'avenir du développement IoT avec notre service d'applications personnalisées alimenté par l'IA.
+        Nous créons des solutions sur mesure qui s'intègrent parfaitement à votre infrastructure existante
+        tout en exploitant des technologies de pointe.
+      </p>
+      <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-8 rounded-2xl max-w-4xl mx-auto">
+        <h2 className="text-2xl font-bold mb-4">🚀 Développement IoT Nouvelle Génération</h2>
+        <p className="text-lg">
+          Nos applications IoT personnalisées exploitent la puissance de l'IA Gemini pour l'automatisation intelligente,
+          l'intégration en temps réel avec Google Sheets pour une gestion transparente des données, et une connectivité
+          Gmail avancée pour des notifications et rapports instantanés.
+        </p>
+      </div>
+    </div>
+
+    {/* Portfolio Section */}
+    <div className="mb-16">
+      <h2 className="text-4xl font-bold text-gray-800 text-center mb-12">Projets IoT Inspirants</h2>
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {[
+          {
+            title: "Maison Intelligente avec Reconnaissance Vocale",
+            desc: "Contrôlez vos lumières, volets et musique par la voix, avec assistant IA intégré.",
+            image: "https://images.unsplash.com/photo-1558655146-d09347e927ea?auto=format&fit=crop&w=600&h=400&q=80"
+          },
+          {
+            title: "Jardin Automatique Connecté",
+            desc: "Arrosage intelligent selon l'humidité du sol, la météo et la lumière. Surveillance en temps réel.",
+            image: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=600&h=400&q=80"
+          },
+          {
+            title: "Serrure Biométrique + Notification WhatsApp",
+            desc: "Ouverture par empreinte digitale avec alerte WhatsApp à chaque accès.",
+            image: "https://images.unsplash.com/photo-1581090700227-1e37b18e856c?auto=format&fit=crop&w=600&h=400&q=80"
+          },
+          {
+            title: "Capteur de Qualité de l’Air & Purificateur Auto",
+            desc: "Détecte CO2, poussière et humidité, active le purificateur si nécessaire.",
+            image: "https://images.unsplash.com/photo-1598790822154-ec4e87c17180?auto=format&fit=crop&w=600&h=400&q=80"
+          },
+          {
+            title: "Station Météo Personnelle avec Alertes",
+            desc: "Mesure température, pluie, vent et envoie des alertes SMS ou Gmail.",
+            image: "https://images.unsplash.com/photo-1601050690597-df075851890b?auto=format&fit=crop&w=600&h=400&q=80"
+          },
+          {
+            title: "Robot de Surveillance Mobile (ESP32-CAM)",
+            desc: "Robot télécommandé avec caméra en streaming et détection de mouvement.",
+            image: "https://images.unsplash.com/photo-1625554059816-b9c985e8f9f3?auto=format&fit=crop&w=600&h=400&q=80"
+          }
+        ].map((app, index) => (
+          <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all flex flex-col">
+            {/* Image */}
+            <div className="aspect-video overflow-hidden">
+              <img
+                src={app.image}
+                alt={app.title}
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+
+            {/* Content */}
+            <div className="p-6 flex-1 flex flex-col">
+              <h3 className="text-xl font-bold text-gray-800 mb-2">{app.title}</h3>
+              <p className="text-gray-600 mb-4 flex-1">{app.desc}</p>
+
+              {/* Contact Buttons */}
+              <div className="space-y-2">
+                <a
+                  href="https://www.facebook.com/profile.php?id=61572595864913"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-center text-blue-600 border border-blue-600 hover:bg-blue-600 hover:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                >
+                  Facebook
+                </a>
+                <a
+                  href="smartespservices@gmail.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-center text-red-600 border border-red-600 hover:bg-red-600 hover:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                >
+                  Gmail
+                </a>
+                <a
+                  href="https://api.whatsapp.com/send/?phone=212710038821"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-center text-green-600 border border-green-600 hover:bg-green-600 hover:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                >
+                  WhatsApp
+                </a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    {/* Why Choose Us */}
+    <div className="mb-16">
+      <h2 className="text-4xl font-bold text-gray-800 text-center mb-12">Pourquoi Choisir Nos Applications Personnalisées ?</h2>
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="bg-white p-6 rounded-xl shadow-lg text-center">
+          <Brain className="text-blue-600 mx-auto mb-4" size={48} />
+          <h3 className="text-xl font-bold text-gray-800 mb-2">Intelligence Alimentée par l'IA</h3>
+          <p className="text-gray-600">Intégration IA Gemini pour la prise de décision intelligente et l'analyse prédictive</p>
+        </div>
+        <div className="bg-white p-6 rounded-xl shadow-lg text-center">
+          <FileSpreadsheet className="text-green-600 mx-auto mb-4" size={48} />
+          <h3 className="text-xl font-bold text-gray-800 mb-2">Synchronisation de Données en Temps Réel</h3>
+          <p className="text-gray-600">Intégration transparente avec Google Sheets pour le partage de données en direct et la collaboration</p>
+        </div>
+        <div className="bg-white p-6 rounded-xl shadow-lg text-center">
+          <Mail className="text-red-600 mx-auto mb-4" size={48} />
+          <h3 className="text-xl font-bold text-gray-800 mb-2">Notifications Instantanées</h3>
+          <p className="text-gray-600">Intégration Gmail pour des alertes immédiates et des rapports automatisés</p>
+        </div>
+        <div className="bg-white p-6 rounded-xl shadow-lg text-center">
+          <Cloud className="text-purple-600 mx-auto mb-4" size={48} />
+          <h3 className="text-xl font-bold text-gray-800 mb-2">Architecture Évolutive</h3>
+          <p className="text-gray-600">Conception cloud-native qui évolue avec les besoins de votre entreprise</p>
+        </div>
+      </div>
+    </div>
+
+    {/* Call to Action */}
+    <div className="text-center">
+      <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-12 rounded-2xl">
+        <h2 className="text-3xl font-bold mb-4">Prêt à Transformer Votre Vision IoT ?</h2>
+        <p className="text-xl mb-8 opacity-90">
+          Laissez notre équipe d'experts créer une solution IoT personnalisée qui correspond parfaitement à vos exigences.
+          Du concept au déploiement, nous nous occupons de tout.
+        </p>
+        <a
+          href="https://wa.me/212710038821"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block bg-white text-blue-600 px-12 py-4 rounded-xl text-xl font-bold hover:bg-gray-100 transition-colors transform hover:scale-105"
+        >
+          Contactez-nous pour concrétiser votre projet ✅
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+);
 
   // --- Page Routing ---
   switch (currentPage) {
