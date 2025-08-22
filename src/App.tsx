@@ -600,7 +600,7 @@ const iotComponents: Component[] = [
   {
     id: 70,
     name: "Capteur de Distance Ultrason HC-SR04",
-    image: "https://via.placeholder.com/150?text=Component+70",
+    image: "https://microcell.ma/wp-content/uploads/2024/02/ultrasonic-hc04.jpg",
     description: "Module de mesure de distance par écho ultrasonore, utilisé pour la détection d'obstacles.",
     voltage: "5V DC",
     specifications: ["Portée : 2cm-4m", "Précision : ±3mm", "Angle : 15°", "Sortie : Numérique (Trigger/Echo)"]
@@ -608,7 +608,7 @@ const iotComponents: Component[] = [
   {
     id: 71,
     name: "Moteur DC 6V",
-    image: "https://via.placeholder.com/150?text=Component+71",
+    image: "https://microcell.ma/wp-content/uploads/2024/02/MO-TT-02-a-800x800-1.webp",
     description: "Moteur à courant continu simple, utilisé pour la propulsion dans les robots ou les véhicules miniatures.",
     voltage: "6V DC",
     specifications: ["Vitesse : 200 RPM", "Couple : 0.5kg·cm", "Courant : 200mA", "Taille : 30x20mm"]
@@ -616,7 +616,7 @@ const iotComponents: Component[] = [
   {
     id: 72,
     name: "Module Amplificateur Audio PAM8403",
-    image: "https://via.placeholder.com/150?text=Component+72",
+    image: "https://fayrviwbbspmiqztcyhv.supabase.co/storage/v1/object/public/iotimages/Untitled%20folder/8.png",
     description: "Amplificateur stéréo numérique 2x3W, idéal pour les projets audio avec haut-parleurs.",
     voltage: "5V DC",
     specifications: ["Puissance : 2x3W", "THD : <1%", "Entrée : Analogique", "Classe : D"]
@@ -632,7 +632,7 @@ const iotComponents: Component[] = [
   {
     id: 74,
     name: "Module de Communication NRF24L01",
-    image: "https://via.placeholder.com/150?text=Component+74",
+    image: "https://digiwarestore.com/12119-thickbox_default/nrf24l01-nrf-wireless-communication-module-for-arduino-432365.jpg",
     description: "Module sans fil 2.4GHz à faible consommation, utilisé pour la communication entre microcontrôleurs.",
     voltage: "3.3V DC",
     specifications: ["Portée : 100m (module amplifié)", "Débit : 250kbps-2Mbps", "Interface : SPI", "Consommation : 12mA"]
@@ -640,7 +640,7 @@ const iotComponents: Component[] = [
   {
     id: 75,
     name: "Capteur de Qualité de l'Air (SGP30)",
-    image: "https://via.placeholder.com/150?text=Component+75",
+    image: "https://www.kubii.com/9406-full_default/capteur-qualite-de-l-air-sgp30-breakout.jpg",
     description: "Capteur numérique de qualité de l'air intérieur, mesurant les COV et le CO2 équivalent.",
     voltage: "3.3V DC",
     specifications: ["Mesures : COV, eCO2", "Interface : I2C", "Durée de vie : 5 ans", "Précision : ±15%"]
@@ -648,7 +648,7 @@ const iotComponents: Component[] = [
   {
     id: 76,
     name: "Pompe à Air pour Aquarium",
-    image: "https://via.placeholder.com/150?text=Component+76",
+    image: "https://fayrviwbbspmiqztcyhv.supabase.co/storage/v1/object/public/iotimages/Untitled%20folder/10.png",
     description: "Mini pompe à air 12V pour aérer l'eau dans les aquariums ou systèmes hydroponiques.",
     voltage: "12V DC",
     specifications: ["Débit : 100L/h", "Pression : 0.02MPa", "Niveau sonore : 40dB", "Connexion : Tuyau 4mm"]
@@ -656,7 +656,7 @@ const iotComponents: Component[] = [
   {
     id: 77,
     name: "Capteur de Tension (Voltage Sensor)",
-    image: "https://via.placeholder.com/150?text=Component+77",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSedWEuhpU8JZj30Bj6Lux_4gZu-iChTAzZfQ&s",
     description: "Module diviseur de tension permettant de mesurer des tensions élevées (jusqu'à 25V) avec un microcontrôleur.",
     voltage: "5V DC",
     specifications: ["Plage : 0-25V", "Précision : ±0.1V", "Sortie : Analogique", "Ratio : 1:5"]
@@ -672,7 +672,7 @@ const iotComponents: Component[] = [
   {
     id: 79,
     name: "Capteur de Niveau d'Eau",
-    image: "https://via.placeholder.com/150?text=Component+79",
+    image: "https://marocproduits.com/mp_content/uploads/2023/09/module-Capteur-de-niveau-deau-maroc.jpg",
     description: "Capteur à plaques conductrices pour détecter le niveau d'eau dans un réservoir ou un bac.",
     voltage: "5V DC",
     specifications: ["Sortie : Analogique/Numérique", "Plage : Linéaire", "Matériau : Cuivre étamé", "Taille : 40x15mm"]
@@ -704,7 +704,7 @@ const iotComponents: Component[] = [
   {
     id: 83,
     name: "Relais 2 Canaux 5V",
-    image: "https://via.placeholder.com/150?text=Component+83",
+    image: "https://a2itronic.ma/wp-content/uploads/2022/01/p_5_9_3_593-2-Channaux-Module-de-relais-5V-pour-Arduino.jpg",
     description: "Module avec deux relais électromécaniques pour commander deux appareils indépendants.",
     voltage: "5V DC",
     specifications: ["Courant max : 10A", "Tension : 250V AC / 30V DC", "Interface : Numérique", "Indicateur LED : Oui"]
@@ -824,7 +824,7 @@ const iotComponents: Component[] = [
   {
     id: 96,
     name: "Module de Surveillance de Batterie",
-    image: "https://via.placeholder.com/150?text=Component+96",
+    image: "https://hydraulic-cdn.com/productimages/1/3/5/4/7/7/5/2/image.jpgx1000y1000ex1000ey1000aligncenter_720.jpeg",
     description: "Affiche la tension, le courant et la puissance d'une batterie en temps réel.",
     voltage: "5V DC",
     specifications: ["Tension max : 30V", "Courant max : 10A", "Affichage : OLED", "Précision : ±1%"]
@@ -832,7 +832,7 @@ const iotComponents: Component[] = [
   {
     id: 97,
     name: "Capteur de Radiation UV",
-    image: "https://via.placeholder.com/150?text=Component+97",
+    image: "https://m.media-amazon.com/images/I/612VubMfJ9S._UF1000,1000_QL80_.jpg",
     description: "Capteur mesurant l'intensité des rayons ultraviolets (UV), utile pour la santé ou la météo.",
     voltage: "3.3-5V DC",
     specifications: ["Gamme : UV-A/UV-B", "Sortie : Analogique", "Plage : 0-15mW/cm²", "Angle : 60°"]
@@ -840,7 +840,7 @@ const iotComponents: Component[] = [
   {
     id: 98,
     name: "Module de Pilotage de LED TLC5940",
-    image: "https://via.placeholder.com/150?text=Component+98",
+    image: "https://ae01.alicdn.com/kf/S69e04df5f15f4714a77c9b30b33bdd20J.jpg",
     description: "Contrôleur PWM 16 canaux pour piloter précisément des LEDs ou des moteurs.",
     voltage: "5V DC",
     specifications: ["Canaux : 16", "Résolution : 12 bits", "Interface : SPI", "Courant max : 120mA/canal"]
@@ -848,7 +848,7 @@ const iotComponents: Component[] = [
   {
     id: 99,
     name: "Capteur de Gaz MQ-135 (Air Quality)",
-    image: "https://via.placeholder.com/150?text=Component+99",
+    image: "https://powerlab.dz/wp-content/uploads/2023/02/download-2023-02-28T112301.969.jpg",
     description: "Détecte les polluants comme le CO2, NH3, NOx, et la qualité de l'air intérieur.",
     voltage: "5V DC",
     specifications: ["Plage : 10-1000ppm", "Temps de préchauffage : 24h", "Sortie : Analogique", "Durée : 10 ans"]
