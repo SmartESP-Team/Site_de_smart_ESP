@@ -624,7 +624,7 @@ const iotComponents: Component[] = [
   {
     id: 73,
     name: "Capteur de CO2 MH-Z19B",
-    image: "https://via.placeholder.com/150?text=Component+73",
+    image: "https://fayrviwbbspmiqztcyhv.supabase.co/storage/v1/object/public/iotimages/Untitled%20folder/9.png",
     description: "Capteur de dioxyde de carbone (CO2) basé sur la technologie NDIR, utilisé pour la qualité de l'air.",
     voltage: "5V DC",
     specifications: ["Plage : 0-5000ppm", "Précision : ±50ppm", "Sortie : UART/PWM", "Temps de préchauffage : 3min"]
@@ -664,7 +664,7 @@ const iotComponents: Component[] = [
   {
     id: 78,
     name: "Module LED RGB WS2812B (Neopixel)",
-    image: "https://via.placeholder.com/150?text=Component+78",
+    image: "https://fayrviwbbspmiqztcyhv.supabase.co/storage/v1/object/public/iotimages/Untitled%20folder/11.png",
     description: "LED adressable RGB contrôlable individuellement, utilisée pour des effets lumineux dynamiques.",
     voltage: "5V DC",
     specifications: ["Couleur : RVB", "Protocole : One-Wire", "Consommation : 60mA (max)", "Angle : 120°"]
@@ -680,15 +680,15 @@ const iotComponents: Component[] = [
   {
     id: 80,
     name: "Module de Chargeur Li-ion TP4056",
-    image: "https://via.placeholder.com/150?text=Component+80",
+    image: "https://5.imimg.com/data5/SELLER/Default/2025/1/481442760/GB/DO/AT/123335792/tp4056-1a-li-ion-battery-charging-module-500x500.jpeg",
     description: "Module de charge de batterie lithium-ion 1S avec protection contre la surcharge et la surintensité.",
     voltage: "5V DC",
     specifications: ["Tension : 4.2V", "Courant : 1A max", "Protections : OVP, OCP", "Indicateur : LED rouge/bleue"]
   },
   {
     id: 81,
-    name: "Capteur de Débit d'Eau YF-S201",
-    image: "https://via.placeholder.com/150?text=Component+81",
+    name: "Capteur de conductivité électrique (EC)",
+    image: "https://fayrviwbbspmiqztcyhv.supabase.co/storage/v1/object/public/iotimages/Untitled%20folder/2.png",
     description: "Capteur à turbine pour mesurer le débit d'eau dans un tuyau, souvent utilisé dans les compteurs intelligents.",
     voltage: "5-24V DC",
     specifications: ["Plage : 1-30L/min", "Sortie : Impulsions", "Précision : ±10%", "Filetage : 1/2\""]
@@ -696,7 +696,7 @@ const iotComponents: Component[] = [
   {
     id: 82,
     name: "Module Bluetooth HC-05",
-    image: "https://via.placeholder.com/150?text=Component+82",
+    image: "https://marocproduits.com/mp_content/uploads/2019/08/module-bluetooth-serie-hc05.jpg",
     description: "Module de communication Bluetooth série pour connecter un microcontrôleur à un smartphone ou PC.",
     voltage: "3.3-6V DC",
     specifications: ["Version : Bluetooth 2.0", "Portée : 10m", "Interface : UART", "Mode : Maître/Esclave"]
@@ -710,17 +710,25 @@ const iotComponents: Component[] = [
     specifications: ["Courant max : 10A", "Tension : 250V AC / 30V DC", "Interface : Numérique", "Indicateur LED : Oui"]
   },
   {
-    id: 84,
-    name: "Capteur de T°/H° AM2302 (DHT22 en module)",
-    image: "https://via.placeholder.com/150?text=Component+84",
-    description: "Version encapsulée du DHT22, plus robuste pour les environnements extérieurs ou humides.",
-    voltage: "3.3-5V DC",
-    specifications: ["Température : -40 à +80°C", "Humidité : 0-100%", "Précision : ±0.5°C", "Sortie : Numérique"]
-  },
+  id: 84,
+  name: "Capteur de Couleur",
+  image: "https://fayrviwbbspmiqztcyhv.supabase.co/storage/v1/object/public/iotimages/Untitled%20folder/6.png",
+  description: "Capteur numérique capable de détecter la couleur d'une surface en mesurant les composantes rouge, verte et bleue (RVB) de la lumière réfléchie.",
+  voltage: "3.3-5V DC",
+  specifications: [
+    "Type : Numérique (I2C ou PWM)",
+    "Capteur courant : TCS3200 / TCS34725",
+    "Plage spectrale : 400-700nm (visible)",
+    "Sortie : RVB (RGB) et/ou valeur hexadécimale",
+    "Précision : ±10 sur 256 niveaux",
+    "Éclairage intégré : LED blanche",
+    "Angle de détection : 45°"
+  ]
+},
   {
     id: 85,
     name: "Module de Batterie 18650",
-    image: "https://via.placeholder.com/150?text=Component+85",
+    image: "https://www.moussasoft.com/wp-content/uploads/2019/04/5V-1A-Module-chargeur-pour-batterie-Lithium-18650-Micro-USB-MAROC-CASABLANCA-FES-MARRAKECH.jpg",
     description: "Support pour batterie lithium-ion 18650 avec connecteur et protection contre l'inversion.",
     voltage: "3.7V DC",
     specifications: ["Type : 18650", "Connecteur : 2 broches", "Matériau : Plastique", "Taille : 70x20mm"]
@@ -728,7 +736,7 @@ const iotComponents: Component[] = [
   {
     id: 86,
     name: "Capteur de Poids (Load Cell) + HX711",
-    image: "https://via.placeholder.com/150?text=Component+86",
+    image: "https://fayrviwbbspmiqztcyhv.supabase.co/storage/v1/object/public/iotimages/Untitled%20folder/5.png",
     description: "Cellule de pesage avec module amplificateur HX711 pour mesurer des poids précisément.",
     voltage: "3.3-5V DC",
     specifications: ["Plage : 500g à 5kg", "Précision : ±1g", "Interface : HX711 (Digital)", "Sortie : I2C-like"]
@@ -736,7 +744,7 @@ const iotComponents: Component[] = [
   {
     id: 87,
     name: "Moteur à Vibration",
-    image: "https://via.placeholder.com/150?text=Component+87",
+    image: "https://m.media-amazon.com/images/I/61Z4Wll4fML.jpg",
     description: "Mini moteur excentré utilisé pour les notifications tactiles ou les alertes silencieuses.",
     voltage: "3-5V DC",
     specifications: ["Tension : 3.7V typique", "Courant : 80mA", "Taille : 10mm", "Vitesse : 10000 RPM"]
@@ -744,7 +752,7 @@ const iotComponents: Component[] = [
   {
     id: 88,
     name: "Module d'Extension GPIO MCP23017",
-    image: "https://via.placeholder.com/150?text=Component+88",
+    image: "https://fayrviwbbspmiqztcyhv.supabase.co/storage/v1/object/public/iotimages/Untitled%20folder/13.png",
     description: "Convertisseur I/O permettant d'ajouter 16 broches GPIO supplémentaires via I2C.",
     voltage: "3.3-5V DC",
     specifications: ["Broches : 16", "Interface : I2C", "Adresses : 8 configurables", "Taille : 20x15mm"]
@@ -752,7 +760,7 @@ const iotComponents: Component[] = [
   {
     id: 89,
     name: "Capteur de T° Infrarouge MLX90614",
-    image: "https://via.placeholder.com/150?text=Component+89",
+    image: "https://a2itronic.ma/wp-content/uploads/2022/01/p_2_6_6_2_2662-MLX90614ESF-GY-906-Capteur-Infrarouge-TemperatureModule-Pour-Arduino.jpg",
     description: "Capteur de température sans contact par infrarouge, idéal pour la mesure corporelle ou industrielle.",
     voltage: "3.3-5V DC",
     specifications: ["Plage : -70 à +380°C", "Précision : ±0.5°C", "Interface : I2C", "Distance : 5cm"]
@@ -760,7 +768,7 @@ const iotComponents: Component[] = [
   {
     id: 90,
     name: "Module d'Affichage OLED 1.3\"",
-    image: "https://via.placeholder.com/150?text=Component+90",
+    image: "https://m.media-amazon.com/images/I/71tSA8eBtTL._UF1000,1000_QL80_.jpg",
     description: "Grand écran OLED 128x64 avec interface I2C ou SPI, idéal pour afficher des graphiques complexes.",
     voltage: "3.3-5V DC",
     specifications: ["Résolution : 128x64", "Interface : I2C/SPI", "Couleur : Monochrome", "Taille : 1.3\""]
@@ -768,7 +776,7 @@ const iotComponents: Component[] = [
   {
     id: 91,
     name: "Capteur de T° PT100",
-    image: "https://via.placeholder.com/150?text=Component+91",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFVGh09gSIjmCCXGXuPogxvjQFVtnmzs9CBA&s",
     description: "Capteur de température à résistance platine, très précis pour les applications industrielles.",
     voltage: "3.3-5V DC",
     specifications: ["Plage : -200 à +600°C", "Précision : ±0.1°C", "Interface : Analogique", "Type : RTD"]
@@ -776,7 +784,7 @@ const iotComponents: Component[] = [
   {
     id: 92,
     name: "Module de Contrôle de LED DMX512",
-    image: "https://via.placeholder.com/150?text=Component+92",
+    image: "https://m.media-amazon.com/images/I/81OnxD+Qc8L.jpg",
     description: "Module pour piloter des bandes LED DMX ou des projecteurs professionnels.",
     voltage: "5-24V DC",
     specifications: ["Protocole : DMX512", "Canal : 3-16", "Interface : RS485", "Taille : 50x30mm"]
@@ -784,23 +792,31 @@ const iotComponents: Component[] = [
   {
     id: 93,
     name: "Capteur de T°/Pression BMP280",
-    image: "https://via.placeholder.com/150?text=Component+93",
+    image: "https://a2itronic.ma/wp-content/uploads/2019/01/BMP280-main.jpg",
     description: "Capteur barométrique haute précision pour mesurer la pression atmosphérique et la température.",
     voltage: "3.3V DC",
     specifications: ["Pression : 300-1100hPa", "Température : 0-65°C", "Interface : I2C/SPI", "Précision : ±1hPa"]
   },
   {
-    id: 94,
-    name: "Module de Communication LoRa SX1278",
-    image: "https://via.placeholder.com/150?text=Component+94",
-    description: "Module LoRa à 433MHz pour la communication longue portée et basse consommation.",
-    voltage: "3.3V DC",
-    specifications: ["Portée : 8km (rural)", "Fréquence : 433MHz", "Débit : 300bps-38.4kbps", "Antenne : SMA"]
-  },
+  id: 94,
+  name: "Capteur de Position Angulaire (AS5600)",
+  image: "https://www.helectro.net/wp-content/uploads/2025/01/as5600-magnetic-angle-sensor-encoder-module.webp",
+  description: "Capteur de position angulaire sans contact basé sur une technologie magnétique, idéal pour mesurer la rotation precise d'un axe (0 à 360°).",
+  voltage: "3.3-5V DC",
+  specifications: [
+    "Plage de mesure : 0 à 360°",
+    "Résolution : 12 bits (0.087° par pas)",
+    "Interface : Analogique / PWM / I2C",
+    "Précision : ±0.05° à ±2° selon position",
+    "Vitesse max : 30 000 RPM",
+    "Type : Capteur magnétique (sans contact)",
+    "Alimentation : 3.3V à 5V"
+  ]
+},
   {
     id: 95,
     name: "Capteur de Chute MMA7455",
-    image: "https://via.placeholder.com/150?text=Component+95",
+    image: "https://fayrviwbbspmiqztcyhv.supabase.co/storage/v1/object/public/iotimages/Untitled%20folder/15.png",
     description: "Accéléromètre 3 axes avec détection de chute intégrée, utilisé dans les wearables.",
     voltage: "3.3V DC",
     specifications: ["Plage : ±2/4/8g", "Sortie : Numérique", "Interface : I2C/SPI", "Alarme chute : Oui"]
@@ -840,7 +856,7 @@ const iotComponents: Component[] = [
   {
     id: 100,
     name: "Module de Détection RFID PN532",
-    image: "https://via.placeholder.com/150?text=Component+100",
+    image: "https://fayrviwbbspmiqztcyhv.supabase.co/storage/v1/object/public/iotimages/Untitled%20folder/16.png",
     description: "Lecteur RFID/NFC haute sensibilité, compatible avec les cartes MIFARE et les smartphones.",
     voltage: "3.3-5V DC",
     specifications: ["Fréquence : 13.56MHz", "Portée : 5-10cm", "Interface : I2C/SPI/UART", "Protocole : NFC"]
