@@ -960,7 +960,7 @@ function App() {
                     text: `
 
 
-                    Génère trois mini codes Arduino C++ distincts (pour Arduino UNO, ESP32 et ESP8266) permettant d’utiliser le composant suivant : ${component.name} (${component.description}).
+                    Génère une explications simple du fonctionnement et trois mini codes Arduino C++ distincts (pour Arduino UNO, ESP32 et ESP8266) permettant d’utiliser le composant suivant : ${component.name} (${component.description}).
 
 Exigences :
 - Chaque code doit être directement exécutable et compilable sans modifications supplémentaires.
