@@ -1094,10 +1094,11 @@ Exigences :
 
              <button
   className="bg-white hover:bg-gray-50 text-blue-600 border-2 border-blue-600 px-6 py-3 rounded-lg text-base font-semibold transition-colors transform hover:scale-105 flex items-center justify-center space-x-2"
-  onClick={() => setCurrentPage("download")}
+ onClick={() => window.open("https://smartesp-premium.vercel.app/")}
+
 >
   <ExternalLink size={20} />
-  <span>Téléchargez Smart ESP et recevez gratuitement votre lien Workflow</span>
+  <span>Smart ESP Premium Workflow </span>
 </button>
 
 
@@ -1241,10 +1242,8 @@ Exigences :
             <div>
               <h4 className="font-semibold mb-4">Support</h4>
               <ul className="space-y-2 text-gray-400">
-                <li>Documentation</li>
-                <li>Communauté</li>
-                <li>Nous Contacter</li>
-                <li>FAQ</li>
+                <li>smartespservices@gmail.com</li>
+               
               </ul>
             </div>
           </div>
