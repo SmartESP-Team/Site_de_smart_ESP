@@ -1569,32 +1569,32 @@ Exigences :
           {
             title: "Maison Intelligente avec Reconnaissance Vocale",
             desc: "Contrôlez vos lumières, volets et musique par la voix, avec assistant IA intégré.",
-            image: "https://images.unsplash.com/photo-1558655146-d09347e927ea?auto=format&fit=crop&w=600&h=400&q=80"
+            image: "https://m.media-amazon.com/images/I/816tOhl+3pL._AC_SL1500_.jpg"
           },
           {
             title: "Jardin Automatique Connecté",
             desc: "Arrosage intelligent selon l'humidité du sol, la météo et la lumière. Surveillance en temps réel.",
-            image: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=600&h=400&q=80"
+            image: "https://www.moussasoft.com/wp-content/uploads/2023/02/Systeme-darrosage-de-plantes-Arduino-.jpg"
           },
           {
-            title: "Serrure Biométrique + Notification WhatsApp",
-            desc: "Ouverture par empreinte digitale avec alerte WhatsApp à chaque accès.",
-            image: "https://images.unsplash.com/photo-1581090700227-1e37b18e856c?auto=format&fit=crop&w=600&h=400&q=80"
+            title: "Serrure Biométrique + Notification Gmail",
+            desc: "Ouverture par empreinte digitale avec alerte  à chaque accès.",
+            image: "https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/01/enroll-finger.jpg?quality=100&strip=all&ssl=1"
           },
           {
             title: "Capteur de Qualité de l’Air & Purificateur Auto",
             desc: "Détecte CO2, poussière et humidité, active le purificateur si nécessaire.",
-            image: "https://images.unsplash.com/photo-1598790822154-ec4e87c17180?auto=format&fit=crop&w=600&h=400&q=80"
+            image: "https://www.alonsoruibal.com/wp-content/uploads/2024/05/esp32-c3-connections@2x.jpeg?auto=format&fit=crop&w=600&h=400&q=80"
           },
           {
             title: "Station Météo Personnelle avec Alertes",
             desc: "Mesure température, pluie, vent et envoie des alertes SMS ou Gmail.",
-            image: "https://images.unsplash.com/photo-1601050690597-df075851890b?auto=format&fit=crop&w=600&h=400&q=80"
+            image: "https://i.ytimg.com/vi/1qGGDFqb1ow/hq720.jpg?sqp=-oaymwE7CK4FEIIDSFryq4qpAy0IARUAAAAAGAElAADIQj0AgKJD8AEB-AH8CYAC0AWKAgwIABABGGUgXChMMA8=&rs=AOn4CLAxprxwy1FSbrk2fUU82-wI5hgfRw?auto=format&fit=crop&w=600&h=400&q=80"
           },
           {
             title: "Robot de Surveillance Mobile (ESP32-CAM)",
             desc: "Robot télécommandé avec caméra en streaming et détection de mouvement.",
-            image: "https://images.unsplash.com/photo-1625554059816-b9c985e8f9f3?auto=format&fit=crop&w=600&h=400&q=80"
+            image: "https://raw.githubusercontent.com/Circuit-Digest/ESP32-Cam-Surveillance-Car/2ecf12ce9a1ee8d120fa83f880da9de1a1b8d51f/wifi-surveillance-robot-car-esp32-cam.gif?auto=format&fit=crop&w=600&h=400&q=80"
           }
         ].map((app, index) => (
           <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all flex flex-col">
