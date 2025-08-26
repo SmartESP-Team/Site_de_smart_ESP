@@ -1614,22 +1614,7 @@ Exigences :
 
               {/* Contact Buttons */}
               <div className="space-y-2">
-                <a
-                  href="https://www.facebook.com/profile.php?id=61572595864913"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block text-center text-blue-600 border border-blue-600 hover:bg-blue-600 hover:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
-                >
-                  Facebook
-                </a>
-                <a
-                  href="smartespservices@gmail.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block text-center text-red-600 border border-red-600 hover:bg-red-600 hover:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
-                >
-                  Gmail
-                </a>
+          
                 <a
                   href="https://api.whatsapp.com/send/?phone=212710038821"
                   target="_blank"
