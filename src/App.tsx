@@ -1306,7 +1306,7 @@ const iotComponents: Component[] = [
   {
     "id": 144,
     "name": "Capteur de Position PPK",
-    "image": "https://lh4.googleusercontent.com/proxy/Sc_hrp3rXvas5k2caJ3Xg2YmYaZWjbOvNxdpKnb00OhHsitl5B226dbVne9lhEtpf_hlxQA6zijfzM_TDW34_zjkEecJ0HOIZqchzF5eY5gKK2RuuFhgJkn5K0qxO57sO000ycWDfjPxHr8YMCamCUSLvO2_VuMEtw,
+    "image": "https://lh4.googleusercontent.com/proxy/Sc_hrp3rXvas5k2caJ3Xg2YmYaZWjbOvNxdpKnb00OhHsitl5B226dbVne9lhEtpf_hlxQA6zijfzM_TDW34_zjkEecJ0HOIZqchzF5eY5gKK2RuuFhgJkn5K0qxO57sO000ycWDfjPxHr8YMCamCUSLvO2_VuMEtw",
     "description": "Module GPS PPK pour une précision centimétrique en post-traitement.",
     "voltage": "3.3-5V DC",
     "specifications": [
