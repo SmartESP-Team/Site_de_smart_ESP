@@ -60,7 +60,7 @@ const iotComponents: Component[] = [
     specifications: ["Résolution caméra : 2MP", "WiFi : 802.11 b/g/n", "Flash : 4MB", "GPIO : 9 broches"]
   },
   {
-    id: 3,
+    id: 3, 
     name: "Module XBee Series 2",
     image: "https://i.postimg.cc/tRNtJhtH/51vp-NMY8px-L-SL1000.jpg",
     description: "Module de communication sans fil de Digi utilisant le protocole Zigbee pour créer des réseaux maillés fiables.",
