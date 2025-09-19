@@ -579,9 +579,6 @@ const iotComponents: Component[] = [
     voltage: "5V DC",
     specifications: ["Résolution : 16x2", "Couleur : Bleu/Vert", "Interface : Parallèle", "Taille : 80x36mm"]
   },
-
-
-  // ... (tes 67 premiers composants restent inchangé
   {
     id: 68,
     name: "Capteur de Luminosité (LDR)",
@@ -652,7 +649,7 @@ const iotComponents: Component[] = [
     image: "https://fayrviwbbspmiqztcyhv.supabase.co/storage/v1/object/public/iotimages/Untitled%20folder/10.png",
     description: "Mini pompe à air 12V pour aérer l'eau dans les aquariums ou systèmes hydroponiques.",
     voltage: "12V DC",
-    specifications: ["Débit : 100L/h", "Pression : 0.02MPa", "Niveau sonore : 40dB", "Connexion : Tuyau 4mm"]
+    specifications: ["Débit : 100L/h", "Pression : 0.02MPa", "Niveau sonore : 40dB", "Connexion : Tuyau 4mm"]  
   },
   {
     id: 77,
@@ -716,15 +713,7 @@ const iotComponents: Component[] = [
   image: "https://fayrviwbbspmiqztcyhv.supabase.co/storage/v1/object/public/iotimages/Untitled%20folder/6.png",
   description: "Capteur numérique capable de détecter la couleur d'une surface en mesurant les composantes rouge, verte et bleue (RVB) de la lumière réfléchie.",
   voltage: "3.3-5V DC",
-  specifications: [
-    "Type : Numérique (I2C ou PWM)",
-    "Capteur courant : TCS3200 / TCS34725",
-    "Plage spectrale : 400-700nm (visible)",
-    "Sortie : RVB (RGB) et/ou valeur hexadécimale",
-    "Précision : ±10 sur 256 niveaux",
-    "Éclairage intégré : LED blanche",
-    "Angle de détection : 45°"
-  ]
+  specifications: ["Type : Numérique (I2C ou PWM)","Capteur courant : TCS3200 / TCS34725",    "Plage spectrale : 400-700nm (visible)","Sortie : RVB (RGB) et/ou valeur hexadécimale", "Précision : ±10 sur 256 niveaux", "Éclairage intégré : LED blanche","Angle de détection : 45°"]
 },
   {
     id: 85,
@@ -804,15 +793,7 @@ const iotComponents: Component[] = [
   image: "https://www.helectro.net/wp-content/uploads/2025/01/as5600-magnetic-angle-sensor-encoder-module.webp",
   description: "Capteur de position angulaire sans contact basé sur une technologie magnétique, idéal pour mesurer la rotation precise d'un axe (0 à 360°).",
   voltage: "3.3-5V DC",
-  specifications: [
-    "Plage de mesure : 0 à 360°",
-    "Résolution : 12 bits (0.087° par pas)",
-    "Interface : Analogique / PWM / I2C",
-    "Précision : ±0.05° à ±2° selon position",
-    "Vitesse max : 30 000 RPM",
-    "Type : Capteur magnétique (sans contact)",
-    "Alimentation : 3.3V à 5V"
-  ]
+  specifications: ["Plage de mesure : 0 à 360°","Résolution : 12 bits (0.087° par pas)","Interface : Analogique / PWM / I2C","Précision : ±0.05° à ±2° selon position","Vitesse max : 30 000 RPM","Type : Capteur magnétique (sans contact)","Alimentation : 3.3V à 5V"]
 },
   {
     id: 95,
@@ -868,12 +849,7 @@ const iotComponents: Component[] = [
     "image": "https://circuit.rocks/cdn/shop/products/carbon-monoxide-analog-sensor-mq7-for-arduino-732.jpg",
     "description": "Détecte le monoxyde de carbone (CO) pour la sécurité domestique ou industrielle.",
     "voltage": "5V DC",
-    "specifications": [
-      "Plage: 20-2000ppm",
-      "Sortie: Analogique",
-      "Temps de préchauffage: 48h",
-      "Précision: ±5%"
-    ]
+    "specifications": ["Plage: 20-2000ppm",      "Sortie: Analogique",      "Temps de préchauffage: 48h",      "Précision: ±5%"    ]
   },
   {
     "id": 102,
@@ -881,12 +857,7 @@ const iotComponents: Component[] = [
     "image": "https://circuit.rocks/cdn/shop/files/gas-analog-ch4-gas-sensor-mq4-for-arduino-a39423.jpg",
     "description": "Détecte le méthane (CH4) pour les applications de sécurité ou de surveillance environnementale.",
     "voltage": "5V DC",
-    "specifications": [
-      "Plage: 200-10000ppm",
-      "Sortie: Analogique",
-      "Temps de préchauffage: 24h",
-      "Précision: ±10%"
-    ]
+    "specifications": [ "Plage: 200-10000ppm","Sortie: Analogique","Temps de préchauffage: 24h", "Précision: ±10%"]
   },
   {
     "id": 103,
@@ -894,11 +865,7 @@ const iotComponents: Component[] = [
     "image": "https://powerlab.dz/wp-content/uploads/2024/05/611m-CoRaL._AC_SY300_SX300_.jpg",
     "description": "Détecte le dioxyde d'azote (NO2) pour la qualité de l'air.",
     "voltage": "5V DC",
-    "specifications": [
-      "Plage: 1-10ppm",
-      "Sortie: Analogique",
-      "Précision: ±5%"
-    ]
+    "specifications": [      "Plage: 1-10ppm",      "Sortie: Analogique",      "Précision: ±5%"    ]
   },
   {
     "id": 104,
@@ -906,11 +873,7 @@ const iotComponents: Component[] = [
     "image": "https://cdn-reichelt.de/bilder/web/xxl_ws/A300%2FDEBO_GAS_MQ131_2_01.png",
     "description": "Détecte l'ozone (O3) pour les applications environnementales.",
     "voltage": "5V DC",
-    "specifications": [
-      "Plage: 10-1000ppb",
-      "Sortie: Analogique",
-      "Précision: ±10%"
-    ]
+    "specifications": [      "Plage: 10-1000ppb",      "Sortie: Analogique",      "Précision: ±10%"    ]
   },
   {
     "id": 105,
@@ -918,11 +881,7 @@ const iotComponents: Component[] = [
     "image": "https://m.media-amazon.com/images/I/61XVYQ+JQSL._AC_SL1500_.jpg",
     "description": "Détecte le dioxyde de soufre (SO2) pour la surveillance industrielle.",
     "voltage": "5V DC",
-    "specifications": [
-      "Plage: 1-100ppm",
-      "Sortie: Analogique",
-      "Précision: ±10%"
-    ]
+    "specifications": [ "Plage: 1-100ppm","Sortie: Analogique", "Précision: ±10%"    ]
   },
   {
     "id": 106,
@@ -930,11 +889,7 @@ const iotComponents: Component[] = [
     "image": "https://nerikoelectronics.com/storage/app/public/product/2024-03-23-65fea468bea08.png",
     "description": "Détecte le sulfure d'hydrogène (H2S) pour les applications de sécurité.",
     "voltage": "5V DC",
-    "specifications": [
-      "Plage: 1-100ppm",
-      "Sortie: Analogique",
-      "Précision: ±10%"
-    ]
+    "specifications": [      "Plage: 1-100ppm",      "Sortie: Analogique",      "Précision: ±10%"    ]
   },
   {
     "id": 107,
@@ -942,11 +897,7 @@ const iotComponents: Component[] = [
     "image": "https://tronic.lk/assets/uploads/c1fd14934f83d71560698b1bfcb778a0.jpg",
     "description": "Détecte l'ammoniac (NH3) pour les applications agricoles ou industrielles.",
     "voltage": "5V DC",
-    "specifications": [
-      "Plage: 5-500ppm",
-      "Sortie: Analogique",
-      "Précision: ±10%"
-    ]
+    "specifications": [      "Plage: 5-500ppm",      "Sortie: Analogique",      "Précision: ±10%"    ]
   },
   {
     "id": 108,
@@ -954,11 +905,7 @@ const iotComponents: Component[] = [
     "image": "https://circuits-diy.com/wp-content/uploads/2021/10/mq138-pinout-voc-formaldehyde-aldehyde-sensor.jpg",
     "description": "Détecte le formaldéhyde pour la qualité de l'air intérieur.",
     "voltage": "5V DC",
-    "specifications": [
-      "Plage: 0.1-10ppm",
-      "Sortie: Analogique",
-      "Précision: ±10%"
-    ]
+    "specifications": [      "Plage: 0.1-10ppm",      "Sortie: Analogique",      "Précision: ±10%"    ]
   },
   {
     "id": 109,
@@ -966,11 +913,7 @@ const iotComponents: Component[] = [
     "image": "https://sc04.alicdn.com/kf/H2b640be931874d98ae160d8b3afa9a31G.jpg",
     "description": "Mesure la concentration de particules fines (PM1.0, PM2.5, PM10) dans l'air.",
     "voltage": "5V DC",
-    "specifications": [
-      "Plage: 0.3-10µm",
-      "Sortie: UART",
-      "Précision: ±10%"
-    ]
+    "specifications": [      "Plage: 0.3-10µm",      "Sortie: UART",      "Précision: ±10%"    ]
   },
   {
     "id": 110,
@@ -978,11 +921,7 @@ const iotComponents: Component[] = [
     "image": "https://cdn.bodanius.com/media/1/7fb120948_adafruit-veml6070-uv-index-sensor-breakout_x.jpg",
     "description": "Mesure l'intensité des rayons UV pour les applications de santé ou météo.",
     "voltage": "3.3V DC",
-    "specifications": [
-      "Plage: 280-400nm",
-      "Sortie: I2C",
-      "Précision: ±1%"
-    ]
+    "specifications": [      "Plage: 280-400nm",      "Sortie: I2C",      "Précision: ±1%"    ]
   },
   {
     "id": 111,
@@ -990,11 +929,7 @@ const iotComponents: Component[] = [
     "image": "https://shop-image.readyplanet.com/LJp-bVGXf8iFBCkg22Mt83U21EI=/7ad864ba3de141e58046fb973fa9c769",
     "description": "Détecte les rayonnements ionisants pour les applications de sécurité nucléaire.",
     "voltage": "5V DC",
-    "specifications": [
-      "Plage: 0.1-1000µSv/h",
-      "Sortie: Impulsions",
-      "Précision: ±15%"
-    ]
+    "specifications": [      "Plage: 0.1-1000µSv/h",      "Sortie: Impulsions",      "Précision: ±15%"    ]
   },
   {
     "id": 112,
@@ -1002,11 +937,7 @@ const iotComponents: Component[] = [
     "image": "https://www.yoctopuce.com/pubarchive/2024-07/fs3000-breakout-board_1.jpg",
     "description": "Mesure le débit d'air pour les applications HVAC ou industrielles.",
     "voltage": "5V DC",
-    "specifications": [
-      "Plage: 0-30m/s",
-      "Sortie: Analogique",
-      "Précision: ±3%"
-    ]
+    "specifications": [      "Plage: 0-30m/s",      "Sortie: Analogique",      "Précision: ±3%"    ]
   },
   {
     "id": 113,
@@ -1014,11 +945,7 @@ const iotComponents: Component[] = [
     "image": "https://image.made-in-china.com/202f0j00tzafBkvhVpoL/Water-Flow-Sensor-Sea-Yf-S201-Flowmeter-G1-2-1-30L-Min.webp",
     "description": "Mesure le débit de liquide dans les tuyaux.",
     "voltage": "5-24V DC",
-    "specifications": [
-      "Plage: 1-30L/min",
-      "Sortie: Impulsions",
-      "Précision: ±10%"
-    ]
+    "specifications": [      "Plage: 1-30L/min",      "Sortie: Impulsions",      "Précision: ±10%"    ]
   },
   {
     "id": 114,
@@ -1277,9 +1204,7 @@ const iotComponents: Component[] = [
     "description": "Combine accéléromètre, gyroscope et magnétomètre pour la détection de mouvement en 3D.",
     "voltage": "3.3V DC",
     "specifications": [
-      "Plage: ±16g/±2000°/s",
-      "Sortie: I2C",
-      "Précision: ±1%"
+      "Plage: ±16g/±2000°/s","Sortie: I2C", "Précision: ±1%"
     ]
   },
   {
