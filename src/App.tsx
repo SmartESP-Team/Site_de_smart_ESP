@@ -2539,8 +2539,7 @@ Catalogue de composants, bibliothèques et <strong className="text-teal-600">out
       setLoadingCustomCode(true);
       setCustomGeneratedCode(null);
       try {
-        const componentList = selectedComponentsForAI.map(comp => `${comp.name} (${comp.description})`).join("\n
-- ");
+       const componentList = selectedComponentsForAI.map(comp => `${comp.name} (${comp.description})`).join("\n- ");
         const fullPrompt = `L'utilisateur a sélectionné les composants suivants :
 - ${componentList}
 Description du projet souhaité par l'utilisateur :
