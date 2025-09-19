@@ -861,6 +861,878 @@ const iotComponents: Component[] = [
     description: "Lecteur RFID/NFC haute sensibilité, compatible avec les cartes MIFARE et les smartphones.",
     voltage: "3.3-5V DC",
     specifications: ["Fréquence : 13.56MHz", "Portée : 5-10cm", "Interface : I2C/SPI/UART", "Protocole : NFC"]
+  },
+  {
+    "id": 101,
+    "name": "Capteur de CO (MQ-7)",
+    "image": "https://circuit.rocks/cdn/shop/products/carbon-monoxide-analog-sensor-mq7-for-arduino-732.jpg",
+    "description": "Détecte le monoxyde de carbone (CO) pour la sécurité domestique ou industrielle.",
+    "voltage": "5V DC",
+    "specifications": [
+      "Plage: 20-2000ppm",
+      "Sortie: Analogique",
+      "Temps de préchauffage: 48h",
+      "Précision: ±5%"
+    ]
+  },
+  {
+    "id": 102,
+    "name": "Capteur de CH4 (MQ-4)",
+    "image": "https://circuit.rocks/cdn/shop/files/gas-analog-ch4-gas-sensor-mq4-for-arduino-a39423.jpg",
+    "description": "Détecte le méthane (CH4) pour les applications de sécurité ou de surveillance environnementale.",
+    "voltage": "5V DC",
+    "specifications": [
+      "Plage: 200-10000ppm",
+      "Sortie: Analogique",
+      "Temps de préchauffage: 24h",
+      "Précision: ±10%"
+    ]
+  },
+  {
+    "id": 103,
+    "name": "Capteur de NO2 (MQ-131)",
+    "image": "https://powerlab.dz/wp-content/uploads/2024/05/611m-CoRaL._AC_SY300_SX300_.jpg",
+    "description": "Détecte le dioxyde d'azote (NO2) pour la qualité de l'air.",
+    "voltage": "5V DC",
+    "specifications": [
+      "Plage: 1-10ppm",
+      "Sortie: Analogique",
+      "Précision: ±5%"
+    ]
+  },
+  {
+    "id": 104,
+    "name": "Capteur de O3 (MQ-131)",
+    "image": "https://cdn-reichelt.de/bilder/web/xxl_ws/A300%2FDEBO_GAS_MQ131_2_01.png",
+    "description": "Détecte l'ozone (O3) pour les applications environnementales.",
+    "voltage": "5V DC",
+    "specifications": [
+      "Plage: 10-1000ppb",
+      "Sortie: Analogique",
+      "Précision: ±10%"
+    ]
+  },
+  {
+    "id": 105,
+    "name": "Capteur de SO2 (MQ-136)",
+    "image": "https://m.media-amazon.com/images/I/61XVYQ+JQSL._AC_SL1500_.jpg",
+    "description": "Détecte le dioxyde de soufre (SO2) pour la surveillance industrielle.",
+    "voltage": "5V DC",
+    "specifications": [
+      "Plage: 1-100ppm",
+      "Sortie: Analogique",
+      "Précision: ±10%"
+    ]
+  },
+  {
+    "id": 106,
+    "name": "Capteur de H2S (MQ-136)",
+    "image": "https://nerikoelectronics.com/storage/app/public/product/2024-03-23-65fea468bea08.png",
+    "description": "Détecte le sulfure d'hydrogène (H2S) pour les applications de sécurité.",
+    "voltage": "5V DC",
+    "specifications": [
+      "Plage: 1-100ppm",
+      "Sortie: Analogique",
+      "Précision: ±10%"
+    ]
+  },
+  {
+    "id": 107,
+    "name": "Capteur de NH3 (MQ-137)",
+    "image": "https://tronic.lk/assets/uploads/c1fd14934f83d71560698b1bfcb778a0.jpg",
+    "description": "Détecte l'ammoniac (NH3) pour les applications agricoles ou industrielles.",
+    "voltage": "5V DC",
+    "specifications": [
+      "Plage: 5-500ppm",
+      "Sortie: Analogique",
+      "Précision: ±10%"
+    ]
+  },
+  {
+    "id": 108,
+    "name": "Capteur de Formaldéhyde (MQ-138)",
+    "image": "https://circuits-diy.com/wp-content/uploads/2021/10/mq138-pinout-voc-formaldehyde-aldehyde-sensor.jpg",
+    "description": "Détecte le formaldéhyde pour la qualité de l'air intérieur.",
+    "voltage": "5V DC",
+    "specifications": [
+      "Plage: 0.1-10ppm",
+      "Sortie: Analogique",
+      "Précision: ±10%"
+    ]
+  },
+  {
+    "id": 109,
+    "name": "Capteur de Poussière (PMS5003)",
+    "image": "https://sc04.alicdn.com/kf/H2b640be931874d98ae160d8b3afa9a31G.jpg",
+    "description": "Mesure la concentration de particules fines (PM1.0, PM2.5, PM10) dans l'air.",
+    "voltage": "5V DC",
+    "specifications": [
+      "Plage: 0.3-10µm",
+      "Sortie: UART",
+      "Précision: ±10%"
+    ]
+  },
+  {
+    "id": 110,
+    "name": "Capteur de Rayonnement UV (VEML6070)",
+    "image": "https://cdn.bodanius.com/media/1/7fb120948_adafruit-veml6070-uv-index-sensor-breakout_x.jpg",
+    "description": "Mesure l'intensité des rayons UV pour les applications de santé ou météo.",
+    "voltage": "3.3V DC",
+    "specifications": [
+      "Plage: 280-400nm",
+      "Sortie: I2C",
+      "Précision: ±1%"
+    ]
+  },
+  {
+    "id": 111,
+    "name": "Capteur de Rayonnement Gamma (Geiger)",
+    "image": "https://shop-image.readyplanet.com/LJp-bVGXf8iFBCkg22Mt83U21EI=/7ad864ba3de141e58046fb973fa9c769",
+    "description": "Détecte les rayonnements ionisants pour les applications de sécurité nucléaire.",
+    "voltage": "5V DC",
+    "specifications": [
+      "Plage: 0.1-1000µSv/h",
+      "Sortie: Impulsions",
+      "Précision: ±15%"
+    ]
+  },
+  {
+    "id": 112,
+    "name": "Capteur de Débit d'Air (FS3000)",
+    "image": "https://www.yoctopuce.com/pubarchive/2024-07/fs3000-breakout-board_1.jpg",
+    "description": "Mesure le débit d'air pour les applications HVAC ou industrielles.",
+    "voltage": "5V DC",
+    "specifications": [
+      "Plage: 0-30m/s",
+      "Sortie: Analogique",
+      "Précision: ±3%"
+    ]
+  },
+  {
+    "id": 113,
+    "name": "Capteur de Débit de Liquide (YF-S201)",
+    "image": "https://image.made-in-china.com/202f0j00tzafBkvhVpoL/Water-Flow-Sensor-Sea-Yf-S201-Flowmeter-G1-2-1-30L-Min.webp",
+    "description": "Mesure le débit de liquide dans les tuyaux.",
+    "voltage": "5-24V DC",
+    "specifications": [
+      "Plage: 1-30L/min",
+      "Sortie: Impulsions",
+      "Précision: ±10%"
+    ]
+  },
+  {
+    "id": 114,
+    "name": "Capteur de pH (Sonde pH)",
+    "image": "https://a2itronic.ma/wp-content/uploads/2022/01/p_2_7_2_6_2726-Liquid-PH0-14-Module-detecteur-de-valeur-sonde-PH-Electrode-BNC-pour-Arduino.jpg",
+    "description": "Mesure le pH des solutions liquides pour les applications agricoles ou chimiques.",
+    "voltage": "5V DC",
+    "specifications": [
+      "Plage: 0-14pH",
+      "Sortie: Analogique",
+      "Précision: ±0.1pH"
+    ]
+  },
+  {
+    "id": 115,
+    "name": "Capteur de Conductivité (EC)",
+    "image": "https://m.media-amazon.com/images/I/51dAS-cD01L.jpg",
+    "description": "Mesure la conductivité électrique des solutions liquides.",
+    "voltage": "5V DC",
+    "specifications": [
+      "Plage: 0-20mS/cm",
+      "Sortie: Analogique",
+      "Précision: ±5%"
+    ]
+  },
+  {
+    "id": 116,
+    "name": "Capteur de Turbidité",
+    "image": "https://mhtronic.com/wp-content/uploads/2022/08/0-main-capteur-de-turbidite-en-suspension-kit-de-module-de-detection-de-la-valeur-de-la-turbidite-en-suspension-liquide-detection-des-particules-en-suspension-pour-arduino.png",
+    "description": "Mesure la turbidité de l'eau pour les applications environnementales.",
+    "voltage": "5V DC",
+    "specifications": [
+      "Plage: 0-1000NTU",
+      "Sortie: Analogique",
+      "Précision: ±5%"
+    ]
+  },
+  {
+    "id": 117,
+    "name": "Capteur de Salinité",
+    "image": "https://www.aqualabo.fr/wp-content/uploads/2023/12/Capteur-Conductivite-C4E-1.png",
+    "description": "Mesure la salinité des solutions liquides.",
+    "voltage": "5V DC",
+    "specifications": [
+      "Plage: 0-50ppt",
+      "Sortie: Analogique",
+      "Précision: ±2%"
+    ]
+  },
+  {
+    "id": 118,
+    "name": "Capteur de Débit Massique (SLF3S)",
+    "image": "https://img.directindustry.fr/images_di/photo-m2/70966-20002034.jpg",
+    "description": "Mesure le débit massique des gaz pour les applications industrielles.",
+    "voltage": "5V DC",
+    "specifications": [
+      "Plage: 0-100sccm",
+      "Sortie: Analogique",
+      "Précision: ±2%"
+    ]
+  },
+  {
+    "id": 119,
+    "name": "Capteur de Débit de Gaz (MF5700)",
+    "image": "https://cfsensor.com/wp-content/uploads/2022/11/4000-4-1.jpg",
+    "description": "Mesure le débit de gaz pour les applications industrielles ou médicales.",
+    "voltage": "5V DC",
+    "specifications": [
+      "Plage: 0-500sccm",
+      "Sortie: Analogique",
+      "Précision: ±3%"
+    ]
+  },
+  {
+    "id": 120,
+    "name": "Capteur de Pression Différentielle",
+    "image": "https://fap-cleaner.com/wp-content/uploads/2023/05/capteur-de-pression-de-differentiel-pour-audi-seat-vw-skoda.jpg",
+    "description": "Mesure la différence de pression entre deux points.",
+    "voltage": "5V DC",
+    "specifications": [
+      "Plage: 0-10kPa",
+      "Sortie: Analogique",
+      "Précision: ±1%"
+    ]
+  },
+  {
+    "id": 121,
+    "name": "Capteur de Vitesse du Vent",
+    "image": "https://www.usinenouvelle.com/expo/img/capteur-de-vent-pour-mesure-de-vitesse-pce-fst-200-201-009780975-product_zoom.jpg",
+    "description": "Mesure la vitesse du vent pour les stations météo.",
+    "voltage": "5V DC",
+    "specifications": [
+      "Plage: 0-100m/s",
+      "Sortie: Analogique",
+      "Précision: ±3%"
+    ]
+  },
+  {
+    "id": 122,
+    "name": "Capteur de Direction du Vent",
+    "image": "https://img.directindustry.fr/images_di/photo-m2/192288-16039047.jpg",
+    "description": "Mesure la direction du vent pour les stations météo.",
+    "voltage": "5V DC",
+    "specifications": [
+      "Plage: 0-360°",
+      "Sortie: Analogique",
+      "Précision: ±5°"
+    ]
+  },
+  {
+    "id": 123,
+    "name": "Capteur de Pluie (Pluviomètre)",
+    "image": "https://www.usinenouvelle.com/expo/img/capteur-de-pluie-hd2013-2-011827530-product_zoom.jpg",
+    "description": "Mesure la quantité de pluie pour les stations météo.",
+    "voltage": "5V DC",
+    "specifications": [
+      "Plage: 0-50mm/h",
+      "Sortie: Numérique",
+      "Précision: ±5%"
+    ]
+  },
+  {
+    "id": 124,
+    "name": "Capteur de Neige",
+    "image": "https://m.media-amazon.com/images/I/614W4vUZhVL._UF1000,1000_QL80_.jpg",
+    "description": "Détecte la présence de neige pour les applications météo ou de sécurité.",
+    "voltage": "5V DC",
+    "specifications": [
+      "Sortie: Numérique",
+      "Précision: ±10%"
+    ]
+  },
+  {
+    "id": 125,
+    "name": "Capteur de Glace",
+    "image": "https://www.alliance-technologies.net/app/uploads/2023/01/IDS-30-1-550x0-c-default.png",
+    "description": "Détecte la formation de glace pour les applications aéronautiques ou routières.",
+    "voltage": "5V DC",
+    "specifications": [
+      "Sortie: Numérique",
+      "Précision: ±10%"
+    ]
+  },
+  {
+    "id": 126,
+    "name": "Capteur de Déformation (Strain Gauge)",
+    "image": "https://cdn3.tim-europe.com/websites/pei/typo3temp/assets/_processed_/a/0/csm_HBM-jauges-de-contrainte-KFU-image_23abff6a0f.jpg",
+    "description": "Mesure la déformation des matériaux pour les applications structurelles.",
+    "voltage": "5V DC",
+    "specifications": [
+      "Plage: 0-1000µε",
+      "Sortie: Analogique",
+      "Précision: ±1%"
+    ]
+  },
+  {
+    "id": 127,
+    "name": "Capteur de Force (Load Cell 50kg)",
+    "image": "https://m.media-amazon.com/images/I/61DJnO8zurL._UF1000,1000_QL80_.jpg",
+    "description": "Mesure les forces de compression ou de traction.",
+    "voltage": "5V DC",
+    "specifications": [
+      "Plage: 0-50kg",
+      "Sortie: HX711",
+      "Précision: ±0.1%"
+    ]
+  },
+  {
+    "id": 128,
+    "name": "Capteur de Couple",
+    "image": "https://cdn.cleanrider.com/uploads/2023/11/capteur-de-couple-boitier-riverside-500e.jpg",
+    "description": "Mesure le couple appliqué sur un axe.",
+    "voltage": "5V DC",
+    "specifications": [
+      "Plage: 0-10Nm",
+      "Sortie: Analogique",
+      "Précision: ±1%"
+    ]
+  },
+  {
+    "id": 129,
+    "name": "Capteur de Vibration (ADXL345)",
+    "image": "https://cdn11.bigcommerce.com/s-mm9wpa/images/stencil/1280x1280/products/3621/14475/adxl-1__61674.1729975869.jpg",
+    "description": "Mesure les vibrations sur 3 axes pour les applications industrielles ou de maintenance.",
+    "voltage": "3.3V DC",
+    "specifications": [
+      "Plage: ±16g",
+      "Sortie: I2C/SPI",
+      "Précision: ±0.1g"
+    ]
+  },
+  {
+    "id": 130,
+    "name": "Capteur de Choc (ADXL377)",
+    "image": "https://cdn-shop.adafruit.com/970x728/1413-00.jpg",
+    "description": "Détecte les chocs ou les impacts pour les applications de sécurité.",
+    "voltage": "3.3V DC",
+    "specifications": [
+      "Plage: ±200g",
+      "Sortie: Analogique",
+      "Précision: ±5%"
+    ]
+  },
+  {
+    "id": 131,
+    "name": "Capteur de Son 3D (INMP441)",
+    "image": "https://www.raspberry.ma/wp-content/uploads/2024/03/1711417972_481_Microphone-Omnidirectionnel-Tech-I2S-INMP441-Test-et-Avis.webp",
+    "description": "Microphone numérique pour la détection de sons en 3D.",
+    "voltage": "3.3V DC",
+    "specifications": [
+      "Plage: 20Hz-20kHz",
+      "Sortie: I2S",
+      "Précision: ±1dB"
+    ]
+  },
+  {
+    "id": 132,
+    "name": "Capteur de Champ Magnétique (HMC5883L)",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg3-pUYAC2u6DlXtmiYPwlOap3AHU_nDl8EvfAOOfnxB43PWTYzV2IF0G8QcR5op6yOpB5LmivIkFAPABlakrFrSHF3_kPCebhex3jrOQUuFhwjL-H0QV_MI8INauSnS5ONmMic_TllfIY/s1600/HMC5883L.JPG",
+    "description": "Mesure les champs magnétiques pour les applications de navigation ou de détection.",
+    "voltage": "3.3V DC",
+    "specifications": [
+      "Plage: ±8Gauss",
+      "Sortie: I2C",
+      "Précision: ±1%"
+    ]
+  },
+  {
+    "id": 133,
+    "name": "Capteur de Proximité Laser (VL53L0X)",
+    "image": "https://powertech-dz.net/media/products/vl53l0x.jpg",
+    "description": "Mesure la distance avec précision en utilisant un laser.",
+    "voltage": "3.3V DC",
+    "specifications": [
+      "Plage: 0-2m",
+      "Sortie: I2C",
+      "Précision: ±5mm"
+    ]
+  },
+  {
+    "id": 134,
+    "name": "Capteur de Proximité Infrarouge",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiQ1sTPSVmESWRwabCN13ws-08q-1EA4yrPXSe38ksh9L24vcm3y2z7ku42VZ63nn4O-2KCQRbao85JrJm5hBrNlAYFAyCTaFP5vHAX_AsEKqp_124PHCutsH_6JYpcGvv8UNptngOWhuk/s1600/P1170720.JPG",
+    "description": "Détecte la présence d'objets à courte distance.",
+    "voltage": "5V DC",
+    "specifications": [
+      "Plage: 0-80cm",
+      "Sortie: Numérique",
+      "Précision: ±10%"
+    ]
+  },
+  {
+    "id": 135,
+    "name": "Capteur de Mouvement 3D (MPU-9250)",
+    "image": "https://www.powertech-dz.net/media/products/Module_Gyroscope_MPU9250.jpg",
+    "description": "Combine accéléromètre, gyroscope et magnétomètre pour la détection de mouvement en 3D.",
+    "voltage": "3.3V DC",
+    "specifications": [
+      "Plage: ±16g/±2000°/s",
+      "Sortie: I2C",
+      "Précision: ±1%"
+    ]
+  },
+  {
+    "id": 136,
+    "name": "Capteur de Position GPS (NEO-6M)",
+    "image": "https://www.bastelgarage.ch/image/cache/catalog/Artikel/420331-420340/420340-994-1000x1000.jpg",
+    "description": "Module GPS pour la géolocalisation précise.",
+    "voltage": "3.3-5V DC",
+    "specifications": [
+      "Précision: 2.5m",
+      "Sortie: UART",
+      "Temps de verrouillage: 1s"
+    ]
+  },
+  {
+    "id": 137,
+    "name": "Capteur de Position GLONASS",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAFIJet4DyK7Vgpj-3IcQqQyYPo_HU8ZtGI0-LC0yMzBPe4dokAvD8MR1hZKA0S3Ab2wg&usqp=CAU",
+    "description": "Module de positionnement par satellite GLONASS pour une précision accrue.",
+    "voltage": "3.3-5V DC",
+    "specifications": [
+      "Précision: 1.5m",
+      "Sortie: UART",
+      "Temps de verrouillage: 1s"
+    ]
+  },
+  {
+    "id": 138,
+    "name": "Capteur de Position Galileo",
+    "image": "https://cdn-reichelt.de/bilder/web/artikel_ws/A300%2FASX00017_ISO_1.jpg",
+    "description": "Module de positionnement par satellite Galileo pour une couverture européenne.",
+    "voltage": "3.3-5V DC",
+    "specifications": [
+      "Précision: 1m",
+      "Sortie: UART",
+      "Temps de verrouillage: 1s"
+    ]
+  },
+  {
+    "id": 139,
+    "name": "Capteur de Position BeiDou",
+    "image": "https://www.hiwonder.com/cdn/shop/files/1_f55ef94d-4b65-47bb-98ed-149b110c8132.jpg?",
+    "description": "Module de positionnement par satellite BeiDou pour une couverture asiatique.",
+    "voltage": "3.3-5V DC",
+    "specifications": [
+      "Précision: 1.5m",
+      "Sortie: UART",
+      "Temps de verrouillage: 1s"
+    ]
+  },
+  {
+    "id": 140,
+    "name": "Capteur de Position QZSS",
+    "image": "https://cdn3.tim-europe.com/websites/pei/typo3temp/assets/_processed_/8/2/csm_28955_PEI5209_MTS_Fig2_RT4_a61cf4fdca.jpg",
+    "description": "Module de positionnement par satellite QZSS pour une couverture japonaise.",
+    "voltage": "3.3-5V DC",
+    "specifications": [
+      "Précision: 1m",
+      "Sortie: UART",
+      "Temps de verrouillage: 1s"
+    ]
+  },
+  {
+    "id": 141,
+    "name": "Capteur de Position IRNSS",
+    "image": "https://img.directindustry.fr/images_di/photo-mg/4567760-18480758.jpg",
+    "description": "Module de positionnement par satellite IRNSS pour une couverture indienne.",
+    "voltage": "3.3-5V DC",
+    "specifications": [
+      "Précision: 2m",
+      "Sortie: UART",
+      "Temps de verrouillage: 1s"
+    ]
+  },
+  {
+    "id": 142,
+    "name": "Capteur de Position Multi-GNSS",
+    "image": "https://www.furuno.com/files/ProductImage/1961/image/GF-8704_5_two_ph1.jpg",
+    "description": "Module combinant GPS, GLONASS, Galileo, BeiDou et QZSS pour une précision maximale.",
+    "voltage": "3.3-5V DC",
+    "specifications": [
+      "Précision: 0.5m",
+      "Sortie: UART",
+      "Temps de verrouillage: 1s"
+    ]
+  },
+  {
+    "id": 143,
+    "name": "Capteur de Position RTK",
+    "image": "https://www.ardusimple.com/wp-content/uploads/2025/05/simpleRTK3B_Pro_01.jpg",
+    "description": "Module GPS RTK pour une précision centimétrique.",
+    "voltage": "3.3-5V DC",
+    "specifications": [
+      "Précision: 1cm",
+      "Sortie: UART",
+      "Temps de verrouillage: 10s"
+    ]
+  },
+  {
+    "id": 144,
+    "name": "Capteur de Position PPK",
+    "image": "https://lh4.googleusercontent.com/proxy/Sc_hrp3rXvas5k2caJ3Xg2YmYaZWjbOvNxdpKnb00OhHsitl5B226dbVne9lhEtpf_hlxQA6zijfzM_TDW34_zjkEecJ0HOIZqchzF5eY5gKK2RuuFhgJkn5K0qxO57sO000ycWDfjPxHr8YMCamCUSLvO2_VuMEtw,
+    "description": "Module GPS PPK pour une précision centimétrique en post-traitement.",
+    "voltage": "3.3-5V DC",
+    "specifications": [
+      "Précision: 1cm",
+      "Sortie: UART",
+      "Temps de verrouillage: 1s"
+    ]
+  },
+  {
+    "id": 145,
+    "name": "Capteur de Position LORAN",
+    "image": "https://img.directindustry.fr/images_di/photo-mg/37684-11475597.jpg",
+    "description": "Module de navigation longue portée pour les applications maritimes.",
+    "voltage": "5V DC",
+    "specifications": [
+      "Précision: 500m",
+      "Sortie: Numérique",
+      "Portée: 1000km"
+    ]
+  },
+  {
+    "id": 146,
+    "name": "Capteur de Position DECCA",
+    "image": "https://www.celeramotion.com/inductive-sensors/wp-content/uploads/sites/7/2019/05/capteurs-de-position-300x200.png",
+    "description": "Module de navigation hyperbole pour les applications maritimes historiques.",
+    "voltage": "5V DC",
+    "specifications": [
+      "Précision: 1km",
+      "Sortie: Analogique",
+      "Portée: 500km"
+    ]
+  },
+  {
+    "id": 147,
+    "name": "Capteur de Position OMEGA",
+    "image": "https://img.gmoto.pl/507701/czujnik-polozenia-przepustnicy_1.webp",
+    "description": "Module de navigation mondiale pour les applications maritimes ou aériennes.",
+    "voltage": "5V DC",
+    "specifications": [
+      "Précision: 4km",
+      "Sortie: Numérique",
+      "Portée: 10000km"
+    ]
+  },
+  {
+    "id": 148,
+    "name": "Capteur de Position CHAYKA",
+    "image": "https://i0.wp.com/pitch-technologies.fr/wp-content/uploads/2019/06/SP2846-345-065-101-CAPTEUR-ROTATIF-SPRING-SHAFT.jpeg",
+    "description": "Module de navigation russe pour les applications maritimes.",
+    "voltage": "5V DC",
+    "specifications": [
+      "Précision: 500m",
+      "Sortie: Numérique",
+      "Portée: 1000km"
+    ]
+  },
+  {
+    "id": 149,
+    "name": "Capteur de Position ALPHA",
+    "image": "https://ae01.alicdn.com/kf/Sde41c38d59714fb9ad9f58c70f4186332.jpg_640x640q90.jpg",
+    "description": "Module de navigation soviétique pour les applications militaires.",
+    "voltage": "5V DC",
+    "specifications": [
+      "Précision: 100m",
+      "Sortie: Numérique",
+      "Portée: 500km"
+    ]
+  },
+  {
+    "id": 150,
+    "name": "Capteur de Position BRAS",
+    "image": "https://www.researchgate.net/publication/324186692/figure/fig1/AS:611693092671488@1522850406100/Exemple-de-capteur-positionne-sur-le-bras.png",
+    "description": "Module de navigation brésilien pour les applications maritimes.",
+    "voltage": "5V DC",
+    "specifications": [
+      "Précision: 1km",
+      "Sortie: Numérique",
+      "Portée: 2000km"
+    ]
+  },
+  {
+    "id": 151,
+    "name": "Raspberry Pi Pico",
+    "image": "https://m.media-amazon.com/images/I/61Zxehl0-qL.jpg",
+    "description": "Microcontrôleur RP2040 pour les projets IoT et embarqués.",
+    "voltage": "3.3V DC",
+    "specifications": [
+      "CPU: Dual-core 133MHz",
+      "RAM: 264KB",
+      "GPIO: 26",
+      "PWM: 16"
+    ]
+  },
+  {
+    "id": 152,
+    "name": "BeagleBone Black",
+    "image": "https://res.cloudinary.com/rsc/image/upload/b_rgb:FFFFFF,c_pad,dpr_1.0,f_auto,q_auto,w_700/c_pad,w_700/F1252411-02",
+    "description": "Plateforme open-source pour les projets embarqués avancés.",
+    "voltage": "5V DC",
+    "specifications": [
+      "CPU: 1GHz",
+      "RAM: 512MB",
+      "GPIO: 65",
+      "PWM: 8"
+    ]
+  },
+  {
+    "id": 153,
+    "name": "STM32F4 Discovery Kit",
+    "image": "https://cdn2.botland.store/111111-pdt_540/stm32f1-vl-discovery-kit.jpg",
+    "description": "Kit de développement pour les microcontrôleurs STM32F4.",
+    "voltage": "3.3V DC",
+    "specifications": [
+      "CPU: 180MHz",
+      "RAM: 192KB",
+      "GPIO: 50",
+      "PWM: 14"
+    ]
+  },
+  {
+    "id": 154,
+    "name": "Teensy 4.0",
+    "image": "https://www.pjrc.com/store/teensy40_front.jpg",
+    "description": "Microcontrôleur ultra-rapide pour les projets audio et temps réel.",
+    "voltage": "3.3V DC",
+    "specifications": [
+      "CPU: 600MHz",
+      "RAM: 1MB",
+      "GPIO: 40",
+      "PWM: 34"
+    ]
+  },
+  {
+    "id": 155,
+    "name": "Particle Photon",
+    "image": "https://www.direnc.net/particle-photon-wifi-iot-gelistirme-karti-en-esp-board-particle-46890-75-B.jpg",
+    "description": "Microcontrôleur Wi-Fi pour les projets IoT cloud.",
+    "voltage": "3.3V DC",
+    "specifications": [
+      "CPU: 120MHz",
+      "RAM: 128KB",
+      "WiFi: 802.11 b/g/n",
+      "GPIO: 18"
+    ]
+  },
+  {
+    "id": 156,
+    "name": "Onion Omega2",
+    "image": "https://blog.oshpark.com/wp-content/uploads/2017/01/tumblr_ojbxowfrfv1tja38uo3_1280.jpg",
+    "description": "Microcontrôleur Linux pour les projets IoT et embarqués.",
+    "voltage": "3.3V DC",
+    "specifications": [
+      "CPU: 580MHz",
+      "RAM: 128MB",
+      "WiFi: 802.11 b/g/n",
+      "GPIO: 15"
+    ]
+  },
+  {
+    "id": 157,
+    "name": "ESP32-S2",
+    "image": "https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s2/_images/esp32-s2-devkitm-1-v1-isometric.png",
+    "description": "Microcontrôleur Wi-Fi avec sécurité renforcée.",
+    "voltage": "3.3V DC",
+    "specifications": [
+      "CPU: 240MHz",
+      "RAM: 320KB",
+      "WiFi: 802.11 b/g/n",
+      "GPIO: 43"
+    ]
+  },
+  {
+    "id": 158,
+    "name": "ESP32-C3",
+    "image": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/images/3705/ESP32-C3-DEVKITM-1.jpg",
+    "description": "Microcontrôleur Wi-Fi/BLE avec sécurité matérielle.",
+    "voltage": "3.3V DC",
+    "specifications": [
+      "CPU: 160MHz",
+      "RAM: 400KB",
+      "WiFi: 802.11 b/g/n",
+      "BLE: 5.0",
+      "GPIO: 22"
+    ]
+  },
+  {
+    "id": 159,
+    "name": "ESP32-S3",
+    "image": "https://cdn3.botland.store/img/cms/23341_4.jpg",
+    "description": "Microcontrôleur Wi-Fi/BLE avec écran LCD intégré.",
+    "voltage": "3.3V DC",
+    "specifications": [
+      "CPU: 240MHz",
+      "RAM: 512KB",
+      "WiFi: 802.11 b/g/n",
+      "BLE: 5.0",
+      "GPIO: 44"
+    ]
+  },
+  {
+    "id": 160,
+    "name": "NVIDIA Jetson Nano",
+    "image": "https://m.media-amazon.com/images/I/71tZcfXMFQL._AC_SL1500_.jpg,
+    "description": "Carte de développement pour l'IA embarquée.",
+    "voltage": "5V DC",
+    "specifications": [
+      "CPU: Quad-core 1.43GHz",
+      "RAM: 4GB",
+      "GPU: 128 CUDA cores",
+      "GPIO: 40"
+    ]
+  },
+  {
+    "id": 161,
+    "name": "Google Coral Dev Board",
+    "image": "https://m.media-amazon.com/images/I/71oebkDzk1L._UF894,1000_QL80_.jpg",
+    "description": "Carte de développement pour l'apprentissage automatique embarqué.",
+    "voltage": "5V DC",
+    "specifications": [
+      "CPU: Quad-core 1.5GHz",
+      "RAM: 1GB",
+      "TPU: 4TOPS",
+      "GPIO: 40"
+    ]
+  },
+  {
+    "id": 162,
+    "name": "Arduino Mega 2560",
+    "image": "https://www.robotpark.com/image/cache/data/PRO/91068/Arduino-Mega-2560-R3-Pic01-1200x630w.png",
+    "description": "Plateforme de prototypage avancée avec de nombreuses E/S.",
+    "voltage": "5V DC",
+    "specifications": [
+      "CPU: ATmega2560",
+      "RAM: 8KB",
+      "Flash: 256KB",
+      "GPIO: 54",
+      "PWM: 15"
+    ]
+  },
+  {
+    "id": 163,
+    "name": "Arduino Due",
+    "image": "https://arduino.cc/en/uploads/Main/ArduinoDue_Front.jpg",
+    "description": "Plateforme de prototypage 32 bits pour les projets avancés.",
+    "voltage": "3.3V DC",
+    "specifications": [
+      "CPU: 84MHz",
+      "RAM: 96KB",
+      "Flash: 512KB",
+      "GPIO: 54",
+      "PWM: 12"
+    ]
+  },
+  {
+    "id": 164,
+    "name": "Arduino Zero",
+    "image": "https://store.arduino.cc/cdn/shop/files/ABX00003_03.front_1065x700.jpg",
+    "description": "Plateforme de prototypage 32 bits avec débogage intégré.",
+    "voltage": "3.3V DC",
+    "specifications": [
+      "CPU: 48MHz",
+      "RAM: 32KB",
+      "Flash: 256KB",
+      "GPIO: 14",
+      "PWM: 12"
+    ]
+  },
+  {
+    "id": 165,
+    "name": "Arduino MKR WiFi 1010",
+    "image": "https://grobotronics.com/images/companies/1/ABX00023.png?1663925197180",
+    "description": "Plateforme de prototypage Wi-Fi pour les projets IoT.",
+    "voltage": "3.3V DC",
+    "specifications": [
+      "CPU: 48MHz",
+      "RAM: 32KB",
+      "Flash: 256KB",
+      "WiFi: 802.11 b/g/n",
+      "GPIO: 8"
+    ]
+  },
+  {
+    "id": 166,
+    "name": "Arduino MKR GSM 1400",
+    "image": "https://static.insales-cdn.com/images/products/1/593/212533841/arduino-mkr-gsm-1400.2.jpg",
+    "description": "Plateforme de prototypage GSM pour les projets IoT cellulaires.",
+    "voltage": "3.3V DC",
+    "specifications": [
+      "CPU: 48MHz",
+      "RAM: 32KB",
+      "Flash: 256KB",
+      "GSM: 850/900/1800/1900MHz",
+      "GPIO: 8"
+    ]
+  },
+  {
+    "id": 167,
+    "name": "Arduino MKR NB 1500",
+    "image": "https://projects.arduinocontent.cc/cover-images/0dc9db3b-8aee-44a5-90ad-d921a650e6ac.blob",
+    "description": "Plateforme de prototypage NB-IoT pour les projets IoT cellulaires basse consommation.",
+    "voltage": "3.3V DC",
+    "specifications": [
+      "CPU: 48MHz",
+      "RAM: 32KB",
+      "Flash: 256KB",
+      "NB-IoT: 800/900MHz",
+      "GPIO: 8"
+    ]
+  },
+  {
+    "id": 168,
+    "name": "Arduino MKR WAN 1310",
+    "image": "https://store.arduino.cc/cdn/shop/files/MKRWAN1310WANT_01.iso_934x700.jpg?v=1727098331",
+    "description": "Plateforme de prototypage LoRa pour les projets IoT longue portée.",
+    "voltage": "3.3V DC",
+    "specifications": [
+      "CPU: 48MHz",
+      "RAM: 32KB",
+      "Flash: 256KB",
+      "LoRa: 868/915MHz",
+      "GPIO: 8"
+    ]
+  },
+  {
+    "id": 169,
+    "name": "Arduino MKR Vidor 4000",
+    "image": "https://maker.pro/storage/6buPB7p/6buPB7pn5x10Ip4MqfETYUKST3QdxaSrmIkVK8yu.jpeg",
+    "description": "Plateforme de prototypage avec FPGA intégré pour les projets avancés.",
+    "voltage": "3.3V DC",
+    "specifications": [
+      "CPU: 48MHz",
+      "FPGA: 8K LE",
+      "RAM: 32KB",
+      "Flash: 256KB",
+      "GPIO: 8"
+    ]
+  },
+  {
+    "id": 170,
+    "name": "Arduino Portenta H7",
+    "image": "https://eu.mouser.com/images/marketingid/2020/img/101443878.png",
+    "description": "Plateforme de prototypage industrielle pour les projets IoT avancés.",
+    "voltage": "3.3V DC",
+    "specifications": [
+      "CPU: 480MHz",
+      "RAM: 1MB",
+      "Flash: 2MB",
+      "WiFi: 802.11 b/g/n",
+      "BLE: 5.0",
+      "GPIO: 48"
+    ]
   }
 ];
 
