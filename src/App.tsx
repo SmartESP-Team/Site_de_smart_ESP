@@ -860,540 +860,540 @@ const iotComponents: Component[] = [
     "specifications": [ "Plage: 200-10000ppm","Sortie: Analogique","Temps de préchauffage: 24h", "Précision: ±10%"]
   },
   {
-    id: 103,
-    name: "Capteur de NO2 (MQ-131)",
-    image: "https://powerlab.dz/wp-content/uploads/2024/05/611m-CoRaL._AC_SY300_SX300_.jpg",
-    description: "Détecte le dioxyde d'azote (NO2) pour la qualité de l'air.",
-    voltage: "5V DC",
-    specifications: [      "Plage: 1-10ppm",      "Sortie: Analogique",      "Précision: ±5%"    ]
+    "id": 103,
+    "name": "Capteur de NO2 (MQ-131)",
+    "image": "https://powerlab.dz/wp-content/uploads/2024/05/611m-CoRaL._AC_SY300_SX300_.jpg",
+    "description": "Détecte le dioxyde d'azote (NO2) pour la qualité de l'air.",
+    "voltage": "5V DC",
+    "specifications": [      "Plage: 1-10ppm",      "Sortie: Analogique",      "Précision: ±5%"    ]
   },
   {
-    id: 104,
-    name: "Capteur de O3 (MQ-131)",
-    image: "https://cdn-reichelt.de/bilder/web/xxl_ws/A300%2FDEBO_GAS_MQ131_2_01.png",
-    description: "Détecte l'ozone (O3) pour les applications environnementales.",
-    voltage: "5V DC",
-    specifications: [      "Plage: 10-1000ppb",      "Sortie: Analogique",      "Précision: ±10%"    ]
+    "id": 104,
+    "name": "Capteur de O3 (MQ-131)",
+    "image": "https://cdn-reichelt.de/bilder/web/xxl_ws/A300%2FDEBO_GAS_MQ131_2_01.png",
+    "description": "Détecte l'ozone (O3) pour les applications environnementales.",
+    "voltage": "5V DC",
+    "specifications": [      "Plage: 10-1000ppb",      "Sortie: Analogique",      "Précision: ±10%"    ]
   },
   {
-    id: 105,
-    name: "Capteur de SO2 (MQ-136)",
-    image: "https://m.media-amazon.com/images/I/61XVYQ+JQSL._AC_SL1500_.jpg",
-    description: "Détecte le dioxyde de soufre (SO2) pour la surveillance industrielle.",
-    voltage: "5V DC",
-    specifications: [ "Plage: 1-100ppm","Sortie: Analogique", "Précision: ±10%"    ]
+    "id": 105,
+    "name": "Capteur de SO2 (MQ-136)",
+    "image": "https://m.media-amazon.com/images/I/61XVYQ+JQSL._AC_SL1500_.jpg",
+    "description": "Détecte le dioxyde de soufre (SO2) pour la surveillance industrielle.",
+    "voltage": "5V DC",
+    "specifications": [ "Plage: 1-100ppm","Sortie: Analogique", "Précision: ±10%"    ]
   },
   {
-    id: 106,
-    name: "Capteur de H2S (MQ-136)",
-    image: "https://nerikoelectronics.com/storage/app/public/product/2024-03-23-65fea468bea08.png",
-    description: "Détecte le sulfure d'hydrogène (H2S) pour les applications de sécurité.",
-    voltage: "5V DC",
-    specifications: [      "Plage: 1-100ppm",      "Sortie: Analogique",      "Précision: ±10%"    ]
+    "id": 106,
+    "name": "Capteur de H2S (MQ-136)",
+    "image": "https://nerikoelectronics.com/storage/app/public/product/2024-03-23-65fea468bea08.png",
+    "description": "Détecte le sulfure d'hydrogène (H2S) pour les applications de sécurité.",
+    "voltage": "5V DC",
+    "specifications": [      "Plage: 1-100ppm",      "Sortie: Analogique",      "Précision: ±10%"    ]
   },
   {
-    id: 107,
-    name: "Capteur de NH3 (MQ-137)",
-    image: "https://tronic.lk/assets/uploads/c1fd14934f83d71560698b1bfcb778a0.jpg",
-    description: "Détecte l'ammoniac (NH3) pour les applications agricoles ou industrielles.",
-    voltage: "5V DC",
-    specifications: [      "Plage: 5-500ppm",      "Sortie: Analogique",      "Précision: ±10%"    ]
+    "id": 107,
+    "name": "Capteur de NH3 (MQ-137)",
+    "image": "https://tronic.lk/assets/uploads/c1fd14934f83d71560698b1bfcb778a0.jpg",
+    "description": "Détecte l'ammoniac (NH3) pour les applications agricoles ou industrielles.",
+    "voltage": "5V DC",
+    "specifications": [      "Plage: 5-500ppm",      "Sortie: Analogique",      "Précision: ±10%"    ]
   },
   {
-    id: 108,
-    name: "Capteur de Formaldéhyde (MQ-138)",
-    image: "https://circuits-diy.com/wp-content/uploads/2021/10/mq138-pinout-voc-formaldehyde-aldehyde-sensor.jpg",
-    description: "Détecte le formaldéhyde pour la qualité de l'air intérieur.",
-    voltage: "5V DC",
-    specifications: [      "Plage: 0.1-10ppm",      "Sortie: Analogique",      "Précision: ±10%"    ]
+    "id": 108,
+    "name": "Capteur de Formaldéhyde (MQ-138)",
+    "image": "https://circuits-diy.com/wp-content/uploads/2021/10/mq138-pinout-voc-formaldehyde-aldehyde-sensor.jpg",
+    "description": "Détecte le formaldéhyde pour la qualité de l'air intérieur.",
+    "voltage": "5V DC",
+    "specifications": [      "Plage: 0.1-10ppm",      "Sortie: Analogique",      "Précision: ±10%"    ]
   },
   {
-    id: 109,
-    name: "Capteur de Poussière (PMS5003)",
-    image: "https://sc04.alicdn.com/kf/H2b640be931874d98ae160d8b3afa9a31G.jpg",
-    description: "Mesure la concentration de particules fines (PM1.0, PM2.5, PM10) dans l'air.",
-    voltage: "5V DC",
-    specifications: [      "Plage: 0.3-10µm",      "Sortie: UART",      "Précision: ±10%"    ]
+    "id": 109,
+    "name": "Capteur de Poussière (PMS5003)",
+    "image": "https://sc04.alicdn.com/kf/H2b640be931874d98ae160d8b3afa9a31G.jpg",
+    "description": "Mesure la concentration de particules fines (PM1.0, PM2.5, PM10) dans l'air.",
+    "voltage": "5V DC",
+    "specifications": [      "Plage: 0.3-10µm",      "Sortie: UART",      "Précision: ±10%"    ]
   },
   {
-    id: 110,
-    name: "Capteur de Rayonnement UV (VEML6070)",
-    image: "https://cdn.bodanius.com/media/1/7fb120948_adafruit-veml6070-uv-index-sensor-breakout_x.jpg",
-    description: "Mesure l'intensité des rayons UV pour les applications de santé ou météo.",
-    voltage: "3.3V DC",
-    specifications: [      "Plage: 280-400nm",      "Sortie: I2C",      "Précision: ±1%"    ]
+    "id": 110,
+    "name": "Capteur de Rayonnement UV (VEML6070)",
+    "image": "https://cdn.bodanius.com/media/1/7fb120948_adafruit-veml6070-uv-index-sensor-breakout_x.jpg",
+    "description": "Mesure l'intensité des rayons UV pour les applications de santé ou météo.",
+    "voltage": "3.3V DC",
+    "specifications": [      "Plage: 280-400nm",      "Sortie: I2C",      "Précision: ±1%"    ]
   },
   {
-    id: 111,
-    name: "Capteur de Rayonnement Gamma (Geiger)",
-    image: "https://shop-image.readyplanet.com/LJp-bVGXf8iFBCkg22Mt83U21EI=/7ad864ba3de141e58046fb973fa9c769",
-    description: "Détecte les rayonnements ionisants pour les applications de sécurité nucléaire.",
-    voltage: "5V DC",
-    specifications: [      "Plage: 0.1-1000µSv/h",      "Sortie: Impulsions",      "Précision: ±15%"    ]
+    "id": 111,
+    "name": "Capteur de Rayonnement Gamma (Geiger)",
+    "image": "https://shop-image.readyplanet.com/LJp-bVGXf8iFBCkg22Mt83U21EI=/7ad864ba3de141e58046fb973fa9c769",
+    "description": "Détecte les rayonnements ionisants pour les applications de sécurité nucléaire.",
+    "voltage": "5V DC",
+    "specifications": [      "Plage: 0.1-1000µSv/h",      "Sortie: Impulsions",      "Précision: ±15%"    ]
   },
   {
-    id: 112,
-    name: "Capteur de Débit d'Air (FS3000)",
-    image: "https://www.yoctopuce.com/pubarchive/2024-07/fs3000-breakout-board_1.jpg",
-    description: "Mesure le débit d'air pour les applications HVAC ou industrielles.",
-    voltage: "5V DC",
-    specifications: [      "Plage: 0-30m/s",      "Sortie: Analogique",      "Précision: ±3%"    ]
+    "id": 112,
+    "name": "Capteur de Débit d'Air (FS3000)",
+    "image": "https://www.yoctopuce.com/pubarchive/2024-07/fs3000-breakout-board_1.jpg",
+    "description": "Mesure le débit d'air pour les applications HVAC ou industrielles.",
+    "voltage": "5V DC",
+    "specifications": [      "Plage: 0-30m/s",      "Sortie: Analogique",      "Précision: ±3%"    ]
   },
   {
-    id: 113,
-    name: "Capteur de Débit de Liquide (YF-S201)",
-    image: "https://image.made-in-china.com/202f0j00tzafBkvhVpoL/Water-Flow-Sensor-Sea-Yf-S201-Flowmeter-G1-2-1-30L-Min.webp",
-    description: "Mesure le débit de liquide dans les tuyaux.",
-    voltage: "5-24V DC",
-    specifications: [      "Plage: 1-30L/min",      "Sortie: Impulsions",      "Précision: ±10%"    ]
+    "id": 113,
+    "name": "Capteur de Débit de Liquide (YF-S201)",
+    "image": "https://image.made-in-china.com/202f0j00tzafBkvhVpoL/Water-Flow-Sensor-Sea-Yf-S201-Flowmeter-G1-2-1-30L-Min.webp",
+    "description": "Mesure le débit de liquide dans les tuyaux.",
+    "voltage": "5-24V DC",
+    "specifications": [      "Plage: 1-30L/min",      "Sortie: Impulsions",      "Précision: ±10%"    ]
   },
   {
-    id: 114,
-    name: "Capteur de pH (Sonde pH)",
-    image: "https://a2itronic.ma/wp-content/uploads/2022/01/p_2_7_2_6_2726-Liquid-PH0-14-Module-detecteur-de-valeur-sonde-PH-Electrode-BNC-pour-Arduino.jpg",
-    description: "Mesure le pH des solutions liquides pour les applications agricoles ou chimiques.",
-    voltage: "5V DC",
-    specifications: [
+    "id": 114,
+    "name": "Capteur de pH (Sonde pH)",
+    "image": "https://a2itronic.ma/wp-content/uploads/2022/01/p_2_7_2_6_2726-Liquid-PH0-14-Module-detecteur-de-valeur-sonde-PH-Electrode-BNC-pour-Arduino.jpg",
+    "description": "Mesure le pH des solutions liquides pour les applications agricoles ou chimiques.",
+    "voltage": "5V DC",
+    "specifications": [
       "Plage: 0-14pH",
       "Sortie: Analogique",
       "Précision: ±0.1pH"
     ]
   },
   {
-    id: 115,
-    name: "Capteur de Conductivité (EC)",
-    image: "https://m.media-amazon.com/images/I/51dAS-cD01L.jpg",
-    description: "Mesure la conductivité électrique des solutions liquides.",
-    voltage: "5V DC",
-    specifications: [
+    "id": 115,
+    "name": "Capteur de Conductivité (EC)",
+    "image": "https://m.media-amazon.com/images/I/51dAS-cD01L.jpg",
+    "description": "Mesure la conductivité électrique des solutions liquides.",
+    "voltage": "5V DC",
+    "specifications": [
       "Plage: 0-20mS/cm",
       "Sortie: Analogique",
       "Précision: ±5%"
     ]
   },
   {
-    id: 116,
-    name: "Capteur de Turbidité",
-    image: "https://mhtronic.com/wp-content/uploads/2022/08/0-main-capteur-de-turbidite-en-suspension-kit-de-module-de-detection-de-la-valeur-de-la-turbidite-en-suspension-liquide-detection-des-particules-en-suspension-pour-arduino.png",
-    description: "Mesure la turbidité de l'eau pour les applications environnementales.",
-    voltage: "5V DC",
-    specifications: [
+    "id": 116,
+    "name": "Capteur de Turbidité",
+    "image": "https://mhtronic.com/wp-content/uploads/2022/08/0-main-capteur-de-turbidite-en-suspension-kit-de-module-de-detection-de-la-valeur-de-la-turbidite-en-suspension-liquide-detection-des-particules-en-suspension-pour-arduino.png",
+    "description": "Mesure la turbidité de l'eau pour les applications environnementales.",
+    "voltage": "5V DC",
+    "specifications": [
       "Plage: 0-1000NTU",
       "Sortie: Analogique",
       "Précision: ±5%"
     ]
   },
   {
-    id: 117,
-    name: "Capteur de Salinité",
-    image: "https://www.aqualabo.fr/wp-content/uploads/2023/12/Capteur-Conductivite-C4E-1.png",
-    description: "Mesure la salinité des solutions liquides.",
-    voltage: "5V DC",
-    specifications: [
+    "id": 117,
+    "name": "Capteur de Salinité",
+    "image": "https://www.aqualabo.fr/wp-content/uploads/2023/12/Capteur-Conductivite-C4E-1.png",
+    "description": "Mesure la salinité des solutions liquides.",
+    "voltage": "5V DC",
+    "specifications": [
       "Plage: 0-50ppt",
       "Sortie: Analogique",
       "Précision: ±2%"
     ]
   },
   {
-    id: 118,
-    name: "Capteur de Débit Massique (SLF3S)",
-    image: "https://img.directindustry.fr/images_di/photo-m2/70966-20002034.jpg",
-    description: "Mesure le débit massique des gaz pour les applications industrielles.",
-    voltage: "5V DC",
-    specifications: [
+    "id": 118,
+    "name": "Capteur de Débit Massique (SLF3S)",
+    "image": "https://img.directindustry.fr/images_di/photo-m2/70966-20002034.jpg",
+    "description": "Mesure le débit massique des gaz pour les applications industrielles.",
+    "voltage": "5V DC",
+    "specifications": [
       "Plage: 0-100sccm",
       "Sortie: Analogique",
       "Précision: ±2%"
     ]
   },
   {
-    id: 119,
-    name: "Capteur de Débit de Gaz (MF5700)",
-    image: "https://cfsensor.com/wp-content/uploads/2022/11/4000-4-1.jpg",
-    description: "Mesure le débit de gaz pour les applications industrielles ou médicales.",
-    voltage: "5V DC",
-    specifications: [
+    "id": 119,
+    "name": "Capteur de Débit de Gaz (MF5700)",
+    "image": "https://cfsensor.com/wp-content/uploads/2022/11/4000-4-1.jpg",
+    "description": "Mesure le débit de gaz pour les applications industrielles ou médicales.",
+    "voltage": "5V DC",
+    "specifications": [
       "Plage: 0-500sccm",
       "Sortie: Analogique",
       "Précision: ±3%"
     ]
   },
   {
-    id: 120,
-    name: "Capteur de Pression Différentielle",
-    image: "https://fap-cleaner.com/wp-content/uploads/2023/05/capteur-de-pression-de-differentiel-pour-audi-seat-vw-skoda.jpg",
-    description: "Mesure la différence de pression entre deux points.",
-    voltage: "5V DC",
-    specifications: [
+    "id": 120,
+    "name": "Capteur de Pression Différentielle",
+    "image": "https://fap-cleaner.com/wp-content/uploads/2023/05/capteur-de-pression-de-differentiel-pour-audi-seat-vw-skoda.jpg",
+    "description": "Mesure la différence de pression entre deux points.",
+    "voltage": "5V DC",
+    "specifications": [
       "Plage: 0-10kPa",
       "Sortie: Analogique",
       "Précision: ±1%"
     ]
   },
   {
-    id: 121,
-    name: "Capteur de Vitesse du Vent",
-    image: "https://www.usinenouvelle.com/expo/img/capteur-de-vent-pour-mesure-de-vitesse-pce-fst-200-201-009780975-product_zoom.jpg",
-    description: "Mesure la vitesse du vent pour les stations météo.",
-    voltage: "5V DC",
-    specifications: [
+    "id": 121,
+    "name": "Capteur de Vitesse du Vent",
+    "image": "https://www.usinenouvelle.com/expo/img/capteur-de-vent-pour-mesure-de-vitesse-pce-fst-200-201-009780975-product_zoom.jpg",
+    "description": "Mesure la vitesse du vent pour les stations météo.",
+    "voltage": "5V DC",
+    "specifications": [
       "Plage: 0-100m/s",
       "Sortie: Analogique",
       "Précision: ±3%"
     ]
   },
   {
-    id: 122,
-    name: "Capteur de Direction du Vent",
-    image: "https://img.directindustry.fr/images_di/photo-m2/192288-16039047.jpg",
-    description: "Mesure la direction du vent pour les stations météo.",
-    voltage: "5V DC",
-    specifications: [
+    "id": 122,
+    "name": "Capteur de Direction du Vent",
+    "image": "https://img.directindustry.fr/images_di/photo-m2/192288-16039047.jpg",
+    "description": "Mesure la direction du vent pour les stations météo.",
+    "voltage": "5V DC",
+    "specifications": [
       "Plage: 0-360°",
       "Sortie: Analogique",
       "Précision: ±5°"
     ]
   },
   {
-    id: 123,
-    name: "Capteur de Pluie (Pluviomètre)",
-    image: "https://www.usinenouvelle.com/expo/img/capteur-de-pluie-hd2013-2-011827530-product_zoom.jpg",
-    description: "Mesure la quantité de pluie pour les stations météo.",
-    voltage: "5V DC",
-    specifications: [
+    "id": 123,
+    "name": "Capteur de Pluie (Pluviomètre)",
+    "image": "https://www.usinenouvelle.com/expo/img/capteur-de-pluie-hd2013-2-011827530-product_zoom.jpg",
+    "description": "Mesure la quantité de pluie pour les stations météo.",
+    "voltage": "5V DC",
+    "specifications": [
       "Plage: 0-50mm/h",
       "Sortie: Numérique",
       "Précision: ±5%"
     ]
   },
   {
-    id: 124,
-    name: "Capteur de Neige",
-    image: "https://m.media-amazon.com/images/I/614W4vUZhVL._UF1000,1000_QL80_.jpg",
-    description: "Détecte la présence de neige pour les applications météo ou de sécurité.",
-    voltage: "5V DC",
-    specifications: [
+    "id": 124,
+    "name": "Capteur de Neige",
+    "image": "https://m.media-amazon.com/images/I/614W4vUZhVL._UF1000,1000_QL80_.jpg",
+    "description": "Détecte la présence de neige pour les applications météo ou de sécurité.",
+    "voltage": "5V DC",
+    "specifications": [
       "Sortie: Numérique",
       "Précision: ±10%"
     ]
   },
   {
-    id: 125,
-    name: "Capteur de Glace",
-    image: "https://www.alliance-technologies.net/app/uploads/2023/01/IDS-30-1-550x0-c-default.png",
-    description: "Détecte la formation de glace pour les applications aéronautiques ou routières.",
-    voltage: "5V DC",
-    specifications: [
+    "id": 125,
+    "name": "Capteur de Glace",
+    "image": "https://www.alliance-technologies.net/app/uploads/2023/01/IDS-30-1-550x0-c-default.png",
+    "description": "Détecte la formation de glace pour les applications aéronautiques ou routières.",
+    "voltage": "5V DC",
+    "specifications": [
       "Sortie: Numérique",
       "Précision: ±10%"
     ]
   },
   {
-    id: 126,
-    name: "Capteur de Déformation (Strain Gauge)",
-    image: "https://cdn3.tim-europe.com/websites/pei/typo3temp/assets/_processed_/a/0/csm_HBM-jauges-de-contrainte-KFU-image_23abff6a0f.jpg",
-    description: "Mesure la déformation des matériaux pour les applications structurelles.",
-    voltage: "5V DC",
-    specifications: [
+    "id": 126,
+    "name": "Capteur de Déformation (Strain Gauge)",
+    "image": "https://cdn3.tim-europe.com/websites/pei/typo3temp/assets/_processed_/a/0/csm_HBM-jauges-de-contrainte-KFU-image_23abff6a0f.jpg",
+    "description": "Mesure la déformation des matériaux pour les applications structurelles.",
+    "voltage": "5V DC",
+    "specifications": [
       "Plage: 0-1000µε",
       "Sortie: Analogique",
       "Précision: ±1%"
     ]
   },
   {
-    id: 127,
-    name: "Capteur de Force (Load Cell 50kg)",
-    image: "https://m.media-amazon.com/images/I/61DJnO8zurL._UF1000,1000_QL80_.jpg",
-    description: "Mesure les forces de compression ou de traction.",
-    voltage: "5V DC",
-    specifications: [
+    "id": 127,
+    "name": "Capteur de Force (Load Cell 50kg)",
+    "image": "https://m.media-amazon.com/images/I/61DJnO8zurL._UF1000,1000_QL80_.jpg",
+    "description": "Mesure les forces de compression ou de traction.",
+    "voltage": "5V DC",
+    "specifications": [
       "Plage: 0-50kg",
       "Sortie: HX711",
       "Précision: ±0.1%"
     ]
   },
   {
-    id: 128,
-    name: "Capteur de Couple",
-    image: "https://cdn.cleanrider.com/uploads/2023/11/capteur-de-couple-boitier-riverside-500e.jpg",
-    description: "Mesure le couple appliqué sur un axe.",
-    voltage: "5V DC",
-    specifications: [
+    "id": 128,
+    "name": "Capteur de Couple",
+    "image": "https://cdn.cleanrider.com/uploads/2023/11/capteur-de-couple-boitier-riverside-500e.jpg",
+    "description": "Mesure le couple appliqué sur un axe.",
+    "voltage": "5V DC",
+    "specifications": [
       "Plage: 0-10Nm",
       "Sortie: Analogique",
       "Précision: ±1%"
     ]
   },
   {
-    id: 129,
-    name: "Capteur de Vibration (ADXL345)",
-    image: "https://cdn11.bigcommerce.com/s-mm9wpa/images/stencil/1280x1280/products/3621/14475/adxl-1__61674.1729975869.jpg",
-    description: "Mesure les vibrations sur 3 axes pour les applications industrielles ou de maintenance.",
-    voltage: "3.3V DC",
-    specifications: [
+    "id": 129,
+    "name": "Capteur de Vibration (ADXL345)",
+    "image": "https://cdn11.bigcommerce.com/s-mm9wpa/images/stencil/1280x1280/products/3621/14475/adxl-1__61674.1729975869.jpg",
+    "description": "Mesure les vibrations sur 3 axes pour les applications industrielles ou de maintenance.",
+    "voltage": "3.3V DC",
+    "specifications": [
       "Plage: ±16g",
       "Sortie: I2C/SPI",
       "Précision: ±0.1g"
     ]
   },
   {
-    id: 130,
-    name: "Capteur de Choc (ADXL377)",
-    image: "https://cdn-shop.adafruit.com/970x728/1413-00.jpg",
-    description: "Détecte les chocs ou les impacts pour les applications de sécurité.",
-    voltage: "3.3V DC",
-    specifications: [
+    "id": 130,
+    "name": "Capteur de Choc (ADXL377)",
+    "image": "https://cdn-shop.adafruit.com/970x728/1413-00.jpg",
+    "description": "Détecte les chocs ou les impacts pour les applications de sécurité.",
+    "voltage": "3.3V DC",
+    "specifications": [
       "Plage: ±200g",
       "Sortie: Analogique",
       "Précision: ±5%"
     ]
   },
   {
-    id: 131,
-    name: "Capteur de Son 3D (INMP441)",
-    image: "https://www.raspberry.ma/wp-content/uploads/2024/03/1711417972_481_Microphone-Omnidirectionnel-Tech-I2S-INMP441-Test-et-Avis.webp",
-    description: "Microphone numérique pour la détection de sons en 3D.",
-    voltage: "3.3V DC",
-    specifications: [
+    "id": 131,
+    "name": "Capteur de Son 3D (INMP441)",
+    "image": "https://www.raspberry.ma/wp-content/uploads/2024/03/1711417972_481_Microphone-Omnidirectionnel-Tech-I2S-INMP441-Test-et-Avis.webp",
+    "description": "Microphone numérique pour la détection de sons en 3D.",
+    "voltage": "3.3V DC",
+    "specifications": [
       "Plage: 20Hz-20kHz",
       "Sortie: I2S",
       "Précision: ±1dB"
     ]
   },
   {
-    id: 132,
-    name: "Capteur de Champ Magnétique (HMC5883L)",
-    image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg3-pUYAC2u6DlXtmiYPwlOap3AHU_nDl8EvfAOOfnxB43PWTYzV2IF0G8QcR5op6yOpB5LmivIkFAPABlakrFrSHF3_kPCebhex3jrOQUuFhwjL-H0QV_MI8INauSnS5ONmMic_TllfIY/s1600/HMC5883L.JPG",
-    description: "Mesure les champs magnétiques pour les applications de navigation ou de détection.",
-    voltage: "3.3V DC",
-    specifications: [
+    "id": 132,
+    "name": "Capteur de Champ Magnétique (HMC5883L)",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg3-pUYAC2u6DlXtmiYPwlOap3AHU_nDl8EvfAOOfnxB43PWTYzV2IF0G8QcR5op6yOpB5LmivIkFAPABlakrFrSHF3_kPCebhex3jrOQUuFhwjL-H0QV_MI8INauSnS5ONmMic_TllfIY/s1600/HMC5883L.JPG",
+    "description": "Mesure les champs magnétiques pour les applications de navigation ou de détection.",
+    "voltage": "3.3V DC",
+    "specifications": [
       "Plage: ±8Gauss",
       "Sortie: I2C",
       "Précision: ±1%"
     ]
   },
   {
-    id: 133,
-    name: "Capteur de Proximité Laser (VL53L0X)",
-    image: "https://powertech-dz.net/media/products/vl53l0x.jpg",
-    description: "Mesure la distance avec précision en utilisant un laser.",
-    voltage: "3.3V DC",
-    specifications: [
+    "id": 133,
+    "name": "Capteur de Proximité Laser (VL53L0X)",
+    "image": "https://powertech-dz.net/media/products/vl53l0x.jpg",
+    "description": "Mesure la distance avec précision en utilisant un laser.",
+    "voltage": "3.3V DC",
+    "specifications": [
       "Plage: 0-2m",
       "Sortie: I2C",
       "Précision: ±5mm"
     ]
   },
   {
-    id: 134,
-    name: "Capteur de Proximité Infrarouge",
-    image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiQ1sTPSVmESWRwabCN13ws-08q-1EA4yrPXSe38ksh9L24vcm3y2z7ku42VZ63nn4O-2KCQRbao85JrJm5hBrNlAYFAyCTaFP5vHAX_AsEKqp_124PHCutsH_6JYpcGvv8UNptngOWhuk/s1600/P1170720.JPG",
-    description: "Détecte la présence d'objets à courte distance.",
-    voltage: "5V DC",
-    specifications: [
+    "id": 134,
+    "name": "Capteur de Proximité Infrarouge",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiQ1sTPSVmESWRwabCN13ws-08q-1EA4yrPXSe38ksh9L24vcm3y2z7ku42VZ63nn4O-2KCQRbao85JrJm5hBrNlAYFAyCTaFP5vHAX_AsEKqp_124PHCutsH_6JYpcGvv8UNptngOWhuk/s1600/P1170720.JPG",
+    "description": "Détecte la présence d'objets à courte distance.",
+    "voltage": "5V DC",
+    "specifications": [
       "Plage: 0-80cm",
       "Sortie: Numérique",
       "Précision: ±10%"
     ]
   },
   {
-    id: 135,
-    name: "Capteur de Mouvement 3D (MPU-9250)",
-    image: "https://www.powertech-dz.net/media/products/Module_Gyroscope_MPU9250.jpg",
-    description: "Combine accéléromètre, gyroscope et magnétomètre pour la détection de mouvement en 3D.",
-    voltage: "3.3V DC",
-    specifications: [
+    "id": 135,
+    "name": "Capteur de Mouvement 3D (MPU-9250)",
+    "image": "https://www.powertech-dz.net/media/products/Module_Gyroscope_MPU9250.jpg",
+    "description": "Combine accéléromètre, gyroscope et magnétomètre pour la détection de mouvement en 3D.",
+    "voltage": "3.3V DC",
+    "specifications": [
       "Plage: ±16g/±2000°/s","Sortie: I2C", "Précision: ±1%"
     ]
   },
   {
-    id: 136,
-    name: "Capteur de Position GPS (NEO-6M)",
-    image: "https://www.bastelgarage.ch/image/cache/catalog/Artikel/420331-420340/420340-994-1000x1000.jpg",
-    description: "Module GPS pour la géolocalisation précise.",
-    voltage: "3.3-5V DC",
-    specifications: [
+    "id": 136,
+    "name": "Capteur de Position GPS (NEO-6M)",
+    "image": "https://www.bastelgarage.ch/image/cache/catalog/Artikel/420331-420340/420340-994-1000x1000.jpg",
+    "description": "Module GPS pour la géolocalisation précise.",
+    "voltage": "3.3-5V DC",
+    "specifications": [
       "Précision: 2.5m",
       "Sortie: UART",
       "Temps de verrouillage: 1s"
     ]
   },
   {
-    id: 137,
-    name: "Capteur de Position GLONASS",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAFIJet4DyK7Vgpj-3IcQqQyYPo_HU8ZtGI0-LC0yMzBPe4dokAvD8MR1hZKA0S3Ab2wg&usqp=CAU",
-    description: "Module de positionnement par satellite GLONASS pour une précision accrue.",
-    voltage: "3.3-5V DC",
-    specifications: [
+    "id": 137,
+    "name": "Capteur de Position GLONASS",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAFIJet4DyK7Vgpj-3IcQqQyYPo_HU8ZtGI0-LC0yMzBPe4dokAvD8MR1hZKA0S3Ab2wg&usqp=CAU",
+    "description": "Module de positionnement par satellite GLONASS pour une précision accrue.",
+    "voltage": "3.3-5V DC",
+    "specifications": [
       "Précision: 1.5m",
       "Sortie: UART",
       "Temps de verrouillage: 1s"
     ]
   },
   {
-    id: 138,
-    name: "Capteur de Position Galileo",
-    image: "https://cdn-reichelt.de/bilder/web/artikel_ws/A300%2FASX00017_ISO_1.jpg",
-    description: "Module de positionnement par satellite Galileo pour une couverture européenne.",
-    voltage: "3.3-5V DC",
-    specifications: [
+    "id": 138,
+    "name": "Capteur de Position Galileo",
+    "image": "https://cdn-reichelt.de/bilder/web/artikel_ws/A300%2FASX00017_ISO_1.jpg",
+    "description": "Module de positionnement par satellite Galileo pour une couverture européenne.",
+    "voltage": "3.3-5V DC",
+    "specifications": [
       "Précision: 1m",
       "Sortie: UART",
       "Temps de verrouillage: 1s"
     ]
   },
   {
-    id: 139,
-    name: "Capteur de Position BeiDou",
-    image: "https://www.hiwonder.com/cdn/shop/files/1_f55ef94d-4b65-47bb-98ed-149b110c8132.jpg?",
-    description: "Module de positionnement par satellite BeiDou pour une couverture asiatique.",
-    voltage: "3.3-5V DC",
-    specifications: [
+    "id": 139,
+    "name": "Capteur de Position BeiDou",
+    "image": "https://www.hiwonder.com/cdn/shop/files/1_f55ef94d-4b65-47bb-98ed-149b110c8132.jpg?",
+    "description": "Module de positionnement par satellite BeiDou pour une couverture asiatique.",
+    "voltage": "3.3-5V DC",
+    "specifications": [
       "Précision: 1.5m",
       "Sortie: UART",
       "Temps de verrouillage: 1s"
     ]
   },
   {
-    id: 140,
-    name: "Capteur de Position QZSS",
-    image: "https://cdn3.tim-europe.com/websites/pei/typo3temp/assets/_processed_/8/2/csm_28955_PEI5209_MTS_Fig2_RT4_a61cf4fdca.jpg",
-    description: "Module de positionnement par satellite QZSS pour une couverture japonaise.",
-    voltage: "3.3-5V DC",
-    specifications: [
+    "id": 140,
+    "name": "Capteur de Position QZSS",
+    "image": "https://cdn3.tim-europe.com/websites/pei/typo3temp/assets/_processed_/8/2/csm_28955_PEI5209_MTS_Fig2_RT4_a61cf4fdca.jpg",
+    "description": "Module de positionnement par satellite QZSS pour une couverture japonaise.",
+    "voltage": "3.3-5V DC",
+    "specifications": [
       "Précision: 1m",
       "Sortie: UART",
       "Temps de verrouillage: 1s"
     ]
   },
   {
-    id: 141,
-    name: "Capteur de Position IRNSS",
-    image: "https://img.directindustry.fr/images_di/photo-mg/4567760-18480758.jpg",
-    description: "Module de positionnement par satellite IRNSS pour une couverture indienne.",
-    voltage: "3.3-5V DC",
-    specifications: [
+    "id": 141,
+    "name": "Capteur de Position IRNSS",
+    "image": "https://img.directindustry.fr/images_di/photo-mg/4567760-18480758.jpg",
+    "description": "Module de positionnement par satellite IRNSS pour une couverture indienne.",
+    "voltage": "3.3-5V DC",
+    "specifications": [
       "Précision: 2m",
       "Sortie: UART",
       "Temps de verrouillage: 1s"
     ]
   },
   {
-    id: 142,
-    name: "Capteur de Position Multi-GNSS",
-    image: "https://www.furuno.com/files/ProductImage/1961/image/GF-8704_5_two_ph1.jpg",
-    description: "Module combinant GPS, GLONASS, Galileo, BeiDou et QZSS pour une précision maximale.",
-    voltage: "3.3-5V DC",
-    specifications: [
+    "id": 142,
+    "name": "Capteur de Position Multi-GNSS",
+    "image": "https://www.furuno.com/files/ProductImage/1961/image/GF-8704_5_two_ph1.jpg",
+    "description": "Module combinant GPS, GLONASS, Galileo, BeiDou et QZSS pour une précision maximale.",
+    "voltage": "3.3-5V DC",
+    "specifications": [
       "Précision: 0.5m",
       "Sortie: UART",
       "Temps de verrouillage: 1s"
     ]
   },
   {
-    id: 143,
-    name: "Capteur de Position RTK",
-    image: "https://www.ardusimple.com/wp-content/uploads/2025/05/simpleRTK3B_Pro_01.jpg",
-    description: "Module GPS RTK pour une précision centimétrique.",
-    voltage: "3.3-5V DC",
-    specifications: [
+    "id": 143,
+    "name": "Capteur de Position RTK",
+    "image": "https://www.ardusimple.com/wp-content/uploads/2025/05/simpleRTK3B_Pro_01.jpg",
+    "description": "Module GPS RTK pour une précision centimétrique.",
+    "voltage": "3.3-5V DC",
+    "specifications": [
       "Précision: 1cm",
       "Sortie: UART",
       "Temps de verrouillage: 10s"
     ]
   },
   {
-    id: 144,
-    name: "Capteur de Position PPK",
-    image: "https://lh4.googleusercontent.com/proxy/Sc_hrp3rXvas5k2caJ3Xg2YmYaZWjbOvNxdpKnb00OhHsitl5B226dbVne9lhEtpf_hlxQA6zijfzM_TDW34_zjkEecJ0HOIZqchzF5eY5gKK2RuuFhgJkn5K0qxO57sO000ycWDfjPxHr8YMCamCUSLvO2_VuMEtw",
-    description: "Module GPS PPK pour une précision centimétrique en post-traitement.",
-    voltage: "3.3-5V DC",
-    specifications: [
+    "id": 144,
+    "name": "Capteur de Position PPK",
+    "image": "https://lh4.googleusercontent.com/proxy/Sc_hrp3rXvas5k2caJ3Xg2YmYaZWjbOvNxdpKnb00OhHsitl5B226dbVne9lhEtpf_hlxQA6zijfzM_TDW34_zjkEecJ0HOIZqchzF5eY5gKK2RuuFhgJkn5K0qxO57sO000ycWDfjPxHr8YMCamCUSLvO2_VuMEtw",
+    "description": "Module GPS PPK pour une précision centimétrique en post-traitement.",
+    "voltage": "3.3-5V DC",
+    "specifications": [
       "Précision: 1cm",
       "Sortie: UART",
       "Temps de verrouillage: 1s"
     ]
   },
   {
-    id: 145,
-    name: "Capteur de Position LORAN",
-    image: "https://img.directindustry.fr/images_di/photo-mg/37684-11475597.jpg",
-    description: "Module de navigation longue portée pour les applications maritimes.",
-    voltage: "5V DC",
-    specifications: [
+    "id": 145,
+    "name": "Capteur de Position LORAN",
+    "image": "https://img.directindustry.fr/images_di/photo-mg/37684-11475597.jpg",
+    "description": "Module de navigation longue portée pour les applications maritimes.",
+    "voltage": "5V DC",
+    "specifications": [
       "Précision: 500m",
       "Sortie: Numérique",
       "Portée: 1000km"
     ]
   },
   {
-    id: 146,
-    name: "Capteur de Position DECCA",
-    image: "https://www.celeramotion.com/inductive-sensors/wp-content/uploads/sites/7/2019/05/capteurs-de-position-300x200.png",
-    description: "Module de navigation hyperbole pour les applications maritimes historiques.",
-    voltage: "5V DC",
-    specifications: [
+    "id": 146,
+    "name": "Capteur de Position DECCA",
+    "image": "https://www.celeramotion.com/inductive-sensors/wp-content/uploads/sites/7/2019/05/capteurs-de-position-300x200.png",
+    "description": "Module de navigation hyperbole pour les applications maritimes historiques.",
+    "voltage": "5V DC",
+    "specifications": [
       "Précision: 1km",
       "Sortie: Analogique",
       "Portée: 500km"
     ]
   },
   {
-    id: 147,
-    name: "Capteur de Position OMEGA",
-    image: "https://img.gmoto.pl/507701/czujnik-polozenia-przepustnicy_1.webp",
-    description: "Module de navigation mondiale pour les applications maritimes ou aériennes.",
-    voltage: "5V DC",
-    specifications: [
+    "id": 147,
+    "name": "Capteur de Position OMEGA",
+    "image": "https://img.gmoto.pl/507701/czujnik-polozenia-przepustnicy_1.webp",
+    "description": "Module de navigation mondiale pour les applications maritimes ou aériennes.",
+    "voltage": "5V DC",
+    "specifications": [
       "Précision: 4km",
       "Sortie: Numérique",
       "Portée: 10000km"
     ]
   },
   {
-    id: 148,
-    name: "Capteur de Position CHAYKA",
-    image: "https://i0.wp.com/pitch-technologies.fr/wp-content/uploads/2019/06/SP2846-345-065-101-CAPTEUR-ROTATIF-SPRING-SHAFT.jpeg",
-    description: "Module de navigation russe pour les applications maritimes.",
-    voltage: "5V DC",
-    specifications: [
+    "id": 148,
+    "name": "Capteur de Position CHAYKA",
+    "image": "https://i0.wp.com/pitch-technologies.fr/wp-content/uploads/2019/06/SP2846-345-065-101-CAPTEUR-ROTATIF-SPRING-SHAFT.jpeg",
+    "description": "Module de navigation russe pour les applications maritimes.",
+    "voltage": "5V DC",
+    "specifications": [
       "Précision: 500m",
       "Sortie: Numérique",
       "Portée: 1000km"
     ]
   },
   {
-    id: 149,
-    name: "Capteur de Position ALPHA",
-    image: "https://ae01.alicdn.com/kf/Sde41c38d59714fb9ad9f58c70f4186332.jpg_640x640q90.jpg",
-    description: "Module de navigation soviétique pour les applications militaires.",
-    voltage: "5V DC",
-    specifications: [
+    "id": 149,
+    "name": "Capteur de Position ALPHA",
+    "image": "https://ae01.alicdn.com/kf/Sde41c38d59714fb9ad9f58c70f4186332.jpg_640x640q90.jpg",
+    "description": "Module de navigation soviétique pour les applications militaires.",
+    "voltage": "5V DC",
+    "specifications": [
       "Précision: 100m",
       "Sortie: Numérique",
       "Portée: 500km"
     ]
   },
   {
-    id: 150,
-    name: "Capteur de Position BRAS",
-    image: "https://www.researchgate.net/publication/324186692/figure/fig1/AS:611693092671488@1522850406100/Exemple-de-capteur-positionne-sur-le-bras.png",
-    description: "Module de navigation brésilien pour les applications maritimes.",
-    voltage: "5V DC",
-    specifications: [
+    "id": 150,
+    "name": "Capteur de Position BRAS",
+    "image": "https://www.researchgate.net/publication/324186692/figure/fig1/AS:611693092671488@1522850406100/Exemple-de-capteur-positionne-sur-le-bras.png",
+    "description": "Module de navigation brésilien pour les applications maritimes.",
+    "voltage": "5V DC",
+    "specifications": [
       "Précision: 1km",
       "Sortie: Numérique",
       "Portée: 2000km"
     ]
   },
   {
-    id: 151,
-    name: "Raspberry Pi Pico",
-    image: "https://m.media-amazon.com/images/I/61Zxehl0-qL.jpg",
-    description: "Microcontrôleur RP2040 pour les projets IoT et embarqués.",
-    voltage: "3.3V DC",
-    specifications: [
+    "id": 151,
+    "name": "Raspberry Pi Pico",
+    "image": "https://m.media-amazon.com/images/I/61Zxehl0-qL.jpg",
+    "description": "Microcontrôleur RP2040 pour les projets IoT et embarqués.",
+    "voltage": "3.3V DC",
+    "specifications": [
       "CPU: Dual-core 133MHz",
       "RAM: 264KB",
       "GPIO: 26",
@@ -1401,12 +1401,12 @@ const iotComponents: Component[] = [
     ]
   },
   {
-    id: 152,
-    name: "BeagleBone Black",
-    image: "https://res.cloudinary.com/rsc/image/upload/b_rgb:FFFFFF,c_pad,dpr_1.0,f_auto,q_auto,w_700/c_pad,w_700/F1252411-02",
-    description: "Plateforme open-source pour les projets embarqués avancés.",
-    voltage: "5V DC",
-    specifications: [
+    "id": 152,
+    "name": "BeagleBone Black",
+    "image": "https://res.cloudinary.com/rsc/image/upload/b_rgb:FFFFFF,c_pad,dpr_1.0,f_auto,q_auto,w_700/c_pad,w_700/F1252411-02",
+    "description": "Plateforme open-source pour les projets embarqués avancés.",
+    "voltage": "5V DC",
+    "specifications": [
       "CPU: 1GHz",
       "RAM: 512MB",
       "GPIO: 65",
@@ -1414,12 +1414,12 @@ const iotComponents: Component[] = [
     ]
   },
   {
-    id: 153,
-    name: "STM32F4 Discovery Kit",
-    image: "https://cdn2.botland.store/111111-pdt_540/stm32f1-vl-discovery-kit.jpg",
-    description: "Kit de développement pour les microcontrôleurs STM32F4.",
-    voltage: "3.3V DC",
-    specifications: [
+    "id": 153,
+    "name": "STM32F4 Discovery Kit",
+    "image": "https://cdn2.botland.store/111111-pdt_540/stm32f1-vl-discovery-kit.jpg",
+    "description": "Kit de développement pour les microcontrôleurs STM32F4.",
+    "voltage": "3.3V DC",
+    "specifications": [
       "CPU: 180MHz",
       "RAM: 192KB",
       "GPIO: 50",
@@ -1427,12 +1427,12 @@ const iotComponents: Component[] = [
     ]
   },
   {
-    id: 154,
-    name: "Teensy 4.0",
-    image: "https://www.pjrc.com/store/teensy40_front.jpg",
-    description: "Microcontrôleur ultra-rapide pour les projets audio et temps réel.",
-    voltage: "3.3V DC",
-    specifications: [
+    "id": 154,
+    "name": "Teensy 4.0",
+    "image": "https://www.pjrc.com/store/teensy40_front.jpg",
+    "description": "Microcontrôleur ultra-rapide pour les projets audio et temps réel.",
+    "voltage": "3.3V DC",
+    "specifications": [
       "CPU: 600MHz",
       "RAM: 1MB",
       "GPIO: 40",
@@ -1440,12 +1440,12 @@ const iotComponents: Component[] = [
     ]
   },
   {
-    id: 155,
-    name: "Particle Photon",
-    image: "https://www.direnc.net/particle-photon-wifi-iot-gelistirme-karti-en-esp-board-particle-46890-75-B.jpg",
-    description: "Microcontrôleur Wi-Fi pour les projets IoT cloud.",
-    voltage: "3.3V DC",
-    specifications: [
+    "id": 155,
+    "name": "Particle Photon",
+    "image": "https://www.direnc.net/particle-photon-wifi-iot-gelistirme-karti-en-esp-board-particle-46890-75-B.jpg",
+    "description": "Microcontrôleur Wi-Fi pour les projets IoT cloud.",
+    "voltage": "3.3V DC",
+    "specifications": [
       "CPU: 120MHz",
       "RAM: 128KB",
       "WiFi: 802.11 b/g/n",
@@ -1453,12 +1453,12 @@ const iotComponents: Component[] = [
     ]
   },
   {
-    id: 156,
-    name: "Onion Omega2",
-    image: "https://blog.oshpark.com/wp-content/uploads/2017/01/tumblr_ojbxowfrfv1tja38uo3_1280.jpg",
-    description: "Microcontrôleur Linux pour les projets IoT et embarqués.",
-    voltage: "3.3V DC",
-    specifications: [
+    "id": 156,
+    "name": "Onion Omega2",
+    "image": "https://blog.oshpark.com/wp-content/uploads/2017/01/tumblr_ojbxowfrfv1tja38uo3_1280.jpg",
+    "description": "Microcontrôleur Linux pour les projets IoT et embarqués.",
+    "voltage": "3.3V DC",
+    "specifications": [
       "CPU: 580MHz",
       "RAM: 128MB",
       "WiFi: 802.11 b/g/n",
@@ -1466,12 +1466,12 @@ const iotComponents: Component[] = [
     ]
   },
   {
-    id: 157,
-    name: "ESP32-S2",
-    image: "https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s2/_images/esp32-s2-devkitm-1-v1-isometric.png",
-    description: "Microcontrôleur Wi-Fi avec sécurité renforcée.",
-    voltage: "3.3V DC",
-    specifications: [
+    "id": 157,
+    "name": "ESP32-S2",
+    "image": "https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s2/_images/esp32-s2-devkitm-1-v1-isometric.png",
+    "description": "Microcontrôleur Wi-Fi avec sécurité renforcée.",
+    "voltage": "3.3V DC",
+    "specifications": [
       "CPU: 240MHz",
       "RAM: 320KB",
       "WiFi: 802.11 b/g/n",
@@ -1479,12 +1479,12 @@ const iotComponents: Component[] = [
     ]
   },
   {
-    id: 158,
-    name: "ESP32-C3",
-    image: "https://mm.digikey.com/Volume0/opasdata/d220001/medias/images/3705/ESP32-C3-DEVKITM-1.jpg",
-    description: "Microcontrôleur Wi-Fi/BLE avec sécurité matérielle.",
-    voltage: "3.3V DC",
-    specifications: [
+    "id": 158,
+    "name": "ESP32-C3",
+    "image": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/images/3705/ESP32-C3-DEVKITM-1.jpg",
+    "description": "Microcontrôleur Wi-Fi/BLE avec sécurité matérielle.",
+    "voltage": "3.3V DC",
+    "specifications": [
       "CPU: 160MHz",
       "RAM: 400KB",
       "WiFi: 802.11 b/g/n",
@@ -1493,12 +1493,12 @@ const iotComponents: Component[] = [
     ]
   },
   {
-    id: 159,
-    name: "ESP32-S3",
-    image: "https://cdn3.botland.store/img/cms/23341_4.jpg",
-    description: "Microcontrôleur Wi-Fi/BLE avec écran LCD intégré.",
-    voltage: "3.3V DC",
-    specifications: [
+    "id": 159,
+    "name": "ESP32-S3",
+    "image": "https://cdn3.botland.store/img/cms/23341_4.jpg",
+    "description": "Microcontrôleur Wi-Fi/BLE avec écran LCD intégré.",
+    "voltage": "3.3V DC",
+    "specifications": [
       "CPU: 240MHz",
       "RAM: 512KB",
       "WiFi: 802.11 b/g/n",
@@ -1507,12 +1507,12 @@ const iotComponents: Component[] = [
     ]
   },
   {
-    id: 160,
-    name: "NVIDIA Jetson Nano",
-    image: "https://m.media-amazon.com/images/I/71tZcfXMFQL._AC_SL1500_.jpg",
-    description: "Carte de développement pour l'IA embarquée.",
-    voltage: "5V DC",
-    specifications: [
+    "id": 160,
+    "name": "NVIDIA Jetson Nano",
+    "image": "https://m.media-amazon.com/images/I/71tZcfXMFQL._AC_SL1500_.jpg",
+    "description": "Carte de développement pour l'IA embarquée.",
+    "voltage": "5V DC",
+    "specifications": [
       "CPU: Quad-core 1.43GHz",
       "RAM: 4GB",
       "GPU: 128 CUDA cores",
@@ -1520,12 +1520,12 @@ const iotComponents: Component[] = [
     ]
   },
   {
-    id: 161,
-    name: "Google Coral Dev Board",
-    image: "https://m.media-amazon.com/images/I/71oebkDzk1L._UF894,1000_QL80_.jpg",
-    description: "Carte de développement pour l'apprentissage automatique embarqué.",
-    voltage: "5V DC",
-    specifications: [
+    "id": 161,
+    "name": "Google Coral Dev Board",
+    "image": "https://m.media-amazon.com/images/I/71oebkDzk1L._UF894,1000_QL80_.jpg",
+    "description": "Carte de développement pour l'apprentissage automatique embarqué.",
+    "voltage": "5V DC",
+    "specifications": [
       "CPU: Quad-core 1.5GHz",
       "RAM: 1GB",
       "TPU: 4TOPS",
@@ -1533,12 +1533,12 @@ const iotComponents: Component[] = [
     ]
   },
   {
-    id: 162,
-    name: "Arduino Mega 2560",
-    image: "https://www.robotpark.com/image/cache/data/PRO/91068/Arduino-Mega-2560-R3-Pic01-1200x630w.png",
-    description: "Plateforme de prototypage avancée avec de nombreuses E/S.",
-    voltage: "5V DC",
-    specifications: [
+    "id": 162,
+    "name": "Arduino Mega 2560",
+    "image": "https://www.robotpark.com/image/cache/data/PRO/91068/Arduino-Mega-2560-R3-Pic01-1200x630w.png",
+    "description": "Plateforme de prototypage avancée avec de nombreuses E/S.",
+    "voltage": "5V DC",
+    "specifications": [
       "CPU: ATmega2560",
       "RAM: 8KB",
       "Flash: 256KB",
@@ -1547,12 +1547,12 @@ const iotComponents: Component[] = [
     ]
   },
   {
-    id: 163,
-    name: "Arduino Due",
-    image: "https://arduino.cc/en/uploads/Main/ArduinoDue_Front.jpg",
-    description: "Plateforme de prototypage 32 bits pour les projets avancés.",
-    voltage: "3.3V DC",
-    specifications: [
+    "id": 163,
+    "name": "Arduino Due",
+    "image": "https://arduino.cc/en/uploads/Main/ArduinoDue_Front.jpg",
+    "description": "Plateforme de prototypage 32 bits pour les projets avancés.",
+    "voltage": "3.3V DC",
+    "specifications": [
       "CPU: 84MHz",
       "RAM: 96KB",
       "Flash: 512KB",
@@ -1561,12 +1561,12 @@ const iotComponents: Component[] = [
     ]
   },
   {
-    id: 164,
-    name: "Arduino Zero",
-    image: "https://store.arduino.cc/cdn/shop/files/ABX00003_03.front_1065x700.jpg",
-    description: "Plateforme de prototypage 32 bits avec débogage intégré.",
-    voltage: "3.3V DC",
-    specifications: [
+    "id": 164,
+    "name": "Arduino Zero",
+    "image": "https://store.arduino.cc/cdn/shop/files/ABX00003_03.front_1065x700.jpg",
+    "description": "Plateforme de prototypage 32 bits avec débogage intégré.",
+    "voltage": "3.3V DC",
+    "specifications": [
       "CPU: 48MHz",
       "RAM: 32KB",
       "Flash: 256KB",
@@ -1575,12 +1575,12 @@ const iotComponents: Component[] = [
     ]
   },
   {
-    id: 165,
-    name: "Arduino MKR WiFi 1010",
-    image: "https://grobotronics.com/images/companies/1/ABX00023.png?1663925197180",
-    description: "Plateforme de prototypage Wi-Fi pour les projets IoT.",
-    voltage: "3.3V DC",
-    specifications: [
+    "id": 165,
+    "name": "Arduino MKR WiFi 1010",
+    "image": "https://grobotronics.com/images/companies/1/ABX00023.png?1663925197180",
+    "description": "Plateforme de prototypage Wi-Fi pour les projets IoT.",
+    "voltage": "3.3V DC",
+    "specifications": [
       "CPU: 48MHz",
       "RAM: 32KB",
       "Flash: 256KB",
@@ -1589,12 +1589,12 @@ const iotComponents: Component[] = [
     ]
   },
   {
-    id: 166,
-    name: "Arduino MKR GSM 1400",
-    image: "https://static.insales-cdn.com/images/products/1/593/212533841/arduino-mkr-gsm-1400.2.jpg",
-    description: "Plateforme de prototypage GSM pour les projets IoT cellulaires.",
-    voltage: "3.3V DC",
-    specifications: [
+    "id": 166,
+    "name": "Arduino MKR GSM 1400",
+    "image": "https://static.insales-cdn.com/images/products/1/593/212533841/arduino-mkr-gsm-1400.2.jpg",
+    "description": "Plateforme de prototypage GSM pour les projets IoT cellulaires.",
+    "voltage": "3.3V DC",
+    "specifications": [
       "CPU: 48MHz",
       "RAM: 32KB",
       "Flash: 256KB",
@@ -1603,12 +1603,12 @@ const iotComponents: Component[] = [
     ]
   },
   {
-    id: 167,
-    name: "Arduino MKR NB 1500",
-    image: "https://projects.arduinocontent.cc/cover-images/0dc9db3b-8aee-44a5-90ad-d921a650e6ac.blob",
-    description: "Plateforme de prototypage NB-IoT pour les projets IoT cellulaires basse consommation.",
-    voltage: "3.3V DC",
-    specifications: [
+    "id": 167,
+    "name": "Arduino MKR NB 1500",
+    "image": "https://projects.arduinocontent.cc/cover-images/0dc9db3b-8aee-44a5-90ad-d921a650e6ac.blob",
+    "description": "Plateforme de prototypage NB-IoT pour les projets IoT cellulaires basse consommation.",
+    "voltage": "3.3V DC",
+    "specifications": [
       "CPU: 48MHz",
       "RAM: 32KB",
       "Flash: 256KB",
@@ -1617,12 +1617,12 @@ const iotComponents: Component[] = [
     ]
   },
   {
-    id: 168,
-    name: "Arduino MKR WAN 1310",
-    image: "https://store.arduino.cc/cdn/shop/files/MKRWAN1310WANT_01.iso_934x700.jpg?v=1727098331",
-    description: "Plateforme de prototypage LoRa pour les projets IoT longue portée.",
-    voltage: "3.3V DC",
-    specifications: [
+    "id": 168,
+    "name": "Arduino MKR WAN 1310",
+    "image": "https://store.arduino.cc/cdn/shop/files/MKRWAN1310WANT_01.iso_934x700.jpg?v=1727098331",
+    "description": "Plateforme de prototypage LoRa pour les projets IoT longue portée.",
+    "voltage": "3.3V DC",
+    "specifications": [
       "CPU: 48MHz",
       "RAM: 32KB",
       "Flash: 256KB",
@@ -1631,12 +1631,12 @@ const iotComponents: Component[] = [
     ]
   },
   {
-    id: 169,
-    name: "Arduino MKR Vidor 4000",
-    image: "https://maker.pro/storage/6buPB7p/6buPB7pn5x10Ip4MqfETYUKST3QdxaSrmIkVK8yu.jpeg",
-    description: "Plateforme de prototypage avec FPGA intégré pour les projets avancés.",
-    voltage: "3.3V DC",
-    specifications: [
+    "id": 169,
+    "name": "Arduino MKR Vidor 4000",
+    "image": "https://maker.pro/storage/6buPB7p/6buPB7pn5x10Ip4MqfETYUKST3QdxaSrmIkVK8yu.jpeg",
+    "description": "Plateforme de prototypage avec FPGA intégré pour les projets avancés.",
+    "voltage": "3.3V DC",
+    "specifications": [
       "CPU: 48MHz",
       "FPGA: 8K LE",
       "RAM: 32KB",
@@ -1645,12 +1645,12 @@ const iotComponents: Component[] = [
     ]
   },
   {
-    id: 170,
-    name: "Arduino Portenta H7",
-    image: "https://eu.mouser.com/images/marketingid/2020/img/101443878.png",
-    description: "Plateforme de prototypage industrielle pour les projets IoT avancés.",
-    voltage: "3.3V DC",
-    specifications: [
+    "id": 170,
+    "name": "Arduino Portenta H7",
+    "image": "https://eu.mouser.com/images/marketingid/2020/img/101443878.png",
+    "description": "Plateforme de prototypage industrielle pour les projets IoT avancés.",
+    "voltage": "3.3V DC",
+    "specifications": [
       "CPU: 480MHz",
       "RAM: 1MB",
       "Flash: 2MB",
@@ -2154,178 +2154,328 @@ Exigences :
     </div>
   );
 
- const ComponentsPage = () => {
-  const [selectedComponents, setSelectedComponents] = useState<Component[]>([]);
-  const [userPrompt, setUserPrompt] = useState("");
-  const [generatedIdea, setGeneratedIdea] = useState<string | null>(null);
-  const [loadingIdea, setLoadingIdea] = useState(false);
-
-  const toggleComponentSelection = (component: Component) => {
-    setSelectedComponents((prev) =>
-      prev.some((c) => c.id === component.id)
-        ? prev.filter((c) => c.id !== component.id)
-        : [...prev, component]
-    );
-  };
-
-  const generateIdea = async () => {
-    if (selectedComponents.length === 0 || userPrompt.trim() === "") {
-      alert("❌ Veuillez sélectionner des composants et fournir une description !");
-      return;
-    }
-
-    setLoadingIdea(true);
-    setGeneratedIdea(null);
-
-    try {
-      const response = await fetch(
-        "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyCaf0dZY3tmfdR7Um0mUr-jnJCkLg8-XSI",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            contents: [
-              {
-                parts: [
-                  {
-                    text: `
-Génère une idée de projet IoT en utilisant les composants suivants :
-${selectedComponents.map((c) => `- ${c.name}: ${c.description}`).join("\n")}
-
-Description utilisateur : "${userPrompt}"
-
-Exigences :
-- L'idée doit être claire, concise et réalisable.
-- Inclure une brève explication de l'objectif du projet et comment les composants seront utilisés.
-- Garder le ton pédagogique et accessible pour les débutants.
-                    `,
-                  },
-                ],
-              },
-            ],
-          }),
-        }
-      );
-
-      const data = await response.json();
-
-      if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
-        setGeneratedIdea(data.candidates[0].content.parts[0].text.trim());
-      } else {
-        setGeneratedIdea("❌ Erreur : Aucun projet généré par l'IA.");
-      }
-    } catch (error) {
-      console.error("Erreur API Gemini:", error);
-      setGeneratedIdea("❌ Échec de la connexion à l'IA. Vérifiez le réseau ou l'API key.");
-    } finally {
-      setLoadingIdea(false);
-    }
-  };
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white">
-      <IconBackground />
-      <nav className="bg-white/90 backdrop-blur-sm border-b border-blue-100">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <button
-              onClick={() => setCurrentPage("home")}
-              className="flex items-center space-x-2 text-blue-600 hover:text-blue-700 transition-colors"
-            >
-              <ChevronLeft size={20} />
-              <span>Retour à l'Accueil</span>
-            </button>
-            <div className="flex items-center space-x-2">
-              <Cpu className="text-blue-600" size={32} />
-              <span className="text-2xl font-bold text-gray-800">
-                Smart ESP – Catalogue de composants IoT
-              </span>
-            </div>
-          </div>
-        </div>
-      </nav>
-
-      {/* Search Bar */}
-      <div className="max-w-7xl mx-auto px-6 py-8">
-        <div className="flex flex-col md:flex-row gap-4 mb-8">
-          <div className="flex-1 relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
-            <input
-              type="text"
-              placeholder="Rechercher un composant..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            />
-          </div>
-        </div>
-
-        {/* Component Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {filteredComponents.map((component) => (
-            <div
-              key={component.id}
-              onClick={() => toggleComponentSelection(component)}
-              className={`bg-white rounded-xl shadow-md hover:shadow-xl overflow-hidden cursor-pointer transform hover:scale-105 transition-all ${
-                selectedComponents.some((c) => c.id === component.id) ? "border-2 border-blue-600" : ""
-              }`}
-            >
-              <img
-                src={component.image}
-                alt={component.name}
-                className="w-full h-32 object-cover"
-              />
-              <div className="p-4">
-                <h3 className="font-bold text-gray-800">{component.name}</h3>
-                <p className="text-sm text-gray-600 mt-1">
-                  {component.description.substring(0, 60)}...
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Prompt and Generate Idea */}
-      <div className="max-w-7xl mx-auto px-6 py-8">
-        <div className="bg-white p-6 rounded-xl shadow-lg">
-          <h3 className="text-xl font-bold text-gray-800 mb-4">Générer une Idée de Projet</h3>
-          <textarea
-            value={userPrompt}
-            onChange={(e) => setUserPrompt(e.target.value)}
-            maxLength={500}
-            placeholder="Décrivez ce que vous voulez faire avec les composants sélectionnés (500 caractères max)..."
-            className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent mb-4"
-          />
-          <button
-            onClick={generateIdea}
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-2"
-          >
-            <Zap size={16} />
-            <span>Générer l'idée</span>
-          </button>
-
-          {loadingIdea && (
-            <p className="text-blue-600 mt-2 flex items-center space-x-2">
-              <Zap className="animate-spin" size={16} />
-              <span>Génération de l'idée...</span>
-            </p>
-          )}
-
-          {generatedIdea && (
-            <div className="mt-4">
-              <h3 className="font-semibold text-gray-800 mb-2">Idée Générée</h3>
-              <pre className="bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto text-sm leading-relaxed whitespace-pre-wrap font-mono">
-                {generatedIdea}
-              </pre>
-            </div>
-          )}
+ const ComponentsPage = () => (
+  <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white">
+  <IconBackground />
+  <nav className="bg-white/90 backdrop-blur-sm border-b border-blue-100">
+    <div className="max-w-7xl mx-auto px-6 py-4">
+      <div className="flex items-center justify-between">
+        <button
+          onClick={() => setCurrentPage("home")}
+          className="flex items-center space-x-2 text-blue-600 hover:text-blue-700 transition-colors"
+        >
+          <ChevronLeft size={20} />
+          <span>Retour à l'Accueil</span>
+        </button>
+        <div className="flex items-center space-x-2">
+          <Cpu className="text-blue-600" size={32} />
+          <span className="text-2xl font-bold text-gray-800">
+            Smart ESP – Catalogue de composants IoT
+          </span>
         </div>
       </div>
     </div>
-  };
+  </nav>
+
+  {/* Search Bar */}
+  <div className="max-w-7xl mx-auto px-6 py-8">
+    <div className="flex flex-col md:flex-row gap-4 mb-8">
+      <div className="flex-1 relative">
+        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+        <input
+          type="text"
+          placeholder="Rechercher un composant..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        />
+      </div>
+      <button
+        onClick={() => setFilterOpen(!filterOpen)}
+        className="flex items-center space-x-2 px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+      >
+        <Filter size={20} />
+        <span>Filtres</span>
+      </button>
+    </div>
+
+    {/* Component Grid */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      {filteredComponents.map((component) => (
+        <div
+          key={component.id}
+          onClick={() => setSelectedComponent(component)}
+          className="bg-white rounded-xl shadow-md hover:shadow-xl overflow-hidden cursor-pointer transform hover:scale-105 transition-all"
+        >
+          <img
+            src={component.image}
+            alt={component.name}
+            className="w-full h-32 object-cover"
+          />
+          <div className="p-4">
+            <h3 className="font-bold text-gray-800">{component.name}</h3>
+            <p className="text-sm text-gray-600 mt-1">
+              {component.description.substring(0, 60)}...
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  {/* Modal */}
+  {selectedComponent && (
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+      <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="p-8">
+          <div className="flex justify-between items-start mb-6">
+            <h2 className="text-2xl font-bold text-gray-800">{selectedComponent.name}</h2>
+            <button
+              onClick={() => {
+                setSelectedComponent(null);
+                setGeneratedCode(null);
+              }}
+              className="text-gray-400 hover:text-gray-600 text-2xl"
+            >
+              ×
+            </button>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <div>
+              <img
+                src={selectedComponent.image}
+                alt={selectedComponent.name}
+                className="w-full aspect-square object-cover rounded-lg"
+              />
+            </div>
+
+            <div className="space-y-4">
+              <div>
+                <h3 className="font-semibold text-gray-800 mb-2">Description</h3>
+                <p className="text-gray-600">{selectedComponent.description}</p>
+              </div>
+
+              <div>
+                <h3 className="font-semibold text-gray-800 mb-2">Alimentation</h3>
+                <p className="text-blue-600 font-medium">{selectedComponent.voltage}</p>
+              </div>
+
+              <div>
+                <h3 className="font-semibold text-gray-800 mb-2">Spécifications Clés</h3>
+                <ul className="space-y-1">
+                  {selectedComponent.specifications.map((spec, index) => (
+                    <li key={index} className="text-gray-600 flex items-center space-x-2">
+                      <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                      <span>{spec}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <button
+                onClick={() => generateCode(selectedComponent)}
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-2"
+              >
+                <Zap size={16} />
+                <span>Générer le code</span>
+              </button>
+
+              {loadingCode && (
+                <p className="text-blue-600 mt-2 flex items-center space-x-2">
+                  <Zap className="animate-spin" size={16} />
+                  <span>Génération du code...</span>
+                </p>
+              )}
+
+              {generatedCode && (
+                <div className="mt-4">
+                  <div className="flex justify-between items-center mb-2">
+                    <h3 className="font-semibold text-gray-800">Code Généré</h3>
+                    <button
+                      onClick={() => {
+                        navigator.clipboard.writeText(generatedCode).then(
+                          () => alert("✅ Code copié dans le presse-papiers !"),
+                          () => alert("❌ Échec de la copie.")
+                        );
+                      }}
+                      className="flex items-center space-x-1 text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-1 rounded border"
+                    >
+                      <Copy size={14} />
+                      <span>Copier</span>
+                    </button>
+                  </div>
+                  <pre className="bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto text-sm leading-relaxed whitespace-pre-wrap font-mono">
+                    {generatedCode}
+                  </pre>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )}
+</div>
+);
+  const CustomAppsPage = () => (
+  <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white">
+  <IconBackground />
+  <nav className="bg-white/90 backdrop-blur-sm border-b border-blue-100">
+    <div className="max-w-7xl mx-auto px-6 py-4">
+      <div className="flex items-center justify-between">
+        <button
+          onClick={() => setCurrentPage("home")}
+          className="flex items-center space-x-2 text-blue-600 hover:text-blue-700 transition-colors"
+        >
+          <ChevronLeft size={20} />
+          <span>Retour à l'Accueil</span>
+        </button>
+        <div className="flex items-center space-x-2">
+          <Globe className="text-blue-600" size={32} />
+          <span className="text-2xl font-bold text-gray-800">Applications IoT Personnalisées</span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div className="max-w-7xl mx-auto px-6 py-20">
+    {/* Hero Section */}
+    <div className="text-center mb-16">
+      <h1 className="text-5xl font-bold text-gray-800 mb-6">Applications IoT Personnalisées</h1>
+      <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+        Découvrez l'avenir du développement IoT avec notre service d'applications personnalisées alimenté par l'IA.
+        Nous créons des solutions sur mesure qui s'intègrent parfaitement à votre infrastructure existante
+        tout en exploitant des technologies de pointe.
+      </p>
+      <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-8 rounded-2xl max-w-4xl mx-auto">
+        <h2 className="text-2xl font-bold mb-4">🚀 Développement IoT Nouvelle Génération</h2>
+        <p className="text-lg">
+          Nos applications IoT personnalisées exploitent la puissance de l'IA Gemini pour l'automatisation intelligente,
+          l'intégration en temps réel avec Google Sheets pour une gestion transparente des données, et une connectivité
+          Gmail avancée pour des notifications et rapports instantanés.
+        </p>
+      </div>
+    </div>
+
+    {/* Portfolio Section */}
+    <div className="mb-16">
+      <h2 className="text-4xl font-bold text-gray-800 text-center mb-12">Projets IoT Inspirants</h2>
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {[
+          {
+            title: "Maison Intelligente avec Reconnaissance Vocale",
+            desc: "Contrôlez vos lumières, volets et musique par la voix, avec assistant IA intégré.",
+            image: "https://m.media-amazon.com/images/I/816tOhl+3pL._AC_SL1500_.jpg"
+          },
+          {
+            title: "Jardin Automatique Connecté",
+            desc: "Arrosage intelligent selon l'humidité du sol, la météo et la lumière. Surveillance en temps réel.",
+            image: "https://www.moussasoft.com/wp-content/uploads/2023/02/Systeme-darrosage-de-plantes-Arduino-.jpg"
+          },
+          {
+            title: "Serrure Biométrique + Notification Gmail",
+            desc: "Ouverture par empreinte digitale avec alerte  à chaque accès.",
+            image: "https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/01/enroll-finger.jpg?quality=100&strip=all&ssl=1"
+          },
+          {
+            title: "Capteur de Qualité de l’Air & Purificateur Auto",
+            desc: "Détecte CO2, poussière et humidité, active le purificateur si nécessaire.",
+            image: "https://www.alonsoruibal.com/wp-content/uploads/2024/05/esp32-c3-connections@2x.jpeg?auto=format&fit=crop&w=600&h=400&q=80"
+          },
+          {
+            title: "Station Météo Personnelle avec Alertes",
+            desc: "Mesure température, pluie, vent et envoie des alertes SMS ou Gmail.",
+            image: "https://i.ytimg.com/vi/1qGGDFqb1ow/hq720.jpg?sqp=-oaymwE7CK4FEIIDSFryq4qpAy0IARUAAAAAGAElAADIQj0AgKJD8AEB-AH8CYAC0AWKAgwIABABGGUgXChMMA8=&rs=AOn4CLAxprxwy1FSbrk2fUU82-wI5hgfRw?auto=format&fit=crop&w=600&h=400&q=80"
+          },
+          {
+            title: "Robot de Surveillance Mobile (ESP32-CAM)",
+            desc: "Robot télécommandé avec caméra en streaming et détection de mouvement.",
+            image: "https://raw.githubusercontent.com/Circuit-Digest/ESP32-Cam-Surveillance-Car/2ecf12ce9a1ee8d120fa83f880da9de1a1b8d51f/wifi-surveillance-robot-car-esp32-cam.gif?auto=format&fit=crop&w=600&h=400&q=80"
+          }
+        ].map((app, index) => (
+          <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all flex flex-col">
+            {/* Image */}
+            <div className="aspect-video overflow-hidden">
+              <img
+                src={app.image}
+                alt={app.title}
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+
+            {/* Content */}
+            <div className="p-6 flex-1 flex flex-col">
+              <h3 className="text-xl font-bold text-gray-800 mb-2">{app.title}</h3>
+              <p className="text-gray-600 mb-4 flex-1">{app.desc}</p>
+
+              {/* Contact Buttons */}
+              <div className="space-y-2">
+          
+                <a
+                  href="https://api.whatsapp.com/send/?phone=212710038821"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-center text-green-600 border border-green-600 hover:bg-green-600 hover:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                >
+                  WhatsApp
+                </a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    {/* Why Choose Us */}
+    <div className="mb-16">
+      <h2 className="text-4xl font-bold text-gray-800 text-center mb-12">Pourquoi Choisir Nos Applications Personnalisées ?</h2>
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="bg-white p-6 rounded-xl shadow-lg text-center">
+          <Brain className="text-blue-600 mx-auto mb-4" size={48} />
+          <h3 className="text-xl font-bold text-gray-800 mb-2">Intelligence Alimentée par l'IA</h3>
+          <p className="text-gray-600">Intégration IA Gemini pour la prise de décision intelligente et l'analyse prédictive</p>
+        </div>
+        <div className="bg-white p-6 rounded-xl shadow-lg text-center">
+          <FileSpreadsheet className="text-green-600 mx-auto mb-4" size={48} />
+          <h3 className="text-xl font-bold text-gray-800 mb-2">Synchronisation de Données en Temps Réel</h3>
+          <p className="text-gray-600">Intégration transparente avec Google Sheets pour le partage de données en direct et la collaboration</p>
+        </div>
+        <div className="bg-white p-6 rounded-xl shadow-lg text-center">
+          <Mail className="text-red-600 mx-auto mb-4" size={48} />
+          <h3 className="text-xl font-bold text-gray-800 mb-2">Notifications Instantanées</h3>
+          <p className="text-gray-600">Intégration Gmail pour des alertes immédiates et des rapports automatisés</p>
+        </div>
+        <div className="bg-white p-6 rounded-xl shadow-lg text-center">
+          <Cloud className="text-purple-600 mx-auto mb-4" size={48} />
+          <h3 className="text-xl font-bold text-gray-800 mb-2">Architecture Évolutive</h3>
+          <p className="text-gray-600">Conception cloud-native qui évolue avec les besoins de votre entreprise</p>
+        </div>
+      </div>
+    </div>
+
+    {/* Call to Action */}
+    <div className="text-center">
+      <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-12 rounded-2xl">
+        <h2 className="text-3xl font-bold mb-4">Prêt à Transformer Votre Vision IoT ?</h2>
+        <p className="text-xl mb-8 opacity-90">
+          Laissez notre équipe d'experts créer une solution IoT personnalisée qui correspond parfaitement à vos exigences.
+          Du concept au déploiement, nous nous occupons de tout.
+        </p>
+        <a
+          href="https://wa.me/212710038821"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block bg-white text-blue-600 px-12 py-4 rounded-xl text-xl font-bold hover:bg-gray-100 transition-colors transform hover:scale-105"
+        >
+          Contactez-nous pour concrétiser votre projet ✅
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+);
+
   // --- Page Routing ---
   switch (currentPage) {
     case "download":
