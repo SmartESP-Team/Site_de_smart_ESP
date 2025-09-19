@@ -1838,15 +1838,16 @@ const HomePage = () => (
           <div className="space-y-8">
             <div className="space-y-4">
               <h1 className="text-5xl font-bold text-gray-800 leading-tight">
-                Smart ESP – Outils IoT mobiles simples pour vos <span className="text-blue-600">projets ESP</span>
+               Smart ESP – L’IoT pour tous : créez, innovez et partagez vos <span className="text-blue-600">projets connectés</span>
               </h1>
               <p className="text-xl text-gray-600 leading-relaxed">
                 <span>
-                  Smart ESP:
-                  L’application <strong className="text-green-600">IoT idéale</strong> pour <strong className="text-purple-600">étudiants</strong> et <strong className="text-purple-600">débutants</strong>.
-                  Simplifiez vos <strong className="text-orange-600">projets ESP32/ESP8266</strong> avec <strong className="text-blue-500">collecte</strong>, surveillance et partage de données en temps réel via
-                  <strong className="text-green-500"> Google Sheets</strong>, <strong className="text-red-500">Gmail</strong> et <strong className="text-pink-500">assistance IA Gemini</strong>.
-                  Catalogue de composants, bibliothèques et <strong className="text-teal-600">outils intelligents</strong> – sans configuration complexe.
+                 Smart ESP :  
+L’application <strong className="text-green-600">IoT qui libère votre potentiel</strong>, conçue pour <strong className="text-purple-600">étudiants</strong>, <strong className="text-purple-600">débutants</strong> et passionnés curieux.  
+Avec Smart ESP, transformez vos <strong className="text-orange-600">idées ESP32/ESP8266</strong> en projets réels, utiles et concrets pour votre entourage.  
+Profitez d’une <strong className="text-blue-500">collecte</strong>, d’une surveillance et d’un partage de données en temps réel grâce à <strong className="text-green-500">Google Sheets</strong>, <strong className="text-red-500">Gmail</strong> et l’<strong className="text-pink-500">assistance IA Gemini</strong>.  
+Catalogue de composants, bibliothèques et <strong className="text-teal-600">outils intelligents</strong> : tout est pensé pour que vous ressentiez la fierté de réussir, sans configuration complexe.  
+
                 </span>
               </p>
             </div>
