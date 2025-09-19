@@ -2165,8 +2165,7 @@ Catalogue de composants, bibliothèques et <strong className="text-teal-600">out
       </div>
     </div>
   );
-
- const ComponentsPage = () => {
+const ComponentsPage = () => {
   // >>> NEW FEATURE: State for multi-selection and custom prompt (with persistence)
   const [selectedComponentsForAI, setSelectedComponentsForAI] = useState<Component[]>(() => {
     // Load from localStorage on initial render
@@ -2504,9 +2503,68 @@ Le tout doit être clair, concis et directement utilisable par un étudiant ou u
                   </div>
 
                   <div>
-                    <h3 className="font-semibold text-gray-80 
-     
-          
+                    <h3 className="font-semibold text-gray-800 mb-2">Alimentation</h3>
+                    <p className="text-blue-600 font-medium">{selectedComponent.voltage}</p>
+                  </div>
+
+                  <div>
+                    <h3 className="font-semibold text-gray-800 mb-2">Spécifications Clés</h3>
+                    <ul className="space-y-1">
+                      {selectedComponent.specifications.map((spec, index) => (
+                        <li key={index} className="text-gray-600 flex items-center space-x-2">
+                          <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                          <span>{spec}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <button
+                    onClick={() => generateCode(selectedComponent)}
+                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-2"
+                  >
+                    <Zap size={16} />
+                    <span>Générer le code</span>
+                  </button>
+
+                  {loadingCode && (
+                    <p className="text-blue-600 mt-2 flex items-center space-x-2">
+                      <Zap className="animate-spin" size={16} />
+                      <span>Génération du code...</span>
+                    </p>
+                  )}
+
+                  {generatedCode && (
+                    <div className="mt-4">
+                      <div className="flex justify-between items-center mb-2">
+                        <h3 className="font-semibold text-gray-800">Code Généré</h3>
+                        <button
+                          onClick={() => {
+                            navigator.clipboard.writeText(generatedCode).then(
+                              () => alert("✅ Code copié dans le presse-papiers !"),
+                              () => alert("❌ Échec de la copie.")
+                            );
+                          }}
+                          className="flex items-center space-x-1 text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-1 rounded border"
+                        >
+                          <Copy size={14} />
+                          <span>Copier</span>
+                        </button>
+                      </div>
+                      <pre className="bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto text-sm leading-relaxed whitespace-pre-wrap font-mono">
+                        {generatedCode}
+                      </pre>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
           
           
           
