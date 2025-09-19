@@ -1737,7 +1737,9 @@ const ScriptCircuitPage = () => {
     setError("");
 
     try {
-      const systemPrompt = `# Complete Project to SVG Circuit Generator
+      const systemPrompt = `
+
+# Complete Project to SVG Circuit Generator
 
 **MISSION**: Analyze the complete project information provided (documentation, code, wiring descriptions, component lists, explanations) and generate a COMPLETE SVG circuit diagram showing all components, connections, and pin mappings.
 
@@ -1778,23 +1780,32 @@ const ScriptCircuitPage = () => {
 - **Capacitors**: Capacitor symbols with polarity if needed
 
 ### Pin Labeling Rules:
-- **EVERY component must show ALL pin names**
-- **Microcontroller pins**: GPIO numbers, SPI/I2C labels, power pins
-- **Component pins**: Exact names (VCC, GND, SDA, SCL, CS, MISO, MOSI, etc.)
-- **ALL TEXT MUST BE HIGH CONTRAST**: Use black text on white/light backgrounds, white text on dark components
+- **EVERY pin must show BOTH the pin name AND connection number**
+- **Format: "PINNAME-NUMBER"** 
+- **Examples**:
+  - ESP32 pins: "GPIO3-5", "GPIO4-7", "VCC-2", "GND-1"
+  - RC522 pins: "SDA-5", "SCK-6", "VCC-2", "GND-1" 
+  - Sensor pins: "A0-8", "VCC-2", "GND-1"
+  - LED pins: "+-9", "--1" (positive and negative)
+- **Same connection number = pins connect together**
+- **ALL TEXT MUST BE HIGH CONTRAST**: Black text on light components, white text on dark components
 - **Use readable text size** (font-size="10" minimum for pin labels, "12" for component names)
 
-### Wire Routing - NO CROSSINGS:
-- **Use <path> elements** for L-shaped and Z-shaped connections
-- **Color coding**: 
-  - Red: Power/VCC (3.3V, 5V)
-  - Black: Ground connections
-  - Blue: Digital GPIO signals
-  - Green: Analog signals
-  - Orange: SPI connections (MISO, MOSI, SCK)
-  - Purple: I2C connections (SDA, SCL)
-- **Route around components**, never through them
-- **Group similar connections** (all grounds together, all power together)
+### Connection System - NO WIRES:
+- **DO NOT draw any lines, wires, or paths between components**
+- **Use NUMBERS next to each pin** to show connections
+- **Same number = connected together**
+- **Example**: 
+  - ESP32 GND pin → label "GND-1"
+  - Potentiometer GND pin → label "GND-1"  
+  - LED GND pin → label "GND-1"
+  - (All GND-1 pins connect together)
+- **Color coding for numbers**:
+  - Red numbers: Power connections (VCC-1, 3V3-2, etc.)
+  - Black numbers: Ground connections (GND-1, GND-2, etc.)
+  - Blue numbers: Digital signals (GPIO2-3, SDA-4, etc.)
+  - Green numbers: Analog signals (A0-5, etc.)
+- **Position numbers right next to the pins** for easy identification
 
 ### Technical Details:
 - **Show component values** (resistor ohms, capacitor farads)
@@ -1803,30 +1814,50 @@ const ScriptCircuitPage = () => {
 - **Show communication buses clearly** (SPI, I2C, UART)
 
 ## SVG Structure Template:
+```svg
 <svg width="1200" height="800" xmlns="http://www.w3.org/2000/svg">
-  <!-- NO BACKGROUND - Pure white/transparent -->
+  <!-- NO BACKGROUND - Pure white -->
   
-  <!-- Title with high contrast -->
+  <!-- Title -->
   <text x="600" y="30" text-anchor="middle" font-size="18" font-weight="bold" fill="black">PROJECT_NAME Circuit</text>
   
-  <!-- Microcontroller with high contrast labels -->
+  <!-- ESP32 with numbered pins -->
   <rect x="500" y="300" width="200" height="200" fill="black" stroke="black" stroke-width="2"/>
   <text x="600" y="320" text-anchor="middle" fill="white" font-size="16" font-weight="bold">ESP32</text>
   
-  <!-- High contrast pin labels -->
+  <!-- ESP32 pins with BOTH pin names AND connection numbers -->
   <circle cx="495" cy="340" r="3" fill="blue"/>
-  <text x="485" y="345" text-anchor="end" font-size="12" fill="black" font-weight="bold">GPIO21</text>
+  <text x="470" y="345" text-anchor="end" font-size="10" fill="blue" font-weight="bold">GPIO21-4</text>
   
-  <!-- Light colored components with dark text -->
-  <rect x="200" y="200" width="100" height="60" fill="lightgray" stroke="black" stroke-width="2"/>
+  <circle cx="495" cy="360" r="3" fill="black"/>
+  <text x="470" y="365" text-anchor="end" font-size="10" fill="black" font-weight="bold">GND-1</text>
+  
+  <circle cx="495" cy="380" r="3" fill="red"/>
+  <text x="470" y="385" text-anchor="end" font-size="10" fill="red" font-weight="bold">3V3-2</text>
+  
+  <circle cx="495" cy="400" r="3" fill="green"/>
+  <text x="470" y="405" text-anchor="end" font-size="10" fill="green" font-weight="bold">GPIO34-8</text>
+  
+  <!-- RC522 with pin names AND matching connection numbers -->
+  <rect x="200" y="200" width="100" height="80" fill="lightgray" stroke="black" stroke-width="2"/>
   <text x="250" y="220" text-anchor="middle" font-size="12" fill="black" font-weight="bold">RC522</text>
-  <text x="190" y="240" text-anchor="end" font-size="10" fill="black" font-weight="bold">SDA</text>
   
-  <!-- Legend with high contrast -->
-  <text x="50" y="750" font-size="12" font-weight="bold" fill="black">Legend:</text>
-  <line x1="50" y1="760" x2="80" y2="760" stroke="red" stroke-width="3"/>
-  <text x="85" y="765" font-size="10" fill="black" font-weight="bold">Power</text>
+  <circle cx="195" cy="240" r="2" fill="blue"/>
+  <text x="170" y="245" text-anchor="end" font-size="10" fill="blue" font-weight="bold">SDA-4</text>
+  
+  <circle cx="195" cy="260" r="2" fill="black"/>
+  <text x="170" y="265" text-anchor="end" font-size="10" fill="black" font-weight="bold">GND-1</text>
+  
+  <circle cx="195" cy="280" r="2" fill="red"/>
+  <text x="170" y="285" text-anchor="end" font-size="10" fill="red" font-weight="bold">VCC-2</text>
+  
+  <!-- Connection Legend -->
+  <text x="50" y="720" font-size="14" font-weight="bold" fill="black">Connections:</text>
+  <text x="50" y="740" font-size="12" fill="black" font-weight="bold">GND-1: All ground connections</text>
+  <text x="50" y="760" font-size="12" fill="red" font-weight="bold">3V3-2: All 3.3V power connections</text>
+  <text x="50" y="780" font-size="12" fill="blue" font-weight="bold">SDA-4: I2C data line</text>
 </svg>
+```
 
 ## Analysis Checklist:
 - [ ] What microcontroller/board is used?
