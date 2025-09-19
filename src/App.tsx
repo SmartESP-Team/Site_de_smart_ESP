@@ -1584,7 +1584,7 @@ const iotComponents: Component[] = [
   {
     "id": 160,
     "name": "NVIDIA Jetson Nano",
-    "image": "https://m.media-amazon.com/images/I/71tZcfXMFQL._AC_SL1500_.jpg,
+    "image": "https://m.media-amazon.com/images/I/71tZcfXMFQL._AC_SL1500_.jpg",
     "description": "Carte de développement pour l'IA embarquée.",
     "voltage": "5V DC",
     "specifications": [
