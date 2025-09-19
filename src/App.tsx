@@ -41,7 +41,6 @@ interface Testimonial {
 }
 
 // --- Mock Data ---
-
 const iotComponents: Component[] = [
   {
     id: 1,
@@ -833,7 +832,7 @@ const iotComponents: Component[] = [
     image: "https://powerlab.dz/wp-content/uploads/2023/02/download-2023-02-28T112301.969.jpg",
     description: "Détecte les polluants comme le CO2, NH3, NOx, et la qualité de l'air intérieur.",
     voltage: "5V DC",
-    specifications: ["Plage : 10-1000ppm", "Temps de préchauffage : 24h", "Sortie : Analogique", "Durée : 10 ans"]
+    specifications: ["Plage : 10-1000ppm",      "Temps de préchauffage : 24h",      "Sortie : Analogique",      "Durée : 10 ans"]
   },
   {
     id: 100,
@@ -1034,7 +1033,7 @@ const iotComponents: Component[] = [
   {
     "id": 121,
     "name": "Capteur de Vitesse du Vent",
-    "image": "https://www.usinenouvelle.com/expo/img/capteur-de-vent-pour-mesure-de-vitesse-pce-fst-200-201-009780975-product_zoom.jpg",
+    "image": "https://www.usinenouvelle.com/expo/img/capteur-de-vent-pour-mesure-de-vitesse-pce-fst-200-2-011827530-product_zoom.jpg",
     "description": "Mesure la vitesse du vent pour les stations météo.",
     "voltage": "5V DC",
     "specifications": [
@@ -1661,10 +1660,6 @@ const iotComponents: Component[] = [
   }
 ];
 
-  
-
-
-
 const testimonials: Testimonial[] = [
   {
     id: 1,
@@ -1724,6 +1719,337 @@ const IconBackground = () => (
   </div>
 );
 
+// --- Script Circuit Page ---
+const ScriptCircuitPage = () => {
+  const [projectDescription, setProjectDescription] = useState("");
+  const [generatedSVG, setGeneratedSVG] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const generateCircuitSVG = async () => {
+    if (!projectDescription.trim()) {
+      setError("Veuillez entrer une description de votre projet.");
+      return;
+    }
+
+    setIsLoading(true);
+    setGeneratedSVG("");
+    setError("");
+
+    try {
+      const systemPrompt = `# Complete Project to SVG Circuit Generator
+
+**MISSION**: Analyze the complete project information provided (documentation, code, wiring descriptions, component lists, explanations) and generate a COMPLETE SVG circuit diagram showing all components, connections, and pin mappings.
+
+## What to Analyze:
+- **Project documentation and descriptions**
+- **Component lists and specifications** 
+- **Wiring diagrams (even text-based ones)**
+- **Code with pin definitions**
+- **Functionality explanations**
+- **Setup instructions**
+- **Any technical details provided**
+
+## Information Extraction Process:
+1. **Read ALL provided content** - documentation, code, diagrams, explanations
+2. **Identify the main microcontroller** (ESP32, ESP8266, Arduino, etc.)
+3. **Extract ALL components mentioned** (sensors, displays, motors, LEDs, buttons, etc.)
+4. **Map pin connections** from code AND documentation
+5. **Understand component specifications** (voltage, communication protocols)
+6. **Identify power requirements** (3.3V, 5V, GND connections)
+7. **Note any special considerations** (pull-up resistors, voltage dividers, etc.)
+
+## SVG Output Requirements:
+
+### Layout Strategy:
+- **Position microcontroller centrally**
+- **Group components logically** (inputs left, outputs right, power top/bottom)
+- **Leave space for clean wire routing**
+- **Size: 1200x800 minimum** for complex projects
+
+### Component Representation:
+- **Microcontroller**: Rectangle with ALL used pins labeled clearly
+- **Sensors**: Rectangles with pin names (VCC, GND, SDA, SCL, A0, etc.)
+- **Displays**: Rectangles showing screen area + connection pins
+- **Motors/Relays**: Motor symbols with connection terminals
+- **LEDs**: LED symbols with polarity (+ and -)
+- **Buttons**: Switch symbols with connection points
+- **Resistors**: Zigzag rectangles with values
+- **Capacitors**: Capacitor symbols with polarity if needed
+
+### Pin Labeling Rules:
+- **EVERY component must show ALL pin names**
+- **Microcontroller pins**: GPIO numbers, SPI/I2C labels, power pins
+- **Component pins**: Exact names (VCC, GND, SDA, SCL, CS, MISO, MOSI, etc.)
+- **ALL TEXT MUST BE HIGH CONTRAST**: Use black text on white/light backgrounds, white text on dark components
+- **Use readable text size** (font-size="10" minimum for pin labels, "12" for component names)
+
+### Wire Routing - NO CROSSINGS:
+- **Use <path> elements** for L-shaped and Z-shaped connections
+- **Color coding**: 
+  - Red: Power/VCC (3.3V, 5V)
+  - Black: Ground connections
+  - Blue: Digital GPIO signals
+  - Green: Analog signals
+  - Orange: SPI connections (MISO, MOSI, SCK)
+  - Purple: I2C connections (SDA, SCL)
+- **Route around components**, never through them
+- **Group similar connections** (all grounds together, all power together)
+
+### Technical Details:
+- **Show component values** (resistor ohms, capacitor farads)
+- **Indicate voltage levels** where important
+- **Add pull-up/pull-down resistors** if mentioned in code/docs
+- **Show communication buses clearly** (SPI, I2C, UART)
+
+## SVG Structure Template:
+<svg width="1200" height="800" xmlns="http://www.w3.org/2000/svg">
+  <!-- NO BACKGROUND - Pure white/transparent -->
+  
+  <!-- Title with high contrast -->
+  <text x="600" y="30" text-anchor="middle" font-size="18" font-weight="bold" fill="black">PROJECT_NAME Circuit</text>
+  
+  <!-- Microcontroller with high contrast labels -->
+  <rect x="500" y="300" width="200" height="200" fill="black" stroke="black" stroke-width="2"/>
+  <text x="600" y="320" text-anchor="middle" fill="white" font-size="16" font-weight="bold">ESP32</text>
+  
+  <!-- High contrast pin labels -->
+  <circle cx="495" cy="340" r="3" fill="blue"/>
+  <text x="485" y="345" text-anchor="end" font-size="12" fill="black" font-weight="bold">GPIO21</text>
+  
+  <!-- Light colored components with dark text -->
+  <rect x="200" y="200" width="100" height="60" fill="lightgray" stroke="black" stroke-width="2"/>
+  <text x="250" y="220" text-anchor="middle" font-size="12" fill="black" font-weight="bold">RC522</text>
+  <text x="190" y="240" text-anchor="end" font-size="10" fill="black" font-weight="bold">SDA</text>
+  
+  <!-- Legend with high contrast -->
+  <text x="50" y="750" font-size="12" font-weight="bold" fill="black">Legend:</text>
+  <line x1="50" y1="760" x2="80" y2="760" stroke="red" stroke-width="3"/>
+  <text x="85" y="765" font-size="10" fill="black" font-weight="bold">Power</text>
+</svg>
+
+## Analysis Checklist:
+- [ ] What microcontroller/board is used?
+- [ ] What are ALL the components in the project?
+- [ ] Which pins are connected to what?
+- [ ] What communication protocols are used?
+- [ ] What are the power requirements?
+- [ ] Are there any special circuit considerations?
+- [ ] What component values are specified?
+
+**CRITICAL VISUAL REQUIREMENTS**:
+- **NO BACKGROUND** - Do not add any background colors or patterns
+- **HIGH CONTRAST TEXT ONLY**: 
+  - Black text on light/white components
+  - White text on dark/black components
+  - ALL text must be bold (font-weight="bold")
+  - Minimum font-size="10" for pin labels, "12" for component names
+- **Clean white SVG** ready for any converter
+
+---
+
+**ANALYZE THIS COMPLETE PROJECT AND OUTPUT SVG CIRCUIT:**
+
+${projectDescription}`;
+
+      const response = await fetch(
+        "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyCaf0dZY3tmfdR7Um0mUr-jnJCkLg8-XSI",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: systemPrompt }] }],
+          }),
+        }
+      );
+
+      const data = await response.json();
+      
+      if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
+        const aiResponse = data.candidates[0].content.parts[0].text.trim();
+        
+        // Extract SVG from the response (assuming it's wrapped in ```svg ... ```)
+        const svgMatch = aiResponse.match(/```svg\s*([\s\S]*?)\s*```/);
+        if (svgMatch && svgMatch[1]) {
+          setGeneratedSVG(svgMatch[1]);
+        } else {
+          // If no SVG code block found, try to find SVG tags
+          const svgTagMatch = aiResponse.match(/<svg[\s\S]*?<\/svg>/);
+          if (svgTagMatch) {
+            setGeneratedSVG(svgTagMatch[0]);
+          } else {
+            setError("L'IA n'a pas généré de code SVG valide. Voici sa réponse complète : " + aiResponse);
+          }
+        }
+      } else {
+        setError("❌ Erreur : Aucun SVG généré par l'IA.");
+      }
+    } catch (error) {
+      console.error("Erreur API Gemini:", error);
+      setError("❌ Échec de la connexion à l'IA. Vérifiez le réseau ou l'API key.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const copyToClipboard = () => {
+    if (generatedSVG) {
+      navigator.clipboard.writeText(generatedSVG)
+        .then(() => alert("✅ SVG copié dans le presse-papiers !"))
+        .catch(() => alert("❌ Échec de la copie."));
+    }
+  };
+
+  const downloadSVG = () => {
+    if (generatedSVG) {
+      const blob = new Blob([generatedSVG], { type: 'image/svg+xml' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'circuit_diagram.svg';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white">
+      <IconBackground />
+      <nav className="bg-white/90 backdrop-blur-sm border-b border-blue-100">
+        <div className="max-w-7xl mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <button
+              onClick={() => setCurrentPage("home")}
+              className="flex items-center space-x-2 text-blue-600 hover:text-blue-700 transition-colors"
+            >
+              <ChevronLeft size={20} />
+              <span>Retour à l'Accueil</span>
+            </button>
+            <div className="flex items-center space-x-2">
+              <Zap className="text-blue-600" size={32} />
+              <span className="text-2xl font-bold text-gray-800">Générateur de Schémas Circuits</span>
+            </div>
+          </div>
+        </div>
+      </nav>
+      
+      <div className="max-w-7xl mx-auto px-6 py-12">
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-bold text-gray-800 mb-4">Générateur de Schémas Circuits avec IA</h1>
+          <p className="text-xl text-gray-600">Décrivez votre projet et laissez l'IA générer un schéma de circuit SVG complet</p>
+        </div>
+        
+        <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 className="text-2xl font-bold text-gray-800 mb-4">Description de votre projet</h2>
+          <p className="text-gray-600 mb-4">Décrivez en détail votre projet, y compris les composants utilisés, leurs connexions, et toute information pertinente.</p>
+          
+          <textarea
+            value={projectDescription}
+            onChange={(e) => setProjectDescription(e.target.value)}
+            placeholder="Ex: Je veux créer un système d'arrosage automatique avec un ESP32, un capteur d'humidité du sol, une pompe à eau et un relais. Le capteur est connecté à GPIO34, le relais à GPIO26..."
+            className="w-full h-40 p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+          ></textarea>
+          
+          <div className="mt-6 flex flex-col sm:flex-row gap-4">
+            <button
+              onClick={generateCircuitSVG}
+              disabled={isLoading}
+              className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-colors flex items-center justify-center space-x-2 disabled:opacity-50"
+            >
+              {isLoading ? (
+                <>
+                  <Zap className="animate-spin" size={20} />
+                  <span>Génération en cours...</span>
+                </>
+              ) : (
+                <>
+                  <Brain size={20} />
+                  <span>Générer le Schéma</span>
+                </>
+              )}
+            </button>
+            
+            {generatedSVG && (
+              <>
+                <button
+                  onClick={copyToClipboard}
+                  className="px-6 py-3 bg-gray-600 hover:bg-gray-700 text-white rounded-lg font-semibold transition-colors flex items-center justify-center space-x-2"
+                >
+                  <Copy size={20} />
+                  <span>Copier SVG</span>
+                </button>
+                <button
+                  onClick={downloadSVG}
+                  className="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold transition-colors flex items-center justify-center space-x-2"
+                >
+                  <Download size={20} />
+                  <span>Télécharger SVG</span>
+                </button>
+              </>
+            )}
+          </div>
+          
+          {error && (
+            <div className="mt-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+              <p>{error}</p>
+            </div>
+          )}
+        </div>
+        
+        {generatedSVG && (
+          <div className="bg-white rounded-2xl shadow-lg p-8">
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">Schéma du Circuit Généré</h2>
+            <div className="border border-gray-300 rounded-lg p-4 bg-gray-50 overflow-auto">
+              <div dangerouslySetInnerHTML={{ __html: generatedSVG }} />
+            </div>
+            
+            <div className="mt-6 p-4 bg-blue-50 rounded-lg">
+              <h3 className="font-semibold text-gray-800 mb-2">Code SVG (copiez pour l'utiliser dans vos projets)</h3>
+              <pre className="bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto text-sm leading-relaxed whitespace-pre-wrap font-mono max-h-96 overflow-y-auto">
+                {generatedSVG}
+              </pre>
+            </div>
+          </div>
+        )}
+        
+        <div className="mt-12 bg-gradient-to-r from-blue-50 to-indigo-50 p-8 rounded-2xl">
+          <h3 className="text-2xl font-bold text-gray-800 mb-4">Conseils pour une meilleure génération</h3>
+          <ul className="space-y-2 text-gray-700">
+            <li className="flex items-start">
+              <span className="mr-2">•</span>
+              <span>Spécifiez clairement le microcontrôleur utilisé (ESP32, ESP8266, Arduino, etc.)</span>
+            </li>
+            <li className="flex items-start">
+              <span className="mr-2">•</span>
+              <span>Listez tous les composants avec leurs modèles spécifiques si possible</span>
+            </li>
+            <li className="flex items-start">
+              <span className="mr-2">•</span>
+              <span>Indiquez les broches GPIO auxquelles chaque composant est connecté</span>
+            </li>
+            <li className="flex items-start">
+              <span className="mr-2">•</span>
+              <span>Mentionnez les protocoles de communication utilisés (I2C, SPI, UART, etc.)</span>
+            </li>
+            <li className="flex items-start">
+              <span className="mr-2">•</span>
+              <span>Précisez les tensions d'alimentation requises pour chaque composant</span>
+            </li>
+            <li className="flex items-start">
+              <span className="mr-2">•</span>
+              <span>Incluez des informations sur les résistances, condensateurs ou autres composants passifs nécessaires</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 // --- Main App Component ---
 function App() {
   const [currentPage, setCurrentPage] = useState("home");
@@ -1733,15 +2059,10 @@ function App() {
   const [generatedCode, setGeneratedCode] = useState<string | null>(null);
   const [loadingCode, setLoadingCode] = useState(false);
 
-  const filteredComponents = iotComponents.filter((component) =>
-    component.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
   // 🔥 Gemini API Call to Generate Arduino Code
   const generateCode = async (component: Component) => {
     setLoadingCode(true);
     setGeneratedCode(null);
-
     try {
       const response = await fetch(
         "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyCaf0dZY3tmfdR7Um0mUr-jnJCkLg8-XSI",
@@ -1756,17 +2077,12 @@ function App() {
                 parts: [
                   {
                     text: `
-
-
                     Génère une explications simple du fonctionnement et trois mini codes Arduino C++ distincts (pour Arduino UNO, ESP32 et ESP8266) permettant d’utiliser le composant suivant : ${component.name} (${component.description}).
-
 Exigences :
 - Chaque code doit être directement exécutable et compilable sans modifications supplémentaires.
 - Ajouter une section de commentaires claire en haut (/** ... */) listant précisément quels pins utiliser pour Arduino, ESP32 et ESP8266.
 - Inclure des commentaires en français expliquant chaque étape importante du code (initialisation, configuration, boucle, etc.).
 - Le code doit rester simple, minimaliste et pédagogique pour faciliter la compréhension.
-
-                    
 `
 ,
                   },
@@ -1776,9 +2092,7 @@ Exigences :
           }),
         }
       );
-
       const data = await response.json();
-
       if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
         setGeneratedCode(data.candidates[0].content.parts[0].text.trim());
       } else {
@@ -1793,276 +2107,279 @@ Exigences :
   };
 
   // --- Page Components ---
-const HomePage = () => (
-  <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white scroll-smooth">
-    <IconBackground />
-    <nav className="bg-white/90 backdrop-blur-sm border-b border-blue-100 sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <Cpu className="text-blue-600" size={32} />
-            <span className="text-2xl font-bold text-gray-800">Smart ESP</span>
-          </div>
-          <div className="hidden md:flex space-x-8">
-            <button
-              className="text-gray-600 hover:text-blue-600 transition-colors"
-              onClick={() => setCurrentPage("home")}
-            >
-              Accueil
-            </button>
-            <button
-              className="text-gray-600 hover:text-blue-600 transition-colors"
-              onClick={() => setCurrentPage("download")}
-            >
-              Fonctionnalités
-            </button>
-            <button
-              className="text-gray-600 hover:text-blue-600 transition-colors"
-              onClick={() => setCurrentPage("components")}
-            >
-              Composants
-            </button>
-            <button
-              className="text-gray-600 hover:text-blue-600 transition-colors"
-              onClick={() => setCurrentPage("custom")}
-            >
-              Contact
-            </button>
+  const HomePage = () => (
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white scroll-smooth">
+      <IconBackground />
+      <nav className="bg-white/90 backdrop-blur-sm border-b border-blue-100 sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-2">
+              <Cpu className="text-blue-600" size={32} />
+              <span className="text-2xl font-bold text-gray-800">Smart ESP</span>
+            </div>
+            <div className="hidden md:flex space-x-8">
+              <button
+                className="text-gray-600 hover:text-blue-600 transition-colors"
+                onClick={() => setCurrentPage("home")}
+              >
+                Accueil
+              </button>
+              <button
+                className="text-gray-600 hover:text-blue-600 transition-colors"
+                onClick={() => setCurrentPage("download")}
+              >
+                Fonctionnalités
+              </button>
+              <button
+                className="text-gray-600 hover:text-blue-600 transition-colors"
+                onClick={() => setCurrentPage("components")}
+              >
+                Composants
+              </button>
+              <button
+                className="text-gray-600 hover:text-blue-600 transition-colors"
+                onClick={() => setCurrentPage("custom")}
+              >
+                Contact
+              </button>
+              <button
+                className="text-gray-600 hover:text-blue-600 transition-colors"
+                onClick={() => setCurrentPage("scriptcircuit")}
+              >
+                Schéma Circuit
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    </nav>
-    <section className="relative py-20">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-8">
-            <div className="space-y-4">
-              <h1 className="text-5xl font-bold text-gray-800 leading-tight">
-               Smart ESP – L’IoT pour tous : créez, innovez et partagez vos <span className="text-blue-600">projets connectés</span>
-              </h1>
-              <p className="text-xl text-gray-600 leading-relaxed">
-                <span>
+      </nav>
+      <section className="relative py-20">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-8">
+              <div className="space-y-4">
+                <h1 className="text-5xl font-bold text-gray-800 leading-tight">
+                 Smart ESP – L’IoT pour tous : créez, innovez et partagez vos <span className="text-blue-600">projets connectés</span>
+                </h1>
+                <p className="text-xl text-gray-600 leading-relaxed">
+                  <span>
                  Smart ESP :  
 L’application <strong className="text-green-600">IoT qui libère votre potentiel</strong>, conçue pour <strong className="text-purple-600">étudiants</strong>, <strong className="text-purple-600">débutants</strong> et passionnés curieux.  
 Avec Smart ESP, transformez vos <strong className="text-orange-600">idées ESP32/ESP8266</strong> en projets réels, utiles et concrets pour votre entourage.  
 Profitez d’une <strong className="text-blue-500">collecte</strong>, d’une surveillance et d’un partage de données en temps réel grâce à <strong className="text-green-500">Google Sheets</strong>, <strong className="text-red-500">Gmail</strong> et l’<strong className="text-pink-500">assistance IA Gemini</strong>.  
 Catalogue de composants, bibliothèques et <strong className="text-teal-600">outils intelligents</strong> : tout est pensé pour que vous ressentiez la fierté de réussir, sans configuration complexe.  
-
-                </span>
-              </p>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="flex items-center space-x-3 p-4 bg-white/80 rounded-lg border border-blue-100">
-                <Brain className="text-blue-600" size={24} />
-                <div>
-                  <h3 className="font-semibold text-gray-800">IA Gemini</h3>
-                  <p className="text-sm text-gray-600">Idées de projets intelligents</p>
+                  </span>
+                </p>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="flex items-center space-x-3 p-4 bg-white/80 rounded-lg border border-blue-100">
+                  <Brain className="text-blue-600" size={24} />
+                  <div>
+                    <h3 className="font-semibold text-gray-800">IA Gemini</h3>
+                    <p className="text-sm text-gray-600">Idées de projets intelligents</p>
+                  </div>
+                </div>
+                <div className="flex items-center space-x-3 p-4 bg-white/80 rounded-lg border border-blue-100">
+                  <FileSpreadsheet className="text-green-600" size={24} />
+                  <div>
+                    <h3 className="font-semibold text-gray-800">Google Sheets</h3>
+                    <p className="text-sm text-gray-600">Partage de données en temps réel</p>
+                  </div>
+                </div>
+                <div className="flex items-center space-x-3 p-4 bg-white/80 rounded-lg border border-blue-100">
+                  <Mail className="text-red-600" size={24} />
+                  <div>
+                    <h3 className="font-semibold text-gray-800">Intégration Gmail</h3>
+                    <p className="text-sm text-gray-600">Envoi direct de données</p>
+                  </div>
+                </div>
+                <div className="flex items-center space-x-3 p-4 bg-white/80 rounded-lg border border-blue-100">
+                  <Settings className="text-purple-600" size={24} />
+                  <div>
+                    <h3 className="font-semibold text-gray-800">Assistant IA</h3>
+                    <p className="text-sm text-gray-600">Aide personnalisée, générateur de projet</p>
+                  </div>
                 </div>
               </div>
-              <div className="flex items-center space-x-3 p-4 bg-white/80 rounded-lg border border-blue-100">
-                <FileSpreadsheet className="text-green-600" size={24} />
+              <div className="flex flex-col sm:flex-row gap-4">
+                <button
+                  className="bg-white hover:bg-gray-50 text-blue-600 border-2 border-blue-600 px-6 py-3 rounded-lg text-base font-semibold transition-colors transform hover:scale-105 flex items-center justify-center space-x-2"
+                  onClick={() => window.open("https://smartesp-premium.vercel.app/")}
+                >
+                  <ExternalLink size={20} />
+                  <span>Smart ESP Premium Workflow </span>
+                </button>
+              </div>
+            </div>
+            <div className="relative">
+              <div className="bg-gradient-to-br from-blue-600 to-blue-800 p-4 rounded-2xl shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500">
+                <img
+                  src="https://fayrviwbbspmiqztcyhv.supabase.co/storage/v1/object/public/iotimages/screen%20%20shot/Green%20and%20Yellow%20Playful%20Illustrative%20What%20are%20the%20parts%20of%20a%20Plant%20Presentation%20(2).png"
+                  alt="Capture d'écran de l'application Smart ESP"
+                  className="w-full rounded-xl shadow-lg"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="py-20 bg-gradient-to-r from-blue-50 to-indigo-50 relative">
+        <IconBackground />
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-800 mb-4">Ce que disent nos utilisateurs</h2>
+            <p className="text-xl text-gray-600">Approuvé par les développeurs et créateurs du monde entier</p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {testimonials.map((testimonial) => (
+              <div key={testimonial.id} className="bg-white/90 backdrop-blur-sm p-6 rounded-2xl border border-blue-100 hover:shadow-lg transition-shadow relative">
+                <div className="flex mb-4">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <Star key={i} className="text-yellow-400 fill-current" size={16} />
+                  ))}
+                </div>
+                <p className="text-gray-700 mb-4">"{testimonial.text}"</p>
                 <div>
-                  <h3 className="font-semibold text-gray-800">Google Sheets</h3>
-                  <p className="text-sm text-gray-600">Partage de données en temps réel</p>
+                  <h4 className="font-semibold text-gray-800">{testimonial.name}</h4>
+                  <p className="text-sm text-gray-600">{testimonial.role} at {testimonial.company}</p>
+                </div>
+                <div className="absolute top-4 right-4 text-blue-200">
+                  <Cpu size={20} />
                 </div>
               </div>
-              <div className="flex items-center space-x-3 p-4 bg-white/80 rounded-lg border border-blue-100">
-                <Mail className="text-red-600" size={24} />
-                <div>
-                  <h3 className="font-semibold text-gray-800">Intégration Gmail</h3>
-                  <p className="text-sm text-gray-600">Envoi direct de données</p>
+            ))}
+          </div>
+        </div>
+      </section>
+      {/* >>> ADDED: Mission Section */}
+      <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-700 text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-black/10"></div> {/* Overlay for better text readability */}
+        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-8 tracking-tight">
+            Notre Mission
+          </h2>
+          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-white/20">
+            <p className="text-lg md:text-xl leading-relaxed">
+              Notre mission est de permettre à chacun de créer des projets IoT, même avec très peu de connaissances techniques. Grâce à notre dévouement, de plus en plus de personnes osent entrer dans le domaine de l’IoT, découvrant qu’il est possible d’utiliser la technologie pour résoudre leurs problèmes rapidement et efficacement.
+            </p>
+            <p className="text-lg md:text-xl leading-relaxed mt-6">
+              Chez Smart ESP, nous mettons toutes les ressources à portée de main, afin que chacun, quel que soit son niveau, puisse explorer, apprendre et innover dans un environnement connecté et une communauté solidaire.
+            </p>
+          </div>
+        </div>
+        {/* Subtle decorative elements */}
+        <div className="absolute top-10 left-10 text-white/10">
+          <Zap size={48} />
+        </div>
+        <div className="absolute bottom-10 right-10 text-white/10">
+          <Cpu size={48} />
+        </div>
+      </section>
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-800 mb-4">Explorer Smart ESP</h2>
+            <p className="text-xl text-gray-600">Tout ce dont vous avez besoin pour le développement IoT</p>
+          </div>
+          <div className="grid lg:grid-cols-3 gap-8">
+            <div className="group bg-gradient-to-br from-white to-blue-50 p-8 rounded-2xl border border-blue-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 relative">
+              <div className="text-center space-y-6">
+                <div className="bg-blue-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
+                  <Download className="text-white" size={32} />
                 </div>
+                <h3 className="text-2xl font-bold text-gray-800">Télécharger Smart ESP</h3>
+                <p className="text-gray-600">Obtenez l'application Smart ESP complète avec toutes les bibliothèques et pilotes</p>
+                <button
+                  onClick={() => setCurrentPage("download")}
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors w-full"
+                >
+                  Voir les Téléchargements
+                </button>
               </div>
-              <div className="flex items-center space-x-3 p-4 bg-white/80 rounded-lg border border-blue-100">
-                <Settings className="text-purple-600" size={24} />
-                <div>
-                  <h3 className="font-semibold text-gray-800">Assistant IA</h3>
-                  <p className="text-sm text-gray-600">Aide personnalisée, générateur de projet</p>
+              <div className="absolute top-4 right-4 text-blue-200/50">
+                <Smartphone size={24} />
+              </div>
+            </div>
+            <div className="group bg-gradient-to-br from-white to-blue-50 p-8 rounded-2xl border border-blue-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 relative">
+              <div className="text-center space-y-6">
+                <div className="bg-green-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
+                  <Cpu className="text-white" size={32} />
                 </div>
+                <h3 className="text-2xl font-bold text-gray-800">Catalogue de Composants IoT</h3>
+                <p className="text-gray-600">Parcourez notre vaste catalogue de plus de 100 composants IoT avec des spécifications détaillées</p>
+                <button
+                  onClick={() => setCurrentPage("components")}
+                  className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors w-full"
+                >
+                  Parcourir les Composants
+                </button>
+              </div>
+              <div className="absolute top-4 right-4 text-green-200/50">
+                <Zap size={24} />
               </div>
             </div>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <button
-                className="bg-white hover:bg-gray-50 text-blue-600 border-2 border-blue-600 px-6 py-3 rounded-lg text-base font-semibold transition-colors transform hover:scale-105 flex items-center justify-center space-x-2"
-                onClick={() => window.open("https://smartesp-premium.vercel.app/")}
-              >
-                <ExternalLink size={20} />
-                <span>Smart ESP Premium Workflow </span>
-              </button>
-            </div>
-          </div>
-          <div className="relative">
-            <div className="bg-gradient-to-br from-blue-600 to-blue-800 p-4 rounded-2xl shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500">
-              <img
-                src="https://fayrviwbbspmiqztcyhv.supabase.co/storage/v1/object/public/iotimages/screen%20%20shot/Green%20and%20Yellow%20Playful%20Illustrative%20What%20are%20the%20parts%20of%20a%20Plant%20Presentation%20(2).png"
-                alt="Capture d'écran de l'application Smart ESP"
-                className="w-full rounded-xl shadow-lg"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section className="py-20 bg-gradient-to-r from-blue-50 to-indigo-50 relative">
-      <IconBackground />
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">Ce que disent nos utilisateurs</h2>
-          <p className="text-xl text-gray-600">Approuvé par les développeurs et créateurs du monde entier</p>
-        </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {testimonials.map((testimonial) => (
-            <div key={testimonial.id} className="bg-white/90 backdrop-blur-sm p-6 rounded-2xl border border-blue-100 hover:shadow-lg transition-shadow relative">
-              <div className="flex mb-4">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} className="text-yellow-400 fill-current" size={16} />
-                ))}
+            <div className="group bg-gradient-to-br from-white to-blue-50 p-8 rounded-2xl border border-blue-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 relative">
+              <div className="text-center space-y-6">
+                <div className="bg-purple-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
+                  <Globe className="text-white" size={32} />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-800">Applications IoT Personnalisées</h3>
+                <p className="text-gray-600">Commandez des applications IoT personnalisées adaptées à vos besoins spécifiques</p>
+                <button
+                  onClick={() => setCurrentPage("custom")}
+                  className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors w-full"
+                >
+                  Commander une App Personnalisée
+                </button>
               </div>
-              <p className="text-gray-700 mb-4">"{testimonial.text}"</p>
-              <div>
-                <h4 className="font-semibold text-gray-800">{testimonial.name}</h4>
-                <p className="text-sm text-gray-600">{testimonial.role} at {testimonial.company}</p>
-              </div>
-              <div className="absolute top-4 right-4 text-blue-200">
-                <Cpu size={20} />
+              <div className="absolute top-4 right-4 text-purple-200/50">
+                <Cloud size={24} />
               </div>
             </div>
-          ))}
+          </div>
         </div>
-      </div>
-    </section>
-
-    {/* >>> ADDED: Mission Section */}
-    <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-700 text-white relative overflow-hidden">
-      <div className="absolute inset-0 bg-black/10"></div> {/* Overlay for better text readability */}
-      <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-        <h2 className="text-4xl md:text-5xl font-extrabold mb-8 tracking-tight">
-          Notre Mission
-        </h2>
-        <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-white/20">
-          <p className="text-lg md:text-xl leading-relaxed">
-            Notre mission est de permettre à chacun de créer des projets IoT, même avec très peu de connaissances techniques. Grâce à notre dévouement, de plus en plus de personnes osent entrer dans le domaine de l’IoT, découvrant qu’il est possible d’utiliser la technologie pour résoudre leurs problèmes rapidement et efficacement.
-          </p>
-          <p className="text-lg md:text-xl leading-relaxed mt-6">
-            Chez Smart ESP, nous mettons toutes les ressources à portée de main, afin que chacun, quel que soit son niveau, puisse explorer, apprendre et innover dans un environnement connecté et une communauté solidaire.
-          </p>
-        </div>
-      </div>
-      {/* Subtle decorative elements */}
-      <div className="absolute top-10 left-10 text-white/10">
-        <Zap size={48} />
-      </div>
-      <div className="absolute bottom-10 right-10 text-white/10">
-        <Cpu size={48} />
-      </div>
-    </section>
-
-    <section className="py-20">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">Explorer Smart ESP</h2>
-          <p className="text-xl text-gray-600">Tout ce dont vous avez besoin pour le développement IoT</p>
-        </div>
-        <div className="grid lg:grid-cols-3 gap-8">
-          <div className="group bg-gradient-to-br from-white to-blue-50 p-8 rounded-2xl border border-blue-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 relative">
-            <div className="text-center space-y-6">
-              <div className="bg-blue-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
-                <Download className="text-white" size={32} />
+      </section>
+      <footer className="bg-gray-800 text-white py-12">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid md:grid-cols-4 gap-8">
+            <div>
+              <div className="flex items-center space-x-2 mb-4">
+                <Cpu className="text-blue-400" size={24} />
+                <span className="text-xl font-bold">Smart ESP</span>
               </div>
-              <h3 className="text-2xl font-bold text-gray-800">Télécharger Smart ESP</h3>
-              <p className="text-gray-600">Obtenez l'application Smart ESP complète avec toutes les bibliothèques et pilotes</p>
-              <button
-                onClick={() => setCurrentPage("download")}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors w-full"
-              >
-                Voir les Téléchargements
-              </button>
+              <p className="text-gray-400">Revolutionizing IoT development with AI-powered tools and seamless integrations.</p>
             </div>
-            <div className="absolute top-4 right-4 text-blue-200/50">
-              <Smartphone size={24} />
+            <div>
+              <h4 className="font-semibold mb-4">Produits</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li>Application Smart ESP</li>
+                <li>Bibliothèque ESP32</li>
+                <li>Bibliothèque ESP8266</li>
+                <li>Fichiers Pilotes</li>
+              </ul>
             </div>
-          </div>
-          <div className="group bg-gradient-to-br from-white to-blue-50 p-8 rounded-2xl border border-blue-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 relative">
-            <div className="text-center space-y-6">
-              <div className="bg-green-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
-                <Cpu className="text-white" size={32} />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-800">Catalogue de Composants IoT</h3>
-              <p className="text-gray-600">Parcourez notre vaste catalogue de plus de 100 composants IoT avec des spécifications détaillées</p>
-              <button
-                onClick={() => setCurrentPage("components")}
-                className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors w-full"
-              >
-                Parcourir les Composants
-              </button>
+            <div>
+              <h4 className="font-semibold mb-4">Fonctionnalités</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li>Intégration IA Gemini</li>
+                <li>Synchronisation Google Sheets</li>
+                <li>Intégration Gmail</li>
+                <li>Assistant IA</li>
+              </ul>
             </div>
-            <div className="absolute top-4 right-4 text-green-200/50">
-              <Zap size={24} />
+            <div>
+              <h4 className="font-semibold mb-4">Support</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li>smartespservices@gmail.com</li>
+              </ul>
             </div>
           </div>
-          <div className="group bg-gradient-to-br from-white to-blue-50 p-8 rounded-2xl border border-blue-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 relative">
-            <div className="text-center space-y-6">
-              <div className="bg-purple-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
-                <Globe className="text-white" size={32} />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-800">Applications IoT Personnalisées</h3>
-              <p className="text-gray-600">Commandez des applications IoT personnalisées adaptées à vos besoins spécifiques</p>
-              <button
-                onClick={() => setCurrentPage("custom")}
-                className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors w-full"
-              >
-                Commander une App Personnalisée
-              </button>
-            </div>
-            <div className="absolute top-4 right-4 text-purple-200/50">
-              <Cloud size={24} />
-            </div>
+          <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+            <p>&copy; 2025 Smart ESP. All rights reserved.</p>
           </div>
         </div>
-      </div>
-    </section>
-    <footer className="bg-gray-800 text-white py-12">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid md:grid-cols-4 gap-8">
-          <div>
-            <div className="flex items-center space-x-2 mb-4">
-              <Cpu className="text-blue-400" size={24} />
-              <span className="text-xl font-bold">Smart ESP</span>
-            </div>
-            <p className="text-gray-400">Revolutionizing IoT development with AI-powered tools and seamless integrations.</p>
-          </div>
-          <div>
-            <h4 className="font-semibold mb-4">Produits</h4>
-            <ul className="space-y-2 text-gray-400">
-              <li>Application Smart ESP</li>
-              <li>Bibliothèque ESP32</li>
-              <li>Bibliothèque ESP8266</li>
-              <li>Fichiers Pilotes</li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-semibold mb-4">Fonctionnalités</h4>
-            <ul className="space-y-2 text-gray-400">
-              <li>Intégration IA Gemini</li>
-              <li>Synchronisation Google Sheets</li>
-              <li>Intégration Gmail</li>
-              <li>Assistant IA</li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-semibold mb-4">Support</h4>
-            <ul className="space-y-2 text-gray-400">
-              <li>smartespservices@gmail.com</li>
-            </ul>
-          </div>
-        </div>
-        <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-          <p>&copy; 2025 Smart ESP. All rights reserved.</p>
-        </div>
-      </div>
-    </footer>
-  </div>
-);
+      </footer>
+    </div>
+  );
 
   const DownloadPage = () => (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white">
@@ -2165,569 +2482,532 @@ Catalogue de composants, bibliothèques et <strong className="text-teal-600">out
       </div>
     </div>
   );
-const ComponentsPage = () => {
-  // >>> NEW FEATURE: State for multi-selection and custom prompt (with persistence)
-  const [selectedComponentsForAI, setSelectedComponentsForAI] = useState<Component[]>(() => {
-    // Load from localStorage on initial render
-    const savedIds = localStorage.getItem('selectedComponentIds');
-    if (savedIds) {
-      try {
-        const ids = JSON.parse(savedIds) as number[];
-        return iotComponents.filter(comp => ids.includes(comp.id));
-      } catch (error) {
-        console.error("Failed to parse saved component IDs from localStorage", error);
-        return [];
+
+  const ComponentsPage = () => {
+    // >>> NEW FEATURE: State for multi-selection and custom prompt (with persistence)
+    const [selectedComponentsForAI, setSelectedComponentsForAI] = useState<Component[]>(() => {
+      // Load from localStorage on initial render
+      const savedIds = localStorage.getItem('selectedComponentIds');
+      if (savedIds) {
+        try {
+          const ids = JSON.parse(savedIds) as number[];
+          return iotComponents.filter(comp => ids.includes(comp.id));
+        } catch (error) {
+          console.error("Failed to parse saved component IDs from localStorage", error);
+          return [];
+        }
       }
-    }
-    return [];
-  });
-
-  const [customPrompt, setCustomPrompt] = useState("");
-  const [customGeneratedCode, setCustomGeneratedCode] = useState<string | null>(null);
-  const [loadingCustomCode, setLoadingCustomCode] = useState(false);
-
-  // >>> NEW FEATURE: Applied Search Term (for Enter key)
-  const [appliedSearchTerm, setAppliedSearchTerm] = useState("");
-
-  // Handle Enter key press for search
-  const handleSearchKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      setAppliedSearchTerm(searchTerm); // Apply the search only on Enter
-      e.preventDefault();
-    }
-  };
-
-  // Effect to save selected components to localStorage
-  useEffect(() => {
-    const ids = selectedComponentsForAI.map(comp => comp.id);
-    localStorage.setItem('selectedComponentIds', JSON.stringify(ids));
-  }, [selectedComponentsForAI]);
-
-  // >>> NEW FEATURE: Function to toggle component selection
-  const toggleComponentSelectionForAI = (component: Component) => {
-    setSelectedComponentsForAI(prev => {
-      if (prev.find(c => c.id === component.id)) {
-        return prev.filter(c => c.id !== component.id); // Deselect if already selected
-      } else {
-        return [...prev, component]; // Select if not already selected
-      }
+      return [];
     });
-  };
-
-  // >>> NEW FEATURE: Function to generate code based on selected components and prompt
-  const generateCustomCode = async () => {
-    if (selectedComponentsForAI.length === 0) {
-      alert("Veuillez sélectionner au moins un composant.");
-      return;
-    }
-    if (customPrompt.trim().length === 0) {
-      alert("Veuillez entrer une description de votre projet.");
-      return;
-    }
-
-    setLoadingCustomCode(true);
-    setCustomGeneratedCode(null);
-
-    try {
-      const componentList = selectedComponentsForAI.map(comp => `${comp.name} (${comp.description})`).join("\n- ");
-      const fullPrompt = `L'utilisateur a sélectionné les composants suivants :
+    const [customPrompt, setCustomPrompt] = useState("");
+    const [customGeneratedCode, setCustomGeneratedCode] = useState<string | null>(null);
+    const [loadingCustomCode, setLoadingCustomCode] = useState(false);
+    // >>> NEW FEATURE: Applied Search Term (for Enter key)
+    const [appliedSearchTerm, setAppliedSearchTerm] = useState("");
+    // Handle Enter key press for search
+    const handleSearchKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (e.key === "Enter") {
+        setAppliedSearchTerm(searchTerm); // Apply the search only on Enter
+        e.preventDefault();
+      }
+    };
+    // Effect to save selected components to localStorage
+    useEffect(() => {
+      const ids = selectedComponentsForAI.map(comp => comp.id);
+      localStorage.setItem('selectedComponentIds', JSON.stringify(ids));
+    }, [selectedComponentsForAI]);
+    // >>> NEW FEATURE: Function to toggle component selection
+    const toggleComponentSelectionForAI = (component: Component) => {
+      setSelectedComponentsForAI(prev => {
+        if (prev.find(c => c.id === component.id)) {
+          return prev.filter(c => c.id !== component.id); // Deselect if already selected
+        } else {
+          return [...prev, component]; // Select if not already selected
+        }
+      });
+    };
+    // >>> NEW FEATURE: Function to generate code based on selected components and prompt
+    const generateCustomCode = async () => {
+      if (selectedComponentsForAI.length === 0) {
+        alert("Veuillez sélectionner au moins un composant.");
+        return;
+      }
+      if (customPrompt.trim().length === 0) {
+        alert("Veuillez entrer une description de votre projet.");
+        return;
+      }
+      setLoadingCustomCode(true);
+      setCustomGeneratedCode(null);
+      try {
+        const componentList = selectedComponentsForAI.map(comp => `${comp.name} (${comp.description})`).join("
+- ");
+        const fullPrompt = `L'utilisateur a sélectionné les composants suivants :
 - ${componentList}
-
 Description du projet souhaité par l'utilisateur :
 "${customPrompt}"
-
 Génère une réponse complète, pédagogique et utile. Cela peut être :
 - Un projet IoT intégrant tous ces composants.
 - Un schéma de câblage simplifié.
 - Un code Arduino C++ unifié pour ESP32 ou ESP8266.
 - Des conseils d'utilisation.
 Le tout doit être clair, concis et directement utilisable par un étudiant ou un débutant.`;
-
-      const response = await fetch(
-        "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyCaf0dZY3tmfdR7Um0mUr-jnJCkLg8-XSI",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            contents: [{ parts: [{ text: fullPrompt }] }],
-          }),
+        const response = await fetch(
+          "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyCaf0dZY3tmfdR7Um0mUr-jnJCkLg8-XSI",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              contents: [{ parts: [{ text: fullPrompt }] }],
+            }),
+          }
+        );
+        const data = await response.json();
+        if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
+          setCustomGeneratedCode(data.candidates[0].content.parts[0].text.trim());
+        } else {
+          setCustomGeneratedCode("❌ Erreur : Aucune réponse générée par l'IA.");
         }
-      );
-
-      const data = await response.json();
-      if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
-        setCustomGeneratedCode(data.candidates[0].content.parts[0].text.trim());
-      } else {
-        setCustomGeneratedCode("❌ Erreur : Aucune réponse générée par l'IA.");
+      } catch (error) {
+        console.error("Erreur API Gemini (Custom):", error);
+        setCustomGeneratedCode("❌ Échec de la connexion à l'IA. Vérifiez le réseau ou l'API key.");
+      } finally {
+        setLoadingCustomCode(false);
       }
-    } catch (error) {
-      console.error("Erreur API Gemini (Custom):", error);
-      setCustomGeneratedCode("❌ Échec de la connexion à l'IA. Vérifiez le réseau ou l'API key.");
-    } finally {
-      setLoadingCustomCode(false);
-    }
-  };
-
-  // >>> NEW FEATURE: Function to clear selection
-  const clearSelection = () => {
-    setSelectedComponentsForAI([]);
-    setCustomPrompt("");
-    setCustomGeneratedCode(null);
-  };
-
-  // >>> NEW FEATURE: Filter components using the applied search term (on Enter)
-  const filteredComponents = iotComponents.filter((component) =>
-    component.name.toLowerCase().includes(appliedSearchTerm.toLowerCase())
-  );
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white">
-      <IconBackground />
-      <nav className="bg-white/90 backdrop-blur-sm border-b border-blue-100">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <button
-              onClick={() => setCurrentPage("home")}
-              className="flex items-center space-x-2 text-blue-600 hover:text-blue-700 transition-colors"
-            >
-              <ChevronLeft size={20} />
-              <span>Retour à l'Accueil</span>
-            </button>
-            <div className="flex items-center space-x-2">
-              <Cpu className="text-blue-600" size={32} />
-              <span className="text-2xl font-bold text-gray-800">
-                Smart ESP – Catalogue de composants IoT
-              </span>
+    };
+    // >>> NEW FEATURE: Function to clear selection
+    const clearSelection = () => {
+      setSelectedComponentsForAI([]);
+      setCustomPrompt("");
+      setCustomGeneratedCode(null);
+    };
+    // >>> NEW FEATURE: Filter components using the applied search term (on Enter)
+    const filteredComponents = iotComponents.filter((component) =>
+      component.name.toLowerCase().includes(appliedSearchTerm.toLowerCase())
+    );
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white">
+        <IconBackground />
+        <nav className="bg-white/90 backdrop-blur-sm border-b border-blue-100">
+          <div className="max-w-7xl mx-auto px-6 py-4">
+            <div className="flex items-center justify-between">
+              <button
+                onClick={() => setCurrentPage("home")}
+                className="flex items-center space-x-2 text-blue-600 hover:text-blue-700 transition-colors"
+              >
+                <ChevronLeft size={20} />
+                <span>Retour à l'Accueil</span>
+              </button>
+              <div className="flex items-center space-x-2">
+                <Cpu className="text-blue-600" size={32} />
+                <span className="text-2xl font-bold text-gray-800">
+                  Smart ESP – Catalogue de composants IoT
+                </span>
+              </div>
             </div>
           </div>
-        </div>
-      </nav>
-
-      {/* Search Bar */}
-      <div className="max-w-7xl mx-auto px-6 py-8">
-        <div className="flex flex-col md:flex-row gap-4 mb-8">
-          <div className="flex-1 relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
-            <input
-              type="text"
-              placeholder="Rechercher un composant..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              onKeyPress={handleSearchKeyPress} // <-- NEW: Trigger search on Enter
-              className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            />
+        </nav>
+        {/* Search Bar */}
+        <div className="max-w-7xl mx-auto px-6 py-8">
+          <div className="flex flex-col md:flex-row gap-4 mb-8">
+            <div className="flex-1 relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+              <input
+                type="text"
+                placeholder="Rechercher un composant..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                onKeyPress={handleSearchKeyPress} // <-- NEW: Trigger search on Enter
+                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+            </div>
+            <button
+              onClick={() => setFilterOpen(!filterOpen)}
+              className="flex items-center space-x-2 px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+            >
+              <Filter size={20} />
+              <span>Filtres</span>
+            </button>
           </div>
-          <button
-            onClick={() => setFilterOpen(!filterOpen)}
-            className="flex items-center space-x-2 px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-          >
-            <Filter size={20} />
-            <span>Filtres</span>
-          </button>
-        </div>
-
-        {/* >>> NEW FEATURE: Multi-Select & Prompt UI */}
-        <div className="mb-8 p-6 bg-blue-50 rounded-xl border border-blue-200">
-          <h3 className="text-lg font-bold text-gray-800 mb-4">Créer un Projet Personnalisé avec l'IA</h3>
-          <p className="text-sm text-gray-600 mb-4">
-            Cliquez sur le bouton "+" sur les cartes de composants pour les ajouter ici, puis décrivez votre idée de projet (max 500 caractères).
-          </p>
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700 mb-2">Composants sélectionnés ({selectedComponentsForAI.length})</label>
-            <div className="flex flex-wrap gap-2 mb-4">
-              {selectedComponentsForAI.map(comp => (
-                <span key={comp.id} className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                  {comp.name}
+          {/* >>> NEW FEATURE: Multi-Select & Prompt UI */}
+          <div className="mb-8 p-6 bg-blue-50 rounded-xl border border-blue-200">
+            <h3 className="text-lg font-bold text-gray-800 mb-4">Créer un Projet Personnalisé avec l'IA</h3>
+            <p className="text-sm text-gray-600 mb-4">
+              Cliquez sur le bouton "+" sur les cartes de composants pour les ajouter ici, puis décrivez votre idée de projet (max 500 caractères).
+            </p>
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-gray-700 mb-2">Composants sélectionnés ({selectedComponentsForAI.length})</label>
+              <div className="flex flex-wrap gap-2 mb-4">
+                {selectedComponentsForAI.map(comp => (
+                  <span key={comp.id} className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                    {comp.name}
+                    <button
+                      type="button"
+                      onClick={() => toggleComponentSelectionForAI(comp)}
+                      className="ml-2 text-blue-600 hover:text-blue-800"
+                    >
+                      ×
+                    </button>
+                  </span>
+                ))}
+                {selectedComponentsForAI.length > 0 && (
                   <button
                     type="button"
-                    onClick={() => toggleComponentSelectionForAI(comp)}
-                    className="ml-2 text-blue-600 hover:text-blue-800"
+                    onClick={clearSelection}
+                    className="text-xs text-gray-500 hover:text-gray-700 underline"
+                  >
+                    Tout effacer
+                  </button>
+                )}
+              </div>
+            </div>
+            <div className="mb-4">
+              <label htmlFor="custom-prompt" className="block text-sm font-medium text-gray-700 mb-2">
+                Décrivez votre projet (max 500 caractères)
+              </label>
+              <textarea
+                id="custom-prompt"
+                value={customPrompt}
+                onChange={(e) => setCustomPrompt(e.target.value.substring(0, 500))} // Enforce 500 char limit
+                placeholder="Ex: Je veux créer une station météo qui envoie un email si la température dépasse 30°C..."
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                rows={3}
+                maxLength={500}
+              ></textarea>
+              <p className="text-xs text-gray-500 text-right mt-1">{customPrompt.length}/500</p>
+            </div>
+            <button
+              onClick={generateCustomCode}
+              disabled={loadingCustomCode}
+              className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 disabled:bg-purple-400 transition-colors flex items-center space-x-2"
+            >
+              {loadingCustomCode ? (
+                <>
+                  <Zap className="animate-spin" size={16} />
+                  <span>Génération...</span>
+                </>
+              ) : (
+                <>
+                  <Brain size={16} />
+                  <span>Générer mon Projet</span>
+                </>
+              )}
+            </button>
+            {/* >>> NEW FEATURE: Display Custom Generated Output */}
+            {customGeneratedCode && (
+              <div className="mt-6 p-4 bg-white rounded-lg border border-gray-200">
+                <div className="flex justify-between items-center mb-2">
+                  <h4 className="font-semibold text-gray-800">Résultat de l'IA</h4>
+                  <button
+                    onClick={() => {
+                      navigator.clipboard.writeText(customGeneratedCode).then(
+                        () => alert("✅ Copié dans le presse-papiers !"),
+                        () => alert("❌ Échec de la copie.")
+                      );
+                    }}
+                    className="flex items-center space-x-1 text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-1 rounded border"
+                  >
+                    <Copy size={14} />
+                    <span>Copier</span>
+                  </button>
+                </div>
+                <pre className="bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto text-sm leading-relaxed whitespace-pre-wrap font-mono">
+                  {customGeneratedCode}
+                </pre>
+              </div>
+            )}
+          </div>
+          {/* Component Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {filteredComponents.map((component) => (
+              <div
+                key={component.id}
+                // >>> ORIGINAL BEHAVIOR: Click opens the modal
+                onClick={() => setSelectedComponent(component)}
+                className={`bg-white rounded-xl shadow-md hover:shadow-xl overflow-hidden cursor-pointer transform hover:scale-105 transition-all relative ${
+                  selectedComponentsForAI.find(c => c.id === component.id) ? 'ring-2 ring-purple-500' : ''
+                }`}
+              >
+                <img
+                  src={component.image}
+                  alt={component.name}
+                  className="w-full h-32 object-cover"
+                />
+                <div className="p-4">
+                  <h3 className="font-bold text-gray-800">{component.name}</h3>
+                  <p className="text-sm text-gray-600 mt-1">
+                    {component.description.substring(0, 60)}...
+                  </p>
+                </div>
+                {/* >>> NEW FEATURE: Add a "+" button for AI selection */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation(); // Prevents the modal from opening
+                    toggleComponentSelectionForAI(component);
+                  }}
+                  className="absolute top-2 right-2 bg-blue-600 hover:bg-blue-700 text-white w-8 h-8 rounded-full flex items-center justify-center text-lg font-bold shadow-md hover:shadow-lg transition-all z-10"
+                  title="Ajouter à la liste pour l'IA"
+                >
+                  +
+                </button>
+                {/* >>> NEW FEATURE: Add "Voir sur YouTube" button */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation(); // Prevents the modal from opening
+                    window.open(`https://www.youtube.com/results?search_query=${encodeURIComponent(component.name)}`, '_blank', 'noopener,noreferrer');
+                  }}
+                  className="absolute top-2 left-2 bg-red-600 hover:bg-red-700 text-white w-8 h-8 rounded-full flex items-center justify-center text-xs shadow-md hover:shadow-lg transition-all z-10"
+                  title="Voir sur YouTube"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.007-.103c.05-.572.124-1.14.235-1.558a2.007 2.007 0 0 1 1.415-1.42c.487-.132 1.544-.211 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/>
+                  </svg>
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+        {/* Modal (UNCHANGED) */}
+        {selectedComponent && (
+          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+            <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+              <div className="p-8">
+                <div className="flex justify-between items-start mb-6">
+                  <h2 className="text-2xl font-bold text-gray-800">{selectedComponent.name}</h2>
+                  <button
+                    onClick={() => {
+                      setSelectedComponent(null);
+                      setGeneratedCode(null);
+                    }}
+                    className="text-gray-400 hover:text-gray-600 text-2xl"
                   >
                     ×
                   </button>
-                </span>
-              ))}
-              {selectedComponentsForAI.length > 0 && (
-                <button
-                  type="button"
-                  onClick={clearSelection}
-                  className="text-xs text-gray-500 hover:text-gray-700 underline"
-                >
-                  Tout effacer
-                </button>
-              )}
+                </div>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <img
+                      src={selectedComponent.image}
+                      alt={selectedComponent.name}
+                      className="w-full aspect-square object-cover rounded-lg"
+                    />
+                  </div>
+                  <div className="space-y-4">
+                    <div>
+                      <h3 className="font-semibold text-gray-800 mb-2">Description</h3>
+                      <p className="text-gray-600">{selectedComponent.description}</p>
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-gray-800 mb-2">Alimentation</h3>
+                      <p className="text-blue-600 font-medium">{selectedComponent.voltage}</p>
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-gray-800 mb-2">Spécifications Clés</h3>
+                      <ul className="space-y-1">
+                        {selectedComponent.specifications.map((spec, index) => (
+                          <li key={index} className="text-gray-600 flex items-center space-x-2">
+                            <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                            <span>{spec}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <button
+                      onClick={() => generateCode(selectedComponent)}
+                      className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-2"
+                    >
+                      <Zap size={16} />
+                      <span>Générer le code</span>
+                    </button>
+                    {loadingCode && (
+                      <p className="text-blue-600 mt-2 flex items-center space-x-2">
+                        <Zap className="animate-spin" size={16} />
+                        <span>Génération du code...</span>
+                      </p>
+                    )}
+                    {generatedCode && (
+                      <div className="mt-4">
+                        <div className="flex justify-between items-center mb-2">
+                          <h3 className="font-semibold text-gray-800">Code Généré</h3>
+                          <button
+                            onClick={() => {
+                              navigator.clipboard.writeText(generatedCode).then(
+                                () => alert("✅ Code copié dans le presse-papiers !"),
+                                () => alert("❌ Échec de la copie.")
+                              );
+                            }}
+                            className="flex items-center space-x-1 text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-1 rounded border"
+                          >
+                            <Copy size={14} />
+                            <span>Copier</span>
+                          </button>
+                        </div>
+                        <pre className="bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto text-sm leading-relaxed whitespace-pre-wrap font-mono">
+                          {generatedCode}
+                        </pre>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <div className="mb-4">
-            <label htmlFor="custom-prompt" className="block text-sm font-medium text-gray-700 mb-2">
-              Décrivez votre projet (max 500 caractères)
-            </label>
-            <textarea
-              id="custom-prompt"
-              value={customPrompt}
-              onChange={(e) => setCustomPrompt(e.target.value.substring(0, 500))} // Enforce 500 char limit
-              placeholder="Ex: Je veux créer une station météo qui envoie un email si la température dépasse 30°C..."
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              rows={3}
-              maxLength={500}
-            ></textarea>
-            <p className="text-xs text-gray-500 text-right mt-1">{customPrompt.length}/500</p>
-          </div>
+        )}
+      </div>
+    );
+  };
+
+  const CustomAppsPage = () => (
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white">
+    <IconBackground />
+    <nav className="bg-white/90 backdrop-blur-sm border-b border-blue-100">
+      <div className="max-w-7xl mx-auto px-6 py-4">
+        <div className="flex items-center justify-between">
           <button
-            onClick={generateCustomCode}
-            disabled={loadingCustomCode}
-            className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 disabled:bg-purple-400 transition-colors flex items-center space-x-2"
+            onClick={() => setCurrentPage("home")}
+            className="flex items-center space-x-2 text-blue-600 hover:text-blue-700 transition-colors"
           >
-            {loadingCustomCode ? (
-              <>
-                <Zap className="animate-spin" size={16} />
-                <span>Génération...</span>
-              </>
-            ) : (
-              <>
-                <Brain size={16} />
-                <span>Générer mon Projet</span>
-              </>
-            )}
+            <ChevronLeft size={20} />
+            <span>Retour à l'Accueil</span>
           </button>
-
-          {/* >>> NEW FEATURE: Display Custom Generated Output */}
-          {customGeneratedCode && (
-            <div className="mt-6 p-4 bg-white rounded-lg border border-gray-200">
-              <div className="flex justify-between items-center mb-2">
-                <h4 className="font-semibold text-gray-800">Résultat de l'IA</h4>
-                <button
-                  onClick={() => {
-                    navigator.clipboard.writeText(customGeneratedCode).then(
-                      () => alert("✅ Copié dans le presse-papiers !"),
-                      () => alert("❌ Échec de la copie.")
-                    );
-                  }}
-                  className="flex items-center space-x-1 text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-1 rounded border"
-                >
-                  <Copy size={14} />
-                  <span>Copier</span>
-                </button>
-              </div>
-              <pre className="bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto text-sm leading-relaxed whitespace-pre-wrap font-mono">
-                {customGeneratedCode}
-              </pre>
-            </div>
-          )}
+          <div className="flex items-center space-x-2">
+            <Globe className="text-blue-600" size={32} />
+            <span className="text-2xl font-bold text-gray-800">Applications IoT Personnalisées</span>
+          </div>
         </div>
-
-        {/* Component Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {filteredComponents.map((component) => (
-            <div
-              key={component.id}
-              // >>> ORIGINAL BEHAVIOR: Click opens the modal
-              onClick={() => setSelectedComponent(component)}
-              className={`bg-white rounded-xl shadow-md hover:shadow-xl overflow-hidden cursor-pointer transform hover:scale-105 transition-all relative ${
-                selectedComponentsForAI.find(c => c.id === component.id) ? 'ring-2 ring-purple-500' : ''
-              }`}
-            >
-              <img
-                src={component.image}
-                alt={component.name}
-                className="w-full h-32 object-cover"
-              />
-              <div className="p-4">
-                <h3 className="font-bold text-gray-800">{component.name}</h3>
-                <p className="text-sm text-gray-600 mt-1">
-                  {component.description.substring(0, 60)}...
-                </p>
+      </div>
+    </nav>
+    <div className="max-w-7xl mx-auto px-6 py-20">
+      {/* Hero Section */}
+      <div className="text-center mb-16">
+        <h1 className="text-5xl font-bold text-gray-800 mb-6">Applications IoT Personnalisées</h1>
+        <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+          Découvrez l'avenir du développement IoT avec notre service d'applications personnalisées alimenté par l'IA.
+          Nous créons des solutions sur mesure qui s'intègrent parfaitement à votre infrastructure existante
+          tout en exploitant des technologies de pointe.
+        </p>
+        <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-8 rounded-2xl max-w-4xl mx-auto">
+          <h2 className="text-2xl font-bold mb-4">🚀 Développement IoT Nouvelle Génération</h2>
+          <p className="text-lg">
+            Nos applications IoT personnalisées exploitent la puissance de l'IA Gemini pour l'automatisation intelligente,
+            l'intégration en temps réel avec Google Sheets pour une gestion transparente des données, et une connectivité
+            Gmail avancée pour des notifications et rapports instantanés.
+          </p>
+        </div>
+      </div>
+      {/* Portfolio Section */}
+      <div className="mb-16">
+        <h2 className="text-4xl font-bold text-gray-800 text-center mb-12">Projets IoT Inspirants</h2>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {[
+            {
+              title: "Maison Intelligente avec Reconnaissance Vocale",
+              desc: "Contrôlez vos lumières, volets et musique par la voix, avec assistant IA intégré.",
+              image: "https://m.media-amazon.com/images/I/816tOhl+3pL._AC_SL1500_.jpg"
+            },
+            {
+              title: "Jardin Automatique Connecté",
+              desc: "Arrosage intelligent selon l'humidité du sol, la météo et la lumière. Surveillance en temps réel.",
+              image: "https://www.moussasoft.com/wp-content/uploads/2023/02/Systeme-darrosage-de-plantes-Arduino-.jpg"
+            },
+            {
+              title: "Serrure Biométrique + Notification Gmail",
+              desc: "Ouverture par empreinte digitale avec alerte  à chaque accès.",
+              image: "https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/01/enroll-finger.jpg?quality=100&strip=all&ssl=1"
+            },
+            {
+              title: "Capteur de Qualité de l’Air & Purificateur Auto",
+              desc: "Détecte CO2, poussière et humidité, active le purificateur si nécessaire.",
+              image: "https://www.alonsoruibal.com/wp-content/uploads/2024/05/esp32-c3-connections@2x.jpeg?auto=format&fit=crop&w=600&h=400&q=80"
+            },
+            {
+              title: "Station Météo Personnelle avec Alertes",
+              desc: "Mesure température, pluie, vent et envoie des alertes SMS ou Gmail.",
+              image: "https://i.ytimg.com/vi/1qGGDFqb1ow/hq720.jpg?sqp=-oaymwE7CK4FEIIDSFryq4qpAy0IARUAAAAAGAElAADIQj0AgKJD8AEB-AH8CYAC0AWKAgwIABABGGUgXChMMA8=&rs=AOn4CLAxprxwy1FSbrk2fUU82-wI5hgfRw?auto=format&fit=crop&w=600&h=400&q=80"
+            },
+            {
+              title: "Robot de Surveillance Mobile (ESP32-CAM)",
+              desc: "Robot télécommandé avec caméra en streaming et détection de mouvement.",
+              image: "https://raw.githubusercontent.com/Circuit-Digest/ESP32-Cam-Surveillance-Car/2ecf12ce9a1ee8d120fa83f880da9de1a1b8d51f/wifi-surveillance-robot-car-esp32-cam.gif?auto=format&fit=crop&w=600&h=400&q=80"
+            }
+          ].map((app, index) => (
+            <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all flex flex-col">
+              {/* Image */}
+              <div className="aspect-video overflow-hidden">
+                <img
+                  src={app.image}
+                  alt={app.title}
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                />
               </div>
-              {/* >>> NEW FEATURE: Add a "+" button for AI selection */}
-              <button
-                onClick={(e) => {
-                  e.stopPropagation(); // Prevents the modal from opening
-                  toggleComponentSelectionForAI(component);
-                }}
-                className="absolute top-2 right-2 bg-blue-600 hover:bg-blue-700 text-white w-8 h-8 rounded-full flex items-center justify-center text-lg font-bold shadow-md hover:shadow-lg transition-all z-10"
-                title="Ajouter à la liste pour l'IA"
-              >
-                +
-              </button>
-              {/* >>> NEW FEATURE: Add "Voir sur YouTube" button */}
-              <button
-                onClick={(e) => {
-                  e.stopPropagation(); // Prevents the modal from opening
-                  window.open(`https://www.youtube.com/results?search_query=${encodeURIComponent(component.name)}`, '_blank', 'noopener,noreferrer');
-                }}
-                className="absolute top-2 left-2 bg-red-600 hover:bg-red-700 text-white w-8 h-8 rounded-full flex items-center justify-center text-xs shadow-md hover:shadow-lg transition-all z-10"
-                title="Voir sur YouTube"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                  <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.007-.103c.05-.572.124-1.14.235-1.558a2.007 2.007 0 0 1 1.415-1.42c.487-.132 1.544-.211 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/>
-                </svg>
-              </button>
+              {/* Content */}
+              <div className="p-6 flex-1 flex flex-col">
+                <h3 className="text-xl font-bold text-gray-800 mb-2">{app.title}</h3>
+                <p className="text-gray-600 mb-4 flex-1">{app.desc}</p>
+                {/* Contact Buttons */}
+                <div className="space-y-2">
+                  <a
+                    href="https://api.whatsapp.com/send/?phone=212710038821"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block text-center text-green-600 border border-green-600 hover:bg-green-600 hover:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                  >
+                    WhatsApp
+                  </a>
+                </div>
+              </div>
             </div>
           ))}
         </div>
       </div>
-
-      {/* Modal (UNCHANGED) */}
-      {selectedComponent && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="p-8">
-              <div className="flex justify-between items-start mb-6">
-                <h2 className="text-2xl font-bold text-gray-800">{selectedComponent.name}</h2>
-                <button
-                  onClick={() => {
-                    setSelectedComponent(null);
-                    setGeneratedCode(null);
-                  }}
-                  className="text-gray-400 hover:text-gray-600 text-2xl"
-                >
-                  ×
-                </button>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <img
-                    src={selectedComponent.image}
-                    alt={selectedComponent.name}
-                    className="w-full aspect-square object-cover rounded-lg"
-                  />
-                </div>
-
-                <div className="space-y-4">
-                  <div>
-                    <h3 className="font-semibold text-gray-800 mb-2">Description</h3>
-                    <p className="text-gray-600">{selectedComponent.description}</p>
-                  </div>
-
-                  <div>
-                    <h3 className="font-semibold text-gray-800 mb-2">Alimentation</h3>
-                    <p className="text-blue-600 font-medium">{selectedComponent.voltage}</p>
-                  </div>
-
-                  <div>
-                    <h3 className="font-semibold text-gray-800 mb-2">Spécifications Clés</h3>
-                    <ul className="space-y-1">
-                      {selectedComponent.specifications.map((spec, index) => (
-                        <li key={index} className="text-gray-600 flex items-center space-x-2">
-                          <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                          <span>{spec}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <button
-                    onClick={() => generateCode(selectedComponent)}
-                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-2"
-                  >
-                    <Zap size={16} />
-                    <span>Générer le code</span>
-                  </button>
-
-                  {loadingCode && (
-                    <p className="text-blue-600 mt-2 flex items-center space-x-2">
-                      <Zap className="animate-spin" size={16} />
-                      <span>Génération du code...</span>
-                    </p>
-                  )}
-
-                  {generatedCode && (
-                    <div className="mt-4">
-                      <div className="flex justify-between items-center mb-2">
-                        <h3 className="font-semibold text-gray-800">Code Généré</h3>
-                        <button
-                          onClick={() => {
-                            navigator.clipboard.writeText(generatedCode).then(
-                              () => alert("✅ Code copié dans le presse-papiers !"),
-                              () => alert("❌ Échec de la copie.")
-                            );
-                          }}
-                          className="flex items-center space-x-1 text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-1 rounded border"
-                        >
-                          <Copy size={14} />
-                          <span>Copier</span>
-                        </button>
-                      </div>
-                      <pre className="bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto text-sm leading-relaxed whitespace-pre-wrap font-mono">
-                        {generatedCode}
-                      </pre>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
+      {/* Why Choose Us */}
+      <div className="mb-16">
+        <h2 className="text-4xl font-bold text-gray-800 text-center mb-12">Pourquoi Choisir Nos Applications Personnalisées ?</h2>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="bg-white p-6 rounded-xl shadow-lg text-center">
+            <Brain className="text-blue-600 mx-auto mb-4" size={48} />
+            <h3 className="text-xl font-bold text-gray-800 mb-2">Intelligence Alimentée par l'IA</h3>
+            <p className="text-gray-600">Intégration IA Gemini pour la prise de décision intelligente et l'analyse prédictive</p>
+          </div>
+          <div className="bg-white p-6 rounded-xl shadow-lg text-center">
+            <FileSpreadsheet className="text-green-600 mx-auto mb-4" size={48} />
+            <h3 className="text-xl font-bold text-gray-800 mb-2">Synchronisation de Données en Temps Réel</h3>
+            <p className="text-gray-600">Intégration transparente avec Google Sheets pour le partage de données en direct et la collaboration</p>
+          </div>
+          <div className="bg-white p-6 rounded-xl shadow-lg text-center">
+            <Mail className="text-red-600 mx-auto mb-4" size={48} />
+            <h3 className="text-xl font-bold text-gray-800 mb-2">Notifications Instantanées</h3>
+            <p className="text-gray-600">Intégration Gmail pour des alertes immédiates et des rapports automatisés</p>
+          </div>
+          <div className="bg-white p-6 rounded-xl shadow-lg text-center">
+            <Cloud className="text-purple-600 mx-auto mb-4" size={48} />
+            <h3 className="text-xl font-bold text-gray-800 mb-2">Architecture Évolutive</h3>
+            <p className="text-gray-600">Conception cloud-native qui évolue avec les besoins de votre entreprise</p>
           </div>
         </div>
-      )}
-    </div>
-  );
-};
-          
-          
-          
-          
-          
-     
-    const CustomAppsPage = () => (
-  <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white">
-  <IconBackground />
-  <nav className="bg-white/90 backdrop-blur-sm border-b border-blue-100">
-    <div className="max-w-7xl mx-auto px-6 py-4">
-      <div className="flex items-center justify-between">
-        <button
-          onClick={() => setCurrentPage("home")}
-          className="flex items-center space-x-2 text-blue-600 hover:text-blue-700 transition-colors"
-        >
-          <ChevronLeft size={20} />
-          <span>Retour à l'Accueil</span>
-        </button>
-        <div className="flex items-center space-x-2">
-          <Globe className="text-blue-600" size={32} />
-          <span className="text-2xl font-bold text-gray-800">Applications IoT Personnalisées</span>
-        </div>
       </div>
-    </div>
-  </nav>
-
-  <div className="max-w-7xl mx-auto px-6 py-20">
-    {/* Hero Section */}
-    <div className="text-center mb-16">
-      <h1 className="text-5xl font-bold text-gray-800 mb-6">Applications IoT Personnalisées</h1>
-      <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-        Découvrez l'avenir du développement IoT avec notre service d'applications personnalisées alimenté par l'IA.
-        Nous créons des solutions sur mesure qui s'intègrent parfaitement à votre infrastructure existante
-        tout en exploitant des technologies de pointe.
-      </p>
-      <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-8 rounded-2xl max-w-4xl mx-auto">
-        <h2 className="text-2xl font-bold mb-4">🚀 Développement IoT Nouvelle Génération</h2>
-        <p className="text-lg">
-          Nos applications IoT personnalisées exploitent la puissance de l'IA Gemini pour l'automatisation intelligente,
-          l'intégration en temps réel avec Google Sheets pour une gestion transparente des données, et une connectivité
-          Gmail avancée pour des notifications et rapports instantanés.
-        </p>
-      </div>
-    </div>
-
-    {/* Portfolio Section */}
-    <div className="mb-16">
-      <h2 className="text-4xl font-bold text-gray-800 text-center mb-12">Projets IoT Inspirants</h2>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {[
-          {
-            title: "Maison Intelligente avec Reconnaissance Vocale",
-            desc: "Contrôlez vos lumières, volets et musique par la voix, avec assistant IA intégré.",
-            image: "https://m.media-amazon.com/images/I/816tOhl+3pL._AC_SL1500_.jpg"
-          },
-          {
-            title: "Jardin Automatique Connecté",
-            desc: "Arrosage intelligent selon l'humidité du sol, la météo et la lumière. Surveillance en temps réel.",
-            image: "https://www.moussasoft.com/wp-content/uploads/2023/02/Systeme-darrosage-de-plantes-Arduino-.jpg"
-          },
-          {
-            title: "Serrure Biométrique + Notification Gmail",
-            desc: "Ouverture par empreinte digitale avec alerte  à chaque accès.",
-            image: "https://i1.wp.com/randomnerdtutorials.com/wp-content/uploads/2018/01/enroll-finger.jpg?quality=100&strip=all&ssl=1"
-          },
-          {
-            title: "Capteur de Qualité de l’Air & Purificateur Auto",
-            desc: "Détecte CO2, poussière et humidité, active le purificateur si nécessaire.",
-            image: "https://www.alonsoruibal.com/wp-content/uploads/2024/05/esp32-c3-connections@2x.jpeg?auto=format&fit=crop&w=600&h=400&q=80"
-          },
-          {
-            title: "Station Météo Personnelle avec Alertes",
-            desc: "Mesure température, pluie, vent et envoie des alertes SMS ou Gmail.",
-            image: "https://i.ytimg.com/vi/1qGGDFqb1ow/hq720.jpg?sqp=-oaymwE7CK4FEIIDSFryq4qpAy0IARUAAAAAGAElAADIQj0AgKJD8AEB-AH8CYAC0AWKAgwIABABGGUgXChMMA8=&rs=AOn4CLAxprxwy1FSbrk2fUU82-wI5hgfRw?auto=format&fit=crop&w=600&h=400&q=80"
-          },
-          {
-            title: "Robot de Surveillance Mobile (ESP32-CAM)",
-            desc: "Robot télécommandé avec caméra en streaming et détection de mouvement.",
-            image: "https://raw.githubusercontent.com/Circuit-Digest/ESP32-Cam-Surveillance-Car/2ecf12ce9a1ee8d120fa83f880da9de1a1b8d51f/wifi-surveillance-robot-car-esp32-cam.gif?auto=format&fit=crop&w=600&h=400&q=80"
-          }
-        ].map((app, index) => (
-          <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all flex flex-col">
-            {/* Image */}
-            <div className="aspect-video overflow-hidden">
-              <img
-                src={app.image}
-                alt={app.title}
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-              />
-            </div>
-
-            {/* Content */}
-            <div className="p-6 flex-1 flex flex-col">
-              <h3 className="text-xl font-bold text-gray-800 mb-2">{app.title}</h3>
-              <p className="text-gray-600 mb-4 flex-1">{app.desc}</p>
-
-              {/* Contact Buttons */}
-              <div className="space-y-2">
-          
-                <a
-                  href="https://api.whatsapp.com/send/?phone=212710038821"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block text-center text-green-600 border border-green-600 hover:bg-green-600 hover:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
-                >
-                  WhatsApp
-                </a>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-
-    {/* Why Choose Us */}
-    <div className="mb-16">
-      <h2 className="text-4xl font-bold text-gray-800 text-center mb-12">Pourquoi Choisir Nos Applications Personnalisées ?</h2>
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="bg-white p-6 rounded-xl shadow-lg text-center">
-          <Brain className="text-blue-600 mx-auto mb-4" size={48} />
-          <h3 className="text-xl font-bold text-gray-800 mb-2">Intelligence Alimentée par l'IA</h3>
-          <p className="text-gray-600">Intégration IA Gemini pour la prise de décision intelligente et l'analyse prédictive</p>
+      {/* Call to Action */}
+      <div className="text-center">
+        <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-12 rounded-2xl">
+          <h2 className="text-3xl font-bold mb-4">Prêt à Transformer Votre Vision IoT ?</h2>
+          <p className="text-xl mb-8 opacity-90">
+            Laissez notre équipe d'experts créer une solution IoT personnalisée qui correspond parfaitement à vos exigences.
+            Du concept au déploiement, nous nous occupons de tout.
+          </p>
+          <a
+            href="https://wa.me/212710038821"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-white text-blue-600 px-12 py-4 rounded-xl text-xl font-bold hover:bg-gray-100 transition-colors transform hover:scale-105"
+          >
+            Contactez-nous pour concrétiser votre projet ✅
+          </a>
         </div>
-        <div className="bg-white p-6 rounded-xl shadow-lg text-center">
-          <FileSpreadsheet className="text-green-600 mx-auto mb-4" size={48} />
-          <h3 className="text-xl font-bold text-gray-800 mb-2">Synchronisation de Données en Temps Réel</h3>
-          <p className="text-gray-600">Intégration transparente avec Google Sheets pour le partage de données en direct et la collaboration</p>
-        </div>
-        <div className="bg-white p-6 rounded-xl shadow-lg text-center">
-          <Mail className="text-red-600 mx-auto mb-4" size={48} />
-          <h3 className="text-xl font-bold text-gray-800 mb-2">Notifications Instantanées</h3>
-          <p className="text-gray-600">Intégration Gmail pour des alertes immédiates et des rapports automatisés</p>
-        </div>
-        <div className="bg-white p-6 rounded-xl shadow-lg text-center">
-          <Cloud className="text-purple-600 mx-auto mb-4" size={48} />
-          <h3 className="text-xl font-bold text-gray-800 mb-2">Architecture Évolutive</h3>
-          <p className="text-gray-600">Conception cloud-native qui évolue avec les besoins de votre entreprise</p>
-        </div>
-      </div>
-    </div>
-
-    {/* Call to Action */}
-    <div className="text-center">
-      <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-12 rounded-2xl">
-        <h2 className="text-3xl font-bold mb-4">Prêt à Transformer Votre Vision IoT ?</h2>
-        <p className="text-xl mb-8 opacity-90">
-          Laissez notre équipe d'experts créer une solution IoT personnalisée qui correspond parfaitement à vos exigences.
-          Du concept au déploiement, nous nous occupons de tout.
-        </p>
-        <a
-          href="https://wa.me/212710038821"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block bg-white text-blue-600 px-12 py-4 rounded-xl text-xl font-bold hover:bg-gray-100 transition-colors transform hover:scale-105"
-        >
-          Contactez-nous pour concrétiser votre projet ✅
-        </a>
       </div>
     </div>
   </div>
-</div>
-);
+  );
 
   // --- Page Routing ---
   switch (currentPage) {
@@ -2737,6 +3017,8 @@ Le tout doit être clair, concis et directement utilisable par un étudiant ou u
       return <ComponentsPage />;
     case "custom":
       return <CustomAppsPage />;
+    case "scriptcircuit":
+      return <ScriptCircuitPage />;
     default:
       return <HomePage />;
   }
