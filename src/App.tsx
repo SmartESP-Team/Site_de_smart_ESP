@@ -2154,35 +2154,68 @@ Exigences :
     </div>
   );
 
-const ComponentsPage = () => {
-  const [selectedComponents, setSelectedComponents] = useState<Component[]>([]);
+  
+    const ComponentsPage = () => {
+  // >>> NEW FEATURE: State for multi-selection and custom prompt
+  const [selectedComponentsForAI, setSelectedComponentsForAI] = useState<Component[]>([]);
   const [customPrompt, setCustomPrompt] = useState("");
-  const [generatedResponse, setGeneratedResponse] = useState<string | null>(null);
-  const [loadingResponse, setLoadingResponse] = useState(false);
+  const [customGeneratedCode, setCustomGeneratedCode] = useState<string | null>(null);
+  const [loadingCustomCode, setLoadingCustomCode] = useState(false);
 
-  const toggleComponentSelection = (component: Component) => {
-    setSelectedComponents((prev) =>
-      prev.some((c) => c.id === component.id)
-        ? prev.filter((c) => c.id !== component.id)
-        : [...prev, component]
-    );
+  // >>> NEW FEATURE: Debounced Search State
+  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
+
+  // >>> NEW FEATURE: Debounce effect for search
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedSearchTerm(searchTerm);
+    }, 300); // Wait 300ms after user stops typing
+
+    return () => {
+      clearTimeout(handler); // Cleanup timeout if user types again
+    };
+  }, [searchTerm]);
+
+  // >>> NEW FEATURE: Function to toggle component selection
+  const toggleComponentSelectionForAI = (component: Component) => {
+    setSelectedComponentsForAI(prev => {
+      if (prev.find(c => c.id === component.id)) {
+        return prev.filter(c => c.id !== component.id); // Deselect if already selected
+      } else {
+        return [...prev, component]; // Select if not already selected
+      }
+    });
   };
 
-  const handleGenerateResponse = async () => {
-    if (selectedComponents.length === 0) {
-      alert("❌ Veuillez sélectionner au moins un composant.");
+  // >>> NEW FEATURE: Function to generate code based on selected components and prompt
+  const generateCustomCode = async () => {
+    if (selectedComponentsForAI.length === 0) {
+      alert("Veuillez sélectionner au moins un composant.");
+      return;
+    }
+    if (customPrompt.trim().length === 0) {
+      alert("Veuillez entrer une description de votre projet.");
       return;
     }
 
-    if (customPrompt.length > 500) {
-      alert("❌ Le prompt ne peut pas dépasser 500 caractères.");
-      return;
-    }
-
-    setLoadingResponse(true);
-    setGeneratedResponse(null);
+    setLoadingCustomCode(true);
+    setCustomGeneratedCode(null);
 
     try {
+      const componentList = selectedComponentsForAI.map(comp => `${comp.name} (${comp.description})`).join("\n- ");
+      const fullPrompt = `L'utilisateur a sélectionné les composants suivants :
+- ${componentList}
+
+Description du projet souhaité par l'utilisateur :
+"${customPrompt}"
+
+Génère une réponse complète, pédagogique et utile. Cela peut être :
+- Un projet IoT intégrant tous ces composants.
+- Un schéma de câblage simplifié.
+- Un code Arduino C++ unifié pour ESP32 ou ESP8266.
+- Des conseils d'utilisation.
+Le tout doit être clair, concis et directement utilisable par un étudiant ou un débutant.`;
+
       const response = await fetch(
         "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyCaf0dZY3tmfdR7Um0mUr-jnJCkLg8-XSI",
         {
@@ -2191,41 +2224,36 @@ const ComponentsPage = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            contents: [
-              {
-                parts: [
-                  {
-                    text: `
-                    Voici les composants sélectionnés : ${selectedComponents
-                      .map((c) => c.name)
-                      .join(", ")}.
-                    
-                    Prompt utilisateur : "${customPrompt}"
-
-                    Génère une explication claire et concise sur ce que l'utilisateur veut réaliser avec ces composants. Inclure des idées de projets ou des cas d'utilisation pertinents.
-                    `,
-                  },
-                ],
-              },
-            ],
+            contents: [{ parts: [{ text: fullPrompt }] }],
           }),
         }
       );
 
       const data = await response.json();
-
       if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
-        setGeneratedResponse(data.candidates[0].content.parts[0].text.trim());
+        setCustomGeneratedCode(data.candidates[0].content.parts[0].text.trim());
       } else {
-        setGeneratedResponse("❌ Erreur : Aucun contenu généré par l'IA.");
+        setCustomGeneratedCode("❌ Erreur : Aucune réponse générée par l'IA.");
       }
     } catch (error) {
-      console.error("Erreur API Gemini:", error);
-      setGeneratedResponse("❌ Échec de la connexion à l'IA. Vérifiez le réseau ou l'API key.");
+      console.error("Erreur API Gemini (Custom):", error);
+      setCustomGeneratedCode("❌ Échec de la connexion à l'IA. Vérifiez le réseau ou l'API key.");
     } finally {
-      setLoadingResponse(false);
+      setLoadingCustomCode(false);
     }
   };
+
+  // >>> NEW FEATURE: Function to clear selection
+  const clearSelection = () => {
+    setSelectedComponentsForAI([]);
+    setCustomPrompt("");
+    setCustomGeneratedCode(null);
+  };
+
+  // >>> NEW FEATURE: Filter components using the debounced search term
+  const filteredComponents = iotComponents.filter((component) =>
+    component.name.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
+  );
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white">
@@ -2258,8 +2286,8 @@ const ComponentsPage = () => {
             <input
               type="text"
               placeholder="Rechercher un composant..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
+              value={searchTerm} // <-- Still controlled by the main state
+              onChange={(e) => setSearchTerm(e.target.value)} // <-- Updates main state, debounced version is used for filtering
               className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
@@ -2272,14 +2300,105 @@ const ComponentsPage = () => {
           </button>
         </div>
 
+        {/* >>> NEW FEATURE: Multi-Select & Prompt UI */}
+        <div className="mb-8 p-6 bg-blue-50 rounded-xl border border-blue-200">
+          <h3 className="text-lg font-bold text-gray-800 mb-4">Créer un Projet Personnalisé avec l'IA</h3>
+          <p className="text-sm text-gray-600 mb-4">
+            Cliquez sur le bouton "+" sur les cartes de composants pour les ajouter ici, puis décrivez votre idée de projet (max 500 caractères).
+          </p>
+          <div className="mb-4">
+            <label className="block text-sm font-medium text-gray-700 mb-2">Composants sélectionnés ({selectedComponentsForAI.length})</label>
+            <div className="flex flex-wrap gap-2 mb-4">
+              {selectedComponentsForAI.map(comp => (
+                <span key={comp.id} className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                  {comp.name}
+                  <button
+                    type="button"
+                    onClick={() => toggleComponentSelectionForAI(comp)}
+                    className="ml-2 text-blue-600 hover:text-blue-800"
+                  >
+                    ×
+                  </button>
+                </span>
+              ))}
+              {selectedComponentsForAI.length > 0 && (
+                <button
+                  type="button"
+                  onClick={clearSelection}
+                  className="text-xs text-gray-500 hover:text-gray-700 underline"
+                >
+                  Tout effacer
+                </button>
+              )}
+            </div>
+          </div>
+          <div className="mb-4">
+            <label htmlFor="custom-prompt" className="block text-sm font-medium text-gray-700 mb-2">
+              Décrivez votre projet (max 500 caractères)
+            </label>
+            <textarea
+              id="custom-prompt"
+              value={customPrompt}
+              onChange={(e) => setCustomPrompt(e.target.value.substring(0, 500))} // Enforce 500 char limit
+              placeholder="Ex: Je veux créer une station météo qui envoie un email si la température dépasse 30°C..."
+              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              rows={3}
+              maxLength={500}
+            ></textarea>
+            <p className="text-xs text-gray-500 text-right mt-1">{customPrompt.length}/500</p>
+          </div>
+          <button
+            onClick={generateCustomCode}
+            disabled={loadingCustomCode}
+            className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 disabled:bg-purple-400 transition-colors flex items-center space-x-2"
+          >
+            {loadingCustomCode ? (
+              <>
+                <Zap className="animate-spin" size={16} />
+                <span>Génération...</span>
+              </>
+            ) : (
+              <>
+                <Brain size={16} />
+                <span>Générer mon Projet</span>
+              </>
+            )}
+          </button>
+
+          {/* >>> NEW FEATURE: Display Custom Generated Output */}
+          {customGeneratedCode && (
+            <div className="mt-6 p-4 bg-white rounded-lg border border-gray-200">
+              <div className="flex justify-between items-center mb-2">
+                <h4 className="font-semibold text-gray-800">Résultat de l'IA</h4>
+                <button
+                  onClick={() => {
+                    navigator.clipboard.writeText(customGeneratedCode).then(
+                      () => alert("✅ Copié dans le presse-papiers !"),
+                      () => alert("❌ Échec de la copie.")
+                    );
+                  }}
+                  className="flex items-center space-x-1 text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-1 rounded border"
+                >
+                  <Copy size={14} />
+                  <span>Copier</span>
+                </button>
+              </div>
+              <pre className="bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto text-sm leading-relaxed whitespace-pre-wrap font-mono">
+                {customGeneratedCode}
+              </pre>
+            </div>
+          )}
+        </div>
+
         {/* Component Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {filteredComponents.map((component) => (
             <div
               key={component.id}
-              onClick={() => toggleComponentSelection(component)}
-              className={`bg-white rounded-xl shadow-md hover:shadow-xl overflow-hidden cursor-pointer transform hover:scale-105 transition-all ${
-                selectedComponents.some((c) => c.id === component.id) ? "ring-4 ring-blue-500" : ""
+              // >>> ORIGINAL BEHAVIOR: Click opens the modal
+              onClick={() => setSelectedComponent(component)}
+              className={`bg-white rounded-xl shadow-md hover:shadow-xl overflow-hidden cursor-pointer transform hover:scale-105 transition-all relative ${
+                selectedComponentsForAI.find(c => c.id === component.id) ? 'ring-2 ring-purple-500' : ''
               }`}
             >
               <img
@@ -2293,60 +2412,129 @@ const ComponentsPage = () => {
                   {component.description.substring(0, 60)}...
                 </p>
               </div>
+              {/* >>> NEW FEATURE: Add a "+" button for AI selection */}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation(); // Prevents the modal from opening
+                  toggleComponentSelectionForAI(component);
+                }}
+                className="absolute top-2 right-2 bg-blue-600 hover:bg-blue-700 text-white w-8 h-8 rounded-full flex items-center justify-center text-lg font-bold shadow-md hover:shadow-lg transition-all z-10"
+                title="Ajouter à la liste pour l'IA"
+              >
+                +
+              </button>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Prompt Section */}
-      <div className="max-w-7xl mx-auto px-6 py-8">
-        <div className="bg-white p-6 rounded-xl shadow-lg">
-          <h3 className="text-xl font-bold text-gray-800 mb-4">Créer une Demande Personnalisée</h3>
-          <textarea
-            value={customPrompt}
-            onChange={(e) => setCustomPrompt(e.target.value)}
-            placeholder="Décrivez ce que vous voulez réaliser avec les composants sélectionnés (500 caractères max)..."
-            maxLength={500}
-            className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            rows={4}
-          ></textarea>
-          <div className="flex justify-between items-center mt-4">
-            <p className="text-sm text-gray-600">
-              Composants sélectionnés : {selectedComponents.length}
-            </p>
-            <button
-              onClick={handleGenerateResponse}
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-2"
-            >
-              <Zap size={16} />
-              <span>Générer</span>
-            </button>
-          </div>
-        </div>
-      </div>
+      {/* Modal (UNCHANGED) */}
+      {selectedComponent && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-8">
+              <div className="flex justify-between items-start mb-6">
+                <h2 className="text-2xl font-bold text-gray-800">{selectedComponent.name}</h2>
+                <button
+                  onClick={() => {
+                    setSelectedComponent(null);
+                    setGeneratedCode(null);
+                  }}
+                  className="text-gray-400 hover:text-gray-600 text-2xl"
+                >
+                  ×
+                </button>
+              </div>
 
-      {/* Generated Response */}
-      {loadingResponse && (
-        <div className="max-w-7xl mx-auto px-6 py-8">
-          <p className="text-blue-600 flex items-center space-x-2">
-            <Zap className="animate-spin" size={16} />
-            <span>Génération en cours...</span>
-          </p>
-        </div>
-      )}
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <img
+                    src={selectedComponent.image}
+                    alt={selectedComponent.name}
+                    className="w-full aspect-square object-cover rounded-lg"
+                  />
+                </div>
 
-      {generatedResponse && (
-        <div className="max-w-7xl mx-auto px-6 py-8">
-          <div className="bg-gray-900 text-green-400 p-6 rounded-xl shadow-lg">
-            <h3 className="text-xl font-bold text-white mb-4">Résultat Généré</h3>
-            <pre className="whitespace-pre-wrap">{generatedResponse}</pre>
+                <div className="space-y-4">
+                  <div>
+                    <h3 className="font-semibold text-gray-800 mb-2">Description</h3>
+                    <p className="text-gray-600">{selectedComponent.description}</p>
+                  </div>
+
+                  <div>
+                    <h3 className="font-semibold text-gray-800 mb-2">Alimentation</h3>
+                    <p className="text-blue-600 font-medium">{selectedComponent.voltage}</p>
+                  </div>
+
+                  <div>
+                    <h3 className="font-semibold text-gray-800 mb-2">Spécifications Clés</h3>
+                    <ul className="space-y-1">
+                      {selectedComponent.specifications.map((spec, index) => (
+                        <li key={index} className="text-gray-600 flex items-center space-x-2">
+                          <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                          <span>{spec}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <button
+                    onClick={() => generateCode(selectedComponent)}
+                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-2"
+                  >
+                    <Zap size={16} />
+                    <span>Générer le code</span>
+                  </button>
+
+                  {loadingCode && (
+                    <p className="text-blue-600 mt-2 flex items-center space-x-2">
+                      <Zap className="animate-spin" size={16} />
+                      <span>Génération du code...</span>
+                    </p>
+                  )}
+
+                  {generatedCode && (
+                    <div className="mt-4">
+                      <div className="flex justify-between items-center mb-2">
+                        <h3 className="font-semibold text-gray-800">Code Généré</h3>
+                        <button
+                          onClick={() => {
+                            navigator.clipboard.writeText(generatedCode).then(
+                              () => alert("✅ Code copié dans le presse-papiers !"),
+                              () => alert("❌ Échec de la copie.")
+                            );
+                          }}
+                          className="flex items-center space-x-1 text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-1 rounded border"
+                        >
+                          <Copy size={14} />
+                          <span>Copier</span>
+                        </button>
+                      </div>
+                      <pre className="bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto text-sm leading-relaxed whitespace-pre-wrap font-mono">
+                        {generatedCode}
+                      </pre>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       )}
     </div>
   );
-};
-  const CustomAppsPage = () => (
+};      
+          
+          
+          
+          
+          
+          
+          
+          
+          
+     
+    const CustomAppsPage = () => (
   <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white">
   <IconBackground />
   <nav className="bg-white/90 backdrop-blur-sm border-b border-blue-100">
