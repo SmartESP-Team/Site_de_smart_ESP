@@ -1793,264 +1793,275 @@ Exigences :
   };
 
   // --- Page Components ---
-  const HomePage = () => (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white scroll-smooth">
-      <IconBackground />
-      <nav className="bg-white/90 backdrop-blur-sm border-b border-blue-100 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <Cpu className="text-blue-600" size={32} />
-              <span className="text-2xl font-bold text-gray-800">Smart ESP</span>
-            </div>
-            <div className="hidden md:flex space-x-8">
-             <button
-  className="text-gray-600 hover:text-blue-600 transition-colors"
-  onClick={() => setCurrentPage("home")}
->
-  Accueil
-</button>
-
-<button
-  className="text-gray-600 hover:text-blue-600 transition-colors"
-  onClick={() => setCurrentPage("download")}
->
-  Fonctionnalités
-</button>
-
-<button
-  className="text-gray-600 hover:text-blue-600 transition-colors"
-  onClick={() => setCurrentPage("components")}
->
-  Composants
-</button>
-
-<button
-  className="text-gray-600 hover:text-blue-600 transition-colors"
-  onClick={() => setCurrentPage("custom")}
->
-  Contact
-</button>
-
-            </div>
+const HomePage = () => (
+  <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white scroll-smooth">
+    <IconBackground />
+    <nav className="bg-white/90 backdrop-blur-sm border-b border-blue-100 sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-6 py-4">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-2">
+            <Cpu className="text-blue-600" size={32} />
+            <span className="text-2xl font-bold text-gray-800">Smart ESP</span>
+          </div>
+          <div className="hidden md:flex space-x-8">
+            <button
+              className="text-gray-600 hover:text-blue-600 transition-colors"
+              onClick={() => setCurrentPage("home")}
+            >
+              Accueil
+            </button>
+            <button
+              className="text-gray-600 hover:text-blue-600 transition-colors"
+              onClick={() => setCurrentPage("download")}
+            >
+              Fonctionnalités
+            </button>
+            <button
+              className="text-gray-600 hover:text-blue-600 transition-colors"
+              onClick={() => setCurrentPage("components")}
+            >
+              Composants
+            </button>
+            <button
+              className="text-gray-600 hover:text-blue-600 transition-colors"
+              onClick={() => setCurrentPage("custom")}
+            >
+              Contact
+            </button>
           </div>
         </div>
-      </nav>
-
-      <section className="relative py-20">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
-              <div className="space-y-4">
-                <h1 className="text-5xl font-bold text-gray-800 leading-tight">
-                  Smart ESP – Outils IoT mobiles simples pour vos <span className="text-blue-600">projets ESP</span>
-
-                </h1>
-                <p className="text-xl text-gray-600 leading-relaxed">
-<span>
-  Smart ESP: 
-  L’application <strong className="text-green-600">IoT idéale</strong> pour <strong className="text-purple-600">étudiants</strong> et <strong className="text-purple-600">débutants</strong>. 
-  Simplifiez vos <strong className="text-orange-600">projets ESP32/ESP8266</strong> avec <strong className="text-blue-500">collecte</strong>, surveillance et partage de données en temps réel via 
-  <strong className="text-green-500"> Google Sheets</strong>, <strong className="text-red-500">Gmail</strong> et <strong className="text-pink-500">assistance IA Gemini</strong>. 
-  Catalogue de composants, bibliothèques et <strong className="text-teal-600">outils intelligents</strong> – sans configuration complexe. 
-  
-</span>
-                </p>
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="flex items-center space-x-3 p-4 bg-white/80 rounded-lg border border-blue-100">
-                  <Brain className="text-blue-600" size={24} />
-                  <div>
-                    <h3 className="font-semibold text-gray-800">IA Gemini</h3>
-                    <p className="text-sm text-gray-600">Idées de projets intelligents</p>
-                  </div>
-                </div>
-                <div className="flex items-center space-x-3 p-4 bg-white/80 rounded-lg border border-blue-100">
-                  <FileSpreadsheet className="text-green-600" size={24} />
-                  <div>
-                    <h3 className="font-semibold text-gray-800">Google Sheets</h3>
-                    <p className="text-sm text-gray-600">Partage de données en temps réel</p>
-                  </div>
-                </div>
-                <div className="flex items-center space-x-3 p-4 bg-white/80 rounded-lg border border-blue-100">
-                  <Mail className="text-red-600" size={24} />
-                  <div>
-                    <h3 className="font-semibold text-gray-800">Intégration Gmail</h3>
-                    <p className="text-sm text-gray-600">Envoi direct de données</p>
-                  </div>
-                </div>
-                <div className="flex items-center space-x-3 p-4 bg-white/80 rounded-lg border border-blue-100">
-                  <Settings className="text-purple-600" size={24} />
-                  <div>
-                    <h3 className="font-semibold text-gray-800">Assistant IA</h3>
-                    <p className="text-sm text-gray-600">Aide personnalisée, générateur de projet</p>
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4">
-
-             <button
-  className="bg-white hover:bg-gray-50 text-blue-600 border-2 border-blue-600 px-6 py-3 rounded-lg text-base font-semibold transition-colors transform hover:scale-105 flex items-center justify-center space-x-2"
- onClick={() => window.open("https://smartesp-premium.vercel.app/")}
-
->
-  <ExternalLink size={20} />
-  <span>Smart ESP Premium Workflow </span>
-</button>
-
-
-              </div>
+      </div>
+    </nav>
+    <section className="relative py-20">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="space-y-8">
+            <div className="space-y-4">
+              <h1 className="text-5xl font-bold text-gray-800 leading-tight">
+                Smart ESP – Outils IoT mobiles simples pour vos <span className="text-blue-600">projets ESP</span>
+              </h1>
+              <p className="text-xl text-gray-600 leading-relaxed">
+                <span>
+                  Smart ESP:
+                  L’application <strong className="text-green-600">IoT idéale</strong> pour <strong className="text-purple-600">étudiants</strong> et <strong className="text-purple-600">débutants</strong>.
+                  Simplifiez vos <strong className="text-orange-600">projets ESP32/ESP8266</strong> avec <strong className="text-blue-500">collecte</strong>, surveillance et partage de données en temps réel via
+                  <strong className="text-green-500"> Google Sheets</strong>, <strong className="text-red-500">Gmail</strong> et <strong className="text-pink-500">assistance IA Gemini</strong>.
+                  Catalogue de composants, bibliothèques et <strong className="text-teal-600">outils intelligents</strong> – sans configuration complexe.
+                </span>
+              </p>
             </div>
-            <div className="relative">
-              <div className="bg-gradient-to-br from-blue-600 to-blue-800 p-4 rounded-2xl shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500">
-                <img
-                  src="https://fayrviwbbspmiqztcyhv.supabase.co/storage/v1/object/public/iotimages/screen%20%20shot/Green%20and%20Yellow%20Playful%20Illustrative%20What%20are%20the%20parts%20of%20a%20Plant%20Presentation%20(2).png"
-                  alt="Capture d'écran de l'application Smart ESP"
-                  className="w-full rounded-xl shadow-lg"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 bg-gradient-to-r from-blue-50 to-indigo-50 relative">
-        <IconBackground />
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">Ce que disent nos utilisateurs</h2>
-            <p className="text-xl text-gray-600">Approuvé par les développeurs et créateurs du monde entier</p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {testimonials.map((testimonial) => (
-              <div key={testimonial.id} className="bg-white/90 backdrop-blur-sm p-6 rounded-2xl border border-blue-100 hover:shadow-lg transition-shadow relative">
-                <div className="flex mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="text-yellow-400 fill-current" size={16} />
-                  ))}
-                </div>
-                <p className="text-gray-700 mb-4">"{testimonial.text}"</p>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="flex items-center space-x-3 p-4 bg-white/80 rounded-lg border border-blue-100">
+                <Brain className="text-blue-600" size={24} />
                 <div>
-                  <h4 className="font-semibold text-gray-800">{testimonial.name}</h4>
-                  <p className="text-sm text-gray-600">{testimonial.role} at {testimonial.company}</p>
-                </div>
-                <div className="absolute top-4 right-4 text-blue-200">
-                  <Cpu size={20} />
+                  <h3 className="font-semibold text-gray-800">IA Gemini</h3>
+                  <p className="text-sm text-gray-600">Idées de projets intelligents</p>
                 </div>
               </div>
-            ))}
+              <div className="flex items-center space-x-3 p-4 bg-white/80 rounded-lg border border-blue-100">
+                <FileSpreadsheet className="text-green-600" size={24} />
+                <div>
+                  <h3 className="font-semibold text-gray-800">Google Sheets</h3>
+                  <p className="text-sm text-gray-600">Partage de données en temps réel</p>
+                </div>
+              </div>
+              <div className="flex items-center space-x-3 p-4 bg-white/80 rounded-lg border border-blue-100">
+                <Mail className="text-red-600" size={24} />
+                <div>
+                  <h3 className="font-semibold text-gray-800">Intégration Gmail</h3>
+                  <p className="text-sm text-gray-600">Envoi direct de données</p>
+                </div>
+              </div>
+              <div className="flex items-center space-x-3 p-4 bg-white/80 rounded-lg border border-blue-100">
+                <Settings className="text-purple-600" size={24} />
+                <div>
+                  <h3 className="font-semibold text-gray-800">Assistant IA</h3>
+                  <p className="text-sm text-gray-600">Aide personnalisée, générateur de projet</p>
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <button
+                className="bg-white hover:bg-gray-50 text-blue-600 border-2 border-blue-600 px-6 py-3 rounded-lg text-base font-semibold transition-colors transform hover:scale-105 flex items-center justify-center space-x-2"
+                onClick={() => window.open("https://smartesp-premium.vercel.app/")}
+              >
+                <ExternalLink size={20} />
+                <span>Smart ESP Premium Workflow </span>
+              </button>
+            </div>
+          </div>
+          <div className="relative">
+            <div className="bg-gradient-to-br from-blue-600 to-blue-800 p-4 rounded-2xl shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500">
+              <img
+                src="https://fayrviwbbspmiqztcyhv.supabase.co/storage/v1/object/public/iotimages/screen%20%20shot/Green%20and%20Yellow%20Playful%20Illustrative%20What%20are%20the%20parts%20of%20a%20Plant%20Presentation%20(2).png"
+                alt="Capture d'écran de l'application Smart ESP"
+                className="w-full rounded-xl shadow-lg"
+              />
+            </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
+    <section className="py-20 bg-gradient-to-r from-blue-50 to-indigo-50 relative">
+      <IconBackground />
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold text-gray-800 mb-4">Ce que disent nos utilisateurs</h2>
+          <p className="text-xl text-gray-600">Approuvé par les développeurs et créateurs du monde entier</p>
+        </div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {testimonials.map((testimonial) => (
+            <div key={testimonial.id} className="bg-white/90 backdrop-blur-sm p-6 rounded-2xl border border-blue-100 hover:shadow-lg transition-shadow relative">
+              <div className="flex mb-4">
+                {[...Array(testimonial.rating)].map((_, i) => (
+                  <Star key={i} className="text-yellow-400 fill-current" size={16} />
+                ))}
+              </div>
+              <p className="text-gray-700 mb-4">"{testimonial.text}"</p>
+              <div>
+                <h4 className="font-semibold text-gray-800">{testimonial.name}</h4>
+                <p className="text-sm text-gray-600">{testimonial.role} at {testimonial.company}</p>
+              </div>
+              <div className="absolute top-4 right-4 text-blue-200">
+                <Cpu size={20} />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
 
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">Explorer Smart ESP</h2>
-            <p className="text-xl text-gray-600">Tout ce dont vous avez besoin pour le développement IoT</p>
-          </div>
-          <div className="grid lg:grid-cols-3 gap-8">
-            <div className="group bg-gradient-to-br from-white to-blue-50 p-8 rounded-2xl border border-blue-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 relative">
-              <div className="text-center space-y-6">
-                <div className="bg-blue-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
-                  <Download className="text-white" size={32} />
-                </div>
-                <h3 className="text-2xl font-bold text-gray-800">Télécharger Smart ESP</h3>
-                <p className="text-gray-600">Obtenez l'application Smart ESP complète avec toutes les bibliothèques et pilotes</p>
-                <button
-                  onClick={() => setCurrentPage("download")}
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors w-full"
-                >
-                  Voir les Téléchargements
-                </button>
-              </div>
-              <div className="absolute top-4 right-4 text-blue-200/50">
-                <Smartphone size={24} />
-              </div>
-            </div>
-            <div className="group bg-gradient-to-br from-white to-blue-50 p-8 rounded-2xl border border-blue-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 relative">
-              <div className="text-center space-y-6">
-                <div className="bg-green-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
-                  <Cpu className="text-white" size={32} />
-                </div>
-                <h3 className="text-2xl font-bold text-gray-800">Catalogue de Composants IoT</h3>
-                <p className="text-gray-600">Parcourez notre vaste catalogue de plus de 100 composants IoT avec des spécifications détaillées</p>
-                <button
-                  onClick={() => setCurrentPage("components")}
-                  className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors w-full"
-                >
-                  Parcourir les Composants
-                </button>
-              </div>
-              <div className="absolute top-4 right-4 text-green-200/50">
-                <Zap size={24} />
-              </div>
-            </div>
-            <div className="group bg-gradient-to-br from-white to-blue-50 p-8 rounded-2xl border border-blue-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 relative">
-              <div className="text-center space-y-6">
-                <div className="bg-purple-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
-                  <Globe className="text-white" size={32} />
-                </div>
-                <h3 className="text-2xl font-bold text-gray-800">Applications IoT Personnalisées</h3>
-                <p className="text-gray-600">Commandez des applications IoT personnalisées adaptées à vos besoins spécifiques</p>
-                <button
-                  onClick={() => setCurrentPage("custom")}
-                  className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors w-full"
-                >
-                  Commander une App Personnalisée
-                </button>
-              </div>
-              <div className="absolute top-4 right-4 text-purple-200/50">
-                <Cloud size={24} />
-              </div>
-            </div>
-          </div>
+    {/* >>> ADDED: Mission Section */}
+    <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-700 text-white relative overflow-hidden">
+      <div className="absolute inset-0 bg-black/10"></div> {/* Overlay for better text readability */}
+      <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
+        <h2 className="text-4xl md:text-5xl font-extrabold mb-8 tracking-tight">
+          Notre Mission
+        </h2>
+        <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-white/20">
+          <p className="text-lg md:text-xl leading-relaxed">
+            Notre mission est de permettre à chacun de créer des projets IoT, même avec très peu de connaissances techniques. Grâce à notre dévouement, de plus en plus de personnes osent entrer dans le domaine de l’IoT, découvrant qu’il est possible d’utiliser la technologie pour résoudre leurs problèmes rapidement et efficacement.
+          </p>
+          <p className="text-lg md:text-xl leading-relaxed mt-6">
+            Chez Smart ESP, nous mettons toutes les ressources à portée de main, afin que chacun, quel que soit son niveau, puisse explorer, apprendre et innover dans un environnement connecté et une communauté solidaire.
+          </p>
         </div>
-      </section>
+      </div>
+      {/* Subtle decorative elements */}
+      <div className="absolute top-10 left-10 text-white/10">
+        <Zap size={48} />
+      </div>
+      <div className="absolute bottom-10 right-10 text-white/10">
+        <Cpu size={48} />
+      </div>
+    </section>
 
-      <footer className="bg-gray-800 text-white py-12">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div>
-              <div className="flex items-center space-x-2 mb-4">
-                <Cpu className="text-blue-400" size={24} />
-                <span className="text-xl font-bold">Smart ESP</span>
+    <section className="py-20">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold text-gray-800 mb-4">Explorer Smart ESP</h2>
+          <p className="text-xl text-gray-600">Tout ce dont vous avez besoin pour le développement IoT</p>
+        </div>
+        <div className="grid lg:grid-cols-3 gap-8">
+          <div className="group bg-gradient-to-br from-white to-blue-50 p-8 rounded-2xl border border-blue-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 relative">
+            <div className="text-center space-y-6">
+              <div className="bg-blue-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
+                <Download className="text-white" size={32} />
               </div>
-              <p className="text-gray-400">Revolutionizing IoT development with AI-powered tools and seamless integrations.</p>
+              <h3 className="text-2xl font-bold text-gray-800">Télécharger Smart ESP</h3>
+              <p className="text-gray-600">Obtenez l'application Smart ESP complète avec toutes les bibliothèques et pilotes</p>
+              <button
+                onClick={() => setCurrentPage("download")}
+                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors w-full"
+              >
+                Voir les Téléchargements
+              </button>
             </div>
-            <div>
-              <h4 className="font-semibold mb-4">Produits</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li>Application Smart ESP</li>
-                <li>Bibliothèque ESP32</li>
-                <li>Bibliothèque ESP8266</li>
-                <li>Fichiers Pilotes</li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Fonctionnalités</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li>Intégration IA Gemini</li>
-                <li>Synchronisation Google Sheets</li>
-                <li>Intégration Gmail</li>
-                <li>Assistant IA</li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Support</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li>smartespservices@gmail.com</li>
-               
-              </ul>
+            <div className="absolute top-4 right-4 text-blue-200/50">
+              <Smartphone size={24} />
             </div>
           </div>
-          <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2025 Smart ESP. All rights reserved.</p>
+          <div className="group bg-gradient-to-br from-white to-blue-50 p-8 rounded-2xl border border-blue-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 relative">
+            <div className="text-center space-y-6">
+              <div className="bg-green-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
+                <Cpu className="text-white" size={32} />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-800">Catalogue de Composants IoT</h3>
+              <p className="text-gray-600">Parcourez notre vaste catalogue de plus de 100 composants IoT avec des spécifications détaillées</p>
+              <button
+                onClick={() => setCurrentPage("components")}
+                className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors w-full"
+              >
+                Parcourir les Composants
+              </button>
+            </div>
+            <div className="absolute top-4 right-4 text-green-200/50">
+              <Zap size={24} />
+            </div>
+          </div>
+          <div className="group bg-gradient-to-br from-white to-blue-50 p-8 rounded-2xl border border-blue-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 relative">
+            <div className="text-center space-y-6">
+              <div className="bg-purple-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
+                <Globe className="text-white" size={32} />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-800">Applications IoT Personnalisées</h3>
+              <p className="text-gray-600">Commandez des applications IoT personnalisées adaptées à vos besoins spécifiques</p>
+              <button
+                onClick={() => setCurrentPage("custom")}
+                className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors w-full"
+              >
+                Commander une App Personnalisée
+              </button>
+            </div>
+            <div className="absolute top-4 right-4 text-purple-200/50">
+              <Cloud size={24} />
+            </div>
           </div>
         </div>
-      </footer>
-    </div>
-  );
+      </div>
+    </section>
+    <footer className="bg-gray-800 text-white py-12">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid md:grid-cols-4 gap-8">
+          <div>
+            <div className="flex items-center space-x-2 mb-4">
+              <Cpu className="text-blue-400" size={24} />
+              <span className="text-xl font-bold">Smart ESP</span>
+            </div>
+            <p className="text-gray-400">Revolutionizing IoT development with AI-powered tools and seamless integrations.</p>
+          </div>
+          <div>
+            <h4 className="font-semibold mb-4">Produits</h4>
+            <ul className="space-y-2 text-gray-400">
+              <li>Application Smart ESP</li>
+              <li>Bibliothèque ESP32</li>
+              <li>Bibliothèque ESP8266</li>
+              <li>Fichiers Pilotes</li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="font-semibold mb-4">Fonctionnalités</h4>
+            <ul className="space-y-2 text-gray-400">
+              <li>Intégration IA Gemini</li>
+              <li>Synchronisation Google Sheets</li>
+              <li>Intégration Gmail</li>
+              <li>Assistant IA</li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="font-semibold mb-4">Support</h4>
+            <ul className="space-y-2 text-gray-400">
+              <li>smartespservices@gmail.com</li>
+            </ul>
+          </div>
+        </div>
+        <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+          <p>&copy; 2025 Smart ESP. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+);
 
   const DownloadPage = () => (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white">
