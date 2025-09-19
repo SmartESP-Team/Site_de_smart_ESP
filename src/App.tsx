@@ -1857,7 +1857,7 @@ const ScriptCircuitPage = () => {
   <text x="50" y="740" font-size="12" fill="black" font-weight="bold">GND-1: All ground connections</text>
   <text x="50" y="760" font-size="12" fill="red" font-weight="bold">3V3-2: All 3.3V power connections</text>
   <text x="50" y="780" font-size="12" fill="blue" font-weight="bold">SDA-4: I2C data line</text>
-  <!-- Your SVG content here -->
+ 
 </svg>
 
 ## Analysis Checklist:
