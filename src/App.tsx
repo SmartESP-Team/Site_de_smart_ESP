@@ -1813,6 +1813,30 @@ const ScriptCircuitPage = () => {
 - **Add pull-up/pull-down resistors** if mentioned in code/docs
 - **Show communication buses clearly** (SPI, I2C, UART)
 
+Simple shapes only:
+
+Rectangles for microcontrollers and sensors
+Squares for buttons and small components
+Circles for LEDs
+NO triangles or complex symbols
+
+
+Well-spaced layout:
+
+Minimum 100px between components
+ESP32 in center area
+Sensors on left side (well spaced)
+LEDs/outputs on right side (well spaced)
+Uses full 1200x800 SVG area
+
+
+Easy to understand:
+
+Simple geometric forms
+Lots of white space
+Clear pin labels with both pin names AND connection numbers
+Clean, uncluttered appearance
+
 ## SVG Structure Template:
 <svg width="1200" height="800" xmlns="http://www.w3.org/2000/svg">
 
@@ -1880,7 +1904,7 @@ const ScriptCircuitPage = () => {
 
 ---
 
-**ANALYZE THIS COMPLETE PROJECT AND OUTPUT SVG CIRCUIT:**
+**ANALYZE THIS COMPLETE PROJECT AND OUTPUT SVG CIRCUIT :**
 
 ${projectDescription}`;
 
