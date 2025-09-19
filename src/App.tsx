@@ -2252,7 +2252,7 @@ Le tout doit être clair, concis et directement utilisable par un étudiant ou u
 
   // >>> NEW FEATURE: Filter components using the debounced search term
   const filteredComponents = iotComponents.filter((component) =>
-    component.name.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
+     component.name.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
   );
 
   return (
