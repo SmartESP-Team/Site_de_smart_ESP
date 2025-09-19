@@ -2166,27 +2166,43 @@ Catalogue de composants, bibliothèques et <strong className="text-teal-600">out
     </div>
   );
 
-  
-    const ComponentsPage = () => {
-  // >>> NEW FEATURE: State for multi-selection and custom prompt
-  const [selectedComponentsForAI, setSelectedComponentsForAI] = useState<Component[]>([]);
+ const ComponentsPage = () => {
+  // >>> NEW FEATURE: State for multi-selection and custom prompt (with persistence)
+  const [selectedComponentsForAI, setSelectedComponentsForAI] = useState<Component[]>(() => {
+    // Load from localStorage on initial render
+    const savedIds = localStorage.getItem('selectedComponentIds');
+    if (savedIds) {
+      try {
+        const ids = JSON.parse(savedIds) as number[];
+        return iotComponents.filter(comp => ids.includes(comp.id));
+      } catch (error) {
+        console.error("Failed to parse saved component IDs from localStorage", error);
+        return [];
+      }
+    }
+    return [];
+  });
+
   const [customPrompt, setCustomPrompt] = useState("");
   const [customGeneratedCode, setCustomGeneratedCode] = useState<string | null>(null);
   const [loadingCustomCode, setLoadingCustomCode] = useState(false);
 
-  // >>> NEW FEATURE: Debounced Search State
-  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
+  // >>> NEW FEATURE: Applied Search Term (for Enter key)
+  const [appliedSearchTerm, setAppliedSearchTerm] = useState("");
 
-  // >>> NEW FEATURE: Debounce effect for search
+  // Handle Enter key press for search
+  const handleSearchKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      setAppliedSearchTerm(searchTerm); // Apply the search only on Enter
+      e.preventDefault();
+    }
+  };
+
+  // Effect to save selected components to localStorage
   useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedSearchTerm(searchTerm);
-    }, 300); // Wait 300ms after user stops typing
-
-    return () => {
-      clearTimeout(handler); // Cleanup timeout if user types again
-    };
-  }, [searchTerm]);
+    const ids = selectedComponentsForAI.map(comp => comp.id);
+    localStorage.setItem('selectedComponentIds', JSON.stringify(ids));
+  }, [selectedComponentsForAI]);
 
   // >>> NEW FEATURE: Function to toggle component selection
   const toggleComponentSelectionForAI = (component: Component) => {
@@ -2262,9 +2278,9 @@ Le tout doit être clair, concis et directement utilisable par un étudiant ou u
     setCustomGeneratedCode(null);
   };
 
-  // >>> NEW FEATURE: Filter components using the debounced search term
+  // >>> NEW FEATURE: Filter components using the applied search term (on Enter)
   const filteredComponents = iotComponents.filter((component) =>
-     component.name.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
+    component.name.toLowerCase().includes(appliedSearchTerm.toLowerCase())
   );
 
   return (
@@ -2298,8 +2314,9 @@ Le tout doit être clair, concis et directement utilisable par un étudiant ou u
             <input
               type="text"
               placeholder="Rechercher un composant..."
-              value={searchTerm} // <-- Still controlled by the main state
-              onChange={(e) => setSearchTerm(e.target.value)} // <-- Updates main state, debounced version is used for filtering
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              onKeyPress={handleSearchKeyPress} // <-- NEW: Trigger search on Enter
               className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
@@ -2435,6 +2452,19 @@ Le tout doit être clair, concis et directement utilisable par un étudiant ou u
               >
                 +
               </button>
+              {/* >>> NEW FEATURE: Add "Voir sur YouTube" button */}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation(); // Prevents the modal from opening
+                  window.open(`https://www.youtube.com/results?search_query=${encodeURIComponent(component.name)}`, '_blank', 'noopener,noreferrer');
+                }}
+                className="absolute top-2 left-2 bg-red-600 hover:bg-red-700 text-white w-8 h-8 rounded-full flex items-center justify-center text-xs shadow-md hover:shadow-lg transition-all z-10"
+                title="Voir sur YouTube"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.007-.103c.05-.572.124-1.14.235-1.558a2.007 2.007 0 0 1 1.415-1.42c.487-.132 1.544-.211 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/>
+                </svg>
+              </button>
             </div>
           ))}
         </div>
@@ -2474,71 +2504,8 @@ Le tout doit être clair, concis et directement utilisable par un étudiant ou u
                   </div>
 
                   <div>
-                    <h3 className="font-semibold text-gray-800 mb-2">Alimentation</h3>
-                    <p className="text-blue-600 font-medium">{selectedComponent.voltage}</p>
-                  </div>
-
-                  <div>
-                    <h3 className="font-semibold text-gray-800 mb-2">Spécifications Clés</h3>
-                    <ul className="space-y-1">
-                      {selectedComponent.specifications.map((spec, index) => (
-                        <li key={index} className="text-gray-600 flex items-center space-x-2">
-                          <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                          <span>{spec}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <button
-                    onClick={() => generateCode(selectedComponent)}
-                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-2"
-                  >
-                    <Zap size={16} />
-                    <span>Générer le code</span>
-                  </button>
-
-                  {loadingCode && (
-                    <p className="text-blue-600 mt-2 flex items-center space-x-2">
-                      <Zap className="animate-spin" size={16} />
-                      <span>Génération du code...</span>
-                    </p>
-                  )}
-
-                  {generatedCode && (
-                    <div className="mt-4">
-                      <div className="flex justify-between items-center mb-2">
-                        <h3 className="font-semibold text-gray-800">Code Généré</h3>
-                        <button
-                          onClick={() => {
-                            navigator.clipboard.writeText(generatedCode).then(
-                              () => alert("✅ Code copié dans le presse-papiers !"),
-                              () => alert("❌ Échec de la copie.")
-                            );
-                          }}
-                          className="flex items-center space-x-1 text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-1 rounded border"
-                        >
-                          <Copy size={14} />
-                          <span>Copier</span>
-                        </button>
-                      </div>
-                      <pre className="bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto text-sm leading-relaxed whitespace-pre-wrap font-mono">
-                        {generatedCode}
-                      </pre>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-};      
-          
-          
-          
+                    <h3 className="font-semibold text-gray-80 
+     
           
           
           
