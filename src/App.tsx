@@ -1814,7 +1814,8 @@ const ScriptCircuitPage = () => {
 - **Show communication buses clearly** (SPI, I2C, UART)
 
 ## SVG Structure Template:
-`svg
+<svg width="1200" height="800" xmlns="http://www.w3.org/2000/svg">
+
 <svg width="1200" height="800" xmlns="http://www.w3.org/2000/svg">
   <!-- NO BACKGROUND - Pure white -->
   
@@ -1856,8 +1857,8 @@ const ScriptCircuitPage = () => {
   <text x="50" y="740" font-size="12" fill="black" font-weight="bold">GND-1: All ground connections</text>
   <text x="50" y="760" font-size="12" fill="red" font-weight="bold">3V3-2: All 3.3V power connections</text>
   <text x="50" y="780" font-size="12" fill="blue" font-weight="bold">SDA-4: I2C data line</text>
+  <!-- Your SVG content here -->
 </svg>
-`
 
 ## Analysis Checklist:
 - [ ] What microcontroller/board is used?
