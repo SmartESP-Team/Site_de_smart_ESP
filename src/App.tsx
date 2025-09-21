@@ -1812,7 +1812,6 @@ const ScriptCircuitPage = () => {
 
 ## SVG STRUCTURE TEMPLATE
 
-```xml
 <svg width="1400" height="1000" xmlns="http://www.w3.org/2000/svg">
   
   <!-- Title -->
@@ -1885,7 +1884,6 @@ const ScriptCircuitPage = () => {
   <rect x="0" y="0" width="1400" height="1000" fill="url(#grid)" opacity="0.5"/>
   
 </svg>
-```
 
 ## LAYOUT STRATEGY
 
