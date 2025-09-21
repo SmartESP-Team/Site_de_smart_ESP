@@ -2511,8 +2511,123 @@ Exigences :
   };
 
   // --- Page Components ---
-  const HomePage = () => (
+const HomePage = () => {
+  // State for the lead capture popup
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [userContact, setUserContact] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState("");
+
+  // Check on component mount if popup should be shown
+  useEffect(() => {
+    const hasSubmitted = localStorage.getItem('leadCaptureSubmitted');
+    if (!hasSubmitted) {
+      setIsPopupOpen(true);
+    }
+  }, []);
+
+  // Function to handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!userContact.trim()) {
+      setSubmitMessage("Veuillez entrer votre email ou numéro de téléphone.");
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitMessage("");
+
+    try {
+      const response = await fetch('https://script.google.com/macros/s/AKfycbzpVs3DXa0SXVKu9Y-qra2DUMu45tD9xglmaokWP60NhhqWV_yHdAQkebHdSqFeWzBPfw/exec', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          contact: userContact.trim(),
+          timestamp: new Date().toISOString(),
+          source: 'SmartESP_Homepage_Popup'
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.status === 'success') {
+        setSubmitMessage("Merci ! Vos coordonnées ont été enregistrées.");
+        localStorage.setItem('leadCaptureSubmitted', 'true');
+        setTimeout(() => {
+          setIsPopupOpen(false);
+          setSubmitMessage("");
+        }, 2000);
+      } else {
+        setSubmitMessage("Une erreur s'est produite. Veuillez réessayer.");
+      }
+    } catch (error) {
+      console.error("Erreur lors de l'envoi des données:", error);
+      setSubmitMessage("Erreur de connexion. Veuillez réessayer plus tard.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  // The popup component
+  const LeadCapturePopup = () => {
+    if (!isPopupOpen) return null;
+
+    return (
+      <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+        <div className="bg-white rounded-2xl p-8 max-w-md w-full shadow-2xl transform animate-fadeIn">
+          <div className="flex justify-between items-start mb-4">
+            <h2 className="text-2xl font-bold text-gray-800">Restez Informé !</h2>
+            {/* Uncomment the line below if you want to allow closing without submitting.
+                 This will make the popup reappear on page refresh.
+            <button
+              onClick={() => setIsPopupOpen(false)}
+              className="text-gray-400 hover:text-gray-600 text-2xl"
+            >
+              ×
+            </button> */}
+          </div>
+          <p className="text-gray-600 mb-6">
+            Inscrivez-vous pour recevoir les dernières mises à jour, tutoriels et offres exclusives pour vos projets IoT !
+          </p>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <input
+              type="text"
+              value={userContact}
+              onChange={(e) => setUserContact(e.target.value)}
+              placeholder="Votre email ou numéro de téléphone"
+              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              required
+            />
+            {submitMessage && (
+              <p className={`text-sm ${submitMessage.includes('Merci') ? 'text-green-600' : 'text-red-600'}`}>
+                {submitMessage}
+              </p>
+            )}
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold transition-colors flex items-center justify-center space-x-2"
+            >
+              {isSubmitting ? (
+                <>
+                  <Zap className="animate-spin" size={20} />
+                  <span>Envoi en cours...</span>
+                </>
+              ) : (
+                <span>S'inscrire</span>
+              )}
+            </button>
+          </form>
+        </div>
+      </div>
+    );
+  };
+
+  return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white scroll-smooth">
+      <LeadCapturePopup />
       <IconBackground />
       <nav className="bg-white/90 backdrop-blur-sm border-b border-blue-100 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 py-4">
@@ -2793,7 +2908,7 @@ Catalogue de composants, bibliothèques et <strong className="text-teal-600">out
       </footer>
     </div>
   );
-
+};
   const DownloadPage = () => (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white">
       <IconBackground />
