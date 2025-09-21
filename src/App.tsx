@@ -1739,172 +1739,309 @@ const ScriptCircuitPage = () => {
     try {
       const systemPrompt = `
 
-# Complete Project to SVG Circuit Generator
+# Professional SVG Circuit Diagram Generator
 
-**MISSION**: Analyze the complete project information provided (documentation, code, wiring descriptions, component lists, explanations) and generate a COMPLETE SVG circuit diagram showing all components, connections, and pin mappings.
+**MISSION**: Create PROFESSIONAL, ACCURATE SVG circuit diagrams that are so clear that anyone can understand the connections at a glance.
 
-## What to Analyze:
-- **Project documentation and descriptions**
-- **Component lists and specifications** 
-- **Wiring diagrams (even text-based ones)**
-- **Code with pin definitions**
-- **Functionality explanations**
-- **Setup instructions**
-- **Any technical details provided**
+## 🚨 CRITICAL OUTPUT REQUIREMENT 🚨
+**OUTPUT ONLY THE SVG CODE - NO EXPLANATIONS, NO TEXT, NO COMMENTS**
+**RESPOND WITH PURE SVG MARKUP ONLY**
 
-## Information Extraction Process:
-1. **Read ALL provided content** - documentation, code, diagrams, explanations
-2. **Identify the main microcontroller** (ESP32, ESP8266, Arduino, etc.)
-3. **Extract ALL components mentioned** (sensors, displays, motors, LEDs, buttons, etc.)
-4. **Map pin connections** from code AND documentation
-5. **Understand component specifications** (voltage, communication protocols)
-6. **Identify power requirements** (3.3V, 5V, GND connections)
-7. **Note any special considerations** (pull-up resistors, voltage dividers, etc.)
+## 🚫 ABSOLUTE RULE: NO WIRE LINES 🚫
+**NEVER DRAW ANY LINES, PATHS, OR WIRES BETWEEN COMPONENTS**
+**CONNECTIONS ARE SHOWN ONLY BY MATCHING NUMBERS ON PINS**
+**NO `<line>`, NO `<path>`, NO `<polyline>` ELEMENTS FOR CONNECTIONS**
+**THE NUMBERED PIN SYSTEM IS THE ONLY CONNECTION METHOD**
 
-## SVG Output Requirements:
+## NO WIRE LINES - NUMBERS ONLY CONNECTION SYSTEM
+- **ZERO LINES**: Never draw wires, traces, or connection lines
+- **NUMBERED PINS**: Same number = connected together
+- **VISUAL CLARITY**: Clean layout with only numbered connection points
+- **NO CONNECTING ELEMENTS**: No lines, arrows, or paths between components
 
-### Layout Strategy:
-- **Position microcontroller centrally**
-- **Group components logically** (inputs left, outputs right, power top/bottom)
-- **Leave space for clean wire routing**
-- **Size: 1200x800 minimum** for complex projects
+## CRITICAL VISUAL REQUIREMENTS
 
-### Component Representation:
-- **Microcontroller**: Rectangle with ALL used pins labeled clearly
-- **Sensors**: Rectangles with pin names (VCC, GND, SDA, SCL, A0, etc.)
-- **Displays**: Rectangles showing screen area + connection pins
-- **Motors/Relays**: Motor symbols with connection terminals
-- **LEDs**: LED symbols with polarity (+ and -)
-- **Buttons**: Switch symbols with connection points
-- **Resistors**: Zigzag rectangles with values
-- **Capacitors**: Capacitor symbols with polarity if needed
+### 1. PIN PLACEMENT RULES (MANDATORY)
+- **PINS MUST BE EXACTLY ON COMPONENT EDGES** - Never floating outside or inside
+- **PIN CIRCLES positioned PRECISELY on the border** of rectangles/shapes
+- **PIN SPACING**: Minimum 25px between adjacent pins
+- **PIN SIZE**: 4px radius circles for visibility
 
-### Pin Labeling Rules:
-- **EVERY pin must show BOTH the pin name AND connection number**
-- **Format: "PINNAME-NUMBER"** 
-- **Examples**:
-  - ESP32 pins: "GPIO3-5", "GPIO4-7", "VCC-2", "GND-1"
-  - RC522 pins: "SDA-5", "SCK-6", "VCC-2", "GND-1" 
-  - Sensor pins: "A0-8", "VCC-2", "GND-1"
-  - LED pins: "+-9", "--1" (positive and negative)
-- **Same connection number = pins connect together**
-- **ALL TEXT MUST BE HIGH CONTRAST**: Black text on light components, white text on dark components
-- **Use readable text size** (font-size="10" minimum for pin labels, "12" for component names)
+**EXACT PIN POSITIONING FORMULAS:**
+- **Right edge pins**: `cx="componentX + componentWidth"` `cy="componentY + pinOffset"`
+- **Left edge pins**: `cx="componentX"` `cy="componentY + pinOffset"`
+- **Top edge pins**: `cx="componentX + pinOffset"` `cy="componentY"`  
+- **Bottom edge pins**: `cx="componentX + pinOffset"` `cy="componentY + componentHeight"`
 
-### Connection System - NO WIRES:
-- **DO NOT draw any lines, wires, or paths between components**
-- **Use NUMBERS next to each pin** to show connections
-- **Same number = connected together**
-- **Example**: 
-  - ESP32 GND pin → label "GND-1"
-  - Potentiometer GND pin → label "GND-1"  
-  - LED GND pin → label "GND-1"
-  - (All GND-1 pins connect together)
-- **Color coding for numbers**:
-  - Red numbers: Power connections (VCC-1, 3V3-2, etc.)
-  - Black numbers: Ground connections (GND-1, GND-2, etc.)
-  - Blue numbers: Digital signals (GPIO2-3, SDA-4, etc.)
-  - Green numbers: Analog signals (A0-5, etc.)
-- **Position numbers right next to the pins** for easy identification
+**EXAMPLE**: If component is `<rect x="200" y="300" width="150" height="100">`:
+- Right edge pin at middle: `<circle cx="350" cy="350" r="4"/>` (200+150=350, 300+50=350)
+- Left edge pin at top: `<circle cx="200" cy="320" r="4"/>` (exactly at x=200)
+- Top edge pin: `<circle cx="275" cy="300" r="4"/>` (exactly at y=300)
+- Bottom edge pin: `<circle cx="275" cy="400" r="4"/>` (300+100=400)
 
-### Technical Details:
-- **Show component values** (resistor ohms, capacitor farads)
-- **Indicate voltage levels** where important
-- **Add pull-up/pull-down resistors** if mentioned in code/docs
-- **Show communication buses clearly** (SPI, I2C, UART)
+### 2. COMPONENT STANDARDS
+- **Minimum component size**: 120px width × 80px height
+- **Component spacing**: Minimum 150px between any two components
+- **Rounded corners**: `rx="5"` for professional appearance
+- **Border width**: `stroke-width="2"` for all components
+- **Component colors**:
+  - Microcontrollers: `fill="#2C3E50"` (dark blue-gray)
+  - Sensors: `fill="#ECF0F1"` (light gray)
+  - Displays: `fill="#34495E"` (medium gray)
+  - Power components: `fill="#E74C3C"` (red)
+  - LEDs: `fill="#F39C12"` (orange)
 
-Simple shapes only:
+### 3. PIN LABELING SYSTEM
+- **Format**: `PINNAME-CONNECTION#`
+- **Label placement**: 
+  - Left pins: Label 15px to the LEFT of pin (`x="pinX - 15"`)
+  - Right pins: Label 15px to the RIGHT of pin (`x="pinX + 15"`)
+  - Top pins: Label 10px ABOVE pin (`y="pinY - 10"`)
+  - Bottom pins: Label 15px BELOW pin (`y="pinY + 15"`)
+- **Text anchoring**:
+  - Left labels: `text-anchor="end"`
+  - Right labels: `text-anchor="start"`
+  - Top/Bottom labels: `text-anchor="middle"`
 
-Rectangles for microcontrollers and sensors
-Squares for buttons and small components
-Circles for LEDs
-NO triangles or complex symbols
+### 4. CONNECTION COLOR CODING
+- **Power (Red)**: VCC, 3V3, 5V, VIN
+- **Ground (Black)**: GND, GND1, GND2
+- **Digital I/O (Blue)**: GPIO pins, SDA, SCL, CS, MOSI, MISO
+- **Analog (Green)**: A0, A1, ADC pins
+- **Special (Purple)**: RST, EN, CLK
 
+## SVG STRUCTURE TEMPLATE
 
-Well-spaced layout:
-
-Minimum 100px between components
-ESP32 in center area
-Sensors on left side (well spaced)
-LEDs/outputs on right side (well spaced)
-Uses full 1200x800 SVG area
-
-
-Easy to understand:
-
-Simple geometric forms
-Lots of white space
-Clear pin labels with both pin names AND connection numbers
-Clean, uncluttered appearance
-
-## SVG Structure Template:
-<svg width="1200" height="800" xmlns="http://www.w3.org/2000/svg">
-
-<svg width="1200" height="800" xmlns="http://www.w3.org/2000/svg">
-  <!-- NO BACKGROUND - Pure white -->
+```xml
+<svg width="1400" height="1000" xmlns="http://www.w3.org/2000/svg">
   
   <!-- Title -->
-  <text x="600" y="30" text-anchor="middle" font-size="18" font-weight="bold" fill="black">PROJECT_NAME Circuit</text>
+  <text x="700" y="40" text-anchor="middle" font-size="24" font-weight="bold" fill="#2C3E50">PROJECT_NAME Circuit Diagram</text>
   
-  <!-- ESP32 with numbered pins -->
-  <rect x="500" y="300" width="200" height="200" fill="black" stroke="black" stroke-width="2"/>
-  <text x="600" y="320" text-anchor="middle" fill="white" font-size="16" font-weight="bold">ESP32</text>
+  <!-- ESP32 Example (Centered) -->
+  <rect x="600" y="400" width="200" height="150" rx="5" fill="#2C3E50" stroke="#34495E" stroke-width="2"/>
+  <text x="700" y="425" text-anchor="middle" font-size="16" font-weight="bold" fill="white">ESP32 DevKit</text>
   
-  <!-- ESP32 pins with BOTH pin names AND connection numbers -->
-  <circle cx="495" cy="340" r="3" fill="blue"/>
-  <text x="470" y="345" text-anchor="end" font-size="10" fill="blue" font-weight="bold">GPIO21-4</text>
+  <!-- ESP32 Left Pins (EXACTLY on left edge) -->
+  <circle cx="600" cy="440" r="4" fill="#E74C3C"/>
+  <text x="585" y="445" text-anchor="end" font-size="12" font-weight="bold" fill="#E74C3C">3V3-1</text>
   
-  <circle cx="495" cy="360" r="3" fill="black"/>
-  <text x="470" y="365" text-anchor="end" font-size="10" fill="black" font-weight="bold">GND-1</text>
+  <circle cx="600" cy="465" r="4" fill="#2C3E50"/>
+  <text x="585" y="470" text-anchor="end" font-size="12" font-weight="bold" fill="#2C3E50">GND-2</text>
   
-  <circle cx="495" cy="380" r="3" fill="red"/>
-  <text x="470" y="385" text-anchor="end" font-size="10" fill="red" font-weight="bold">3V3-2</text>
+  <circle cx="600" cy="490" r="4" fill="#3498DB"/>
+  <text x="585" y="495" text-anchor="end" font-size="12" font-weight="bold" fill="#3498DB">GPIO21-3</text>
   
-  <circle cx="495" cy="400" r="3" fill="green"/>
-  <text x="470" y="405" text-anchor="end" font-size="10" fill="green" font-weight="bold">GPIO34-8</text>
+  <circle cx="600" cy="515" r="4" fill="#3498DB"/>
+  <text x="585" y="520" text-anchor="end" font-size="12" font-weight="bold" fill="#3498DB">GPIO22-4</text>
   
-  <!-- RC522 with pin names AND matching connection numbers -->
-  <rect x="200" y="200" width="100" height="80" fill="lightgray" stroke="black" stroke-width="2"/>
-  <text x="250" y="220" text-anchor="middle" font-size="12" fill="black" font-weight="bold">RC522</text>
+  <!-- ESP32 Right Pins (EXACTLY on right edge) -->
+  <circle cx="800" cy="440" r="4" fill="#27AE60"/>
+  <text x="815" y="445" text-anchor="start" font-size="12" font-weight="bold" fill="#27AE60">GPIO34-5</text>
   
-  <circle cx="195" cy="240" r="2" fill="blue"/>
-  <text x="170" y="245" text-anchor="end" font-size="10" fill="blue" font-weight="bold">SDA-4</text>
+  <circle cx="800" cy="465" r="4" fill="#27AE60"/>
+  <text x="815" y="470" text-anchor="start" font-size="12" font-weight="bold" fill="#27AE60">GPIO35-6</text>
   
-  <circle cx="195" cy="260" r="2" fill="black"/>
-  <text x="170" y="265" text-anchor="end" font-size="10" fill="black" font-weight="bold">GND-1</text>
+  <!-- Sensor Example (Left side) -->
+  <rect x="200" y="300" width="150" height="100" rx="5" fill="#ECF0F1" stroke="#BDC3C7" stroke-width="2"/>
+  <text x="275" y="325" text-anchor="middle" font-size="14" font-weight="bold" fill="#2C3E50">BME280 Sensor</text>
   
-  <circle cx="195" cy="280" r="2" fill="red"/>
-  <text x="170" y="285" text-anchor="end" font-size="10" fill="red" font-weight="bold">VCC-2</text>
+  <!-- Sensor Right Pins (EXACTLY on right edge x=350) -->
+  <circle cx="350" cy="330" r="4" fill="#E74C3C"/>
+  <text x="365" y="335" text-anchor="start" font-size="12" font-weight="bold" fill="#E74C3C">VCC-1</text>
+  
+  <circle cx="350" cy="355" r="4" fill="#2C3E50"/>
+  <text x="365" y="360" text-anchor="start" font-size="12" font-weight="bold" fill="#2C3E50">GND-2</text>
+  
+  <circle cx="350" cy="380" r="4" fill="#3498DB"/>
+  <text x="365" y="385" text-anchor="start" font-size="12" font-weight="bold" fill="#3498DB">SDA-3</text>
+  
+  <!-- LED Example (Right side) -->
+  <circle cx="1000" cy="350" r="25" fill="#F39C12" stroke="#E67E22" stroke-width="2"/>
+  <text x="1000" y="325" text-anchor="middle" font-size="12" font-weight="bold" fill="#2C3E50">LED</text>
+  
+  <!-- LED Pins -->
+  <circle cx="975" cy="350" r="4" fill="#27AE60"/>
+  <text x="960" y="355" text-anchor="end" font-size="12" font-weight="bold" fill="#27AE60">+-5</text>
+  
+  <circle cx="1025" cy="350" r="4" fill="#2C3E50"/>
+  <text x="1040" y="355" text-anchor="start" font-size="12" font-weight="bold" fill="#2C3E50">--2</text>
   
   <!-- Connection Legend -->
-  <text x="50" y="720" font-size="14" font-weight="bold" fill="black">Connections:</text>
-  <text x="50" y="740" font-size="12" fill="black" font-weight="bold">GND-1: All ground connections</text>
-  <text x="50" y="760" font-size="12" fill="red" font-weight="bold">3V3-2: All 3.3V power connections</text>
-  <text x="50" y="780" font-size="12" fill="blue" font-weight="bold">SDA-4: I2C data line</text>
- 
+  <rect x="50" y="800" width="300" height="150" rx="5" fill="#F8F9FA" stroke="#BDC3C7" stroke-width="1"/>
+  <text x="200" y="825" text-anchor="middle" font-size="16" font-weight="bold" fill="#2C3E50">Connection Guide</text>
+  
+  <text x="70" y="850" font-size="12" font-weight="bold" fill="#E74C3C">Power (Red): 3V3-1, VCC-1</text>
+  <text x="70" y="870" font-size="12" font-weight="bold" fill="#2C3E50">Ground (Black): GND-2</text>
+  <text x="70" y="890" font-size="12" font-weight="bold" fill="#3498DB">I2C Data: SDA-3, GPIO21-3</text>
+  <text x="70" y="910" font-size="12" font-weight="bold" fill="#27AE60">Analog: GPIO34-5, GPIO35-6</text>
+  
+  <!-- Professional Grid (Optional) -->
+  <defs>
+    <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+      <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#ECF0F1" stroke-width="1" opacity="0.3"/>
+    </pattern>
+  </defs>
+  <rect x="0" y="0" width="1400" height="1000" fill="url(#grid)" opacity="0.5"/>
+  
 </svg>
+```
 
-## Analysis Checklist:
-- [ ] What microcontroller/board is used?
-- [ ] What are ALL the components in the project?
-- [ ] Which pins are connected to what?
-- [ ] What communication protocols are used?
-- [ ] What are the power requirements?
-- [ ] Are there any special circuit considerations?
-- [ ] What component values are specified?
+## LAYOUT STRATEGY
 
-**CRITICAL VISUAL REQUIREMENTS**:
-- **NO BACKGROUND** - Do not add any background colors or patterns
-- **HIGH CONTRAST TEXT ONLY**: 
-  - Black text on light/white components
-  - White text on dark/black components
-  - ALL text must be bold (font-weight="bold")
-  - Minimum font-size="10" for pin labels, "12" for component names
-- **Clean white SVG** ready for any converter
+### Component Positioning:
+1. **ESP32/Main MCU**: Center (x=600-800, y=400-550)
+2. **Input Sensors**: Left side (x=150-400, y=200-700)  
+3. **Output Devices**: Right side (x=900-1250, y=200-700)
+4. **Power Components**: Top area (x=400-1000, y=100-200)
+5. **Communication modules**: Bottom area (x=400-1000, y=700-850)
+
+### Spacing Rules:
+- **Minimum 150px between components**
+- **Pin spacing: 25px minimum**
+- **Text clearance: 15px from pins**
+- **Border margins: 50px from SVG edges**
+
+## ADVANCED FEATURES
+
+### Visual Hierarchy:
+- **Drop shadows** for depth: `filter="drop-shadow(2px 2px 4px rgba(0,0,0,0.1))"`
+- **Gradient backgrounds** for power sections
+- **Consistent typography** throughout
+
+### Professional Touches:
+- **Component part numbers** in smaller text
+- **Voltage/current ratings** where relevant  
+- **Wire gauge recommendations** in legend
+- **Breadboard pin mapping** if applicable
+
+## 📋 DETAILED PROJECT ANALYSIS REQUIREMENTS
+
+### STEP 1: MICROCONTROLLER ANALYSIS
+**Extract EXACT pin information:**
+- **Board type**: ESP32, ESP8266, Arduino Uno, Nano, etc.
+- **Pin mapping**: Physical pin numbers AND GPIO names
+- **Used pins only**: List every single pin mentioned in code/documentation
+- **Pin functions**: Digital, Analog, PWM, I2C, SPI, UART
+
+**Example Format:**
+```
+ESP32 DevKit V1:
+- GPIO21 (Physical Pin 33) → SDA for I2C
+- GPIO22 (Physical Pin 36) → SCL for I2C  
+- GPIO4 (Physical Pin 26) → Digital Output for LED
+- GPIO34 (Physical Pin 6) → Analog Input for Sensor
+- 3V3 (Physical Pin 3) → Power Supply
+- GND (Physical Pin 14) → Ground
+```
+
+### STEP 2: COMPONENT DETAILED BREAKDOWN
+**For EACH component, extract:**
+
+**A) SENSORS (BME280, DHT22, MPU6050, etc.)**
+- **Model**: Exact part number
+- **Pin count**: How many pins total
+- **Pin names**: VCC, GND, SDA, SCL, DATA, etc.
+- **Voltage**: 3.3V or 5V
+- **Protocol**: I2C, SPI, Digital, Analog
+
+**B) DISPLAYS (OLED, LCD, 7-Segment)**
+- **Size/Type**: 0.96" OLED, 16x2 LCD, etc.
+- **Interface**: I2C, SPI, Parallel
+- **Pin mapping**: VCC, GND, SDA, SCL, CS, DC, RST
+
+**C) ACTUATORS (Motors, Servos, Relays)**
+- **Type**: Servo SG90, DC Motor, Stepper, Relay module
+- **Control pins**: Signal, Enable, Direction pins
+- **Power requirements**: Separate power supply needed?
+
+**D) INPUT DEVICES (Buttons, Potentiometers, Encoders)**
+- **Pin configuration**: Pull-up/pull-down requirements
+- **Connection type**: Digital input, analog input
+
+### STEP 3: CONNECTION MAPPING TABLE
+**Create exact pin-to-pin mapping:**
+
+| Component | Component Pin | Wire Color | MCU Pin | MCU GPIO | Function |
+|-----------|---------------|------------|---------|----------|----------|
+| BME280 | VCC | Red | Pin 3 | 3V3 | Power |
+| BME280 | GND | Black | Pin 14 | GND | Ground |
+| BME280 | SDA | Blue | Pin 33 | GPIO21 | I2C Data |
+| BME280 | SCL | Yellow | Pin 36 | GPIO22 | I2C Clock |
+| LED | Anode (+) | Red | Pin 26 | GPIO4 | Digital Out |
+| LED | Cathode (-) | Black | Pin 14 | GND | Ground |
+
+### STEP 4: SPECIAL CONSIDERATIONS
+**Identify and document:**
+- **Pull-up resistors**: 4.7kΩ for I2C lines
+- **Current limiting resistors**: 220Ω for LEDs
+- **Voltage dividers**: For analog sensors
+- **Decoupling capacitors**: 100nF ceramic caps
+- **External power**: 12V supply for motors
+
+### STEP 5: SCHOOL PROJECT CONTEXT
+**Educational clarity requirements:**
+- **Beginner-friendly**: Assume zero electronics knowledge
+- **Clear labeling**: Every connection must be obvious
+- **Safety notes**: Voltage warnings, polarity warnings
+- **Breadboard friendly**: Standard component spacing
+- **Parts list**: Exact components with part numbers
+
+### EXAMPLE: COMPLETE PROJECT ANALYSIS
+
+**Project**: "Arduino Weather Station with OLED Display"
+
+**Components Identified:**
+1. **Arduino Uno R3**
+   - Pin A4 (SDA) → OLED SDA
+   - Pin A5 (SCL) → OLED SCL
+   - Pin 5V → Power rail
+   - Pin GND → Ground rail
+
+2. **BME280 Temperature/Humidity Sensor**
+   - VCC pin → 3.3V (not 5V!)
+   - GND pin → Ground
+   - SDA pin → Arduino A4
+   - SCL pin → Arduino A5
+
+3. **0.96" OLED Display (SSD1306)**
+   - VCC pin → 5V power
+   - GND pin → Ground
+   - SDA pin → Arduino A4  
+   - SCL pin → Arduino A5
+
+4. **Support Components**
+   - 2x 4.7kΩ resistors (I2C pull-ups)
+   - Breadboard
+   - Jumper wires
+
+**Connection Summary:**
+- I2C Bus: A4 (SDA), A5 (SCL) shared between OLED and BME280
+- Power: 5V and 3.3V rails from Arduino
+- Ground: Common ground for all components
+
+## VALIDATION CHECKLIST
+
+- [ ] All pins are EXACTLY on component edges (use mathematical formulas)
+- [ ] Pin coordinates calculated: cx = componentX + componentWidth for right edge
+- [ ] Pin coordinates calculated: cx = componentX for left edge  
+- [ ] Pin coordinates calculated: cy = componentY for top edge
+- [ ] Pin coordinates calculated: cy = componentY + componentHeight for bottom edge
+- [ ] Pin labels are properly positioned and readable
+- [ ] Same connection numbers appear on all connected pins
+- [ ] Color coding is consistent throughout
+- [ ] Component spacing allows for clear reading
+- [ ] Legend explains all connections clearly
+- [ ] SVG uses full 1400×1000 space efficiently
+- [ ] Professional color scheme and typography
+
+**RESULT**: A circuit diagram so clear that anyone can build the project by following the numbered connections, with zero ambiguity about pin locations or connections.
 
 ---
 
-**ANALYZE THIS COMPLETE PROJECT AND OUTPUT SVG CIRCUIT :**
+## 🎯 FINAL INSTRUCTION 🎯
+**ANALYZE THE PROJECT AND OUTPUT ONLY THE SVG CODE**
+**NO EXTRA TEXT - JUST THE SVG file
 
 ${projectDescription}`;
 
