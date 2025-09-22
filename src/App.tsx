@@ -2523,10 +2523,10 @@ const HomePage = () => {
 
   // >>> NEW: Pre-defined list of 10 tester IDs
   const validTesterIds = [
-    'TEST-7H2K9',
-    'TEST-M4N8P',
-    'TEST-R6S1T',
-    'TEST-W3X5Y',
+    'TEST-21HOUeNOU6',
+    'Perry',
+    'TEST-R6NANI',
+    'TEST-TesT',
     'TEST-Z9A2B',
     'TEST-C7D4E',
     'TEST-F8G6H',
@@ -2569,7 +2569,7 @@ const HomePage = () => {
 
       // >>> REAL Google Sheets submission via Web App
       try {
-        const response = await fetch("https://script.google.com/macros/s/AKfycbzpVs3DXa0SXVKu9Y-qra2DUMu45tD9xglmaokWP60NhhqWV_yHdAQkebHdSqFeWzBPfw/exec", {
+        const response = await fetch("https://script.google.com/macros/s/AKfycbwGPSMfMO_cZrtNnTe1nLQyrasEs_d6UxQrarzTr3RxQmbYQDylGZcM9LTMmQHv62U5lA/exec", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
