@@ -2522,7 +2522,7 @@ const HomePage = () => {
 
   // >>> NEW: Pre-defined list of 10 tester IDs
   const validTesterIds = [
-    'TEST-7H2K9',
+    'TEST-7K9',
     'TEST-M4N8P',
     'TEST-R6S1T',
     'TEST-W3X5Y',
