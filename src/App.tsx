@@ -2512,19 +2512,70 @@ Exigences :
 
 // --- Page Components ---
 // --- Page Components ---
+import React, { useState } from 'react';
+// >>> Make sure you import these icons if not already
+import { Cpu, Brain, FileSpreadsheet, Mail, Settings, Star, Download, Smartphone, Zap, Globe, Cloud, ExternalLink } from 'lucide-react';
+
+// >>> Mock testimonials (replace with your real data)
+const testimonials = [
+  {
+    id: 1,
+    name: "Lina K.",
+    role: "Robotics Student",
+    company: "Tech University",
+    text: "I thought IoT was complex — until I got my VIP access. This is next-level.",
+    rating: 5
+  },
+  {
+    id: 2,
+    name: "David T.",
+    role: "Engineer",
+    company: "GreenTech Labs",
+    text: "The AI-generated code saved me 20 hours on my smart greenhouse project.",
+    rating: 5
+  },
+  {
+    id: 3,
+    name: "Amir S.",
+    role: "Maker & Educator",
+    company: "STEM Academy",
+    text: "Feels like I'm using a tool from the future. My students are blown away.",
+    rating: 5
+  },
+  {
+    id: 4,
+    name: "Sophie M.",
+    role: "Hobbyist",
+    company: "DIY Projects",
+    text: "Finally, an IoT tool that doesn't require a PhD to use. Love the Google Sheets sync!",
+    rating: 5
+  }
+];
+
+// >>> Mock IconBackground (replace with your actual component or remove if not used)
+const IconBackground = () => <div className="absolute inset-0 overflow-hidden pointer-events-none">
+  <div className="absolute -top-20 -left-20 w-80 h-80 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse"></div>
+  <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse"></div>
+</div>;
+
+// >>> Mock setCurrentPage (replace with your actual state setter from context/props)
+const setCurrentPage = (page: string) => {
+  console.log(`Navigating to: ${page}`);
+};
+
 const HomePage = () => {
   // >>> NEW: State for Download Modal Logic
   const [showDownloadModal, setShowDownloadModal] = useState(false);
   const [userType, setUserType] = useState<'tester' | 'user' | null>(null);
   const [testerId, setTesterId] = useState('');
-  const [userName, setUserName] = useState('');
-  const [userEmail, setUserEmail] = useState('');
+  const [userName, setUserName] = useState(''); // Not used anymore for users, but kept for structure
+  const [userEmail, setUserEmail] = useState(''); // Not used anymore for users
   const [downloadError, setDownloadError] = useState('');
 
   // >>> NEW: Pre-defined list of 10 tester IDs
   const validTesterIds = [
     'TEST-21HOUeNOU6',
-    'Perry',
+    'PERRY',
     'TEST-R6NANI',
     'TEST-TesT',
     'TEST-Z9A2B',
@@ -2540,80 +2591,31 @@ const HomePage = () => {
     window.open("https://github.com/SmartESP-Team/Site_de_smart_ESP/releases/download/v1.0/arduino.ide.hepler.zip", "_blank", "noopener,noreferrer");
   };
 
-  // >>> NEW: Function to handle form submission
-const handleDownloadFormSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setDownloadError('');
+  // >>> UPDATED: Function to handle form submission
+  const handleDownloadFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setDownloadError('');
 
-  if (userType === 'tester') {
-    // ✅ Tester mode
-    if (validTesterIds.includes(testerId.trim().toUpperCase())) {
-      alert('✅ Accès de testeur confirmé. Téléchargement en cours...');
-      setShowDownloadModal(false);
-      handleFinalDownload();
-
-      // Reset form
-      setUserType(null);
-      setTesterId('');
-    } else {
-      setDownloadError('❌ ID de testeur invalide. Veuillez vérifier et réessayer.');
-    }
-
-  } else if (userType === 'user') {
-    // ✅ User mode
-    if (!userName.trim() || !userEmail.trim()) {
-      setDownloadError('❌ Veuillez remplir tous les champs.');
-      return;
-    }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userEmail)) {
-      setDownloadError('❌ Veuillez entrer une adresse email valide.');
-      return;
-    }
-
-    try {
-      console.log('🔍 DEBUG: Starting fetch to Google Apps Script...');
-
-      const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbyadYgNtq55dPgIg2A_y8D7MKs0HaV81BPZSSBzGm0W9Fkxxap7wWZN1zQonj_clG0x/exec",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            name: userName,
-            email: userEmail,
-            timestamp: new Date().toISOString() // ✅ send timestamp for your Apps Script
-          }),
-        }
-      );
-
-      console.log('🔍 DEBUG: Fetch response received:', response.status, response.statusText);
-
-      if (!response.ok) {
-        throw new Error(`HTTP Error: ${response.status} ${response.statusText}`);
-      }
-
-      const result = await response.json();
-      console.log('🔍 DEBUG: Parsed JSON response:', result);
-
-      if (result.status === "success") {
-        alert(`🎉 Merci ${userName} ! Vos informations ont été enregistrées. Téléchargement en cours...`);
+    if (userType === 'tester') {
+      // ✅ Tester mode
+      if (validTesterIds.includes(testerId.trim().toUpperCase())) {
+        alert('✅ Accès de testeur confirmé. Téléchargement en cours...');
         setShowDownloadModal(false);
         handleFinalDownload();
 
         // Reset form
         setUserType(null);
-        setUserName('');
-        setUserEmail('');
+        setTesterId('');
       } else {
-        throw new Error(result.message || "Erreur inconnue côté serveur.");
+        setDownloadError('❌ ID de testeur invalide. Veuillez vérifier et réessayer.');
       }
 
-    } catch (error: any) {
-      console.error('🚨 CRITICAL ERROR:', error);
-      setDownloadError(`❌ Erreur lors de l’enregistrement : ${error.message}`);
+    } else if (userType === 'user') {
+      // ✅ USER MODE: Show message + Discord button (NO form submission)
+      setDownloadError('🚧 Cette fonctionnalité n’est pas encore disponible pour les utilisateurs. Rejoignez notre communauté Discord pour un accès gratuit et exclusif !');
+      // Do NOT submit or download — just show message and Discord button
     }
-  }
-};
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white scroll-smooth">
@@ -2666,15 +2668,15 @@ const handleDownloadFormSubmit = async (e: React.FormEvent) => {
             <div className="space-y-8">
               <div className="space-y-4">
                 <h1 className="text-5xl font-bold text-gray-800 leading-tight">
-                 Smart ESP – L’IoT pour tous : créez, innovez et partagez vos <span className="text-blue-600">projets connectés</span>
+                  Smart ESP – L’IoT pour tous : créez, innovez et partagez vos <span className="text-blue-600">projets connectés</span>
                 </h1>
                 <p className="text-xl text-gray-600 leading-relaxed">
                   <span>
-                 Smart ESP :  
-L’application <strong className="text-green-600">IoT qui libère votre potentiel</strong>, conçue pour <strong className="text-purple-600">étudiants</strong>, <strong className="text-purple-600">débutants</strong> et passionnés curieux.  
-Avec Smart ESP, transformez vos <strong className="text-orange-600">idées ESP32/ESP8266</strong> en projets réels, utiles et concrets pour votre entourage.  
-Profitez d’une <strong className="text-blue-500">collecte</strong>, d’une surveillance et d’un partage de données en temps réel grâce à <strong className="text-green-500">Google Sheets</strong>, <strong className="text-red-500">Gmail</strong> et l’<strong className="text-pink-500">assistance IA Gemini</strong>.  
-Catalogue de composants, bibliothèques et <strong className="text-teal-600">outils intelligents</strong> : tout est pensé pour que vous ressentiez la fierté de réussir, sans configuration complexe.  
+                    Smart ESP :  
+                    L’application <strong className="text-green-600">IoT qui libère votre potentiel</strong>, conçue pour <strong className="text-purple-600">étudiants</strong>, <strong className="text-purple-600">débutants</strong> et passionnés curieux.  
+                    Avec Smart ESP, transformez vos <strong className="text-orange-600">idées ESP32/ESP8266</strong> en projets réels, utiles et concrets pour votre entourage.  
+                    Profitez d’une <strong className="text-blue-500">collecte</strong>, d’une surveillance et d’un partage de données en temps réel grâce à <strong className="text-green-500">Google Sheets</strong>, <strong className="text-red-500">Gmail</strong> et l’<strong className="text-pink-500">assistance IA Gemini</strong>.  
+                    Catalogue de composants, bibliothèques et <strong className="text-teal-600">outils intelligents</strong> : tout est pensé pour que vous ressentiez la fierté de réussir, sans configuration complexe.
                   </span>
                 </p>
               </div>
@@ -2717,71 +2719,71 @@ Catalogue de composants, bibliothèques et <strong className="text-teal-600">out
                   <span>Smart ESP Premium Workflow </span>
                 </button>
                 <button
-    className="bg-[#5865F2] hover:bg-[#4752C4] text-white border-2 border-[#5865F2] px-6 py-3 rounded-lg text-base font-semibold transition-colors transform hover:scale-105 flex items-center justify-center space-x-2"
-    onClick={() => window.open("https://discord.gg/rJfVXHgs", "_blank", "noopener,noreferrer")}
-  >
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-      <path d="M13.545 2.907a13.227 13.227 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.19 12.19 0 0 0-3.658 0 8.258 8.258 0 0 0-.412-.833.051.051 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.041.041 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032c.001.014.01.028.021.037a13.276 13.276 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019c.308-.42.582-.863.818-1.329a.05.05 0 0 0-.01-.059.051.051 0 0 0-.018-.011 8.875 8.875 0 0 1-1.248-.595.05.05 0 0 1-.02-.066.051.051 0 0 1 .015-.019c.084-.063.168-.129.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.052.052 0 0 1 .053.007c.08.066.164.132.248.195a.051.051 0 0 1-.004.085 8.254 8.254 0 0 1-1.249.594.05.05 0 0 0-.03.03.052.052 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.235 13.235 0 0 0 4.001-2.02.049.049 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.034.034 0 0 0-.02-.019Zm-8.198 7.307c-.789 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612Zm5.316 0c-.788 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612Z"/>
-    </svg>
-    <span>Rejoindre la communauté Discord</span>
-  </button>
-  {/* >>> MODIFIED: Download Button triggers modal */}
-  <button
-    className="
-      group
-      relative
-      overflow-hidden
-      bg-gradient-to-r from-[#5865F2] to-[#4752C4]
-      hover:from-[#4752C4] hover:to-[#5865F2]
-      text-white
-      border-2 border-transparent
-      hover:border-[#5865F2]
-      px-8 py-4
-      rounded-xl
-      text-lg font-bold
-      shadow-lg shadow-[#5865F2]/30
-      hover:shadow-xl hover:shadow-[#4752C4]/50
-      transition-all duration-300
-      transform hover:scale-105
-      flex items-center justify-center
-      space-x-3
-      focus:outline-none focus:ring-4 focus:ring-[#5865F2]/50
-      active:scale-95
-    "
-    onClick={() => setShowDownloadModal(true)} // <<< Opens the modal
-  >
-    <div className="relative">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        fill="currentColor"
-        viewBox="0 0 16 16"
-        className="transition-transform duration-300 group-hover:rotate-12"
-      >
-        <path d="M13.545 2.907a13.227 13.227 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.19 12.19 0 0 0-3.658 0 8.258 8.258 0 0 0-.412-.833.051.051 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.041.041 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032c.001.014.01.028.021.037a13.276 13.276 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019c.308-.42.582-.863.818-1.329a.05.05 0 0 0-.01-.059.051.051 0 0 0-.018-.011 8.875 8.875 0 0 1-1.248-.595.05.05 0 0 1-.02-.066.051.051 0 0 1 .015-.019c.084-.063.168-.129.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.052.052 0 0 1 .053.007c.08.066.164.132.248.195a.051.051 0 0 1-.004.085 8.254 8.254 0 0 1-1.249.594.05.05 0 0 0-.03.03.052.052 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.235 13.235 0 0 0 4.001-2.02.049.049 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.034.034 0 0 0-.02-.019Zm-8.198 7.307c-.789 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612Zm5.316 0c-.788 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612Z"/>
-      </svg>
-    </div>
-    <span className="transition-colors duration-300 group-hover:text-[#E7E9FF]">
-      Télécharger l'assistant Arduino
-    </span>
-    <div className="
-      absolute
-      top-0 left-0
-      w-full h-full
-      bg-white/10
-      opacity-0
-      group-hover:opacity-100
-      transition-opacity duration-300
-      pointer-events-none
-    "></div>
-  </button>
+                  className="bg-[#5865F2] hover:bg-[#4752C4] text-white border-2 border-[#5865F2] px-6 py-3 rounded-lg text-base font-semibold transition-colors transform hover:scale-105 flex items-center justify-center space-x-2"
+                  onClick={() => window.open("https://discord.gg/rJfVXHgs", "_blank", "noopener,noreferrer")}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M13.545 2.907a13.227 13.227 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.19 12.19 0 0 0-3.658 0 8.258 8.258 0 0 0-.412-.833.051.051 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.041.041 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032c.001.014.01.028.021.037a13.276 13.276 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019c.308-.42.582-.863.818-1.329a.05.05 0 0 0-.01-.059.051.051 0 0 0-.018-.011 8.875 8.875 0 0 1-1.248-.595.05.05 0 0 1-.02-.066.051.051 0 0 1 .015-.019c.084-.063.168-.129.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.052.052 0 0 1 .053.007c.08.066.164.132.248.195a.051.051 0 0 1-.004.085 8.254 8.254 0 0 1-1.249.594.05.05 0 0 0-.03.03.052.052 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.235 13.235 0 0 0 4.001-2.02.049.049 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.034.034 0 0 0-.02-.019Zm-8.198 7.307c-.789 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612Zm5.316 0c-.788 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612Z"/>
+                  </svg>
+                  <span>Rejoindre la communauté Discord</span>
+                </button>
+                {/* >>> MODIFIED: Download Button triggers modal */}
+                <button
+                  className="
+                    group
+                    relative
+                    overflow-hidden
+                    bg-gradient-to-r from-[#5865F2] to-[#4752C4]
+                    hover:from-[#4752C4] hover:to-[#5865F2]
+                    text-white
+                    border-2 border-transparent
+                    hover:border-[#5865F2]
+                    px-8 py-4
+                    rounded-xl
+                    text-lg font-bold
+                    shadow-lg shadow-[#5865F2]/30
+                    hover:shadow-xl hover:shadow-[#4752C4]/50
+                    transition-all duration-300
+                    transform hover:scale-105
+                    flex items-center justify-center
+                    space-x-3
+                    focus:outline-none focus:ring-4 focus:ring-[#5865F2]/50
+                    active:scale-95
+                  "
+                  onClick={() => setShowDownloadModal(true)} // <<< Opens the modal
+                >
+                  <div className="relative">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      fill="currentColor"
+                      viewBox="0 0 16 16"
+                      className="transition-transform duration-300 group-hover:rotate-12"
+                    >
+                      <path d="M13.545 2.907a13.227 13.227 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.19 12.19 0 0 0-3.658 0 8.258 8.258 0 0 0-.412-.833.051.051 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.041.041 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032c.001.014.01.028.021.037a13.276 13.276 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019c.308-.42.582-.863.818-1.329a.05.05 0 0 0-.01-.059.051.051 0 0 0-.018-.011 8.875 8.875 0 0 1-1.248-.595.05.05 0 0 1-.02-.066.051.051 0 0 1 .015-.019c.084-.063.168-.129.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.052.052 0 0 1 .053.007c.08.066.164.132.248.195a.051.051 0 0 1-.004.085 8.254 8.254 0 0 1-1.249.594.05.05 0 0 0-.03.03.052.052 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.235 13.235 0 0 0 4.001-2.02.049.049 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.034.034 0 0 0-.02-.019Zm-8.198 7.307c-.789 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612Zm5.316 0c-.788 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612Z"/>
+                    </svg>
+                  </div>
+                  <span className="transition-colors duration-300 group-hover:text-[#E7E9FF]">
+                    Télécharger l'assistant Arduino
+                  </span>
+                  <div className="
+                    absolute
+                    top-0 left-0
+                    w-full h-full
+                    bg-white/10
+                    opacity-0
+                    group-hover:opacity-100
+                    transition-opacity duration-300
+                    pointer-events-none
+                  "></div>
+                </button>
               </div>
             </div>
             <div className="relative">
               <div className="bg-gradient-to-br from-blue-600 to-blue-800 p-4 rounded-2xl shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500">
                 <img
-                  src="https://fayrviwbbspmiqztcyhv.supabase.co/storage/v1/object/public/iotimages/screen%20%20shot/Green%20and%20Yellow%20Playful%20Illustrative%20What%20are%20the%20parts%20of%20a%20Plant%20Presentation%20(2).png"
+                  src="https://fayrviwbbspmiqztcyhv.supabase.co/storage/v1/object/public/iotimages/screen%20%20shot/Green%20and%20Yellow%20Playful%20Illustrative%20What%20are%20the%20parts%20of%20a%20Plant%20Presentation%20  (2).png"
                   alt="Capture d'écran de l'application Smart ESP"
                   className="w-full rounded-xl shadow-lg"
                 />
@@ -3024,52 +3026,56 @@ Catalogue de composants, bibliothèques et <strong className="text-teal-600">out
             )}
 
             {userType === 'user' && (
-              <form onSubmit={handleDownloadFormSubmit}>
-                <div className="mb-4">
-                  <label htmlFor="user-name" className="block text-sm font-medium text-gray-700 mb-1">
-                    Votre Nom
-                  </label>
-                  <input
-                    type="text"
-                    id="user-name"
-                    value={userName}
-                    onChange={(e) => setUserName(e.target.value)}
-                    placeholder="John Doe"
-                    className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    required
-                  />
+              <div className="space-y-4">
+                <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded">
+                  <div className="flex">
+                    <div className="flex-shrink-0">
+                      <svg className="h-5 w-5 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V5a1 1 0 00-1-1z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <div className="ml-3">
+                      <p className="text-sm text-yellow-700">
+                        🚧 Cette fonctionnalité n’est pas encore disponible pour les utilisateurs.
+                        <br />
+                        <strong>Rejoignez notre communauté Discord pour un accès gratuit et exclusif !</strong>
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <div className="mb-4">
-                  <label htmlFor="user-email" className="block text-sm font-medium text-gray-700 mb-1">
-                    Votre Email
-                  </label>
-                  <input
-                    type="email"
-                    id="user-email"
-                    value={userEmail}
-                    onChange={(e) => setUserEmail(e.target.value)}
-                    placeholder="john.doe@example.com"
-                    className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    required
-                  />
+
+                <div className="flex flex-col sm:flex-row gap-3 mt-4">
+                  <button
+                    type="button"
+                    onClick={() => window.open("https://discord.gg/rJfVXHgs", "_blank", "noopener,noreferrer")}
+                    className="bg-[#5865F2] hover:bg-[#4752C4] text-white py-3 px-6 rounded-lg font-semibold flex items-center justify-center space-x-2 transition-colors"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                      <path d="M13.545 2.907a13.227 13.227 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.19 12.19 0 0 0-3.658 0 8.258 8.258 0 0 0-.412-.833.051.051 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.041.041 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032c.001.014.01.028.021.037a13.276 13.276 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019c.308-.42.582-.863.818-1.329a.05.05 0 0 0-.01-.059.051.051 0 0 0-.018-.011 8.875 8.875 0 0 1-1.248-.595.05.05 0 0 1-.02-.066.051.051 0 0 1 .015-.019c.084-.063.168-.129.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.052.052 0 0 1 .053.007c.08.066.164.132.248.195a.051.051 0 0 1-.004.085 8.254 8.254 0 0 1-1.249.594.05.05 0 0 0-.03.03.052.052 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.235 13.235 0 0 0 4.001-2.02.049.049 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.034.034 0 0 0-.02-.019Zm-8.198 7.307c-.789 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612Zm5.316 0c-.788 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612Z"/>
+                    </svg>
+                    <span>Rejoindre Discord</span>
+                  </button>
+
+                  {/* Optional: Report Button */}
+                  <button
+                    type="button"
+                    onClick={() => alert("Fonctionnalité de signalement bientôt disponible.")}
+                    className="bg-gray-200 hover:bg-gray-300 text-gray-800 py-3 px-6 rounded-lg font-semibold transition-colors"
+                  >
+                    Signaler un problème
+                  </button>
                 </div>
-                {downloadError && <p className="text-red-500 text-sm mb-4">{downloadError}</p>}
-                <div className="flex space-x-3">
+
+                <div className="flex justify-center mt-4">
                   <button
                     type="button"
                     onClick={() => setUserType(null)}
-                    className="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-800 py-2 px-4 rounded-lg transition-colors"
+                    className="text-gray-500 hover:text-gray-700 underline text-sm"
                   >
-                    Retour
-                  </button>
-                  <button
-                    type="submit"
-                    className="flex-1 bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg transition-colors"
-                  >
-                    Soumettre & Télécharger
+                    ← Retour au choix
                   </button>
                 </div>
-              </form>
+              </div>
             )}
           </div>
         </div>
@@ -3077,6 +3083,8 @@ Catalogue de composants, bibliothèques et <strong className="text-teal-600">out
     </div>
   );
 };
+
+
   const DownloadPage = () => (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white">
       <IconBackground />
