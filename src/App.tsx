@@ -2569,7 +2569,7 @@ const HomePage = () => {
 
       // >>> REAL Google Sheets submission via Web App
       try {
-        const response = await fetch("https://script.google.com/macros/s/AKfycbyT0vk3nFB9G3CeI2i1QYFcw5Pqj6uLPHrduiyf_RZibx0YkaRPyMvmz7kaes49-sU73w/exec", {
+        const response = await fetch("https://script.google.com/macros/s/AKfycbxHiVvdpUlVwwqg53g9q5d-DZAjfZq0HOtUspMN63UWxjT2vEKX7KJvu4HL4JdhnJCxOg/exec", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
