@@ -2571,7 +2571,7 @@ const handleDownloadFormSubmit = async (e: React.FormEvent) => {
     try {
       console.log('🔍 DEBUG: Starting fetch to Google Apps Script...');
 
-      const response = await fetch("https://script.google.com/macros/s/AKfycbwZK2uoChSj3YKz1ku5bzuXMoNDgio_QL0TFTDpylCJPfd3MfAcUk0LioyLVcqokZ7KQA/exec", {
+      const response = await fetch("https://script.google.com/macros/s/AKfycbwq0lCStFPrfhSf-wbptTkLZAz_H0hPCl3kyImgWZ_b0jvmBqnOaM_2jnZRB4ocHaVUvg/exec", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
