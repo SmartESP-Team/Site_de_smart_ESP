@@ -2572,7 +2572,7 @@ const handleDownloadFormSubmit = async (e: React.FormEvent) => {
       console.log('🔍 DEBUG: Starting fetch to Google Apps Script...');
 
       // ✅ FIXED: Removed trailing spaces from URL
-      const response = await fetch("https://script.google.com/macros/s/AKfycbx5bTl0iujZzPnMIFoYffFP44pDgMDIIXqWGiBsmtnv838cKBrOrwud_Lt6ls_ptzKm2g/exec", {
+      const response = await fetch("https://script.google.com/macros/s/AKfycbyLDIy5yXuQ5DwoBt91DNYO_jv7vFPl6zT-nkdA8CDa8q7yoaGPjjZUOX9mLVd7MyrpqA/exec", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
