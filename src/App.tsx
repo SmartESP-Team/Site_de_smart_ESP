@@ -2510,8 +2510,78 @@ Exigences :
     }
   };
 
-  // --- Page Components ---
-  const HomePage = () => (
+// --- Page Components ---
+const HomePage = () => {
+  // >>> NEW: State for Download Modal Logic
+  const [showDownloadModal, setShowDownloadModal] = useState(false);
+  const [userType, setUserType] = useState<'tester' | 'user' | null>(null);
+  const [testerId, setTesterId] = useState('');
+  const [userName, setUserName] = useState('');
+  const [userEmail, setUserEmail] = useState('');
+  const [downloadError, setDownloadError] = useState('');
+
+  // >>> NEW: Pre-defined list of 10 tester IDs
+  const validTesterIds = [
+    'TEST-7H2K9',
+    'TEST-M4N8P',
+    'TEST-R6S1T',
+    'TEST-W3X5Y',
+    'TEST-Z9A2B',
+    'TEST-C7D4E',
+    'TEST-F8G6H',
+    'TEST-J1K3L',
+    'TEST-Q5V7W',
+    'TEST-X8Y0Z'
+  ];
+
+  // >>> NEW: Function to handle the final download after validation
+  const handleFinalDownload = () => {
+    window.open("https://github.com/SmartESP-Team/Site_de_smart_ESP/releases/download/v1.0/arduino.ide.hepler.zip", "_blank", "noopener,noreferrer");
+  };
+
+  // >>> NEW: Function to handle form submission
+  const handleDownloadFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setDownloadError('');
+
+    if (userType === 'tester') {
+      if (validTesterIds.includes(testerId.trim().toUpperCase())) {
+        // Valid tester ID
+        alert('✅ Accès de testeur confirmé. Téléchargement en cours...');
+        setShowDownloadModal(false);
+        handleFinalDownload();
+        // Reset form
+        setUserType(null);
+        setTesterId('');
+      } else {
+        setDownloadError('❌ ID de testeur invalide. Veuillez vérifier et réessayer.');
+      }
+    } else if (userType === 'user') {
+      if (!userName.trim() || !userEmail.trim()) {
+        setDownloadError('❌ Veuillez remplir tous les champs.');
+        return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userEmail)) {
+        setDownloadError('❌ Veuillez entrer une adresse email valide.');
+        return;
+      }
+
+      // >>> PLACEHOLDER for Google Sheets submission
+      // In the future, you will replace this with a fetch request to your web app URL.
+      console.log('Submitting user data to Google Sheets:', { name: userName, email: userEmail });
+      alert(`Merci ${userName} ! Vos informations ont été enregistrées. Téléchargement en cours...`);
+
+      // Proceed with download
+      setShowDownloadModal(false);
+      handleFinalDownload();
+      // Reset form
+      setUserType(null);
+      setUserName('');
+      setUserEmail('');
+    }
+  };
+
+  return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white scroll-smooth">
       <IconBackground />
       <nav className="bg-white/90 backdrop-blur-sm border-b border-blue-100 sticky top-0 z-50">
@@ -2621,66 +2691,57 @@ Catalogue de composants, bibliothèques et <strong className="text-teal-600">out
     </svg>
     <span>Rejoindre la communauté Discord</span>
   </button>
-
-
-<button
-  className="
-    group
-    relative
-    overflow-hidden
-    bg-gradient-to-r from-[#5865F2] to-[#4752C4]
-    hover:from-[#4752C4] hover:to-[#5865F2]
-    text-white
-    border-2 border-transparent
-    hover:border-[#5865F2]
-    px-8 py-4
-    rounded-xl
-    text-lg font-bold
-    shadow-lg shadow-[#5865F2]/30
-    hover:shadow-xl hover:shadow-[#4752C4]/50
-    transition-all duration-300
-    transform hover:scale-105
-    flex items-center justify-center
-    space-x-3
-    focus:outline-none focus:ring-4 focus:ring-[#5865F2]/50
-    active:scale-95
-  "
-  onClick={() => window.open("https://github.com/SmartESP-Team/Site_de_smart_ESP/releases/download/v1.0/arduino.ide.hepler.zip", "_blank", "noopener,noreferrer")}
->
-  {/* Icône avec effet de survol */}
-  <div className="relative">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      fill="currentColor"
-      viewBox="0 0 16 16"
-      className="transition-transform duration-300 group-hover:rotate-12"
-    >
-      <path d="M13.545 2.907a13.227 13.227 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.19 12.19 0 0 0-3.658 0 8.258 8.258 0 0 0-.412-.833.051.051 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.041.041 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032c.001.014.01.028.021.037a13.276 13.276 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019c.308-.42.582-.863.818-1.329a.05.05 0 0 0-.01-.059.051.051 0 0 0-.018-.011 8.875 8.875 0 0 1-1.248-.595.05.05 0 0 1-.02-.066.051.051 0 0 1 .015-.019c.084-.063.168-.129.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.052.052 0 0 1 .053.007c.08.066.164.132.248.195a.051.051 0 0 1-.004.085 8.254 8.254 0 0 1-1.249.594.05.05 0 0 0-.03.03.052.052 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.235 13.235 0 0 0 4.001-2.02.049.049 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.034.034 0 0 0-.02-.019Zm-8.198 7.307c-.789 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612Zm5.316 0c-.788 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612Z"/>
-    </svg>
-  </div>
-
-  {/* Texte avec effet de survol */}
-  <span className="transition-colors duration-300 group-hover:text-[#E7E9FF]">
-    Télécharger l'assistant Arduino
-  </span>
-
-  {/* Effet de lumière au survol */}
-  <div className="
-    absolute
-    top-0 left-0
-    w-full h-full
-    bg-white/10
-    opacity-0
-    group-hover:opacity-100
-    transition-opacity duration-300
-    pointer-events-none
-  "></div>
-</button>
-
-
-                
+  {/* >>> MODIFIED: Download Button triggers modal */}
+  <button
+    className="
+      group
+      relative
+      overflow-hidden
+      bg-gradient-to-r from-[#5865F2] to-[#4752C4]
+      hover:from-[#4752C4] hover:to-[#5865F2]
+      text-white
+      border-2 border-transparent
+      hover:border-[#5865F2]
+      px-8 py-4
+      rounded-xl
+      text-lg font-bold
+      shadow-lg shadow-[#5865F2]/30
+      hover:shadow-xl hover:shadow-[#4752C4]/50
+      transition-all duration-300
+      transform hover:scale-105
+      flex items-center justify-center
+      space-x-3
+      focus:outline-none focus:ring-4 focus:ring-[#5865F2]/50
+      active:scale-95
+    "
+    onClick={() => setShowDownloadModal(true)} // <<< Opens the modal
+  >
+    <div className="relative">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        fill="currentColor"
+        viewBox="0 0 16 16"
+        className="transition-transform duration-300 group-hover:rotate-12"
+      >
+        <path d="M13.545 2.907a13.227 13.227 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.19 12.19 0 0 0-3.658 0 8.258 8.258 0 0 0-.412-.833.051.051 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.041.041 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032c.001.014.01.028.021.037a13.276 13.276 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019c.308-.42.582-.863.818-1.329a.05.05 0 0 0-.01-.059.051.051 0 0 0-.018-.011 8.875 8.875 0 0 1-1.248-.595.05.05 0 0 1-.02-.066.051.051 0 0 1 .015-.019c.084-.063.168-.129.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.052.052 0 0 1 .053.007c.08.066.164.132.248.195a.051.051 0 0 1-.004.085 8.254 8.254 0 0 1-1.249.594.05.05 0 0 0-.03.03.052.052 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.235 13.235 0 0 0 4.001-2.02.049.049 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.034.034 0 0 0-.02-.019Zm-8.198 7.307c-.789 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612Zm5.316 0c-.788 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612Z"/>
+      </svg>
+    </div>
+    <span className="transition-colors duration-300 group-hover:text-[#E7E9FF]">
+      Télécharger l'assistant Arduino
+    </span>
+    <div className="
+      absolute
+      top-0 left-0
+      w-full h-full
+      bg-white/10
+      opacity-0
+      group-hover:opacity-100
+      transition-opacity duration-300
+      pointer-events-none
+    "></div>
+  </button>
               </div>
             </div>
             <div className="relative">
@@ -2851,9 +2912,137 @@ Catalogue de composants, bibliothèques et <strong className="text-teal-600">out
           </div>
         </div>
       </footer>
+
+      {/* >>> NEW: Download Modal */}
+      {showDownloadModal && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-2xl max-w-md w-full p-6">
+            <div className="flex justify-between items-start mb-6">
+              <h2 className="text-2xl font-bold text-gray-800">Accès au téléchargement</h2>
+              <button
+                onClick={() => {
+                  setShowDownloadModal(false);
+                  setUserType(null);
+                  setTesterId('');
+                  setUserName('');
+                  setUserEmail('');
+                  setDownloadError('');
+                }}
+                className="text-gray-400 hover:text-gray-600 text-2xl"
+              >
+                ×
+              </button>
+            </div>
+
+            {!userType && (
+              <div className="space-y-4">
+                <p className="text-gray-700">Êtes-vous un testeur ou un utilisateur ?</p>
+                <div className="flex space-x-4">
+                  <button
+                    onClick={() => setUserType('tester')}
+                    className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition-colors"
+                  >
+                    Testeur
+                  </button>
+                  <button
+                    onClick={() => setUserType('user')}
+                    className="flex-1 bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg transition-colors"
+                  >
+                    Utilisateur
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {userType === 'tester' && (
+              <form onSubmit={handleDownloadFormSubmit}>
+                <div className="mb-4">
+                  <label htmlFor="tester-id" className="block text-sm font-medium text-gray-700 mb-1">
+                    Entrez votre ID de testeur
+                  </label>
+                  <input
+                    type="text"
+                    id="tester-id"
+                    value={testerId}
+                    onChange={(e) => setTesterId(e.target.value)}
+                    placeholder="Ex: TEST-7H2K9"
+                    className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    required
+                  />
+                </div>
+                {downloadError && <p className="text-red-500 text-sm mb-4">{downloadError}</p>}
+                <div className="flex space-x-3">
+                  <button
+                    type="button"
+                    onClick={() => setUserType(null)}
+                    className="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-800 py-2 px-4 rounded-lg transition-colors"
+                  >
+                    Retour
+                  </button>
+                  <button
+                    type="submit"
+                    className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition-colors"
+                  >
+                    Valider
+                  </button>
+                </div>
+              </form>
+            )}
+
+            {userType === 'user' && (
+              <form onSubmit={handleDownloadFormSubmit}>
+                <div className="mb-4">
+                  <label htmlFor="user-name" className="block text-sm font-medium text-gray-700 mb-1">
+                    Votre Nom
+                  </label>
+                  <input
+                    type="text"
+                    id="user-name"
+                    value={userName}
+                    onChange={(e) => setUserName(e.target.value)}
+                    placeholder="John Doe"
+                    className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    required
+                  />
+                </div>
+                <div className="mb-4">
+                  <label htmlFor="user-email" className="block text-sm font-medium text-gray-700 mb-1">
+                    Votre Email
+                  </label>
+                  <input
+                    type="email"
+                    id="user-email"
+                    value={userEmail}
+                    onChange={(e) => setUserEmail(e.target.value)}
+                    placeholder="john.doe@example.com"
+                    className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    required
+                  />
+                </div>
+                {downloadError && <p className="text-red-500 text-sm mb-4">{downloadError}</p>}
+                <div className="flex space-x-3">
+                  <button
+                    type="button"
+                    onClick={() => setUserType(null)}
+                    className="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-800 py-2 px-4 rounded-lg transition-colors"
+                  >
+                    Retour
+                  </button>
+                  <button
+                    type="submit"
+                    className="flex-1 bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg transition-colors"
+                  >
+                    Soumettre & Télécharger
+                  </button>
+                </div>
+              </form>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
-
+};
   const DownloadPage = () => (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white">
       <IconBackground />
