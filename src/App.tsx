@@ -2541,55 +2541,63 @@ const HomePage = () => {
   };
 
   // >>> NEW: Function to handle form submission
-  const handleDownloadFormSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setDownloadError('');
+const handleDownloadFormSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setDownloadError('');
 
-    if (userType === 'tester') {
-      if (validTesterIds.includes(testerId.trim().toUpperCase())) {
-        // Valid tester ID
-        alert('✅ Accès de testeur confirmé. Téléchargement en cours...');
-        setShowDownloadModal(false);
-        handleFinalDownload();
-        // Reset form
-        setUserType(null);
-        setTesterId('');
+  if (userType === 'tester') {
+    if (validTesterIds.includes(testerId.trim().toUpperCase())) {
+      // Valid tester ID
+      alert('✅ Accès de testeur confirmé. Téléchargement en cours...');
+      setShowDownloadModal(false);
+      handleFinalDownload();
+      // Reset form
+      setUserType(null);
+      setTesterId('');
+    } else {
+      setDownloadError('❌ ID de testeur invalide. Veuillez vérifier et réessayer.');
+    }
+  } else if (userType === 'user') {
+    if (!userName.trim() || !userEmail.trim()) {
+      setDownloadError('❌ Veuillez remplir tous les champs.');
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userEmail)) {
+      setDownloadError('❌ Veuillez entrer une adresse email valide.');
+      return;
+    }
+
+    // >>> ENHANCED: Google Sheets submission with detailed error logging
+    try {
+      console.log('🔍 DEBUG: Starting fetch to Google Apps Script...');
+
+      const response = await fetch("https://script.google.com/macros/s/AKfycbxHiVvdpUlVwwqg53g9q5d-DZAjfZq0HOtUspMN63UWxjT2vEKX7KJvu4HL4JdhnJCxOg/exec", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: userName,
+          email: userEmail
+        }),
+      });
+
+      console.log('🔍 DEBUG: Fetch response received. Status:', response.status, 'Status Text:', response.statusText);
+
+      // Check if HTTP response is OK (status 200-299)
+      if (!response.ok) {
+        throw new Error(`HTTP Error: ${response.status} ${response.statusText}`);
+      }
+
+      const result = await response.json();
+      console.log('🔍 DEBUG: Parsed JSON response:', result);
+
+      if (result.status === "success") {
+        alert(`Merci ${userName} ! Vos informations ont été enregistrées. Téléchargement en cours...`);
       } else {
-        setDownloadError('❌ ID de testeur invalide. Veuillez vérifier et réessayer.');
-      }
-    } else if (userType === 'user') {
-      if (!userName.trim() || !userEmail.trim()) {
-        setDownloadError('❌ Veuillez remplir tous les champs.');
-        return;
-      }
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userEmail)) {
-        setDownloadError('❌ Veuillez entrer une adresse email valide.');
-        return;
-      }
-
-      // >>> REAL Google Sheets submission via Web App
-      try {
-        const response = await fetch("https://script.google.com/macros/s/AKfycbxHiVvdpUlVwwqg53g9q5d-DZAjfZq0HOtUspMN63UWxjT2vEKX7KJvu4HL4JdhnJCxOg/exec", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name: userName,
-            email: userEmail
-          }),
-        });
-
-        const result = await response.json();
-        if (result.status === "success") {
-          alert(`Merci ${userName} ! Vos informations ont été enregistrées. Téléchargement en cours...`);
-        } else {
-          throw new Error("Failed to save data");
-        }
-      } catch (error) {
-        console.error("Error submitting to Google Sheets:", error);
-        setDownloadError('❌ Erreur lors de l’enregistrement des données. Veuillez réessayer plus tard.');
-        return;
+        // Log server-side error message from Google Apps Script
+        const errorMessage = result.message || "Unknown server error";
+        throw new Error(`Server Error: ${errorMessage}`);
       }
 
       // Proceed with download
@@ -2599,8 +2607,19 @@ const HomePage = () => {
       setUserType(null);
       setUserName('');
       setUserEmail('');
+
+    } catch (error) {
+      console.error('🚨 CRITICAL ERROR: Submission failed at:', new Date().toISOString());
+      console.error('🚨 Error details:', error);
+
+      // Show user-friendly message
+      setDownloadError('❌ Erreur lors de l’enregistrement. Vérifiez la console (F12) pour les détails techniques.');
+
+      // Optional: Log error to a monitoring service or your own API later
+      // e.g., logErrorToMyServer(error.message, userName, userEmail);
     }
-  };
+  }
+};
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white scroll-smooth">
