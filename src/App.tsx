@@ -2569,7 +2569,7 @@ const HomePage = () => {
 
       // >>> REAL Google Sheets submission via Web App
       try {
-        const response = await fetch("https://script.google.com/macros/s/AKfycbwGPSMfMO_cZrtNnTe1nLQyrasEs_d6UxQrarzTr3RxQmbYQDylGZcM9LTMmQHv62U5lA/exec", {
+        const response = await fetch("https://script.google.com/macros/s/AKfycbyT0vk3nFB9G3CeI2i1QYFcw5Pqj6uLPHrduiyf_RZibx0YkaRPyMvmz7kaes49-sU73w/exec", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -2768,7 +2768,7 @@ Catalogue de composants, bibliothèques et <strong className="text-teal-600">out
             <div className="relative">
               <div className="bg-gradient-to-br from-blue-600 to-blue-800 p-4 rounded-2xl shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500">
                 <img
-                  src="https://fayrviwbbspmiqztcyhv.supabase.co/storage/v1/object/public/iotimages/screen%20%20shot/Green%20and%20Yellow%20Playful%20Illustrative%20What%20are%20the%20parts%20of%20a%20Plant%20Presentation%20  (2).png"
+                  src="https://fayrviwbbspmiqztcyhv.supabase.co/storage/v1/object/public/iotimages/screen%20%20shot/Green%20and%20Yellow%20Playful%20Illustrative%20What%20are%20the%20parts%20of%20a%20Plant%20Presentation%20(2).png"
                   alt="Capture d'écran de l'application Smart ESP"
                   className="w-full rounded-xl shadow-lg"
                 />
