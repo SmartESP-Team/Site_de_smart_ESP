@@ -2546,18 +2546,21 @@ const handleDownloadFormSubmit = async (e: React.FormEvent) => {
   setDownloadError('');
 
   if (userType === 'tester') {
+    // ✅ Tester mode
     if (validTesterIds.includes(testerId.trim().toUpperCase())) {
-      // Valid tester ID
       alert('✅ Accès de testeur confirmé. Téléchargement en cours...');
       setShowDownloadModal(false);
       handleFinalDownload();
+
       // Reset form
       setUserType(null);
       setTesterId('');
     } else {
       setDownloadError('❌ ID de testeur invalide. Veuillez vérifier et réessayer.');
     }
+
   } else if (userType === 'user') {
+    // ✅ User mode
     if (!userName.trim() || !userEmail.trim()) {
       setDownloadError('❌ Veuillez remplir tous les champs.');
       return;
@@ -2567,25 +2570,24 @@ const handleDownloadFormSubmit = async (e: React.FormEvent) => {
       return;
     }
 
-    // >>> ENHANCED: Google Sheets submission with detailed error logging
     try {
       console.log('🔍 DEBUG: Starting fetch to Google Apps Script...');
 
-      // ✅ FIXED: Removed trailing spaces from URL
-      const response = await fetch("https://script.google.com/macros/s/AKfycbyLDIy5yXuQ5DwoBt91DNYO_jv7vFPl6zT-nkdA8CDa8q7yoaGPjjZUOX9mLVd7MyrpqA/exec", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: userName,
-          email: userEmail
-        }),
-      });
+      const response = await fetch(
+        "https://script.google.com/macros/s/AKfycbyadYgNtq55dPgIg2A_y8D7MKs0HaV81BPZSSBzGm0W9Fkxxap7wWZN1zQonj_clG0x/exec",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: userName,
+            email: userEmail,
+            timestamp: new Date().toISOString() // ✅ send timestamp for your Apps Script
+          }),
+        }
+      );
 
-      console.log('🔍 DEBUG: Fetch response received. Status:', response.status, 'Status Text:', response.statusText);
+      console.log('🔍 DEBUG: Fetch response received:', response.status, response.statusText);
 
-      // Check if HTTP response is OK (status 200-299)
       if (!response.ok) {
         throw new Error(`HTTP Error: ${response.status} ${response.statusText}`);
       }
@@ -2594,27 +2596,21 @@ const handleDownloadFormSubmit = async (e: React.FormEvent) => {
       console.log('🔍 DEBUG: Parsed JSON response:', result);
 
       if (result.status === "success") {
-        alert(`Merci ${userName} ! Vos informations ont été enregistrées. Téléchargement en cours...`);
+        alert(`🎉 Merci ${userName} ! Vos informations ont été enregistrées. Téléchargement en cours...`);
+        setShowDownloadModal(false);
+        handleFinalDownload();
+
+        // Reset form
+        setUserType(null);
+        setUserName('');
+        setUserEmail('');
       } else {
-        // Log server-side error message from Google Apps Script
-        const errorMessage = result.message || "Unknown server error";
-        throw new Error(`Server Error: ${errorMessage}`);
+        throw new Error(result.message || "Erreur inconnue côté serveur.");
       }
 
-      // Proceed with download
-      setShowDownloadModal(false);
-      handleFinalDownload();
-      // Reset form
-      setUserType(null);
-      setUserName('');
-      setUserEmail('');
-
-    } catch (error) {
-      console.error('🚨 CRITICAL ERROR: Submission failed at:', new Date().toISOString());
-      console.error('🚨 Error details:', error);
-
-      // Show user-friendly message
-      setDownloadError('❌ Erreur lors de l’enregistrement. Vérifiez la console (F12) pour les détails techniques.');
+    } catch (error: any) {
+      console.error('🚨 CRITICAL ERROR:', error);
+      setDownloadError(`❌ Erreur lors de l’enregistrement : ${error.message}`);
     }
   }
 };
