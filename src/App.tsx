@@ -2571,6 +2571,7 @@ const handleDownloadFormSubmit = async (e: React.FormEvent) => {
     try {
       console.log('🔍 DEBUG: Starting fetch to Google Apps Script...');
 
+      // ✅ FIXED: Removed trailing spaces from URL
       const response = await fetch("https://script.google.com/macros/s/AKfycbwq0lCStFPrfhSf-wbptTkLZAz_H0hPCl3kyImgWZ_b0jvmBqnOaM_2jnZRB4ocHaVUvg/exec", {
         method: "POST",
         headers: {
@@ -2614,9 +2615,6 @@ const handleDownloadFormSubmit = async (e: React.FormEvent) => {
 
       // Show user-friendly message
       setDownloadError('❌ Erreur lors de l’enregistrement. Vérifiez la console (F12) pour les détails techniques.');
-
-      // Optional: Log error to a monitoring service or your own API later
-      // e.g., logErrorToMyServer(error.message, userName, userEmail);
     }
   }
 };
