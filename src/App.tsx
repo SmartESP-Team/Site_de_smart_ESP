@@ -2511,57 +2511,7 @@ Exigences :
   };
 
 // --- Page Components ---
-// --- Page Components ---
-import React, { useState } from 'react';
-// >>> Make sure you import these icons if not already
-import { Cpu, Brain, FileSpreadsheet, Mail, Settings, Star, Download, Smartphone, Zap, Globe, Cloud, ExternalLink } from 'lucide-react';
 
-// >>> Mock testimonials (replace with your real data)
-const testimonials = [
-  {
-    id: 1,
-    name: "Lina K.",
-    role: "Robotics Student",
-    company: "Tech University",
-    text: "I thought IoT was complex — until I got my VIP access. This is next-level.",
-    rating: 5
-  },
-  {
-    id: 2,
-    name: "David T.",
-    role: "Engineer",
-    company: "GreenTech Labs",
-    text: "The AI-generated code saved me 20 hours on my smart greenhouse project.",
-    rating: 5
-  },
-  {
-    id: 3,
-    name: "Amir S.",
-    role: "Maker & Educator",
-    company: "STEM Academy",
-    text: "Feels like I'm using a tool from the future. My students are blown away.",
-    rating: 5
-  },
-  {
-    id: 4,
-    name: "Sophie M.",
-    role: "Hobbyist",
-    company: "DIY Projects",
-    text: "Finally, an IoT tool that doesn't require a PhD to use. Love the Google Sheets sync!",
-    rating: 5
-  }
-];
-
-// >>> Mock IconBackground (replace with your actual component or remove if not used)
-const IconBackground = () => <div className="absolute inset-0 overflow-hidden pointer-events-none">
-  <div className="absolute -top-20 -left-20 w-80 h-80 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse"></div>
-  <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse"></div>
-</div>;
-
-// >>> Mock setCurrentPage (replace with your actual state setter from context/props)
-const setCurrentPage = (page: string) => {
-  console.log(`Navigating to: ${page}`);
-};
 
 const HomePage = () => {
   // >>> NEW: State for Download Modal Logic
