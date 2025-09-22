@@ -2511,6 +2511,7 @@ Exigences :
   };
 
 // --- Page Components ---
+// --- Page Components ---
 const HomePage = () => {
   // >>> NEW: State for Download Modal Logic
   const [showDownloadModal, setShowDownloadModal] = useState(false);
@@ -2522,7 +2523,7 @@ const HomePage = () => {
 
   // >>> NEW: Pre-defined list of 10 tester IDs
   const validTesterIds = [
-    'TEST-7K9',
+    'TEST-7H2K9',
     'TEST-M4N8P',
     'TEST-R6S1T',
     'TEST-W3X5Y',
@@ -2540,7 +2541,7 @@ const HomePage = () => {
   };
 
   // >>> NEW: Function to handle form submission
-  const handleDownloadFormSubmit = (e: React.FormEvent) => {
+  const handleDownloadFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setDownloadError('');
 
@@ -2566,10 +2567,30 @@ const HomePage = () => {
         return;
       }
 
-      // >>> PLACEHOLDER for Google Sheets submission
-      // In the future, you will replace this with a fetch request to your web app URL.
-      console.log('Submitting user data to Google Sheets:', { name: userName, email: userEmail });
-      alert(`Merci ${userName} ! Vos informations ont été enregistrées. Téléchargement en cours...`);
+      // >>> REAL Google Sheets submission via Web App
+      try {
+        const response = await fetch("YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: userName,
+            email: userEmail
+          }),
+        });
+
+        const result = await response.json();
+        if (result.status === "success") {
+          alert(`Merci ${userName} ! Vos informations ont été enregistrées. Téléchargement en cours...`);
+        } else {
+          throw new Error("Failed to save data");
+        }
+      } catch (error) {
+        console.error("Error submitting to Google Sheets:", error);
+        setDownloadError('❌ Erreur lors de l’enregistrement des données. Veuillez réessayer plus tard.');
+        return;
+      }
 
       // Proceed with download
       setShowDownloadModal(false);
@@ -2677,7 +2698,7 @@ Catalogue de composants, bibliothèques et <strong className="text-teal-600">out
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
                   className="bg-white hover:bg-gray-50 text-blue-600 border-2 border-blue-600 px-6 py-3 rounded-lg text-base font-semibold transition-colors transform hover:scale-105 flex items-center justify-center space-x-2"
-                  onClick={() => window.open("https://smartesp-premium.vercel.app/")}
+                  onClick={() => window.open("https://smartesp-premium.vercel.app/", "_blank", "noopener,noreferrer")}
                 >
                   <ExternalLink size={20} />
                   <span>Smart ESP Premium Workflow </span>
@@ -2747,7 +2768,7 @@ Catalogue de composants, bibliothèques et <strong className="text-teal-600">out
             <div className="relative">
               <div className="bg-gradient-to-br from-blue-600 to-blue-800 p-4 rounded-2xl shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500">
                 <img
-                  src="https://fayrviwbbspmiqztcyhv.supabase.co/storage/v1/object/public/iotimages/screen%20%20shot/Green%20and%20Yellow%20Playful%20Illustrative%20What%20are%20the%20parts%20of%20a%20Plant%20Presentation%20(2).png"
+                  src="https://fayrviwbbspmiqztcyhv.supabase.co/storage/v1/object/public/iotimages/screen%20%20shot/Green%20and%20Yellow%20Playful%20Illustrative%20What%20are%20the%20parts%20of%20a%20Plant%20Presentation%20  (2).png"
                   alt="Capture d'écran de l'application Smart ESP"
                   className="w-full rounded-xl shadow-lg"
                 />
