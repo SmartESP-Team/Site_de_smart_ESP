@@ -2242,7 +2242,7 @@ ESP32 DevKit V1:
 ${projectDescription}`;
 
       const response = await fetch(
-        "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyCaf0dZY3tmfdR7Um0mUr-jnJCkLg8-XSI",
+        "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyAg9vO1uRjzQxuIdVJcW-13-GL8AKVhl6I",
         {
           method: "POST",
           headers: {
@@ -2469,7 +2469,7 @@ function App() {
     setGeneratedCode(null);
     try {
       const response = await fetch(
-        "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyCaf0dZY3tmfdR7Um0mUr-jnJCkLg8-XSI",
+        "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyAg9vO1uRjzQxuIdVJcW-13-GL8AKVhl6I",
         {
           method: "POST",
           headers: {
@@ -3205,7 +3205,7 @@ Génère une réponse complète, pédagogique et utile. Cela peut être :
 - Des conseils d'utilisation.
 Le tout doit être clair, concis et directement utilisable par un étudiant ou un débutant.`;
         const response = await fetch(
-          "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyCaf0dZY3tmfdR7Um0mUr-jnJCkLg8-XSI",
+          "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyAg9vO1uRjzQxuIdVJcW-13-GL8AKVhl6I",
           {
             method: "POST",
             headers: {
