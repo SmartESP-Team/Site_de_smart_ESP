@@ -2249,17 +2249,24 @@ ${projectDescription}`;
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            contents: [{ parts: [{ text: systemPrompt }] }],
+            contents: [{ role: "user", parts: [{ text: systemPrompt }] }],
           }),
         }
       );
 
       const data = await response.json();
 
-      if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
-        const aiResponse = data.candidates[0].content.parts[0].text.trim();
+      if (data.error) {
+        throw new Error(data.error.message || "API returned an error object.");
+      }
 
-        // Extract SVG from the response (assuming it's wrapped in \`\`\`svg ... \`\`\`)
+      // Get the text from the API response structure
+      const aiResponseText = data.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I received an empty or unreadable response from the API.";
+      
+      if (aiResponseText !== "Sorry, I received an empty or unreadable response from the API.") {
+        const aiResponse = aiResponseText.trim();
+
+        // Extract SVG from the response (assuming it's wrapped in ```svg ... ```)
         const svgMatch = aiResponse.match(/```svg\s*([\s\S]*?)\s*```/);
         if (svgMatch && svgMatch[1]) {
           setGeneratedSVG(svgMatch[1]);
@@ -2493,47 +2500,19 @@ Exigences :
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          contents: [
-            {
-              // Explicitly define the role of the message
-              role: "user", 
-              parts: [{ text: systemPrompt }],
-            },
-          ],
-          // Optional: Set a low temperature for predictable code output
-          config: {
-            temperature: 0.1, 
-          }
+          contents: [{ role: "user", parts: [{ text: systemPrompt }] }],
         }),
       });
 
-      // 4. CHECK FOR HTTP ERRORS (e.g., 400, 429, 500)
-      if (!response.ok) {
-        let errorDetails = "Erreur inconnue.";
-        try {
-            const errorData = await response.json();
-            // Attempt to get the specific message from the API error object
-            errorDetails = errorData.error?.message || errorDetails;
-        } catch (e) {
-            // response body was not JSON
-        }
-        // Throw an error that the catch block will handle
-        throw new Error(`HTTP Error ${response.status}: ${errorDetails}`);
-      }
-      
-      // 5. Process the successful JSON response
       const data = await response.json();
 
-      // 6. Extract the generated text
-      const generatedText = data.candidates?.[0]?.content?.parts?.[0]?.text;
-
-      if (generatedText) {
-        setGeneratedCode(generatedText.trim());
-      } else {
-        // Handle cases where the model successfully responds but blocks the content
-        setGeneratedCode("❌ Erreur : L'IA n'a généré aucun code (vérifiez les filtres de sécurité ou le prompt).");
-        console.warn("API returned data but no text content:", data);
+      if (data.error) {
+        throw new Error(data.error.message || "API returned an error object.");
       }
+
+      // Get the text from the API response structure
+      const aiResponseText = data.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I received an empty or unreadable response from the API.";
+      setGeneratedCode(aiResponseText);
 
     } catch (error) {
       // 7. Handle all errors (network or HTTP/content errors)
@@ -3251,16 +3230,19 @@ Le tout doit être clair, concis et directement utilisable par un étudiant ou u
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              contents: [{ parts: [{ text: fullPrompt }] }],
+              contents: [{ role: "user", parts: [{ text: fullPrompt }] }],
             }),
           }
         );
         const data = await response.json();
-        if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
-          setCustomGeneratedCode(data.candidates[0].content.parts[0].text.trim());
-        } else {
-          setCustomGeneratedCode("❌ Erreur : Aucune réponse générée par l'IA.");
+        
+        if (data.error) {
+          throw new Error(data.error.message || "API returned an error object.");
         }
+
+        // Get the text from the API response structure
+        const aiResponseText = data.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I received an empty or unreadable response from the API.";
+        setCustomGeneratedCode(aiResponseText);
       } catch (error) {
         console.error("Erreur API Gemini (Custom):", error);
         setCustomGeneratedCode("❌ Échec de la connexion à l'IA. Vérifiez le réseau ou l'API key.");
