@@ -2493,12 +2493,11 @@ function App() {
 
     // 2. Construct the detailed prompt in French
     const systemPrompt = `
-Génère une explications simple du fonctionnement et trois mini codes Arduino C++ distincts (pour Arduino UNO, ESP32 et ESP8266) permettant d’utiliser le composant suivant : ${component.name} (${component.description}).
-Exigences :
-- Chaque code doit être directement exécutable et compilable sans modifications supplémentaires.
-- Ajouter une section de commentaires claire en haut (/** ... */) listant précisément quels pins utiliser pour Arduino, ESP32 et ESP8266.
-- Inclure des commentaires en français expliquant chaque étape importante du code (initialisation, configuration, boucle, etc.).
-- Le code doit rester simple, minimaliste et pédagogique pour faciliter la compréhension.
+Génère une explication simple et détaillée du fonctionnement du composant suivant :
+${component.name} (${component.description}).
+
+Ensuite, propose un petit code d’exemple en Arduino C++ montrant comment utiliser ce composant.
+Le code doit être minimaliste, clair et pédagogique, avec des commentaires en français expliquant chaque étape (initialisation, configuration, boucle, etc.).
 `;
 
     try {
