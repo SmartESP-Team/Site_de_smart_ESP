@@ -19,6 +19,7 @@ import {
   Settings,
   ExternalLink,
   Star,
+  Home,
 } from "lucide-react";
 
 // --- Types ---
@@ -1719,6 +1720,20 @@ const IconBackground = () => (
   </div>
 );
 
+interface HomeButtonProps {
+  onClick: () => void;
+}
+
+const HomeButton: React.FC<HomeButtonProps> = ({ onClick }) => (
+  <button
+    onClick={onClick}
+    className="fixed top-6 left-6 z-50 glass-button rounded-2xl px-6 py-3 flex items-center space-x-2 text-blue-600 font-semibold shadow-lg"
+  >
+    <Home size={20} />
+    <span>Accueil</span>
+  </button>
+);
+
 // --- Script Circuit Page ---
 // --- Script Circuit Page ---
 const ScriptCircuitPage = () => {
@@ -2315,16 +2330,10 @@ ${projectDescription}`;
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white">
       <IconBackground />
-      <nav className="bg-white/90 backdrop-blur-sm border-b border-blue-100">
+      <HomeButton onClick={() => setCurrentPage("home")} />
+      <nav className="glass-nav sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <button
-              onClick={() => setCurrentPage("home")}
-              className="flex items-center space-x-2 text-blue-600 hover:text-blue-700 transition-colors"
-            >
-              <ChevronLeft size={20} />
-              <span>Retour à l'Accueil</span>
-            </button>
             <div className="flex items-center space-x-2">
               <Zap className="text-blue-600" size={32} />
               <span className="text-2xl font-bold text-gray-800">Générateur de Schémas Circuits</span>
@@ -2339,21 +2348,21 @@ ${projectDescription}`;
           <p className="text-xl text-gray-600">Décrivez votre projet et laissez l'IA générer un schéma de circuit SVG complet</p>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
+        <div className="glass-card rounded-3xl shadow-xl p-8 mb-8">
           <h2 className="text-2xl font-bold text-gray-800 mb-4">Description de votre projet</h2>
           <p className="text-gray-600 mb-4">Décrivez en détail votre projet, y compris les composants utilisés, leurs connexions, et toute information pertinente.</p>
           <textarea
             value={projectDescription}
             onChange={(e) => setProjectDescription(e.target.value)}
             placeholder="Ex: Je veux créer un système d'arrosage automatique avec un ESP32, un capteur d'humidité du sol, une pompe à eau et un relais. Le capteur est connecté à GPIO34, le relais à GPIO26..."
-            className="w-full h-40 p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+            className="glass-input w-full h-40 p-4 rounded-2xl resize-none text-gray-800"
           ></textarea>
 
           <div className="mt-6 flex flex-col sm:flex-row gap-4">
             <button
               onClick={generateCircuitSVG}
               disabled={isLoading}
-              className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-colors flex items-center justify-center space-x-2 disabled:opacity-50"
+              className="glass-button px-6 py-3 rounded-2xl font-semibold flex items-center justify-center space-x-2 disabled:opacity-50 text-blue-600"
             >
               {isLoading ? (
                 <>
@@ -2371,7 +2380,7 @@ ${projectDescription}`;
             {/* NEW: Button to copy the system prompt */}
             <button
               onClick={copySystemPrompt}
-              className="px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg font-semibold transition-colors flex items-center justify-center space-x-2"
+              className="glass-button px-6 py-3 rounded-2xl font-semibold flex items-center justify-center space-x-2 text-purple-600"
             >
               <Copy size={20} />
               <span>Copier le Prompt</span>
@@ -2380,7 +2389,7 @@ ${projectDescription}`;
             {/* NEW: Button to render SVG from description */}
             <button
               onClick={renderSVFFromDescription}
-              className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-semibold transition-colors flex items-center justify-center space-x-2"
+              className="glass-button px-6 py-3 rounded-2xl font-semibold flex items-center justify-center space-x-2 text-indigo-600"
             >
               <Zap size={20} />
               <span>Visualiser SVG</span>
@@ -2390,14 +2399,14 @@ ${projectDescription}`;
               <>
                 <button
                   onClick={copyToClipboard}
-                  className="px-6 py-3 bg-gray-600 hover:bg-gray-700 text-white rounded-lg font-semibold transition-colors flex items-center justify-center space-x-2"
+                  className="glass-button px-6 py-3 rounded-2xl font-semibold flex items-center justify-center space-x-2 text-gray-700"
                 >
                   <Copy size={20} />
                   <span>Copier SVG</span>
                 </button>
                 <button
                   onClick={downloadSVG}
-                  className="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold transition-colors flex items-center justify-center space-x-2"
+                  className="glass-button px-6 py-3 rounded-2xl font-semibold flex items-center justify-center space-x-2 text-green-600"
                 >
                   <Download size={20} />
                   <span>Télécharger SVG</span>
@@ -2414,7 +2423,7 @@ ${projectDescription}`;
         </div>
 
         {generatedSVG && (
-          <div className="bg-white rounded-2xl shadow-lg p-8">
+          <div className="glass-card rounded-3xl p-8">
             <h2 className="text-2xl font-bold text-gray-800 mb-4">Schéma du Circuit Généré</h2>
             <div className="border border-gray-300 rounded-lg p-4 bg-gray-50 overflow-auto">
               <div dangerouslySetInnerHTML={{ __html: generatedSVG }} />
@@ -2588,7 +2597,7 @@ const HomePage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white scroll-smooth">
       <IconBackground />
-      <nav className="bg-white/90 backdrop-blur-sm border-b border-blue-100 sticky top-0 z-50">
+      <nav className="glass-nav sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
@@ -2819,7 +2828,7 @@ const HomePage = () => {
             <p className="text-xl text-gray-600">Tout ce dont vous avez besoin pour le développement IoT</p>
           </div>
           <div className="grid lg:grid-cols-3 gap-8">
-            <div className="group bg-gradient-to-br from-white to-blue-50 p-8 rounded-2xl border border-blue-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 relative">
+            <div className="group glass-card p-8 rounded-3xl relative">
               <div className="text-center space-y-6">
                 <div className="bg-blue-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
                   <Download className="text-white" size={32} />
@@ -2828,7 +2837,7 @@ const HomePage = () => {
                 <p className="text-gray-600">Obtenez l'application IOT4YOU2 complète avec toutes les bibliothèques et pilotes</p>
                 <button
                   onClick={() => setCurrentPage("download")}
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors w-full"
+                  className="glass-button px-6 py-3 rounded-2xl font-semibold w-full text-blue-600"
                 >
                   Voir les Téléchargements
                 </button>
@@ -2837,7 +2846,7 @@ const HomePage = () => {
                 <Smartphone size={24} />
               </div>
             </div>
-            <div className="group bg-gradient-to-br from-white to-blue-50 p-8 rounded-2xl border border-blue-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 relative">
+            <div className="group glass-card p-8 rounded-3xl relative">
               <div className="text-center space-y-6">
                 <div className="bg-green-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
                   <Cpu className="text-white" size={32} />
@@ -2846,7 +2855,7 @@ const HomePage = () => {
                 <p className="text-gray-600">Parcourez notre vaste catalogue de plus de 100 composants IoT avec des spécifications détaillées</p>
                 <button
                   onClick={() => setCurrentPage("components")}
-                  className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors w-full"
+                  className="glass-button px-6 py-3 rounded-2xl font-semibold w-full text-green-600"
                 >
                   Parcourir les Composants
                 </button>
@@ -2855,7 +2864,7 @@ const HomePage = () => {
                 <Zap size={24} />
               </div>
             </div>
-            <div className="group bg-gradient-to-br from-white to-blue-50 p-8 rounded-2xl border border-blue-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 relative">
+            <div className="group glass-card p-8 rounded-3xl relative">
               <div className="text-center space-y-6">
                 <div className="bg-purple-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
                   <Globe className="text-white" size={32} />
@@ -2864,7 +2873,7 @@ const HomePage = () => {
                 <p className="text-gray-600">Commandez des applications IoT personnalisées adaptées à vos besoins spécifiques</p>
                 <button
                   onClick={() => setCurrentPage("custom")}
-                  className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors w-full"
+                  className="glass-button px-6 py-3 rounded-2xl font-semibold w-full text-purple-600"
                 >
                   Voire la communauté 
                 </button>
@@ -2920,7 +2929,7 @@ const HomePage = () => {
       {/* >>> NEW: Download Modal */}
       {showDownloadModal && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-2xl max-w-md w-full p-6">
+          <div className="glass-card rounded-3xl max-w-md w-full p-6">
             <div className="flex justify-between items-start mb-6">
               <h2 className="text-2xl font-bold text-gray-800">Accès au téléchargement</h2>
               <button
@@ -2944,13 +2953,13 @@ const HomePage = () => {
                 <div className="flex space-x-4">
                   <button
                     onClick={() => setUserType('tester')}
-                    className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition-colors"
+                    className="flex-1 glass-button py-2 px-4 rounded-2xl text-blue-600"
                   >
                     Testeur
                   </button>
                   <button
                     onClick={() => setUserType('user')}
-                    className="flex-1 bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg transition-colors"
+                    className="flex-1 glass-button py-2 px-4 rounded-2xl text-green-600"
                   >
                     Utilisateur
                   </button>
@@ -2985,7 +2994,7 @@ const HomePage = () => {
                   </button>
                   <button
                     type="submit"
-                    className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition-colors"
+                    className="flex-1 glass-button py-2 px-4 rounded-2xl text-blue-600"
                   >
                     Valider
                   </button>
@@ -3056,20 +3065,12 @@ const HomePage = () => {
   const DownloadPage = () => (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white">
       <IconBackground />
-      <nav className="bg-white/90 backdrop-blur-sm border-b border-blue-100">
+      <HomeButton onClick={() => setCurrentPage("home")} />
+      <nav className="glass-nav sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <button
-              onClick={() => setCurrentPage("home")}
-              className="flex items-center space-x-2 text-blue-600 hover:text-blue-700 transition-colors"
-            >
-              <ChevronLeft size={20} />
-              <span>Retour à l'Accueil</span>
-            </button>
-            <div className="flex items-center space-x-2">
-              <Cpu className="text-blue-600" size={32} />
-              <span className="text-2xl font-bold text-gray-800">Téléchargements IOT4YOU2</span>
-            </div>
+          <div className="flex items-center justify-center space-x-2">
+            <Cpu className="text-blue-600" size={32} />
+            <span className="text-2xl font-bold text-gray-800">Téléchargements IOT4YOU2</span>
           </div>
         </div>
       </nav>
@@ -3087,7 +3088,7 @@ const HomePage = () => {
             ].map((src, i) => (
               <div
                 key={i}
-                className="bg-gray-100 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
+                className="glass-card rounded-3xl overflow-hidden"
               >
                 <img
                   src={src}
@@ -3112,7 +3113,7 @@ const HomePage = () => {
             href="https://github.com/SmartESP-Team/SmartESP32Utils/archive/refs/heads/main.zip"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-green-600 hover:bg-green-700 text-white p-6 rounded-xl font-semibold text-lg transition-colors flex items-center justify-center space-x-3 transform hover:scale-105"
+            className="glass-button p-6 rounded-3xl font-semibold text-lg flex items-center justify-center space-x-3 text-green-600"
           >
             <Download size={24} />
             <span>Bibliothèque ESP32</span>
@@ -3121,7 +3122,7 @@ const HomePage = () => {
             href="https://github.com/SmartESP-Team/SmartESP8266Utils/archive/refs/heads/main.zip"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-purple-600 hover:bg-purple-700 text-white p-6 rounded-xl font-semibold text-lg transition-colors flex items-center justify-center space-x-3 transform hover:scale-105"
+            className="glass-button p-6 rounded-3xl font-semibold text-lg flex items-center justify-center space-x-3 text-purple-600"
           >
             <Download size={24} />
             <span>Bibliothèque ESP8266</span>
@@ -3130,13 +3131,13 @@ const HomePage = () => {
             href="https://github.com/user-attachments/files/21894487/CH341SER.zip"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-orange-600 hover:bg-orange-700 text-white p-6 rounded-xl font-semibold text-lg transition-colors flex items-center justify-center space-x-3 transform hover:scale-105"
+            className="glass-button p-6 rounded-3xl font-semibold text-lg flex items-center justify-center space-x-3 text-orange-600"
           >
             <Download size={24} />
             <span>Fichier Pilote ESP</span>
           </a>
         </div>
-        <div className="bg-white rounded-2xl p-8 shadow-lg">
+        <div className="glass-card rounded-3xl p-8">
           <h3 className="text-2xl font-bold text-gray-800 text-center mb-8">Vidéo de Démarrage</h3>
           <div className="aspect-video rounded-xl overflow-hidden">
             <iframe
@@ -3263,22 +3264,14 @@ Le tout doit être clair, concis et directement utilisable par un étudiant ou u
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white">
         <IconBackground />
-        <nav className="bg-white/90 backdrop-blur-sm border-b border-blue-100">
+        <HomeButton onClick={() => setCurrentPage("home")} />
+        <nav className="glass-nav sticky top-0 z-40">
           <div className="max-w-7xl mx-auto px-6 py-4">
-            <div className="flex items-center justify-between">
-              <button
-                onClick={() => setCurrentPage("home")}
-                className="flex items-center space-x-2 text-blue-600 hover:text-blue-700 transition-colors"
-              >
-                <ChevronLeft size={20} />
-                <span>Retour à l'Accueil</span>
-              </button>
-              <div className="flex items-center space-x-2">
-                <Cpu className="text-blue-600" size={32} />
-                <span className="text-2xl font-bold text-gray-800">
-                  IOT4YOU2 – Catalogue de composants IoT
-                </span>
-              </div>
+            <div className="flex items-center justify-center space-x-2">
+              <Cpu className="text-blue-600" size={32} />
+              <span className="text-2xl font-bold text-gray-800">
+                IOT4YOU2 – Catalogue de composants IoT
+              </span>
             </div>
           </div>
         </nav>
@@ -3293,19 +3286,19 @@ Le tout doit être clair, concis et directement utilisable par un étudiant ou u
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 onKeyPress={handleSearchKeyPress} // <-- NEW: Trigger search on Enter
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="glass-input w-full pl-10 pr-4 py-3 rounded-2xl"
               />
             </div>
             <button
               onClick={() => setFilterOpen(!filterOpen)}
-              className="flex items-center space-x-2 px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+              className="glass-button flex items-center space-x-2 px-4 py-3 rounded-2xl text-blue-600"
             >
               <Filter size={20} />
               <span>Filtres</span>
             </button>
           </div>
           {/* >>> NEW FEATURE: Multi-Select & Prompt UI */}
-          <div className="mb-8 p-6 bg-blue-50 rounded-xl border border-blue-200">
+          <div className="mb-8 p-6 glass-card rounded-3xl">
             <h3 className="text-lg font-bold text-gray-800 mb-4">Créer un Projet Personnalisé avec l'IA</h3>
             <p className="text-sm text-gray-600 mb-4">
               Cliquez sur le bouton "+" sur les cartes de composants pour les ajouter ici, puis décrivez votre idée de projet (max 500 caractères).
@@ -3370,7 +3363,7 @@ Le tout doit être clair, concis et directement utilisable par un étudiant ou u
             </button>
             {/* >>> NEW FEATURE: Display Custom Generated Output */}
             {customGeneratedCode && (
-              <div className="mt-6 p-4 bg-white rounded-lg border border-gray-200">
+              <div className="mt-6 p-4 glass rounded-2xl">
                 <div className="flex justify-between items-center mb-2">
                   <h4 className="font-semibold text-gray-800">Résultat de l'IA</h4>
                   <button
@@ -3399,7 +3392,7 @@ Le tout doit être clair, concis et directement utilisable par un étudiant ou u
                 key={component.id}
                 // >>> ORIGINAL BEHAVIOR: Click opens the modal
                 onClick={() => setSelectedComponent(component)}
-                className={`bg-white rounded-xl shadow-md hover:shadow-xl overflow-hidden cursor-pointer transform hover:scale-105 transition-all relative ${
+                className={`glass-card rounded-3xl overflow-hidden cursor-pointer relative ${
                   selectedComponentsForAI.find(c => c.id === component.id) ? 'ring-2 ring-purple-500' : ''
                 }`}
               >
@@ -3445,7 +3438,7 @@ Le tout doit être clair, concis et directement utilisable par un étudiant ou u
         {/* Modal (UNCHANGED) */}
         {selectedComponent && (
           <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-            <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="glass-card rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
               <div className="p-8">
                 <div className="flex justify-between items-start mb-6">
                   <h2 className="text-2xl font-bold text-gray-800">{selectedComponent.name}</h2>
@@ -3535,20 +3528,12 @@ Le tout doit être clair, concis et directement utilisable par un étudiant ou u
   const CustomAppsPage = () => (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white">
     <IconBackground />
-    <nav className="bg-white/90 backdrop-blur-sm border-b border-blue-100">
+    <HomeButton onClick={() => setCurrentPage("home")} />
+    <nav className="glass-nav sticky top-0 z-40">
       <div className="max-w-7xl mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          <button
-            onClick={() => setCurrentPage("home")}
-            className="flex items-center space-x-2 text-blue-600 hover:text-blue-700 transition-colors"
-          >
-            <ChevronLeft size={20} />
-            <span>Retour à l'Accueil</span>
-          </button>
-          <div className="flex items-center space-x-2">
-            <Globe className="text-blue-600" size={32} />
-            <span className="text-2xl font-bold text-gray-800">Applications IoT Personnalisées</span>
-          </div>
+        <div className="flex items-center justify-center space-x-2">
+          <Globe className="text-blue-600" size={32} />
+          <span className="text-2xl font-bold text-gray-800">Applications IoT Personnalisées</span>
         </div>
       </div>
     </nav>
@@ -3606,7 +3591,7 @@ Le tout doit être clair, concis et directement utilisable par un étudiant ou u
               image: "https://raw.githubusercontent.com/Circuit-Digest/ESP32-Cam-Surveillance-Car/2ecf12ce9a1ee8d120fa83f880da9de1a1b8d51f/wifi-surveillance-robot-car-esp32-cam.gif?auto=format&fit=crop&w=600&h=400&q=80"
             }
           ].map((app, index) => (
-            <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all flex flex-col">
+            <div key={index} className="glass-card rounded-3xl overflow-hidden flex flex-col">
               {/* Image */}
               <div className="aspect-video overflow-hidden">
                 <img
