@@ -2465,7 +2465,7 @@ function App() {
 
   // --- API Constants defined inside App ---
   // ⚠️ WARNING: The API Key is exposed in this client-side code.
-  const API_KEY = "AIzaSyAg9vO1uRjzQxuIdVJcW-13-GL8AKVhl6I"; 
+  const API_KEY = "AIzaSyDE9J-NkHYMOiBbAJ_nW27frcC9h8owcIg"; 
   const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
   // ----------------------------------------
 
