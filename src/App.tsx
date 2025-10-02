@@ -2463,18 +2463,19 @@ function App() {
   const [generatedCode, setGeneratedCode] = useState<string | null>(null);
   const [loadingCode, setLoadingCode] = useState(false);
 
-  // 🔥 Gemini API Call to Generate Arduino Code
+  // --- API Constants defined inside App ---
+  // ⚠️ WARNING: The API Key is exposed in this client-side code.
+  const API_KEY = "AIzaSyDE9J-NkHYMOiBbAJ_nW27frcC9h8owcIg"; 
+  const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
+  // ----------------------------------------
 
-const generateCode = async (component: Component) => {
-    // 1. Setup loading state
+  // 🔥 Gemini API Call to Generate Arduino Code
+  const generateCode = async (component: Component) => {
+    // 1. Set initial states
     setLoadingCode(true);
     setGeneratedCode(null);
-    
-    // IMPORTANT: The API Key is exposed here. Please secure it later!
-    const API_KEY = "AIzaSyDE9J-NkHYMOiBbAJ_nW27frcC9h8owcIg"; 
-    const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
-    
-    // 2. Define the detailed prompt from the component data
+
+    // 2. Construct the detailed prompt in French
     const systemPrompt = `
 Génère une explications simple du fonctionnement et trois mini codes Arduino C++ distincts (pour Arduino UNO, ESP32 et ESP8266) permettant d’utiliser le composant suivant : ${component.name} (${component.description}).
 Exigences :
@@ -2485,71 +2486,71 @@ Exigences :
 `;
 
     try {
-        // 3. Execute the Fetch Request
-        const response = await fetch(
-            API_URL,
+      // 3. Execute the Fetch Request
+      const response = await fetch(API_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          contents: [
             {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    // The request body must include the contents and the text part
-                    contents: [
-                        {
-                            role: "user", // Explicitly define the role
-                            parts: [
-                                {
-                                    text: systemPrompt,
-                                },
-                            ],
-                        },
-                    ],
-                }),
-            }
-        );
+              // Explicitly define the role of the message
+              role: "user", 
+              parts: [{ text: systemPrompt }],
+            },
+          ],
+          // Optional: Set a low temperature for predictable code output
+          config: {
+            temperature: 0.1, 
+          }
+        }),
+      });
 
-        // 4. --- IMPROVED ERROR CHECKING (Crucial) ---
-        if (!response.ok) {
-            let errorDetails = "Unknown API error.";
-            try {
-                const errorData = await response.json();
-                // Google API often returns error messages in a specific structure
-                errorDetails = errorData.error?.message || errorDetails;
-            } catch (e) {
-                // Ignore if the response body is not JSON
-            }
-            throw new Error(`HTTP Error ${response.status}: ${errorDetails}`);
+      // 4. CHECK FOR HTTP ERRORS (e.g., 400, 429, 500)
+      if (!response.ok) {
+        let errorDetails = "Erreur inconnue.";
+        try {
+            const errorData = await response.json();
+            // Attempt to get the specific message from the API error object
+            errorDetails = errorData.error?.message || errorDetails;
+        } catch (e) {
+            // response body was not JSON
         }
-        
-        // 5. Process the successful JSON response
-        const data = await response.json();
+        // Throw an error that the catch block will handle
+        throw new Error(`HTTP Error ${response.status}: ${errorDetails}`);
+      }
+      
+      // 5. Process the successful JSON response
+      const data = await response.json();
 
-        // 6. Extract the generated text
-        const generatedText = data.candidates?.[0]?.content?.parts?.[0]?.text;
+      // 6. Extract the generated text
+      const generatedText = data.candidates?.[0]?.content?.parts?.[0]?.text;
 
-        if (generatedText) {
-            setGeneratedCode(generatedText.trim());
-        } else {
-            // Handle cases where the response is valid JSON but contains no text 
-            // (e.g., safety block or empty generation)
-            setGeneratedCode("❌ Erreur : L'IA n'a généré aucun code (vérifiez les filtres de sécurité ou le prompt).");
-            console.warn("API returned data but no text content:", data);
-        }
+      if (generatedText) {
+        setGeneratedCode(generatedText.trim());
+      } else {
+        // Handle cases where the model successfully responds but blocks the content
+        setGeneratedCode("❌ Erreur : L'IA n'a généré aucun code (vérifiez les filtres de sécurité ou le prompt).");
+        console.warn("API returned data but no text content:", data);
+      }
 
     } catch (error) {
-        // Catch all network and explicit error throws
-        console.error("Erreur API Gemini:", error);
-        // Ensure error is treated as a string for display
-        const errorMessage = error instanceof Error ? error.message : "Erreur inconnue.";
-        setGeneratedCode(`❌ Échec de la connexion à l'IA. Détails: ${errorMessage}`);
-        
+      // 7. Handle all errors (network or HTTP/content errors)
+      console.error("Erreur API Gemini:", error);
+      const errorMessage = error instanceof Error ? error.message : "Erreur inconnue.";
+      setGeneratedCode(`❌ Échec de la connexion ou erreur API. Détails: ${errorMessage}`);
+      
     } finally {
-        // 7. Reset loading state
-        setLoadingCode(false);
+      // 8. Reset loading state
+      setLoadingCode(false);
     }
-};
   };
+
+  // ... rest of your App component's logic and return statement
+  // (e.g., rendering your UI, buttons, and the generatedCode result)
+ 
+};
 
 // --- Page Components ---
 
