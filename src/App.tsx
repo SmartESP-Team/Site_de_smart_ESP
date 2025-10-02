@@ -2463,52 +2463,91 @@ function App() {
   const [generatedCode, setGeneratedCode] = useState<string | null>(null);
   const [loadingCode, setLoadingCode] = useState(false);
 
+  // --- API Constants defined inside App ---
+  // ⚠️ WARNING: The API Key is exposed in this client-side code.
+  const API_KEY = "AIzaSyAg9vO1uRjzQxuIdVJcW-13-GL8AKVhl6I"; 
+  const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
+  // ----------------------------------------
+
   // 🔥 Gemini API Call to Generate Arduino Code
   const generateCode = async (component: Component) => {
+    // 1. Set initial states
     setLoadingCode(true);
     setGeneratedCode(null);
-    try {
-      const response = await fetch(
-        "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyAg9vO1uRjzQxuIdVJcW-13-GL8AKVhl6I",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            contents: [
-              {
-                parts: [
-                  {
-                    text: `
-                    Génère une explications simple du fonctionnement et trois mini codes Arduino C++ distincts (pour Arduino UNO, ESP32 et ESP8266) permettant d’utiliser le composant suivant : ${component.name} (${component.description}).
+
+    // 2. Construct the detailed prompt in French
+    const systemPrompt = `
+Génère une explications simple du fonctionnement et trois mini codes Arduino C++ distincts (pour Arduino UNO, ESP32 et ESP8266) permettant d’utiliser le composant suivant : ${component.name} (${component.description}).
 Exigences :
 - Chaque code doit être directement exécutable et compilable sans modifications supplémentaires.
 - Ajouter une section de commentaires claire en haut (/** ... */) listant précisément quels pins utiliser pour Arduino, ESP32 et ESP8266.
 - Inclure des commentaires en français expliquant chaque étape importante du code (initialisation, configuration, boucle, etc.).
 - Le code doit rester simple, minimaliste et pédagogique pour faciliter la compréhension.
-`
-,
-                  },
-                ],
-              },
-            ],
-          }),
+`;
+
+    try {
+      // 3. Execute the Fetch Request
+      const response = await fetch(API_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          contents: [
+            {
+              // Explicitly define the role of the message
+              role: "user", 
+              parts: [{ text: systemPrompt }],
+            },
+          ],
+          // Optional: Set a low temperature for predictable code output
+          config: {
+            temperature: 0.1, 
+          }
+        }),
+      });
+
+      // 4. CHECK FOR HTTP ERRORS (e.g., 400, 429, 500)
+      if (!response.ok) {
+        let errorDetails = "Erreur inconnue.";
+        try {
+            const errorData = await response.json();
+            // Attempt to get the specific message from the API error object
+            errorDetails = errorData.error?.message || errorDetails;
+        } catch (e) {
+            // response body was not JSON
         }
-      );
-      const data = await response.json();
-      if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
-        setGeneratedCode(data.candidates[0].content.parts[0].text.trim());
-      } else {
-        setGeneratedCode("❌ Erreur : Aucun code généré par l'IA.");
+        // Throw an error that the catch block will handle
+        throw new Error(`HTTP Error ${response.status}: ${errorDetails}`);
       }
+      
+      // 5. Process the successful JSON response
+      const data = await response.json();
+
+      // 6. Extract the generated text
+      const generatedText = data.candidates?.[0]?.content?.parts?.[0]?.text;
+
+      if (generatedText) {
+        setGeneratedCode(generatedText.trim());
+      } else {
+        // Handle cases where the model successfully responds but blocks the content
+        setGeneratedCode("❌ Erreur : L'IA n'a généré aucun code (vérifiez les filtres de sécurité ou le prompt).");
+        console.warn("API returned data but no text content:", data);
+      }
+
     } catch (error) {
+      // 7. Handle all errors (network or HTTP/content errors)
       console.error("Erreur API Gemini:", error);
-      setGeneratedCode("❌ Échec de la connexion à l'IA. Vérifiez le réseau ou l'API key.");
+      const errorMessage = error instanceof Error ? error.message : "Erreur inconnue.";
+      setGeneratedCode(`❌ Échec de la connexion ou erreur API. Détails: ${errorMessage}`);
+      
     } finally {
+      // 8. Reset loading state
       setLoadingCode(false);
     }
   };
+
+ 
 
 // --- Page Components ---
 
