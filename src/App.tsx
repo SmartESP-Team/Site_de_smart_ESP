@@ -2463,94 +2463,52 @@ function App() {
   const [generatedCode, setGeneratedCode] = useState<string | null>(null);
   const [loadingCode, setLoadingCode] = useState(false);
 
-  // --- API Constants defined inside App ---
-  // ⚠️ WARNING: The API Key is exposed in this client-side code.
-  const API_KEY = "AIzaSyDE9J-NkHYMOiBbAJ_nW27frcC9h8owcIg"; 
-  const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
-  // ----------------------------------------
-
   // 🔥 Gemini API Call to Generate Arduino Code
   const generateCode = async (component: Component) => {
-    // 1. Set initial states
     setLoadingCode(true);
     setGeneratedCode(null);
-
-    // 2. Construct the detailed prompt in French
-    const systemPrompt = `
-Génère une explications simple du fonctionnement et trois mini codes Arduino C++ distincts (pour Arduino UNO, ESP32 et ESP8266) permettant d’utiliser le composant suivant : ${component.name} (${component.description}).
+    try {
+      const response = await fetch(
+        "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyAg9vO1uRjzQxuIdVJcW-13-GL8AKVhl6I",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            contents: [
+              {
+                parts: [
+                  {
+                    text: `
+                    Génère une explications simple du fonctionnement et trois mini codes Arduino C++ distincts (pour Arduino UNO, ESP32 et ESP8266) permettant d’utiliser le composant suivant : ${component.name} (${component.description}).
 Exigences :
 - Chaque code doit être directement exécutable et compilable sans modifications supplémentaires.
 - Ajouter une section de commentaires claire en haut (/** ... */) listant précisément quels pins utiliser pour Arduino, ESP32 et ESP8266.
 - Inclure des commentaires en français expliquant chaque étape importante du code (initialisation, configuration, boucle, etc.).
 - Le code doit rester simple, minimaliste et pédagogique pour faciliter la compréhension.
-`;
-
-    try {
-      // 3. Execute the Fetch Request
-      const response = await fetch(API_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          contents: [
-            {
-              // Explicitly define the role of the message
-              role: "user", 
-              parts: [{ text: systemPrompt }],
-            },
-          ],
-          // Optional: Set a low temperature for predictable code output
-          config: {
-            temperature: 0.1, 
-          }
-        }),
-      });
-
-      // 4. CHECK FOR HTTP ERRORS (e.g., 400, 429, 500)
-      if (!response.ok) {
-        let errorDetails = "Erreur inconnue.";
-        try {
-            const errorData = await response.json();
-            // Attempt to get the specific message from the API error object
-            errorDetails = errorData.error?.message || errorDetails;
-        } catch (e) {
-            // response body was not JSON
+`
+,
+                  },
+                ],
+              },
+            ],
+          }),
         }
-        // Throw an error that the catch block will handle
-        throw new Error(`HTTP Error ${response.status}: ${errorDetails}`);
-      }
-      
-      // 5. Process the successful JSON response
+      );
       const data = await response.json();
-
-      // 6. Extract the generated text
-      const generatedText = data.candidates?.[0]?.content?.parts?.[0]?.text;
-
-      if (generatedText) {
-        setGeneratedCode(generatedText.trim());
+      if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
+        setGeneratedCode(data.candidates[0].content.parts[0].text.trim());
       } else {
-        // Handle cases where the model successfully responds but blocks the content
-        setGeneratedCode("❌ Erreur : L'IA n'a généré aucun code (vérifiez les filtres de sécurité ou le prompt).");
-        console.warn("API returned data but no text content:", data);
+        setGeneratedCode("❌ Erreur : Aucun code généré par l'IA.");
       }
-
     } catch (error) {
-      // 7. Handle all errors (network or HTTP/content errors)
       console.error("Erreur API Gemini:", error);
-      const errorMessage = error instanceof Error ? error.message : "Erreur inconnue.";
-      setGeneratedCode(`❌ Échec de la connexion ou erreur API. Détails: ${errorMessage}`);
-      
+      setGeneratedCode("❌ Échec de la connexion à l'IA. Vérifiez le réseau ou l'API key.");
     } finally {
-      // 8. Reset loading state
       setLoadingCode(false);
     }
   };
-
-  // ... rest of your App component's logic and return statement
-  // (e.g., rendering your UI, buttons, and the generatedCode result)
- 
-};
 
 // --- Page Components ---
 
@@ -3646,6 +3604,100 @@ Le tout doit être clair, concis et directement utilisable par un étudiant ou u
                     href="https://api.whatsapp.com/send/?phone=212710038821"
                     target="_blank"
                     rel="noopener noreferrer"
+                    className="block text-center text-green-600 border border-green-600 hover:bg-green-600 hover:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                  >
+                    WhatsApp
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      {/* Why Choose Us */}
+      <div className="mb-16">
+        <h2 className="text-4xl font-bold text-gray-800 text-center mb-12">Pourquoi Choisir Nos Applications Personnalisées ?</h2>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="bg-white p-6 rounded-xl shadow-lg text-center">
+            <Brain className="text-blue-600 mx-auto mb-4" size={48} />
+            <h3 className="text-xl font-bold text-gray-800 mb-2">Intelligence Alimentée par l'IA</h3>
+            <p className="text-gray-600">Intégration IA Gemini pour la prise de décision intelligente et l'analyse prédictive</p>
+          </div>
+          <div className="bg-white p-6 rounded-xl shadow-lg text-center">
+            <FileSpreadsheet className="text-green-600 mx-auto mb-4" size={48} />
+            <h3 className="text-xl font-bold text-gray-800 mb-2">Synchronisation de Données en Temps Réel</h3>
+            <p className="text-gray-600">Intégration transparente avec Google Sheets pour le partage de données en direct et la collaboration</p>
+          </div>
+          <div className="bg-white p-6 rounded-xl shadow-lg text-center">
+            <Mail className="text-red-600 mx-auto mb-4" size={48} />
+            <h3 className="text-xl font-bold text-gray-800 mb-2">Notifications Instantanées</h3>
+            <p className="text-gray-600">Intégration Gmail pour des alertes immédiates et des rapports automatisés</p>
+          </div>
+          <div className="bg-white p-6 rounded-xl shadow-lg text-center">
+            <Cloud className="text-purple-600 mx-auto mb-4" size={48} />
+            <h3 className="text-xl font-bold text-gray-800 mb-2">Architecture Évolutive</h3>
+            <p className="text-gray-600">Conception cloud-native qui évolue avec les besoins de votre entreprise</p>
+          </div>
+        </div>
+      </div>
+      {/* Call to Action */}
+
+      <div className="flex flex-col sm:flex-row gap-4">
+  <button
+    className="bg-white hover:bg-gray-50 text-blue-600 border-2 border-blue-600 px-6 py-3 rounded-lg text-base font-semibold transition-colors transform hover:scale-105 flex items-center justify-center space-x-2"
+    onClick={() => window.open("https://smartesp-premium.vercel.app/")}
+  >
+    <ExternalLink size={20} />
+    <span>Smart ESP Premium Workflow </span>
+  </button>
+  {/* NEW: Discord Community Button */}
+  <button
+    className="bg-[#5865F2] hover:bg-[#4752C4] text-white border-2 border-[#5865F2] px-6 py-3 rounded-lg text-base font-semibold transition-colors transform hover:scale-105 flex items-center justify-center space-x-2"
+    onClick={() => window.open("https://discord.gg/rJfVXHgs", "_blank", "noopener,noreferrer")}
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+      <path d="M13.545 2.907a13.227 13.227 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.19 12.19 0 0 0-3.658 0 8.258 8.258 0 0 0-.412-.833.051.051 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.041.041 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032c.001.014.01.028.021.037a13.276 13.276 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019c.308-.42.582-.863.818-1.329a.05.05 0 0 0-.01-.059.051.051 0 0 0-.018-.011 8.875 8.875 0 0 1-1.248-.595.05.05 0 0 1-.02-.066.051.051 0 0 1 .015-.019c.084-.063.168-.129.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.052.052 0 0 1 .053.007c.08.066.164.132.248.195a.051.051 0 0 1-.004.085 8.254 8.254 0 0 1-1.249.594.05.05 0 0 0-.03.03.052.052 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.235 13.235 0 0 0 4.001-2.02.049.049 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.034.034 0 0 0-.02-.019Zm-8.198 7.307c-.789 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612Zm5.316 0c-.788 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612Z"/>
+    </svg>
+    <span>Rejoindre la communauté Discord</span>
+  </button>
+</div>
+      <div className="text-center">
+        <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-12 rounded-2xl">
+          <h2 className="text-3xl font-bold mb-4">Prêt à Transformer Votre Vision IoT ?</h2>
+          <p className="text-xl mb-8 opacity-90">
+            Laissez notre équipe d'experts créer une solution IoT personnalisée qui correspond parfaitement à vos exigences.
+            Du concept au déploiement, nous nous occupons de tout.
+          </p>
+          <a
+            href="https://wa.me/212710038821"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-white text-blue-600 px-12 py-4 rounded-xl text-xl font-bold hover:bg-gray-100 transition-colors transform hover:scale-105"
+          >
+            Contactez-nous pour concrétiser votre projet ✅
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  );
+
+  // --- Page Routing ---
+  switch (currentPage) {
+    case "download":
+      return <DownloadPage />;
+    case "components":
+      return <ComponentsPage />;
+    case "custom":
+      return <CustomAppsPage />;
+    case "scriptcircuit":
+      return <ScriptCircuitPage />;
+    default:
+      return <HomePage />;
+  }
+}
+
+export default App; rel="noopener noreferrer"
                     className="block text-center text-green-600 border border-green-600 hover:bg-green-600 hover:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
                   >
                     WhatsApp
