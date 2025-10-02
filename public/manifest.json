@@ -1,6 +1,6 @@
 {
-  "name": "Smart ESP",
-  "short_name": "SmartESP",
+  "name": "IOT4YOU2",
+  "short_name": "IOT4YOU2",
   "description": "Plateforme IoT pour simplifier vos projets ESP32 et ESP8266",
   "start_url": "/",
   "display": "standalone",

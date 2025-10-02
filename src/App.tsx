@@ -1666,7 +1666,7 @@ const testimonials: Testimonial[] = [
     name: "Alex Rodriguez",
     role: "Ingénieur IoT",
     company: "TechCorp",
-    text: "Smart ESP a révolutionné notre processus de développement IoT. L'intégration Gemini AI fournit des suggestions de projets incroyables !",
+    text: "IOT4YOU2 a révolutionné notre processus de développement IoT. L'intégration Gemini AI fournit des suggestions de projets incroyables !",
     rating: 5,
   },
   {
@@ -1682,7 +1682,7 @@ const testimonials: Testimonial[] = [
     name: "Marcus Johnson",
     role: "Créateur",
     company: "Passionné DIY",
-    text: "En tant qu'amateur, Smart ESP rend les projets IoT complexes accessibles. Le catalogue de composants est incroyablement utile !",
+    text: "En tant qu'amateur, IOT4YOU2 rend les projets IoT complexes accessibles. Le catalogue de composants est incroyablement utile !",
     rating: 5,
   },
   {
@@ -2593,7 +2593,7 @@ const HomePage = () => {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <Cpu className="text-blue-600" size={32} />
-              <span className="text-2xl font-bold text-gray-800">Smart ESP</span>
+              <span className="text-2xl font-bold text-gray-800">IOT4YOU2</span>
             </div>
             <div className="hidden md:flex space-x-8">
               <button
@@ -2636,13 +2636,13 @@ const HomePage = () => {
             <div className="space-y-8">
               <div className="space-y-4">
                 <h1 className="text-5xl font-bold text-gray-800 leading-tight">
-                  Smart ESP – L’IoT pour tous : créez, innovez et partagez vos <span className="text-blue-600">projets connectés</span>
+                  IOT4YOU2 – L’IoT pour tous : créez, innovez et partagez vos <span className="text-blue-600">projets connectés</span>
                 </h1>
                 <p className="text-xl text-gray-600 leading-relaxed">
                   <span>
-                    Smart ESP :  
+                    IOT4YOU2 :  
                     L’application <strong className="text-green-600">IoT qui libère votre potentiel</strong>, conçue pour <strong className="text-purple-600">étudiants</strong>, <strong className="text-purple-600">débutants</strong> et passionnés curieux.  
-                    Avec Smart ESP, transformez vos <strong className="text-orange-600">idées ESP32/ESP8266</strong> en projets réels, utiles et concrets pour votre entourage.  
+                    Avec IOT4YOU2, transformez vos <strong className="text-orange-600">idées ESP32/ESP8266</strong> en projets réels, utiles et concrets pour votre entourage.  
                     Profitez d’une <strong className="text-blue-500">collecte</strong>, d’une surveillance et d’un partage de données en temps réel grâce à <strong className="text-green-500">Google Sheets</strong>, <strong className="text-red-500">Gmail</strong> et l’<strong className="text-pink-500">assistance IA Gemini</strong>.  
                     Catalogue de composants, bibliothèques et <strong className="text-teal-600">outils intelligents</strong> : tout est pensé pour que vous ressentiez la fierté de réussir, sans configuration complexe.
                   </span>
@@ -2684,7 +2684,7 @@ const HomePage = () => {
                   onClick={() => window.open("https://smartesp-premium.vercel.app/", "_blank", "noopener,noreferrer")}
                 >
                   <ExternalLink size={20} />
-                  <span>Smart ESP Premium Workflow </span>
+                  <span>IOT4YOU2 Premium Workflow </span>
                 </button>
                 <button
                   className="bg-[#5865F2] hover:bg-[#4752C4] text-white border-2 border-[#5865F2] px-6 py-3 rounded-lg text-base font-semibold transition-colors transform hover:scale-105 flex items-center justify-center space-x-2"
@@ -2752,7 +2752,7 @@ const HomePage = () => {
               <div className="bg-gradient-to-br from-blue-600 to-blue-800 p-4 rounded-2xl shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500">
                 <img
                   src="https://fayrviwbbspmiqztcyhv.supabase.co/storage/v1/object/public/iotimages/screen%20%20shot/Green%20and%20Yellow%20Playful%20Illustrative%20What%20are%20the%20parts%20of%20a%20Plant%20Presentation%20(2).png"
-                  alt="Capture d'écran de l'application Smart ESP"
+                  alt="Capture d'écran de l'application IOT4YOU2"
                   className="w-full rounded-xl shadow-lg"
                 />
               </div>
@@ -2800,7 +2800,7 @@ const HomePage = () => {
               Notre mission est de permettre à chacun de créer des projets IoT, même avec très peu de connaissances techniques. Grâce à notre dévouement, de plus en plus de personnes osent entrer dans le domaine de l’IoT, découvrant qu’il est possible d’utiliser la technologie pour résoudre leurs problèmes rapidement et efficacement.
             </p>
             <p className="text-lg md:text-xl leading-relaxed mt-6">
-              Chez Smart ESP, nous mettons toutes les ressources à portée de main, afin que chacun, quel que soit son niveau, puisse explorer, apprendre et innover dans un environnement connecté et une communauté solidaire.
+              Chez IOT4YOU2, nous mettons toutes les ressources à portée de main, afin que chacun, quel que soit son niveau, puisse explorer, apprendre et innover dans un environnement connecté et une communauté solidaire.
             </p>
           </div>
         </div>
@@ -2815,7 +2815,7 @@ const HomePage = () => {
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">Explorer Smart ESP</h2>
+            <h2 className="text-4xl font-bold text-gray-800 mb-4">Explorer IOT4YOU2</h2>
             <p className="text-xl text-gray-600">Tout ce dont vous avez besoin pour le développement IoT</p>
           </div>
           <div className="grid lg:grid-cols-3 gap-8">
@@ -2824,8 +2824,8 @@ const HomePage = () => {
                 <div className="bg-blue-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
                   <Download className="text-white" size={32} />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-800">Télécharger Smart ESP</h3>
-                <p className="text-gray-600">Obtenez l'application Smart ESP complète avec toutes les bibliothèques et pilotes</p>
+                <h3 className="text-2xl font-bold text-gray-800">Télécharger IOT4YOU2</h3>
+                <p className="text-gray-600">Obtenez l'application IOT4YOU2 complète avec toutes les bibliothèques et pilotes</p>
                 <button
                   onClick={() => setCurrentPage("download")}
                   className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors w-full"
@@ -2882,14 +2882,14 @@ const HomePage = () => {
             <div>
               <div className="flex items-center space-x-2 mb-4">
                 <Cpu className="text-blue-400" size={24} />
-                <span className="text-xl font-bold">Smart ESP</span>
+                <span className="text-xl font-bold">IOT4YOU2</span>
               </div>
               <p className="text-gray-400">Revolutionizing IoT development with AI-powered tools and seamless integrations.</p>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Produits</h4>
               <ul className="space-y-2 text-gray-400">
-                <li>Application Smart ESP</li>
+                <li>Application IOT4YOU2</li>
                 <li>Bibliothèque ESP32</li>
                 <li>Bibliothèque ESP8266</li>
                 <li>Fichiers Pilotes</li>
@@ -2907,12 +2907,12 @@ const HomePage = () => {
             <div>
               <h4 className="font-semibold mb-4">Support</h4>
               <ul className="space-y-2 text-gray-400">
-                <li>smartespservices@gmail.com</li>
+                <li>iot4you2services@gmail.com</li>
               </ul>
             </div>
           </div>
           <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2025 Smart ESP. All rights reserved.</p>
+            <p>&copy; 2025 IOT4YOU2. All rights reserved.</p>
           </div>
         </div>
       </footer>
@@ -3068,7 +3068,7 @@ const HomePage = () => {
             </button>
             <div className="flex items-center space-x-2">
               <Cpu className="text-blue-600" size={32} />
-              <span className="text-2xl font-bold text-gray-800">Téléchargements Smart ESP</span>
+              <span className="text-2xl font-bold text-gray-800">Téléchargements IOT4YOU2</span>
             </div>
           </div>
         </div>
@@ -3106,7 +3106,7 @@ const HomePage = () => {
             className="bg-blue-600 hover:bg-blue-700 text-white p-6 rounded-xl font-semibold text-lg transition-colors flex items-center justify-center space-x-3 transform hover:scale-105"
           >
             <Download size={24} />
-            <span>Application Smart ESP</span>
+            <span>Application IOT4YOU2</span>
           </a>
           <a
             href="https://github.com/SmartESP-Team/SmartESP32Utils/archive/refs/heads/main.zip"
@@ -3143,7 +3143,7 @@ const HomePage = () => {
               width="100%"
               height="100%"
               src="https://youtu.be/9jcOBSLE75o?si=0N8tn40SZiQ2cGVw"
-              title="Tutoriel Smart ESP"
+              title="Tutoriel IOT4YOU2"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
@@ -3276,7 +3276,7 @@ Le tout doit être clair, concis et directement utilisable par un étudiant ou u
               <div className="flex items-center space-x-2">
                 <Cpu className="text-blue-600" size={32} />
                 <span className="text-2xl font-bold text-gray-800">
-                  Smart ESP – Catalogue de composants IoT
+                  IOT4YOU2 – Catalogue de composants IoT
                 </span>
               </div>
             </div>
@@ -3669,7 +3669,7 @@ Le tout doit être clair, concis et directement utilisable par un étudiant ou u
     onClick={() => window.open("https://smartesp-premium.vercel.app/")}
   >
     <ExternalLink size={20} />
-    <span>Smart ESP Premium Workflow </span>
+    <span>IOT4YOU2 Premium Workflow </span>
   </button>
   {/* NEW: Discord Community Button */}
   <button
