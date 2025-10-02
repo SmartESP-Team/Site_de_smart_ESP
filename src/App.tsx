@@ -2242,7 +2242,7 @@ ESP32 DevKit V1:
 ${projectDescription}`;
 
       const response = await fetch(
-        "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyAg9vO1uRjzQxuIdVJcW-13-GL8AKVhl6I",
+        "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=AIzaSyAg9vO1uRjzQxuIdVJcW-13-GL8AKVhl6I",
         {
           method: "POST",
           headers: {
@@ -2473,7 +2473,7 @@ function App() {
   // --- API Constants defined inside App ---
   // ⚠️ WARNING: The API Key is exposed in this client-side code.
   const API_KEY = "AIzaSyDE9J-NkHYMOiBbAJ_nW27frcC9h8owcIg"; 
-  const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
+  const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`;
   // ----------------------------------------
 
   // 🔥 Gemini API Call to Generate Arduino Code
@@ -3223,7 +3223,7 @@ Génère une réponse complète, pédagogique et utile. Cela peut être :
 - Des conseils d'utilisation.
 Le tout doit être clair, concis et directement utilisable par un étudiant ou un débutant.`;
         const response = await fetch(
-          "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyAg9vO1uRjzQxuIdVJcW-13-GL8AKVhl6I",
+          "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=AIzaSyAg9vO1uRjzQxuIdVJcW-13-GL8AKVhl6I",
           {
             method: "POST",
             headers: {
